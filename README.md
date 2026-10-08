@@ -1,0 +1,128 @@
+<p align="center">
+  <img src="public/favicon.svg" alt="" width="56" height="56" />
+</p>
+
+<h1 align="center">Lanjut</h1>
+
+<p align="center">
+  ATS Builder. Free, open-source resume builder. Runs locally in the browser. No account, no server-side storage of resume content.
+  <br />
+  <a href="https://lanjut.org"><strong>lanjut.org</strong></a>
+</p>
+
+## What This Is
+
+A resume builder split into two layers:
+
+- **Structural layer**: fixed section types (header, summary, experience, internship, projects, organizations, education, certifications, skills, languages, plus custom sections from an approved list) with a restricted rich-text schema per field. This keeps export output parseable by Applicant Tracking System (ATS) software.
+- **Presentation layer**: typography, spacing, color, and theming. Fully customizable. Changes here never affect the underlying text structure used for parsing or export.
+
+Customization applies to how the resume looks. It does not extend to layouts that break ATS parsing (tables, multi-column body text, floating text boxes, embedded icons in text runs).
+
+## Features
+
+- Six résumé templates, all sharing one linear document structure; only styling differs
+- Template gallery with search, sort, and live seed-data previews
+- Résumé library with live first-page thumbnails, rename, and delete
+- Print-accurate A4 preview with automatic pagination
+- Rich text editing per field, scoped to ATS-safe formatting (bold, italic, lists, links), with undo and redo per field
+- Optional company context for experience and internship entries, shown before achievements in every preview and export
+- Document-level undo and redo across every edit (typing, reorder, layout, settings), from the editor toolbar or Ctrl/Cmd+Z
+- Optional header photo (off by default): add a portrait in Personal Information and every template places it to match its own layout; exports embed it without affecting how parsers read the text
+- Custom sections alongside the fixed types, all sharing the same restricted schema
+- Drag to reorder sections and toggle any section's visibility (entries within a section sort by date automatically)
+- Document-level presentation controls: font, font size, section spacing, line height, letter spacing, contact-icon visibility, and a one-click style reset
+- Available in English and Indonesian (`use-intl`)
+- Export to PDF (linear reading order preserved) and plain text / .docx
+- Copy, download, and re-import a résumé as JSON or YAML
+- Guided tour of the editor and library for first-time users
+- Send bug reports and feature requests in-app, no GitHub account required
+- Local persistence via IndexedDB, no data leaves the browser
+- Fully local: works offline after initial load
+
+## Templates
+
+| Template | Character |
+|---|---|
+| **Awal** | Clean single-column starter with room for every section |
+| **Ketat** | Compact serif classic: ruled headings, italic dates |
+| **Luasa** | Airy minimalist: letterspaced headings, generous whitespace |
+| **Tebal** | Bold modern statement: oversized name, heavy uppercase headings |
+| **Klasik** | Traditional all-serif CV: centered, quiet, formal |
+| **Ketik** | Typewriter-flavored technical look, built for developers |
+
+Every template renders the same linear block sequence, so switching templates never changes parse or export order.
+
+## Tech Stack
+
+| Purpose | Library |
+|---|---|
+| Framework | Astro (static output, React islands) |
+| Hosting | Cloudflare Workers static assets, plus one Worker for the feedback relay |
+| Build targets | Web (default), desktop (`LANJUT_TARGET=desktop`) |
+| Desktop shell | Tauri 2 (macOS 13 or later) |
+| Internationalization | use-intl (English, Indonesian) |
+| UI components | shadcn (base-ui) |
+| Icons | Phosphor (@phosphor-icons/react) |
+| Styling | Tailwind CSS |
+| Rich text editor | TipTap |
+| Forms | react-hook-form + zod |
+| Drag and drop | @dnd-kit |
+| Export | takumi-pdf (PDF from the preview HTML), docx |
+| Animation | motion/react |
+| State | zustand |
+| Search params state | nuqs |
+| Persistence | IndexedDB (via idb) |
+| Utilities | @mobily/ts-belt |
+| Dates | date-fns |
+| Lint / format | Biome |
+
+## Getting Started
+
+```bash
+git clone https://github.com/rimzzlabs/lanjut.git
+cd lanjut
+pnpm install
+pnpm dev
+```
+
+Open `http://localhost:3000`.
+
+### Useful scripts
+
+| Script | What it does |
+|---|---|
+| `pnpm dev` | Start the Astro dev server and the feedback Worker |
+| `pnpm lint` / `pnpm format` | Check / write with Biome |
+| `pnpm typecheck` | Run `astro check` |
+| `pnpm build` | Generate the Open Graph images and build the site into `dist/` |
+| `LANJUT_TARGET=desktop pnpm build` | Build the static desktop assets into `dist-desktop/` |
+| `pnpm desktop:dev` | Run the desktop shell against the dev server |
+| `pnpm desktop:build` | Build the desktop app and installers |
+| `pnpm validate:exports` | Regenerate PDF/DOCX/TXT from the seed résumé and verify extraction order and field mapping |
+| `pnpm preview` | Build the site and serve it through the Worker locally |
+| `pnpm ship` | Build and deploy to Cloudflare |
+| `pnpm commit` | Commit via the commitizen prompt |
+
+## Data and Privacy
+
+Resume content is stored in IndexedDB in the browser. No resume content is sent to any server, API route, or third-party service. Clearing browser storage deletes saved resumes; export your work before doing so.
+
+## Export Formats
+
+- **PDF**: rendered from the same HTML as the preview, so the file matches what you see. It is real, selectable text in linear reading order for ATS text extraction, not a visual snapshot.
+- **DOCX / plain text**: direct ATS-submission-safe formats, recommended over PDF for systems with strict parsing requirements.
+
+Changes to the export path are gated by `pnpm validate:exports`, which regenerates every format from the seed résumé and verifies, via real text extraction, that linear reading order is preserved and every field maps through.
+
+## Contributing
+
+Bug reports and feature requests go through the issue forms; note the scope rules there: presentation is customizable, structure is not, and accounts/server storage are non-goals.
+
+Commit messages follow Conventional Commits via commitlint and commitizen, and every commit must be signed off (`git commit -s`) under the Developer Certificate of Origin. Run `pnpm commit` instead of `git commit` to use the prompt. Pre-commit hooks (husky + lint-staged) run lint and format checks before any commit is accepted. PR titles follow the same convention with a fully lowercase subject; they become the squash-merge commit.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full workflow (setup, branches, commits, DCO, releases) and `AGENTS.md` for architecture rules and code conventions before submitting a PR.
+
+## License
+
+[AGPL-3.0-only](LICENSE). Copyright © 2026 Lanjut Contributors.

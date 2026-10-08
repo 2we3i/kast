@@ -1,0 +1,14 @@
+ignoredBuiltDependencies:
+  - sharp
+  - unrs-resolver
+
+onlyBuiltDependencies:
+  - esbuild
+  - workerd
+
+patchedDependencies:
+  nextstepjs@2.2.0: patches/nextstepjs@2.2.0.patch
+
+# nextstepjs and nuqs list next as an optional peer. Lanjut does not use it.
+overrides:
+  next: "-"

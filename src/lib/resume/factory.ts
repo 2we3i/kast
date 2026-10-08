@@ -1,0 +1,156 @@
+import { A, D, pipe } from "@mobily/ts-belt";
+import type { JSONContent } from "@tiptap/core";
+import { nanoid } from "nanoid";
+import {
+  type FieldSchema,
+  getCustomFields,
+  getSectionSchema,
+  HEADER_SCHEMA,
+} from "./schema-registry";
+import {
+  CURRENT_SCHEMA_VERSION,
+  type CustomVariant,
+  type Entry,
+  type Field,
+  type FieldKey,
+  type Header,
+  type Resume,
+  type Section,
+  type SectionType,
+} from "./types";
+
+/** An empty restricted TipTap document: a single empty paragraph. */
+export function emptyRichTextValue(): JSONContent {
+  return { type: "doc", content: [{ type: "paragraph" }] };
+}
+
+function emptyField(schema: FieldSchema): Field {
+  if (schema.kind === "plain") return { kind: "plain", value: "" };
+  return { kind: "richtext", value: emptyRichTextValue() };
+}
+
+function fieldsFromSchema(schemas: FieldSchema[]): Record<FieldKey, Field> {
+  return pipe(
+    schemas,
+    A.map((schema): readonly [FieldKey, Field] => [
+      schema.key,
+      emptyField(schema),
+    ]),
+    D.fromPairs,
+  );
+}
+
+export function createEmptyEntry(type: SectionType): Entry {
+  return {
+    id: nanoid(),
+    fields: fieldsFromSchema(getSectionSchema(type).fields),
+  };
+}
+
+/**
+ * Skills and Languages share a column-toggleable grid. New sections start
+ * two-column and show per-entry proficiency until the user hides it.
+ */
+const GRID_SECTION_TYPES: ReadonlyArray<SectionType> = ["skills", "languages"];
+
+export function createEmptySection(type: SectionType): Section {
+  const schema = getSectionSchema(type);
+  const section: Section = {
+    id: nanoid(),
+    type,
+    title: schema.defaultTitle,
+    entries: [],
+    hidden: false,
+  };
+  if (!A.includes(GRID_SECTION_TYPES, type)) return section;
+  return { ...section, columns: 2, showProficiency: true };
+}
+
+/** An empty entry shaped for a custom Section in the given variant. */
+export function createCustomEntry(variant: CustomVariant): Entry {
+  return { id: nanoid(), fields: fieldsFromSchema(getCustomFields(variant)) };
+}
+
+/**
+ * A new custom Section: a variant (default `rich`), a default heading the user
+ * can rename, and one starter entry shaped for that variant.
+ */
+export function createCustomSection(
+  variant: CustomVariant = "rich",
+  title: string = getSectionSchema("custom").defaultTitle,
+): Section {
+  return {
+    id: nanoid(),
+    type: "custom",
+    title,
+    variant,
+    entries: [createCustomEntry(variant)],
+    hidden: false,
+  };
+}
+
+export function createEmptyHeader(): Header {
+  return { fields: fieldsFromSchema(HEADER_SCHEMA) };
+}
+
+/**
+ * A blank structural document: Header plus every core Section with zero
+ * entries. Backs the create dialog's opt-out from pre-filling; the default
+ * create path seeds the Seed fixture instead (see seed.ts).
+ */
+export function createEmptyResume(title: string): Resume {
+  const now = new Date().toISOString();
+  return {
+    id: nanoid(),
+    schemaVersion: CURRENT_SCHEMA_VERSION,
+    title,
+    templateId: "awal",
+    language: "en",
+    showIcons: true,
+    sectionSpacing: 0,
+    letterSpacing: 0,
+    header: createEmptyHeader(),
+    sections: [
+      createEmptySection("summary"),
+      createEmptySection("experience"),
+      createEmptySection("internship"),
+      createEmptySection("projects"),
+      createEmptySection("organizations"),
+      createEmptySection("education"),
+      createEmptySection("certifications"),
+      createEmptySection("skills"),
+      createEmptySection("languages"),
+    ],
+    createdAt: now,
+    updatedAt: now,
+  };
+}
+
+/**
+ * Clone a template Resume into a fresh document: new resume/section/entry ids,
+ * a new title, and fresh timestamps. Used to instantiate a new Resume from the
+ * Seed fixture without sharing identity with it.
+ */
+export function cloneResumeAsNew(template: Resume, title: string): Resume {
+  const now = new Date().toISOString();
+  return {
+    ...structuredClone(template),
+    id: nanoid(),
+    schemaVersion: CURRENT_SCHEMA_VERSION,
+    title,
+    header: structuredClone(template.header),
+    sections: pipe(
+      template.sections,
+      A.map((section) => ({
+        ...structuredClone(section),
+        id: nanoid(),
+        entries: pipe(
+          section.entries,
+          A.map((entry) => ({ ...structuredClone(entry), id: nanoid() })),
+        ),
+      })),
+    ),
+    createdAt: now,
+    updatedAt: now,
+  };
+}

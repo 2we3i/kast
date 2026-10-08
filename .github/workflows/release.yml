@@ -1,0 +1,171 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+  # Lets the desktop app be built and attached to a tag that already exists,
+  # so a failed upload can be repaired without inventing a release.
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing tag to attach the macOS app to
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+# A release must never be cancelled halfway, so runs queue instead. Two merges
+# in quick succession otherwise tag and upload at the same time.
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release-please:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - id: release
+        uses: googleapis/release-please-action@v5
+
+  deploy:
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm lint
+
+      - run: pnpm typecheck
+
+      - run: pnpm validate:exports
+
+      # Public Turnstile site key, inlined at build time.
+      - run: pnpm build
+        env:
+          PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
+
+      - name: Deploy ${{ needs.release-please.outputs.tag_name }} to Cloudflare Workers
+        run: pnpm exec wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+  desktop:
+    # Attaches the macOS app to the release, one build per architecture rather
+    # than a universal binary, so nobody downloads twice the bytes they need.
+    # Windows is not built yet.
+    needs: release-please
+    if: >-
+      always() &&
+      (needs.release-please.outputs.release_created == 'true' ||
+       github.event_name == 'workflow_dispatch')
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [aarch64-apple-darwin, x86_64-apple-darwin]
+    env:
+      TAG: ${{ inputs.tag || needs.release-please.outputs.tag_name }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.tag || needs.release-please.outputs.tag_name }}
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+          key: ${{ matrix.target }}
+
+      - run: pnpm install --frozen-lockfile
+
+      # The same guard the CI desktop job runs. A release builds from a tag, and
+      # nothing else on this path reads the config before the bundle is built.
+      - name: Confirm the shell config still holds its load-bearing values
+        run: node .github/scripts/check-tauri-config.mjs
+
+      # Resolved here rather than taken from the release-please output, so the
+      # manual path and the release path reach the action the same way.
+      - id: release
+        run: echo "id=$(gh release view "$TAG" --json databaseId --jq .databaseId)" >> "$GITHUB_OUTPUT"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          # The action uploads the bundle to the release, so it needs a token.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Signs the update bundle. Without these the updater has nothing to
+          # verify against and the build produces no update manifest.
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+          LANJUT_TARGET: desktop
+          PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
+        with:
+          releaseId: ${{ steps.release.outputs.id }}
+          args: --target ${{ matrix.target }}
+
+  publish:
+    # release-please cuts every release as a draft. It stays hidden until both
+    # architectures have uploaded a signed bundle, so a failed build never leaves
+    # a public release with no app, and releases/latest never moves to one.
+    needs: [release-please, desktop]
+    if: >-
+      !cancelled() &&
+      needs.desktop.result == 'success' &&
+      (needs.release-please.outputs.release_created == 'true' ||
+       github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ inputs.tag || needs.release-please.outputs.tag_name }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7
+
+      # tauri-action warns and carries on when it builds no updater artifact or
+      # finds no signature, so the only proof is the manifest on the release.
+      # Keep this list in step with the desktop matrix.
+      - name: Confirm the release carries a signed update manifest
+        run: |
+          set -euo pipefail
+          gh release download "$TAG" --pattern latest.json --output latest.json --clobber
+          node .github/scripts/check-update-manifest.mjs
+        env:
+          PLATFORMS: darwin-aarch64 darwin-x86_64
+
+      # make_latest=legacy lets GitHub pick the latest release by date and
+      # version. The API defaults to true, which would let a repair of an older
+      # tag pull releases/latest, and every installed updater, backwards.
+      - name: Publish ${{ env.TAG }}
+        run: |
+          set -euo pipefail
+          id=$(gh release view "$TAG" --json databaseId --jq .databaseId)
+          gh api -X PATCH "repos/$GITHUB_REPOSITORY/releases/$id" \
+            -F draft=false -f make_latest=legacy --jq '"published \(.tag_name), draft=\(.draft)"'

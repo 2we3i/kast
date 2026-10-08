@@ -1,0 +1,361 @@
+# Changelog
+
+## [0.18.0](https://github.com/rimzzlabs/lanjut/compare/v0.17.2...v0.18.0) (2026-09-27)
+
+
+### Features
+
+* optional company context ([#189](https://github.com/rimzzlabs/lanjut/issues/189)) ([f2c34b7](https://github.com/rimzzlabs/lanjut/commit/f2c34b7c762f5ac1e4b623283fc6a7b640f9a6d4))
+* serve the app at lanjut.org ([#191](https://github.com/rimzzlabs/lanjut/issues/191)) ([fa040e5](https://github.com/rimzzlabs/lanjut/commit/fa040e55f5f263f2478204ae12a1e97c46b3f4f6))
+
+## [0.17.2](https://github.com/rimzzlabs/lanjut/compare/v0.17.1...v0.17.2) (2026-09-19)
+
+
+### Bug Fixes
+
+* keep the landing résumé previews inside the mobile viewport ([#186](https://github.com/rimzzlabs/lanjut/issues/186)) ([7feb8ef](https://github.com/rimzzlabs/lanjut/commit/7feb8ef1f5909cdbe3fc0f4240ce608bcab5ce50))
+
+## [0.17.1](https://github.com/rimzzlabs/lanjut/compare/v0.17.0...v0.17.1) (2026-09-11)
+
+
+### Bug Fixes
+
+* restore the desktop layout and the updater artifacts ([#181](https://github.com/rimzzlabs/lanjut/issues/181)) ([43f2ab6](https://github.com/rimzzlabs/lanjut/commit/43f2ab653e913aa0197ea6c5c88f04b828043209))
+
+## [0.17.0](https://github.com/rimzzlabs/lanjut/compare/v0.16.2...v0.17.0) (2026-09-11)
+
+
+### Features
+
+* offer updates in the desktop app ([#179](https://github.com/rimzzlabs/lanjut/issues/179)) ([c6c2ca0](https://github.com/rimzzlabs/lanjut/commit/c6c2ca0171853b8a4247015ba8a51e058749b50a))
+
+## [0.16.2](https://github.com/rimzzlabs/lanjut/compare/v0.16.1...v0.16.2) (2026-09-11)
+
+
+### Bug Fixes
+
+* lay out the desktop window correctly at startup ([#177](https://github.com/rimzzlabs/lanjut/issues/177)) ([a58e9fc](https://github.com/rimzzlabs/lanjut/commit/a58e9fc764d0663c9f03413c628faa454b40b6b7))
+
+## [0.16.1](https://github.com/rimzzlabs/lanjut/compare/v0.16.0...v0.16.1) (2026-09-11)
+
+
+### Bug Fixes
+
+* give the release job a token to upload the mac app ([#175](https://github.com/rimzzlabs/lanjut/issues/175)) ([03935f6](https://github.com/rimzzlabs/lanjut/commit/03935f61fec352d27c813ce547febae26e6e10e8))
+
+## [0.16.0](https://github.com/rimzzlabs/lanjut/compare/v0.15.0...v0.16.0) (2026-09-11)
+
+
+### Features
+
+* offer the mac app on the landing page ([#173](https://github.com/rimzzlabs/lanjut/issues/173)) ([1937bd0](https://github.com/rimzzlabs/lanjut/commit/1937bd062a199e4f51d0bbe68cd2e331aad788cc))
+
+## [0.15.0](https://github.com/rimzzlabs/lanjut/compare/v0.14.0...v0.15.0) (2026-09-11)
+
+
+### Features
+
+* add a desktop splash window ([#171](https://github.com/rimzzlabs/lanjut/issues/171)) ([e8b96dc](https://github.com/rimzzlabs/lanjut/commit/e8b96dcbdd7583182a16621e8d41adc2a48af71f))
+* add a standalone feedback route with query prefill ([#165](https://github.com/rimzzlabs/lanjut/issues/165)) ([22d242a](https://github.com/rimzzlabs/lanjut/commit/22d242a61e4feecadb2dac6c3355e220ba2d7475))
+* add the desktop static export build target ([#166](https://github.com/rimzzlabs/lanjut/issues/166)) ([54fcbb6](https://github.com/rimzzlabs/lanjut/commit/54fcbb6b85e3824d2e7f4d6822efe7f6b38a94b0))
+* add the tauri desktop shell ([#167](https://github.com/rimzzlabs/lanjut/issues/167)) ([cf7273c](https://github.com/rimzzlabs/lanjut/commit/cf7273c3d5ffa0fad6fb7b2daf9558ed7e6b8abf))
+* file feedback from the desktop app ([#170](https://github.com/rimzzlabs/lanjut/issues/170)) ([cb7525c](https://github.com/rimzzlabs/lanjut/commit/cb7525c42e1860da1a8844fa4ac4ae5d979cf32e))
+
+
+### Bug Fixes
+
+* open external links from the desktop app ([#168](https://github.com/rimzzlabs/lanjut/issues/168)) ([5c03f7d](https://github.com/rimzzlabs/lanjut/commit/5c03f7d0d0bb5db8f517af3258d6417a251562e8))
+* save exported files from the desktop app ([#169](https://github.com/rimzzlabs/lanjut/issues/169)) ([15c11d9](https://github.com/rimzzlabs/lanjut/commit/15c11d99f7bae726c204dbaa74335e0083fc823d))
+
+
+### Refactors
+
+* route every editor link through one href builder and id hook ([#163](https://github.com/rimzzlabs/lanjut/issues/163)) ([06e352c](https://github.com/rimzzlabs/lanjut/commit/06e352c688a31cb8689584f3c33178bd0cde111b))
+
+## [0.14.0](https://github.com/rimzzlabs/lanjut/compare/v0.13.0...v0.14.0) (2026-09-06)
+
+
+### Features
+
+* add an opt-in header photo with size, radius, and position controls ([#157](https://github.com/rimzzlabs/lanjut/issues/157)) ([247b29e](https://github.com/rimzzlabs/lanjut/commit/247b29eac38ba9fccbaf2a354b6c8c18928b9517))
+* add saweria and sociabuzz donation links to the sidebar and footer ([#160](https://github.com/rimzzlabs/lanjut/issues/160)) ([786181b](https://github.com/rimzzlabs/lanjut/commit/786181b403ec4e2c1bd569c52a8c0aeca4271504))
+* rebrand the mark and rebuild the landing around live renders ([#159](https://github.com/rimzzlabs/lanjut/issues/159)) ([06f749b](https://github.com/rimzzlabs/lanjut/commit/06f749b8ef804759c4bb51381c8ad346479fcfb9))
+
+
+### Documentation
+
+* add the 0.14.0 changelog entry for the what's new sheet ([#161](https://github.com/rimzzlabs/lanjut/issues/161)) ([cb14541](https://github.com/rimzzlabs/lanjut/commit/cb145413ba7e7a220d5267c3f3d079b7d5ec10b4))
+
+## [0.13.0](https://github.com/rimzzlabs/lanjut/compare/v0.12.0...v0.13.0) (2026-09-06)
+
+
+### Features
+
+* add an optional extra link to the resume header ([#153](https://github.com/rimzzlabs/lanjut/issues/153)) ([08c2967](https://github.com/rimzzlabs/lanjut/commit/08c296731995bb1f094e9ceb619a2d7b6df742ed))
+* pick up the extra header link when a pdf is imported ([#155](https://github.com/rimzzlabs/lanjut/issues/155)) ([18df01d](https://github.com/rimzzlabs/lanjut/commit/18df01d846fccee29afa98f6a24ef2d1af221d6f))
+
+
+### Documentation
+
+* add the 0.13.0 changelog entry for the what's new sheet ([#156](https://github.com/rimzzlabs/lanjut/issues/156)) ([19fc485](https://github.com/rimzzlabs/lanjut/commit/19fc485c27db0c825da474a09fe90295f99eaab2))
+
+## [0.12.0](https://github.com/rimzzlabs/lanjut/compare/v0.11.0...v0.12.0) (2026-09-02)
+
+
+### Features
+
+* add document-level undo and redo to the editor ([#149](https://github.com/rimzzlabs/lanjut/issues/149)) ([2d899c7](https://github.com/rimzzlabs/lanjut/commit/2d899c72e975a6e98657576155049f20878fb6ac))
+* add undo and redo to rich text fields ([#141](https://github.com/rimzzlabs/lanjut/issues/141)) ([94e95f4](https://github.com/rimzzlabs/lanjut/commit/94e95f4ce37474909f64d84f76ebbd45df628b5c))
+* keep only one editor section accordion open at a time ([#139](https://github.com/rimzzlabs/lanjut/issues/139)) ([501389b](https://github.com/rimzzlabs/lanjut/commit/501389bca50860b301f9699eae0da1eefca86d41))
+
+
+### Bug Fixes
+
+* extract the entry location when a pdf is imported ([#148](https://github.com/rimzzlabs/lanjut/issues/148)) ([53a4bca](https://github.com/rimzzlabs/lanjut/commit/53a4bca2df3d37e7fc9dad51d5a239602d0af740))
+* remove stray hyphen where the pdf contact line wraps ([#146](https://github.com/rimzzlabs/lanjut/issues/146)) ([1dc0ebb](https://github.com/rimzzlabs/lanjut/commit/1dc0ebbe540d6e1572b411d193bd3279cce6a10b))
+* underline links in the preview and every export ([#147](https://github.com/rimzzlabs/lanjut/issues/147)) ([eb802a0](https://github.com/rimzzlabs/lanjut/commit/eb802a0f8b04050cac4c5f3e633dcf9d257f8854))
+
+
+### Documentation
+
+* add the 0.12.0 changelog entry for the what's new sheet ([#150](https://github.com/rimzzlabs/lanjut/issues/150)) ([4522d88](https://github.com/rimzzlabs/lanjut/commit/4522d881f11ab823cc2c392fcc3e22bec5851bda))
+
+## [0.11.0](https://github.com/rimzzlabs/lanjut/compare/v0.10.2...v0.11.0) (2026-08-01)
+
+
+### Features
+
+* add a company location to work experience ([#135](https://github.com/rimzzlabs/lanjut/issues/135)) ([ac382ab](https://github.com/rimzzlabs/lanjut/commit/ac382abc4c06f3d54fc1551bdd91fac85db51dad))
+
+## [0.10.2](https://github.com/rimzzlabs/lanjut/compare/v0.10.1...v0.10.2) (2026-07-20)
+
+
+### Bug Fixes
+
+* keep pdf entries from splitting across page breaks ([#130](https://github.com/rimzzlabs/lanjut/issues/130)) ([0197c2a](https://github.com/rimzzlabs/lanjut/commit/0197c2ac65c4cb102f261e679c1eb48c35634e8f))
+
+## [0.10.1](https://github.com/rimzzlabs/lanjut/compare/v0.10.0...v0.10.1) (2026-07-18)
+
+
+### Bug Fixes
+
+* keep fi/fl pairs extractable in pdf export by disabling ligatures ([#125](https://github.com/rimzzlabs/lanjut/issues/125)) ([14e0a9e](https://github.com/rimzzlabs/lanjut/commit/14e0a9e598fadac2be79e57e5d7ebbebef60a212))
+* link the project name instead of the contributor role ([#123](https://github.com/rimzzlabs/lanjut/issues/123)) ([c8aede6](https://github.com/rimzzlabs/lanjut/commit/c8aede60a1de55a0cfad54e9e7a739feea0dc9c6))
+
+## [0.10.0](https://github.com/rimzzlabs/lanjut/compare/v0.9.3...v0.10.0) (2026-07-18)
+
+
+### Features
+
+* animate preview sections as they enter and leave ([#110](https://github.com/rimzzlabs/lanjut/issues/110)) ([18c06ab](https://github.com/rimzzlabs/lanjut/commit/18c06ab2cd2ff2cd946b94eb4558aaeaa4cae8c4))
+* choose the document font from the document tab ([#113](https://github.com/rimzzlabs/lanjut/issues/113)) ([62c02a6](https://github.com/rimzzlabs/lanjut/commit/62c02a6b6238416dbfd840d99ef8e46884216ecb))
+* export, copy, and import resumes as json and yaml ([#108](https://github.com/rimzzlabs/lanjut/issues/108)) ([6af7be8](https://github.com/rimzzlabs/lanjut/commit/6af7be8beb02642a8e34562f06da154a764976c1))
+* redesign landing and platform with build-time localized og images ([#121](https://github.com/rimzzlabs/lanjut/issues/121)) ([b8ce5f1](https://github.com/rimzzlabs/lanjut/commit/b8ce5f1e6284bd1e810d7fd6ca46e3a0afd0f327))
+* scale name, heading, and body font sizes from the document tab ([#117](https://github.com/rimzzlabs/lanjut/issues/117)) ([2590fc1](https://github.com/rimzzlabs/lanjut/commit/2590fc1809638cfc6b175cb9157d8849da415c7e))
+* send bug reports and feature requests without a github account ([#105](https://github.com/rimzzlabs/lanjut/issues/105)) ([4aa9451](https://github.com/rimzzlabs/lanjut/commit/4aa9451f3aec0251715b6c79f8c84a99b83f9969))
+* show a value bubble on slider thumbs while focused ([#118](https://github.com/rimzzlabs/lanjut/issues/118)) ([e1010b6](https://github.com/rimzzlabs/lanjut/commit/e1010b6a28900ef5910f2dfb815be4d8865946e5))
+* toggle contact icon visibility from the document tab ([#111](https://github.com/rimzzlabs/lanjut/issues/111)) ([e57eee6](https://github.com/rimzzlabs/lanjut/commit/e57eee6401c536961ef0e17c23ac87a83c4dc904))
+* toggle section visibility from the editor list ([#109](https://github.com/rimzzlabs/lanjut/issues/109)) ([c979545](https://github.com/rimzzlabs/lanjut/commit/c9795455dbd0e2e17fb8ebfbda00aa2d68797d84))
+* typography controls and styling reset in the document tab ([#114](https://github.com/rimzzlabs/lanjut/issues/114)) ([0cebf8f](https://github.com/rimzzlabs/lanjut/commit/0cebf8fdd3963920632112d74b700efaf64ea8c0))
+* walk the editor sidebar tabs in the guided tour ([#120](https://github.com/rimzzlabs/lanjut/issues/120)) ([b26bd51](https://github.com/rimzzlabs/lanjut/commit/b26bd51a4a63fe0d7d8c2dffd1da4ce30ae4fcba))
+* widen section spacing from the document tab ([#112](https://github.com/rimzzlabs/lanjut/issues/112)) ([d10e4df](https://github.com/rimzzlabs/lanjut/commit/d10e4dfefcf625fb2d1a3c4af484569171c2f3be))
+
+
+### Bug Fixes
+
+* align create-dialog template order with the browse page ([#107](https://github.com/rimzzlabs/lanjut/issues/107)) ([d7b4a20](https://github.com/rimzzlabs/lanjut/commit/d7b4a20b8f35520805dc98ee95ff85dd86b9e4bb))
+* align the layout tab template order with the other grids ([#116](https://github.com/rimzzlabs/lanjut/issues/116)) ([10ef5fc](https://github.com/rimzzlabs/lanjut/commit/10ef5fc4a530dc1fcee9adc4d295d20f223cf868))
+
+
+### Refactors
+
+* move the section order reset into the editor tab ([#115](https://github.com/rimzzlabs/lanjut/issues/115)) ([63da9cb](https://github.com/rimzzlabs/lanjut/commit/63da9cb686c2295ba0c71047424a51faf3867de9))
+
+
+### Documentation
+
+* align readme and agents with shipped features ([#122](https://github.com/rimzzlabs/lanjut/issues/122)) ([a1e5e4e](https://github.com/rimzzlabs/lanjut/commit/a1e5e4e458227c2aeaeb3b74f67a0a7a640c369d))
+
+## [0.9.3](https://github.com/rimzzlabs/lanjut/compare/v0.9.2...v0.9.3) (2026-07-17)
+
+
+### Bug Fixes
+
+* delete résumé from storage immediately with in-memory undo ([#99](https://github.com/rimzzlabs/lanjut/issues/99)) ([6c40aa9](https://github.com/rimzzlabs/lanjut/commit/6c40aa99a06437dfaaec060da5d1f7b51ba983c6))
+* tint the guided tour overlay to match the theme ([#101](https://github.com/rimzzlabs/lanjut/issues/101)) ([0b753b6](https://github.com/rimzzlabs/lanjut/commit/0b753b68979d211d9c250f9e2fbdf3aa89f9c014))
+
+## [0.9.2](https://github.com/rimzzlabs/lanjut/compare/v0.9.1...v0.9.2) (2026-07-14)
+
+
+### Bug Fixes
+
+* right-size landing images and correct language toggle a11y ([#97](https://github.com/rimzzlabs/lanjut/issues/97)) ([5a56069](https://github.com/rimzzlabs/lanjut/commit/5a56069ad2b388ef511ccc7a0f2cbc39248de108))
+
+## [0.9.1](https://github.com/rimzzlabs/lanjut/compare/v0.9.0...v0.9.1) (2026-07-14)
+
+
+### Bug Fixes
+
+* keep pdf and docx export off the server worker bundle ([#95](https://github.com/rimzzlabs/lanjut/issues/95)) ([94780bc](https://github.com/rimzzlabs/lanjut/commit/94780bce5c590792d4a8d47c6ee1bf361a342429))
+
+## [0.9.0](https://github.com/rimzzlabs/lanjut/compare/v0.8.0...v0.9.0) (2026-07-14)
+
+
+### Features
+
+* add custom résumé sections ([#85](https://github.com/rimzzlabs/lanjut/issues/85)) ([826dbfc](https://github.com/rimzzlabs/lanjut/commit/826dbfcfda593c8d872271ed67af68dacb54a78d))
+* add linkedin field to personal information ([#82](https://github.com/rimzzlabs/lanjut/issues/82)) ([4b92da3](https://github.com/rimzzlabs/lanjut/commit/4b92da392de4e52d919c9742688c8bd44a05e220))
+* add proficiency toggles and language column layout ([#88](https://github.com/rimzzlabs/lanjut/issues/88)) ([c1a0be8](https://github.com/rimzzlabs/lanjut/commit/c1a0be888bb566fe8f662f5137ef46ab60c7fb24))
+* duplicate a résumé from the library and sidebar menus ([#92](https://github.com/rimzzlabs/lanjut/issues/92)) ([ab81f93](https://github.com/rimzzlabs/lanjut/commit/ab81f936e55c5decf7413e5c17a5508bcb22056f))
+* import an existing résumé from a pdf ([#86](https://github.com/rimzzlabs/lanjut/issues/86)) ([7be0efe](https://github.com/rimzzlabs/lanjut/commit/7be0efe04320333455081a91d17b4776ea7fd052))
+* reorder certifications by drag and drop ([#87](https://github.com/rimzzlabs/lanjut/issues/87)) ([c6a0853](https://github.com/rimzzlabs/lanjut/commit/c6a0853f2fc1fee72fc2a70e0998624706fe33be))
+* reorder resume sections by drag and drop ([#84](https://github.com/rimzzlabs/lanjut/issues/84)) ([96ab89f](https://github.com/rimzzlabs/lanjut/commit/96ab89f9529e932ab62688cce2fd25c8c90915a7))
+* undo résumé deletion with a countdown toast ([#89](https://github.com/rimzzlabs/lanjut/issues/89)) ([e364d34](https://github.com/rimzzlabs/lanjut/commit/e364d34918825f57c0844dbff30bf8ad197c98d3))
+
+
+### Bug Fixes
+
+* add horizontal padding to the create dialog fields ([#91](https://github.com/rimzzlabs/lanjut/issues/91)) ([bfea5f7](https://github.com/rimzzlabs/lanjut/commit/bfea5f76c0c43b0bdf76f8ce9ced56c433099b3e))
+* group proficiency options and tidy the sidebar résumé menu ([#90](https://github.com/rimzzlabs/lanjut/issues/90)) ([17dbdec](https://github.com/rimzzlabs/lanjut/commit/17dbdec0900dacb9badb46980ae6298aaf5fc149))
+
+
+### Refactors
+
+* rework the changelog and standardize resume copy ([#94](https://github.com/rimzzlabs/lanjut/issues/94)) ([a6f02c1](https://github.com/rimzzlabs/lanjut/commit/a6f02c1fde029e6fd21e51166aee346381bef695))
+* streamline the landing navbar and theme toggle ([#93](https://github.com/rimzzlabs/lanjut/issues/93)) ([8e6e962](https://github.com/rimzzlabs/lanjut/commit/8e6e962464d2754c7a73f68e19fce24709d90105))
+
+## [0.8.0](https://github.com/rimzzlabs/lanjut/compare/v0.7.0...v0.8.0) (2026-07-10)
+
+
+### Features
+
+* add a landing navbar with a mobile menu and skip link ([#79](https://github.com/rimzzlabs/lanjut/issues/79)) ([71344c2](https://github.com/rimzzlabs/lanjut/commit/71344c2aa1a9c7e9d006c22e560e125ad097a842))
+* add a one or two column toggle to the resume skills section ([#75](https://github.com/rimzzlabs/lanjut/issues/75)) ([7d78d36](https://github.com/rimzzlabs/lanjut/commit/7d78d36d2a16a7fb82e0ab7e2bcf83907b5bdbee))
+* refresh landing screenshots and add json-ld structured data ([#78](https://github.com/rimzzlabs/lanjut/issues/78)) ([99489e1](https://github.com/rimzzlabs/lanjut/commit/99489e11f9651a66c8e5de3e9c86dd47ea609d79))
+* show a progress bar during page navigation ([#80](https://github.com/rimzzlabs/lanjut/issues/80)) ([1ebd262](https://github.com/rimzzlabs/lanjut/commit/1ebd262908a860d483c092e85d38bb0db914adbd))
+
+
+### Bug Fixes
+
+* sort editor entry forms newest-first to match the preview ([#77](https://github.com/rimzzlabs/lanjut/issues/77)) ([4f0f201](https://github.com/rimzzlabs/lanjut/commit/4f0f201a4e7f5989c3516cfe000757e1a86b4b5e))
+
+
+### Documentation
+
+* add the 0.8.0 changelog entry for the what's new sheet ([#81](https://github.com/rimzzlabs/lanjut/issues/81)) ([25dc1d6](https://github.com/rimzzlabs/lanjut/commit/25dc1d6f84b48538984f074c60757680e526e246))
+
+## [0.7.0](https://github.com/rimzzlabs/lanjut/compare/v0.6.0...v0.7.0) (2026-07-10)
+
+
+### Features
+
+* add a projects section to the resume editor ([#72](https://github.com/rimzzlabs/lanjut/issues/72)) ([5262917](https://github.com/rimzzlabs/lanjut/commit/52629179fddc86ac5b28da3b5ee26928a9435036))
+* add a tooltip to the sidebar create resume button ([#73](https://github.com/rimzzlabs/lanjut/issues/73)) ([ff580c4](https://github.com/rimzzlabs/lanjut/commit/ff580c4da33885ff4093514dd1d52388373dcc08))
+* add an internship section to the resume editor ([#71](https://github.com/rimzzlabs/lanjut/issues/71)) ([7d0a8c1](https://github.com/rimzzlabs/lanjut/commit/7d0a8c15b6bf4ef183e0ccbae043be211c32afbb))
+* show a ghost placeholder for blank resume cards ([#69](https://github.com/rimzzlabs/lanjut/issues/69)) ([d0cf5cd](https://github.com/rimzzlabs/lanjut/commit/d0cf5cd3e5620e9ff098987ba6ff4277c632f9df))
+
+
+### Documentation
+
+* add the 0.7.0 changelog entry for the what's new sheet ([#74](https://github.com/rimzzlabs/lanjut/issues/74)) ([b5742eb](https://github.com/rimzzlabs/lanjut/commit/b5742eb7d32d5d23dd6fb12ded8b339e3446c4b5))
+
+## [0.6.0](https://github.com/rimzzlabs/lanjut/compare/v0.5.0...v0.6.0) (2026-07-08)
+
+
+### Features
+
+* internationalize the app with english and indonesian ([#67](https://github.com/rimzzlabs/lanjut/issues/67)) ([400614e](https://github.com/rimzzlabs/lanjut/commit/400614e7639a8a41ce1f5390bad356a03a312621))
+* reorder skills and languages by drag and drop ([#62](https://github.com/rimzzlabs/lanjut/issues/62)) ([95e3fa8](https://github.com/rimzzlabs/lanjut/commit/95e3fa86a2cea63674e369093d09bee7597f04b5))
+* show an empty state in editor sections with no entries ([#64](https://github.com/rimzzlabs/lanjut/issues/64)) ([bf590b1](https://github.com/rimzzlabs/lanjut/commit/bf590b16c0a99d377a3fb40ec1f2103b4a763c38))
+
+
+### Bug Fixes
+
+* contain editor sidebar scrolling within its own panel ([#65](https://github.com/rimzzlabs/lanjut/issues/65)) ([18ee4b1](https://github.com/rimzzlabs/lanjut/commit/18ee4b179f91c02320f6ca355d85d563cb37cec8))
+
+
+### Documentation
+
+* note hero gradient refresh in changelog ([d9c98ff](https://github.com/rimzzlabs/lanjut/commit/d9c98ffd1926ed62947d589c0a4a760379591615))
+
+## [0.5.0](https://github.com/rimzzlabs/lanjut/compare/v0.4.1...v0.5.0) (2026-07-06)
+
+
+### Features
+
+* add a layout tab to switch templates from the editor ([#54](https://github.com/rimzzlabs/lanjut/issues/54)) ([974bda4](https://github.com/rimzzlabs/lanjut/commit/974bda459b0af37ef56808302e734c79e76f9262))
+* allow creating a blank resume from the create dialog ([#56](https://github.com/rimzzlabs/lanjut/issues/56)) ([5d687ee](https://github.com/rimzzlabs/lanjut/commit/5d687ee51676d6779fefdb6de5bccef6073f25e8))
+
+## [0.4.1](https://github.com/rimzzlabs/lanjut/compare/v0.4.0...v0.4.1) (2026-07-05)
+
+
+### Bug Fixes
+
+* show navbar actions on small screens and round the sheet close button ([#52](https://github.com/rimzzlabs/lanjut/issues/52)) ([475f1aa](https://github.com/rimzzlabs/lanjut/commit/475f1aa8702e1c435afd18cb7890c45a0ce4832d))
+
+## [0.4.0](https://github.com/rimzzlabs/lanjut/compare/v0.3.1...v0.4.0) (2026-07-05)
+
+
+### Features
+
+* adapt the editor tour to the sheet layout below xl ([be06609](https://github.com/rimzzlabs/lanjut/commit/be066099e61c3c74ae499d987b4b5e5ea4055dec))
+* add an organization experience section ([#51](https://github.com/rimzzlabs/lanjut/issues/51)) ([f828c7f](https://github.com/rimzzlabs/lanjut/commit/f828c7f39033c23f27b6311f9190315b3f8e8979))
+* add how it works and closure sections to the landing ([#46](https://github.com/rimzzlabs/lanjut/issues/46)) ([7bede62](https://github.com/rimzzlabs/lanjut/commit/7bede626b89064fdac641cc334c094a1c6687ccf))
+* guide users with one-time page tours and a sidebar replay button ([#39](https://github.com/rimzzlabs/lanjut/issues/39)) ([962c9c8](https://github.com/rimzzlabs/lanjut/commit/962c9c8a36a90826aa17245dea1c660c68be3384))
+* move the editor sections into a sheet below xl ([#40](https://github.com/rimzzlabs/lanjut/issues/40)) ([e28f3f9](https://github.com/rimzzlabs/lanjut/commit/e28f3f929997b17ab0ec89b788e12acac493ab8a))
+* orchestrate tours per step and port dialogs to drawers on mobile ([#41](https://github.com/rimzzlabs/lanjut/issues/41)) ([a6df7b3](https://github.com/rimzzlabs/lanjut/commit/a6df7b3846a5958d6ca6a241d8eec01c3ccf1574))
+* report bugs from the sidebar via prefilled github issues ([#43](https://github.com/rimzzlabs/lanjut/issues/43)) ([176a328](https://github.com/rimzzlabs/lanjut/commit/176a3285ee3dfbe0a7617149346538eb47e586bf))
+* request features from the sidebar via prefilled github issues ([#44](https://github.com/rimzzlabs/lanjut/issues/44)) ([2f36b43](https://github.com/rimzzlabs/lanjut/commit/2f36b43f9ff7e6b5a20ed335d9052fcc13dc6c40))
+* show a user-facing what's new changelog in the navbar ([#47](https://github.com/rimzzlabs/lanjut/issues/47)) ([336752e](https://github.com/rimzzlabs/lanjut/commit/336752e31be10b1fa93e4ecc521691c6ebb93728))
+* suggest the nearest resume on the editor not-found state ([#37](https://github.com/rimzzlabs/lanjut/issues/37)) ([c2501e7](https://github.com/rimzzlabs/lanjut/commit/c2501e700a57b2d5b6679b14eb15c72605fc42e8))
+* validate the download form with react-hook-form and autofocus the file name ([#38](https://github.com/rimzzlabs/lanjut/issues/38)) ([7e960b0](https://github.com/rimzzlabs/lanjut/commit/7e960b022ced75264055ea3a90417801521c795d))
+
+
+### Bug Fixes
+
+* center the dashboard empty state vertically ([#45](https://github.com/rimzzlabs/lanjut/issues/45)) ([baeff80](https://github.com/rimzzlabs/lanjut/commit/baeff80c4fce27d46a50e3287239111f5a041bdb))
+* keep saved resumes safe across schema migrations ([#48](https://github.com/rimzzlabs/lanjut/issues/48)) ([8616808](https://github.com/rimzzlabs/lanjut/commit/8616808c21bd5f1b5b6d3cbe44f2c1e1926551e9))
+* scroll tour targets to top and stop nextstep from scrolling them back ([#42](https://github.com/rimzzlabs/lanjut/issues/42)) ([ccf910c](https://github.com/rimzzlabs/lanjut/commit/ccf910c21d1826228920a3d47266fc54a70536e0))
+* trim hero side padding and shorten the navbar download label ([#50](https://github.com/rimzzlabs/lanjut/issues/50)) ([5c6c8e8](https://github.com/rimzzlabs/lanjut/commit/5c6c8e837709614c9fd5dca00de79a6c06322754))
+* wire the download action on library resume cards ([#35](https://github.com/rimzzlabs/lanjut/issues/35)) ([e88e8c5](https://github.com/rimzzlabs/lanjut/commit/e88e8c5805ddf563c37f9471456dc56abb6cbe33))
+
+## [0.3.1](https://github.com/rimzzlabs/lanjut/compare/v0.3.0...v0.3.1) (2026-07-04)
+
+
+### Bug Fixes
+
+* serve the opengraph image as a static file ([#32](https://github.com/rimzzlabs/lanjut/issues/32)) ([0df0d4b](https://github.com/rimzzlabs/lanjut/commit/0df0d4b106b6d8167b688420cea6f63c988b7b76))
+
+## [0.3.0](https://github.com/rimzzlabs/lanjut/compare/v0.2.0...v0.3.0) (2026-07-04)
+
+
+### Features
+
+* add Browse Templates page with search and sort ([#21](https://github.com/rimzzlabs/lanjut/issues/21)) ([4a5ae57](https://github.com/rimzzlabs/lanjut/commit/4a5ae578ccd1a2b9f56a1778ec1d8f217b3fca62))
+* add Ketat and Luasa résumé templates ([#24](https://github.com/rimzzlabs/lanjut/issues/24)) ([96db583](https://github.com/rimzzlabs/lanjut/commit/96db583461706b4d0d90688fd4a4ea8eadc34934))
+* add Tebal, Klasik, and Ketik résumé templates ([#25](https://github.com/rimzzlabs/lanjut/issues/25)) ([563b01b](https://github.com/rimzzlabs/lanjut/commit/563b01be94e47142de9b0df6d7fca6ad99ac1eb9))
+* animate the resume preview entrance with a spring slide ([#28](https://github.com/rimzzlabs/lanjut/issues/28)) ([175c1fb](https://github.com/rimzzlabs/lanjut/commit/175c1fb37a15b3cbe63cc5fb6b7c9c4b70054cb7))
+* flesh out the Awal starter résumé data ([#22](https://github.com/rimzzlabs/lanjut/issues/22)) ([c4110b4](https://github.com/rimzzlabs/lanjut/commit/c4110b48be02c98798dc68f458f6c451a477ef96))
+* highlight active sidebar items and add resume actions menu ([#27](https://github.com/rimzzlabs/lanjut/issues/27)) ([41e7901](https://github.com/rimzzlabs/lanjut/commit/41e7901d43a9a5bbddedcab99c2cc92109044056))
+* overhaul seo metadata and polish the landing page ([#30](https://github.com/rimzzlabs/lanjut/issues/30)) ([59aa603](https://github.com/rimzzlabs/lanjut/commit/59aa6034afa18894c662e20f14ef5c97596d25d5))
+* render live resume thumbnails on template and resume cards ([#29](https://github.com/rimzzlabs/lanjut/issues/29)) ([e193c5f](https://github.com/rimzzlabs/lanjut/commit/e193c5f30e9c9a3b1013c8b5b8d772748d054cf0))
+* serve the app at lanjut.rimzzlabs.com ([#19](https://github.com/rimzzlabs/lanjut/issues/19)) ([de85303](https://github.com/rimzzlabs/lanjut/commit/de853034c4ac8df4f25db72d0c123e12d8c44abb))
+
+
+### Bug Fixes
+
+* keep the preview paginated and keyed correctly while editing ([#23](https://github.com/rimzzlabs/lanjut/issues/23)) ([0354948](https://github.com/rimzzlabs/lanjut/commit/0354948d75872f4fde3b126261d6811c764cc706))
+
+## [0.2.0](https://github.com/rimzzlabs/lanjut/compare/v0.1.0...v0.2.0) (2026-07-03)
+
+
+### Features
+
+* deploy to Cloudflare Workers via @opennextjs/cloudflare ([#15](https://github.com/rimzzlabs/lanjut/issues/15)) ([824fe41](https://github.com/rimzzlabs/lanjut/commit/824fe41dd3668d69f7ec939bb492757845a0792c))
+* export résumé to PDF via [@react-pdf](https://github.com/react-pdf) (Awal template) ([#10](https://github.com/rimzzlabs/lanjut/issues/10)) ([dec93ab](https://github.com/rimzzlabs/lanjut/commit/dec93ab7cf353df3fcac97a72415ba2ee102519f))
+* export résumé to plain text and .docx ([#11](https://github.com/rimzzlabs/lanjut/issues/11)) ([7564ad8](https://github.com/rimzzlabs/lanjut/commit/7564ad8483b5be44741c98133e70323ee71d5cf4))
+* render rich-text formatting in the résumé preview ([#9](https://github.com/rimzzlabs/lanjut/issues/9)) ([ca2d90e](https://github.com/rimzzlabs/lanjut/commit/ca2d90e899aa403cfc47efdace2b69d8e89f5844))
+* resizable, sticky editor preview that scales to fit ([#5](https://github.com/rimzzlabs/lanjut/issues/5)) ([51826e0](https://github.com/rimzzlabs/lanjut/commit/51826e07a21c4114eda0c00361be88133a9f8833))
+* resume data layer, store, and library UI ([#4](https://github.com/rimzzlabs/lanjut/issues/4)) ([930dd3d](https://github.com/rimzzlabs/lanjut/commit/930dd3d6eb40195e26281930a8879e9037a81ef9))
+* wire editor forms to the store with the full section set ([#7](https://github.com/rimzzlabs/lanjut/issues/7)) ([fd9b9f4](https://github.com/rimzzlabs/lanjut/commit/fd9b9f41d4de733695a332a82fc6cb7a3e1e082e))
+* wire live résumé preview and refine section forms ([#8](https://github.com/rimzzlabs/lanjut/issues/8)) ([bc53c9e](https://github.com/rimzzlabs/lanjut/commit/bc53c9e5c9cb3fe4ef4ae89f28cd9e8da29b79f1))
