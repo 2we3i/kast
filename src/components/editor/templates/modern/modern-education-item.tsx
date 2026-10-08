@@ -1,0 +1,21 @@
+import { dateRangeText } from "../../resume-date-range";
+import { withLocation } from "../../resume-entry-location";
+import type { EducationItemView } from "../../resume-preview";
+import { ResumeRichText } from "../../resume-rich-text";
+
+export function ModernEducationItem(props: EducationItemView) {
+  return (
+    <article>
+      <div className="flex items-baseline justify-between gap-4">
+        <h3 className="resume-body-sm font-semibold">{props.degree}</h3>
+        <span className="shrink-0 resume-body-xs text-muted-foreground">
+          {dateRangeText(props.startDate, props.endDate)}
+        </span>
+      </div>
+      <p className="resume-body-xs font-medium text-(--resume-accent)">
+        {withLocation(props.institution, props.location)}
+      </p>
+      <ResumeRichText blocks={props.details} className="mt-1" />
+    </article>
+  );
+}

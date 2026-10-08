@@ -2,7 +2,7 @@ import type { JSONContent } from "@tiptap/core";
 import { EditorContent, useEditor } from "@tiptap/react";
 import { useRef } from "react";
 import { emptyRichTextValue } from "@/lib/resume";
-import type { RichTextFeature } from "@/lib/resume/schema-registry";
+import type { RichTextFeature } from "@/lib/resume/schema-fields";
 import { RichTextBubbleMenu } from "./rich-text-bubble-menu";
 import { buildRichTextExtensions } from "./rich-text-extensions";
 import { RichTextToolbar } from "./rich-text-toolbar";

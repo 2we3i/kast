@@ -1,6 +1,7 @@
 import { A, D, F, O, pipe, S } from "@mobily/ts-belt";
 import {
-  CANONICAL_SECTION_ORDER,
+  CORE_SECTION_TYPES,
+  type CoverLetter,
   CUSTOM_LIST_FIELDS,
   createCustomEntry,
   createCustomSection,
@@ -8,15 +9,18 @@ import {
   createEmptyHeader,
   createEmptySection,
   type Entry,
+  emptyRichTextValue,
   type Field,
   type FieldSchema,
   getSectionSchema,
   HEADER_SCHEMA,
   type Header,
+  type JobTarget,
   type Resume,
   type ResumeLanguage,
   type Section,
 } from "@/lib/resume";
+import { LEGACY_TEMPLATE_IDS } from "@/lib/resume/migrations-v24-v25";
 import { markdownToTiptap, tiptapToMarkdown } from "./markdown";
 import {
   INTERCHANGE_FORMAT,
@@ -30,6 +34,11 @@ export interface ResumeContent {
   title?: string;
   templateId?: string;
   language?: ResumeLanguage;
+  atsMode?: boolean;
+  accentColor?: string;
+  showQr?: boolean;
+  target?: JobTarget;
+  coverLetter?: CoverLetter;
   showIcons?: boolean;
   sectionSpacing?: number;
   font?: string;
@@ -76,9 +85,9 @@ function entryToValues(
 }
 
 function sectionToInterchange(section: Section): InterchangeSection {
-  if (section.type === "summary") {
+  if (section.type === "summary" || section.type === "interests") {
     return {
-      type: "summary",
+      type: section.type,
       title: section.title,
       hidden: section.hidden ?? false,
       body: firstBodyString(section),
@@ -127,6 +136,13 @@ function sectionToInterchange(section: Section): InterchangeSection {
   return base as InterchangeSection;
 }
 
+function coverLetterToInterchange(
+  letter: CoverLetter | undefined,
+): InterchangeResume["coverLetter"] {
+  if (!letter) return undefined;
+  return { ...letter, body: tiptapToMarkdown(letter.body) };
+}
+
 export function resumeToInterchange(resume: Resume): InterchangeResume {
   const header = pipe(
     HEADER_SCHEMA,
@@ -142,6 +158,11 @@ export function resumeToInterchange(resume: Resume): InterchangeResume {
     title: resume.title,
     template: resume.templateId,
     language: resume.language,
+    atsMode: resume.atsMode ?? true,
+    accentColor: resume.accentColor,
+    showQr: resume.showQr,
+    target: resume.target,
+    coverLetter: coverLetterToInterchange(resume.coverLetter),
     showIcons: resume.showIcons ?? true,
     sectionSpacing: resume.sectionSpacing ?? 0,
     font: resume.font,
@@ -182,12 +203,14 @@ function fillEntry(params: FillEntryParams): Entry {
   return { ...entry, fields: filled };
 }
 
-function emptyBodyEntry(type: "summary" | "custom"): Entry {
+type BodySectionType = "summary" | "interests" | "custom";
+
+function emptyBodyEntry(type: BodySectionType): Entry {
   if (type === "custom") return createCustomEntry("rich");
   return createEmptyEntry(type);
 }
 
-function bodyEntry(type: "summary" | "custom", body: string): Entry {
+function bodyEntry(type: BodySectionType, body: string): Entry {
   const entry = emptyBodyEntry(type);
   const value = markdownToTiptap(body);
   return {
@@ -208,7 +231,7 @@ function withHidden(section: Section, hidden: boolean | undefined): Section {
 
 function withBody(
   section: Section,
-  body: { type: "summary" | "custom"; value: string | undefined },
+  body: { type: BodySectionType; value: string | undefined },
 ): Section {
   if (body.value === undefined) return section;
   return { ...section, entries: [bodyEntry(body.type, body.value)] };
@@ -227,13 +250,13 @@ function withGridSettings(section: Section, item: InterchangeSection): Section {
 }
 
 function interchangeToSection(item: InterchangeSection): Section {
-  if (item.type === "summary") {
+  if (item.type === "summary" || item.type === "interests") {
     const section = pipe(
-      createEmptySection("summary"),
+      createEmptySection(item.type),
       (current) => withTitle(current, item.title),
       (current) => withHidden(current, item.hidden),
     );
-    return withBody(section, { type: "summary", value: item.body });
+    return withBody(section, { type: item.type, value: item.body });
   }
   if (item.type === "custom") {
     const variant = item.variant ?? "rich";
@@ -279,11 +302,37 @@ function completeSections(
     [O.getWithDefault(summary, createEmptySection("summary"))],
     A.reject(provided, (section) => section.type === "summary"),
   );
-  return A.reduce(CANONICAL_SECTION_ORDER, ordered, (sections, type) => {
-    if (type === "custom") return sections;
+  return A.reduce(CORE_SECTION_TYPES, ordered, (sections, type) => {
     if (A.some(sections, (section) => section.type === type)) return sections;
     return A.append(sections, createEmptySection(type));
   });
+}
+
+function jobTargetFrom(
+  target: NonNullable<InterchangeResume["target"]>,
+): JobTarget {
+  return {
+    company: target.company ?? "",
+    position: target.position ?? "",
+    url: target.url ?? "",
+    appliedAt: target.appliedAt ?? "",
+    status: target.status ?? "draft",
+    notes: target.notes ?? "",
+    description: target.description ?? "",
+  };
+}
+
+function coverLetterFrom(
+  letter: NonNullable<InterchangeResume["coverLetter"]>,
+): CoverLetter {
+  return {
+    recipient: letter.recipient ?? "",
+    company: letter.company ?? "",
+    date: letter.date ?? "",
+    subject: letter.subject ?? "",
+    body: letter.body ? markdownToTiptap(letter.body) : emptyRichTextValue(),
+    closing: letter.closing ?? "",
+  };
 }
 
 export function interchangeToContent(data: InterchangeResume): ResumeContent {
@@ -303,8 +352,17 @@ export function interchangeToContent(data: InterchangeResume): ResumeContent {
 
   return {
     title: S.trim(data.title ?? "") || undefined,
-    templateId: data.template,
+    templateId: data.template
+      ? (LEGACY_TEMPLATE_IDS[data.template] ?? data.template)
+      : undefined,
     language: data.language,
+    atsMode: data.atsMode,
+    accentColor: data.accentColor,
+    showQr: data.showQr,
+    target: data.target ? jobTargetFrom(data.target) : undefined,
+    coverLetter: data.coverLetter
+      ? coverLetterFrom(data.coverLetter)
+      : undefined,
     showIcons: data.showIcons,
     sectionSpacing: data.sectionSpacing,
     font: data.font,

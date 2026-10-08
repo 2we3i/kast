@@ -15,6 +15,6 @@ export const useTourStore = create<TourStoreState>()(
         set((state) => ({ seen: { ...state.seen, [tour]: true } })),
       hasSeen: (tour) => get().seen[tour] === true,
     }),
-    { name: "lanjut:tour-seen" },
+    { name: "kast:tour-seen" },
   ),
 );

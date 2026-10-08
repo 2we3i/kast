@@ -12,23 +12,32 @@ export {
 export { RESUME_LABELS, RESUME_LANGUAGES } from "./labels";
 export { needsMigration, readSchemaVersion, runMigrations } from "./migrations";
 export {
+  type FieldSchema,
+  LANGUAGE_SKILL_LEVELS,
+  type PlainFieldInput,
+  PROSE_FEATURES,
+  type RichTextFeature,
+  type SectionSchema,
+} from "./schema-fields";
+export {
   CANONICAL_SECTION_ORDER,
+  CORE_SECTION_TYPES,
   CUSTOM_LIST_FIELDS,
   canonicalSectionIndex,
-  type FieldSchema,
   getCustomFields,
   getSectionSchema,
   HEADER_SCHEMA,
+  isOptionalSection,
   isReorderableSection,
+  OPTIONAL_SECTION_TYPES,
   REORDERABLE_SECTION_TYPES,
   type ReorderableSectionType,
-  type RichTextFeature,
   SECTION_REGISTRY,
-  type SectionSchema,
 } from "./schema-registry";
 export { filterResumeIndex, nearestResumeById } from "./search";
 export { SEED_RESUME } from "./seed";
 export {
+  type CoverLetter,
   CURRENT_SCHEMA_VERSION,
   type CustomVariant,
   type Entry,
@@ -36,6 +45,8 @@ export {
   type FieldKey,
   type FieldKind,
   type Header,
+  type JobTarget,
+  type JobTargetStatus,
   type PlainField,
   type Resume,
   type ResumeIndexEntry,

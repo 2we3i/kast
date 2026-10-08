@@ -1,13 +1,8 @@
-import {
-  BugIcon,
-  PaperPlaneTiltIcon,
-  QuestionIcon,
-} from "@phosphor-icons/react";
+import { GearSixIcon, InfoIcon, QuestionIcon } from "@phosphor-icons/react";
 import { useNextStep } from "nextstepjs";
 import { useTranslations } from "use-intl";
-import { useIssueReport } from "@/hooks/use-issue-report";
 import { MEDIA_XL, useMediaQuery } from "@/hooks/use-media-query";
-import { usePathname } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useResumeStore } from "@/lib/store";
 import { EDITOR_SHEET_TOUR, EDITOR_TOUR, tourForPathname } from "@/lib/tour";
 import {
@@ -22,10 +17,12 @@ import {
 export function PlatformSidebarOther() {
   const pathname = usePathname();
   const openStatus = useResumeStore((state) => state.openStatus);
-  const openIssueReport = useIssueReport();
   const isDesktop = useMediaQuery(MEDIA_XL);
   const { startNextStep } = useNextStep();
   const { isMobile, setOpenMobile } = useSidebar();
+  const closeOnMobile = () => {
+    if (isMobile) setOpenMobile(false);
+  };
   const t = useTranslations("platform.sidebar");
 
   const baseTour = tourForPathname(pathname);
@@ -49,23 +46,23 @@ export function PlatformSidebarOther() {
 
         <SidebarMenuItem>
           <SidebarMenuButton
-            onClick={() => {
-              if (isMobile) setOpenMobile(false);
-              openIssueReport("bug");
-            }}
-          >
-            <BugIcon /> {t("reportBug")}
-          </SidebarMenuButton>
+            isActive={pathname === "/platform/settings"}
+            onClick={closeOnMobile}
+            render={
+              <Link href="/platform/settings">
+                <GearSixIcon /> {t("settings")}
+              </Link>
+            }
+          />
         </SidebarMenuItem>
         <SidebarMenuItem>
           <SidebarMenuButton
-            onClick={() => {
-              if (isMobile) setOpenMobile(false);
-              openIssueReport("feature");
-            }}
-          >
-            <PaperPlaneTiltIcon /> {t("featureRequest")}
-          </SidebarMenuButton>
+            render={
+              <Link href="/about">
+                <InfoIcon /> {t("about")}
+              </Link>
+            }
+          />
         </SidebarMenuItem>
       </SidebarMenu>
     </SidebarGroup>

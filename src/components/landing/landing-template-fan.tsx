@@ -8,13 +8,13 @@ export function LandingTemplateFan() {
   return (
     <div className="grid grid-cols-3 items-start gap-3 sm:gap-4">
       <LandingLiveResume
-        template="ketat"
+        template="modern"
         cropHeight={300}
         className="translate-y-4 -rotate-2"
       />
-      <LandingLiveResume template="tebal" cropHeight={300} />
+      <LandingLiveResume template="executive" cropHeight={300} />
       <LandingLiveResume
-        template="klasik"
+        template="elegant"
         cropHeight={300}
         className="translate-y-4 rotate-2"
       />

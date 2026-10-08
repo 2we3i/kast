@@ -21,7 +21,8 @@ export type ContactKind =
   | "website"
   | "linkedin"
   | "link"
-  | "location";
+  | "location"
+  | "birth";
 
 export interface ContactView {
   kind: ContactKind;
@@ -45,6 +46,11 @@ export interface HeaderView {
   contacts: ReadonlyArray<ContactView>;
   /** Presentation-only: whether contact icon glyphs are drawn; defaults to true. */
   showIcons: boolean;
+  /**
+   * Design mode only: a QR code of the portfolio link as an SVG data URL. The
+   * link itself is always among the contacts, so the code adds no text.
+   */
+  qr?: string;
 }
 
 export interface ExperienceItemView {
@@ -90,12 +96,19 @@ export interface SkillItemView {
   id: string;
   name: string;
   proficiency: string;
+  /** One line on what the skill covers; empty when unset. */
+  description: string;
 }
 
 export interface LanguageItemView {
   id: string;
   name: string;
   proficiency: string;
+  /**
+   * The three skills composed in the document's language, e.g.
+   * "Speaking C1 · Understanding C2 · Writing B2"; empty when none is set.
+   */
+  skills: string;
 }
 
 /**
@@ -131,6 +144,14 @@ export type SectionHeadings = Record<
 export interface ResumePreview {
   /** Document language for fixed labels (headings, dates); drives localization. */
   language: ResumeLanguage;
+  /**
+   * ATS-safe mode (the default) or design mode. In ATS mode the photo, the
+   * icons, the QR code, and the accent color are already blanked here, the
+   * single view chokepoint, so templates only need to draw what they get.
+   */
+  atsMode: boolean;
+  /** Accent color for design mode as #rrggbb, or null for the template's own. */
+  accent: string | null;
   /**
    * Presentation-only space adjustment above each section heading (px on
    * screen, pt in PDF), on top of the template's baseline rhythm; 0 =
@@ -193,8 +214,24 @@ export interface ResumePreview {
    * renderer's experience path.
    */
   organizations: ReadonlyArray<ExperienceItemView>;
+  /** Volunteering entries reuse the experience path (`company` = organization). */
+  volunteering: ReadonlyArray<ExperienceItemView>;
   education: ReadonlyArray<EducationItemView>;
+  /** Courses reuse the experience path (`role` = course, `company` = provider). */
+  courses: ReadonlyArray<ExperienceItemView>;
   certificates: ReadonlyArray<CertificateItemView>;
+  /** Publications reuse the experience path (`company` = publisher, date as end). */
+  publications: ReadonlyArray<ExperienceItemView>;
+  /**
+   * References reuse the experience path: `role` is the person, `company` their
+   * position and employer, and `companyContext` the contact line.
+   */
+  references: ReadonlyArray<ExperienceItemView>;
+  interests: ReadonlyArray<RichBlock>;
+  /** The singleton facts, each composed into a short paragraph. */
+  driving: ReadonlyArray<RichBlock>;
+  salary: ReadonlyArray<RichBlock>;
+  availability: ReadonlyArray<RichBlock>;
   skills: ReadonlyArray<SkillItemView>;
   /** Presentation-only column count for the skills grid; defaults to two. */
   skillsColumns: SectionColumns;

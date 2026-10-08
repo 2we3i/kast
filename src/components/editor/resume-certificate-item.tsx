@@ -1,3 +1,4 @@
+import { dateRangeText } from "./resume-date-range";
 import { ResumeOptionalLink } from "./resume-optional-link";
 import type { CertificateItemView } from "./resume-preview";
 
@@ -12,7 +13,7 @@ export function ResumeCertificateItem(props: CertificateItemView) {
         </h3>
         {(props.startDate || props.endDate) && (
           <span className="shrink-0 resume-body-xs text-muted-foreground">
-            {props.startDate} - {props.endDate}
+            {dateRangeText(props.startDate, props.endDate, "-")}
           </span>
         )}
       </div>

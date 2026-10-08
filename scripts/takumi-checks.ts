@@ -25,17 +25,20 @@ interface TakumiChecksParams {
   textErrors: (text: string, label: string) => string[];
 }
 
-// The families each template draws with, recorded from the react-pdf exports
-// before takumi-pdf replaced them. A stylesheet rule the renderer drops makes a
-// template fall back to Inter, which this catches. Luasa also sets its square
-// bullets in SquareBullet.
+// The families each template draws with. A stylesheet rule the renderer drops
+// makes a template fall back to Inter, which this catches. Airy also sets its
+// square bullets in SquareBullet.
 const EXPECTED_FAMILIES: Record<TemplateId, ReadonlyArray<string>> = {
-  awal: ["Inter"],
-  ketat: ["Inter", "Lora"],
-  luasa: ["Inter", "Lora", "SquareBullet"],
-  tebal: ["Inter"],
-  klasik: ["Lora"],
-  ketik: ["GeistMono", "Inter"],
+  standard: ["Inter"],
+  compact: ["Inter", "Lora"],
+  airy: ["Inter", "Lora", "SquareBullet"],
+  bold: ["Inter"],
+  classic: ["Lora"],
+  mono: ["GeistMono", "Inter"],
+  modern: ["Inter"],
+  elegant: ["Lora"],
+  timeline: ["Inter"],
+  executive: ["Inter"],
 };
 
 // The document letter-spacing setting is bounded to this range so that text
@@ -416,7 +419,7 @@ async function checkLigatures(params: LigatureCheckParams): Promise<string[]> {
     font: fontId,
     summary: [{ type: "paragraph", runs: [{ text: checks.ligatureProbe }] }],
   };
-  const buffer = await render({ takumi, preview, template: "awal" });
+  const buffer = await render({ takumi, preview, template: "standard" });
   const errors = await checks.ligatureErrors({
     buffer,
     label: `TAKUMI ligatures (${fontId})`,

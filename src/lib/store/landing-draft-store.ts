@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { TemplateId } from "@/lib/templates";
+import { DEFAULT_TEMPLATE_ID, type TemplateId } from "@/lib/templates";
 
 export interface LandingDraft {
   firstName: string;
@@ -22,7 +22,7 @@ interface LandingDraftState {
  */
 export const useLandingDraftStore = create<LandingDraftState>()((set) => ({
   draft: { firstName: "", lastName: "", jobTitle: "" },
-  template: "awal",
+  template: DEFAULT_TEMPLATE_ID,
   setField(key, value) {
     set((state) => ({ draft: { ...state.draft, [key]: value } }));
   },

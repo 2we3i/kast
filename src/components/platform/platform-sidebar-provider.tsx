@@ -7,7 +7,6 @@ export function PlatformSidebarProvider(props: { children: ReactNode }) {
   const setOpen = useSidebarStore((state) => state.setOpen);
 
   useEffect(() => {
-    void useSidebarStore.persist.rehydrate();
     useSidebarStore.getState().restoreOpen();
   }, []);
 

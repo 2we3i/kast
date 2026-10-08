@@ -11,7 +11,7 @@ import Paragraph from "@tiptap/extension-paragraph";
 import Placeholder from "@tiptap/extension-placeholder";
 import Text from "@tiptap/extension-text";
 import { UndoRedo } from "@tiptap/extensions";
-import type { RichTextFeature } from "@/lib/resume/schema-registry";
+import type { RichTextFeature } from "@/lib/resume/schema-fields";
 
 /**
  * Builds the restricted TipTap schema for a richtext Field. Document/Paragraph/

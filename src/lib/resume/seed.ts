@@ -42,15 +42,16 @@ function prose(...blocks: JSONContent[]): Field {
  * The single code-defined sample Resume. Every newly created Resume is cloned
  * from this fixture, and the export Parser gate reuses it as its test document.
  * The stable ids here are placeholders; cloneResumeAsNew reassigns fresh ids.
- * It doubles as the "Awal" template showcase, so it exercises every section plus
+ * It doubles as the "Standard" template showcase, so it exercises every section plus
  * bold / italic / link marks.
  */
 export const SEED_RESUME: Resume = {
   id: "seed",
   schemaVersion: CURRENT_SCHEMA_VERSION,
   title: "Untitled resume",
-  templateId: "awal",
+  templateId: "standard",
   language: "en",
+  atsMode: true,
   showIcons: true,
   sectionSpacing: 0,
   letterSpacing: 0,
@@ -510,11 +511,23 @@ export const SEED_RESUME: Resume = {
       entries: [
         {
           id: "seed-languages-1",
-          fields: { name: plain("English"), level: plain("Native") },
+          fields: {
+            name: plain("English"),
+            level: plain("Native"),
+            speaking: plain("native"),
+            understanding: plain("native"),
+            writing: plain("native"),
+          },
         },
         {
           id: "seed-languages-2",
-          fields: { name: plain("Spanish"), level: plain("Professional") },
+          fields: {
+            name: plain("Spanish"),
+            level: plain("Professional"),
+            speaking: plain("C1"),
+            understanding: plain("C1"),
+            writing: plain("B2"),
+          },
         },
         {
           id: "seed-languages-3",

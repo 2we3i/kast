@@ -2,11 +2,15 @@ import type { ComponentType } from "react";
 import type { TemplateId } from "@/lib/templates";
 import { ResumeBlockView } from "../resume-block-view";
 import type { ResumeBlock } from "../resume-blocks";
-import { KetatBlockView } from "./ketat/ketat-block-view";
-import { KetikBlockView } from "./ketik/ketik-block-view";
-import { KlasikBlockView } from "./klasik/klasik-block-view";
-import { LuasaBlockView } from "./luasa/luasa-block-view";
-import { TebalBlockView } from "./tebal/tebal-block-view";
+import { AiryBlockView } from "./airy/airy-block-view";
+import { BoldBlockView } from "./bold/bold-block-view";
+import { ClassicBlockView } from "./classic/classic-block-view";
+import { CompactBlockView } from "./compact/compact-block-view";
+import { ElegantBlockView } from "./elegant/elegant-block-view";
+import { ExecutiveBlockView } from "./executive/executive-block-view";
+import { ModernBlockView } from "./modern/modern-block-view";
+import { MonoBlockView } from "./mono/mono-block-view";
+import { TimelineBlockView } from "./timeline/timeline-block-view";
 
 export type BlockViewComponent = ComponentType<{ block: ResumeBlock }>;
 
@@ -16,10 +20,14 @@ export type BlockViewComponent = ComponentType<{ block: ResumeBlock }>;
  * differs) so pagination, exports, and parse order stay identical.
  */
 export const TEMPLATE_BLOCK_VIEWS: Record<TemplateId, BlockViewComponent> = {
-  awal: ResumeBlockView,
-  ketat: KetatBlockView,
-  luasa: LuasaBlockView,
-  tebal: TebalBlockView,
-  klasik: KlasikBlockView,
-  ketik: KetikBlockView,
+  standard: ResumeBlockView,
+  compact: CompactBlockView,
+  airy: AiryBlockView,
+  bold: BoldBlockView,
+  classic: ClassicBlockView,
+  mono: MonoBlockView,
+  modern: ModernBlockView,
+  elegant: ElegantBlockView,
+  timeline: TimelineBlockView,
+  executive: ExecutiveBlockView,
 };

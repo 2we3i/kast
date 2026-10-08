@@ -26,7 +26,7 @@ import {
 } from "./landing-draft-resume";
 import { LandingLiveResume } from "./landing-live-resume";
 
-const TRY_TEMPLATES: TemplateId[] = ["awal", "klasik", "ketik"];
+const TRY_TEMPLATES: TemplateId[] = ["standard", "modern", "elegant"];
 
 /**
  * The landing page's interactive proof: three fields, rendered instantly into

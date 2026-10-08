@@ -73,9 +73,12 @@ function blockLines(block: ResumeBlock): ReadonlyArray<string> {
       return [metaLine(title, issuer, dateRange(startDate, endDate))];
     }
     case "skills":
+      return A.map(block.items, (item) =>
+        metaLine(item.name, item.proficiency, item.description),
+      );
     case "languages":
       return A.map(block.items, (item) =>
-        metaLine(item.name, item.proficiency),
+        metaLine(item.name, item.proficiency, item.skills),
       );
   }
 }

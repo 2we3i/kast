@@ -1,34 +1,43 @@
-import { A, O, pipe, S } from "@mobily/ts-belt";
+import { A, D, O, pipe, S } from "@mobily/ts-belt";
 import { resolveFont } from "@/lib/fonts";
 import { RESUME_LABELS } from "@/lib/resume/labels";
-import { type RichBlock, tiptapToRichBlocks } from "@/lib/resume/rich-content";
+import type { RichBlock } from "@/lib/resume/rich-content";
 import {
   getSectionSchema,
   isReorderableSection,
+  REORDERABLE_SECTION_TYPES,
   type ReorderableSectionType,
 } from "@/lib/resume/schema-registry";
-import type { Field, Resume, Section } from "@/lib/resume/types";
-import { joinPresent } from "@/lib/utils";
+import type { Resume, Section } from "@/lib/resume/types";
 import { localizeDateValue } from "./month-year-menu/month-year-menu-data";
 import type {
-  ContactKind,
-  ContactView,
   CustomSectionView,
   ExperienceItemView,
-  HeaderView,
   ResumePreview,
   SectionHeadings,
 } from "./resume-preview";
 import { byRecency } from "./resume-sort";
+import {
+  availabilityBlocks,
+  courseItems,
+  drivingBlocks,
+  interestBlocks,
+  languageSkillsLine,
+  publicationItems,
+  referenceItems,
+  richBlocks,
+  salaryBlocks,
+  visibleSection,
+  volunteeringItems,
+} from "./resume-to-preview-extra";
+import {
+  isAtsMode,
+  plain,
+  toHeaderView,
+  withHttps,
+} from "./resume-to-preview-header";
 
-function plain(field: Field | undefined): string {
-  return field?.kind === "plain" ? S.trim(field.value) : "";
-}
-
-function richBlocks(field: Field | undefined): ReadonlyArray<RichBlock> {
-  if (field?.kind !== "richtext") return [];
-  return tiptapToRichBlocks(field.value);
-}
+type Labels = (typeof RESUME_LABELS)[keyof typeof RESUME_LABELS];
 
 function sectionOfType(
   resume: Resume,
@@ -37,9 +46,12 @@ function sectionOfType(
   return A.find(resume.sections, (section) => section.type === type);
 }
 
-/** A stored URL is domain-only (see `UrlInput`); restore the scheme for links. */
-function withHttps(value: string): string {
-  return /^https?:\/\//i.test(value) ? value : `https://${value}`;
+function entriesOfType(resume: Resume, type: Section["type"]) {
+  return O.mapWithDefault(
+    sectionOfType(resume, type),
+    [],
+    (section) => section.entries,
+  );
 }
 
 /** Document line height bounded to 1.2..2, or null for the template baseline. */
@@ -53,20 +65,30 @@ function clampScale(value: number | undefined): number {
   return Math.min(1.2, Math.max(0.8, value ?? 1));
 }
 
-interface EffectiveHeadingParams {
-  resume: Resume;
-  type: keyof SectionHeadings;
-  fallback: string;
+/** A design-mode accent, or null in ATS mode and for a malformed value. */
+function resolveAccent(resume: Resume): string | null {
+  if (isAtsMode(resume)) return null;
+  const value = resume.accentColor ?? "";
+  return /^#[0-9a-f]{6}$/i.test(value) ? value : null;
+}
+
+/** The document-language label for each section type's heading. */
+function headingLabel(type: keyof SectionHeadings, labels: Labels): string {
+  if (type === "certifications") return labels.certificates;
+  return labels[type];
 }
 
 /**
  * A stored title equal to the registry default means "never renamed": it
  * renders as the document-language label, which is how language switching
- * relabels headings. Anything else is a deliberate rename (via the Code tab)
- * and wins over the language label.
+ * relabels headings. Anything else is a deliberate rename and wins.
  */
-function effectiveHeading(params: EffectiveHeadingParams): string {
-  const { resume, type, fallback } = params;
+function effectiveHeading(
+  resume: Resume,
+  type: keyof SectionHeadings,
+  labels: Labels,
+): string {
+  const fallback = headingLabel(type, labels);
   const title = O.mapWithDefault(sectionOfType(resume, type), "", (section) =>
     S.trim(section.title),
   );
@@ -74,63 +96,19 @@ function effectiveHeading(params: EffectiveHeadingParams): string {
   return title;
 }
 
-function linkContact(kind: ContactKind): (value: string) => ContactView {
-  return (value) => {
-    const url = withHttps(value);
-    return { kind, value: url, href: url };
-  };
-}
-
-// Links show the full URL (scheme included): a bare domain isn't recognized as
-// a link by résumé parsers, which look for http(s)://, www., or a path.
-const CONTACT_VIEWS: Record<ContactKind, (value: string) => ContactView> = {
-  phone: (value) => ({
-    kind: "phone",
-    value,
-    href: `tel:${S.replaceByRe(value, /\s+/g, "")}`,
-  }),
-  email: (value) => ({ kind: "email", value, href: `mailto:${value}` }),
-  website: linkContact("website"),
-  linkedin: linkContact("linkedin"),
-  link: linkContact("link"),
-  location: (value) => ({ kind: "location", value }),
-};
-
-function toHeaderView(resume: Resume): HeaderView {
-  const fields = resume.header.fields;
-  const fullName = joinPresent(
-    [plain(fields.firstName), plain(fields.lastName)],
-    " ",
+function buildHeadings(resume: Resume, labels: Labels): SectionHeadings {
+  const types = A.concat(
+    ["summary"] as ReadonlyArray<keyof SectionHeadings>,
+    A.reject(
+      REORDERABLE_SECTION_TYPES,
+      (type) => type === "custom",
+    ) as ReadonlyArray<keyof SectionHeadings>,
   );
-
-  const location = joinPresent(
-    [plain(fields.city), plain(fields.province), plain(fields.country)],
-    ", ",
-  );
-  const rawContacts: ReadonlyArray<readonly [ContactKind, string]> = [
-    ["phone", plain(fields.phone)],
-    ["email", plain(fields.email)],
-    ["website", plain(fields.website)],
-    ["linkedin", plain(fields.linkedin)],
-    ["link", plain(fields.link)],
-    ["location", location],
-  ];
-  const contacts = pipe(
-    rawContacts,
-    A.reject(([, value]) => S.isEmpty(value)),
-    A.map(([kind, value]) => CONTACT_VIEWS[kind](value)),
-  );
-
-  return {
-    fullName,
-    headline: plain(fields.jobTitle),
-    photo: resume.header.photo,
-    photoSize: resume.photoSize ?? 56,
-    photoRadius: resume.photoRadius ?? 0,
-    photoAlign: resume.photoAlign ?? "top",
-    contacts,
-    showIcons: resume.showIcons ?? true,
-  };
+  return pipe(
+    types,
+    A.map((type) => [type, effectiveHeading(resume, type, labels)] as const),
+    D.fromPairs,
+  ) as SectionHeadings;
 }
 
 function customBody(section: Section): ReadonlyArray<RichBlock> {
@@ -175,22 +153,8 @@ export function isResumePreviewEmpty(preview: ResumePreview): boolean {
   );
 }
 
-/**
- * Projects the persisted `Resume` onto the `ResumePreview` view-model the "Awal"
- * template renders. This is the single Resume → presentation seam: preview
- * components never read the storage schema directly.
- */
-export function resumeToPreview(resume: Resume): ResumePreview {
-  const summary = pipe(
-    sectionOfType(resume, "summary"),
-    O.filter((section) => !section.hidden),
-    O.flatMap((section) => A.head(section.entries)),
-    O.mapWithDefault([], (entry) => richBlocks(entry.fields.body)),
-  );
-  const labels = RESUME_LABELS[resume.language];
-  const localizeDates = <T extends { startDate: string; endDate: string }>(
-    item: T,
-  ): T => ({
+function localizer(labels: Labels) {
+  return <T extends { startDate: string; endDate: string }>(item: T): T => ({
     ...item,
     startDate: localizeDateValue({
       value: item.startDate,
@@ -203,6 +167,57 @@ export function resumeToPreview(resume: Resume): ResumePreview {
       present: labels.present,
     }),
   });
+}
+
+function jobItems(resume: Resume, type: "experience" | "internship") {
+  return A.map(entriesOfType(resume, type), (entry) => {
+    const website = plain(entry.fields.website);
+    return {
+      id: entry.id,
+      role: plain(entry.fields.title),
+      company: plain(entry.fields.company),
+      companyHref: website ? withHttps(website) : undefined,
+      location: plain(entry.fields.location),
+      companyContext: plain(entry.fields.companyContext),
+      startDate: plain(entry.fields.startDate),
+      endDate: plain(entry.fields.endDate),
+      description: richBlocks(entry.fields.description),
+    };
+  });
+}
+
+function showsProficiency(resume: Resume, type: "skills" | "languages") {
+  return O.mapWithDefault(
+    sectionOfType(resume, type),
+    true,
+    (section) => section.showProficiency ?? true,
+  );
+}
+
+function gridColumns(resume: Resume, type: "skills" | "languages") {
+  return O.mapWithDefault(
+    sectionOfType(resume, type),
+    2,
+    (section) => section.columns ?? 2,
+  );
+}
+
+/**
+ * Projects the persisted `Resume` onto the `ResumePreview` view-model every
+ * template renders. This is the single Resume → presentation seam: preview
+ * components and every export read this, never the storage schema.
+ */
+export function resumeToPreview(resume: Resume): ResumePreview {
+  const labels = RESUME_LABELS[resume.language] ?? RESUME_LABELS.en;
+  const localizeDates = localizer(labels);
+  const dated = (items: ReadonlyArray<ExperienceItemView>) =>
+    pipe(items, A.sort(byRecency), A.map(localizeDates));
+
+  const summary = pipe(
+    visibleSection(resume, "summary"),
+    O.flatMap((section) => A.head(section.entries)),
+    O.mapWithDefault([], (entry) => richBlocks(entry.fields.body)),
+  );
 
   // Hidden sections drop out of the emitted order entirely, so no renderer
   // (preview, PDF, docx, plain text) ever sees their heading or entries.
@@ -229,129 +244,35 @@ export function resumeToPreview(resume: Resume): ResumePreview {
     })),
   );
 
-  const skillsShowProficiency = O.mapWithDefault(
-    sectionOfType(resume, "skills"),
-    true,
-    (section) => section.showProficiency ?? true,
-  );
-  const languagesShowProficiency = O.mapWithDefault(
-    sectionOfType(resume, "languages"),
-    true,
-    (section) => section.showProficiency ?? true,
-  );
-
-  const headings: SectionHeadings = {
-    summary: effectiveHeading({
-      resume,
-      type: "summary",
-      fallback: labels.summary,
-    }),
-    experience: effectiveHeading({
-      resume,
-      type: "experience",
-      fallback: labels.experience,
-    }),
-    internship: effectiveHeading({
-      resume,
-      type: "internship",
-      fallback: labels.internship,
-    }),
-    projects: effectiveHeading({
-      resume,
-      type: "projects",
-      fallback: labels.projects,
-    }),
-    organizations: effectiveHeading({
-      resume,
-      type: "organizations",
-      fallback: labels.organizations,
-    }),
-    education: effectiveHeading({
-      resume,
-      type: "education",
-      fallback: labels.education,
-    }),
-    certifications: effectiveHeading({
-      resume,
-      type: "certifications",
-      fallback: labels.certificates,
-    }),
-    skills: effectiveHeading({
-      resume,
-      type: "skills",
-      fallback: labels.skills,
-    }),
-    languages: effectiveHeading({
-      resume,
-      type: "languages",
-      fallback: labels.languages,
-    }),
-  };
+  // Hiding proficiency is presentation-only: blank it here, the single view
+  // chokepoint, so every downstream renderer drops it without a flag.
+  const skillsShowProficiency = showsProficiency(resume, "skills");
+  const languagesShowProficiency = showsProficiency(resume, "languages");
 
   return {
     language: resume.language,
+    atsMode: isAtsMode(resume),
+    accent: resolveAccent(resume),
     // Clamped so a hand-edited document can adjust spacing but never push a
     // heading gap negative (-24 cancels the 24-unit baseline exactly).
     sectionSpacing: Math.min(60, Math.max(-24, resume.sectionSpacing ?? 0)),
     font: resolveFont(resume.font)?.id ?? null,
-    // Clamps guard hand-edited documents: tracking outside -0.5..0.5 breaks
-    // PDF text extraction (word boundaries merge or split), and out-of-range
-    // line heights break layout.
+    // Tracking outside -0.5..0.5 breaks PDF text extraction (word boundaries
+    // merge or split), and out-of-range line heights break layout.
     letterSpacing: Math.min(0.5, Math.max(-0.5, resume.letterSpacing ?? 0)),
     lineHeight: clampLineHeight(resume.lineHeight),
-    // Clamped so a hand-edited document keeps template proportions readable.
     nameScale: clampScale(resume.nameScale),
     titleScale: clampScale(resume.titleScale),
     bodyScale: clampScale(resume.bodyScale),
-    headings,
+    headings: buildHeadings(resume, labels),
     sectionOrder,
     customSections,
     header: toHeaderView(resume),
     summary,
-    experience: pipe(
-      sectionOfType(resume, "experience"),
-      O.mapWithDefault([], (section) => section.entries),
-      A.map((entry) => {
-        const website = plain(entry.fields.website);
-        return {
-          id: entry.id,
-          role: plain(entry.fields.title),
-          company: plain(entry.fields.company),
-          companyHref: website ? withHttps(website) : undefined,
-          location: plain(entry.fields.location),
-          companyContext: plain(entry.fields.companyContext),
-          startDate: plain(entry.fields.startDate),
-          endDate: plain(entry.fields.endDate),
-          description: richBlocks(entry.fields.description),
-        };
-      }),
-      A.sort(byRecency),
-      A.map(localizeDates),
-    ),
-    internship: pipe(
-      sectionOfType(resume, "internship"),
-      O.mapWithDefault([], (section) => section.entries),
-      A.map((entry) => {
-        const website = plain(entry.fields.website);
-        return {
-          id: entry.id,
-          role: plain(entry.fields.title),
-          company: plain(entry.fields.company),
-          companyHref: website ? withHttps(website) : undefined,
-          location: plain(entry.fields.location),
-          companyContext: plain(entry.fields.companyContext),
-          startDate: plain(entry.fields.startDate),
-          endDate: plain(entry.fields.endDate),
-          description: richBlocks(entry.fields.description),
-        };
-      }),
-      A.sort(byRecency),
-      A.map(localizeDates),
-    ),
-    projects: pipe(
-      sectionOfType(resume, "projects"),
-      O.mapWithDefault([], (section) => section.entries),
-      A.map((entry) => {
+    experience: dated(jobItems(resume, "experience")),
+    internship: dated(jobItems(resume, "internship")),
+    projects: dated(
+      A.map(entriesOfType(resume, "projects"), (entry) => {
         const website = plain(entry.fields.website);
         return {
           id: entry.id,
@@ -363,13 +284,9 @@ export function resumeToPreview(resume: Resume): ResumePreview {
           description: richBlocks(entry.fields.description),
         };
       }),
-      A.sort(byRecency),
-      A.map(localizeDates),
     ),
-    organizations: pipe(
-      sectionOfType(resume, "organizations"),
-      O.mapWithDefault([], (section) => section.entries),
-      A.map((entry) => ({
+    organizations: dated(
+      A.map(entriesOfType(resume, "organizations"), (entry) => ({
         id: entry.id,
         role: plain(entry.fields.role),
         company: plain(entry.fields.organization),
@@ -377,12 +294,10 @@ export function resumeToPreview(resume: Resume): ResumePreview {
         endDate: plain(entry.fields.endDate),
         description: richBlocks(entry.fields.description),
       })),
-      A.sort(byRecency),
-      A.map(localizeDates),
     ),
+    volunteering: dated(volunteeringItems(resume)),
     education: pipe(
-      sectionOfType(resume, "education"),
-      O.mapWithDefault([], (section) => section.entries),
+      entriesOfType(resume, "education"),
       A.map((entry) => ({
         id: entry.id,
         degree: plain(entry.fields.degree),
@@ -395,51 +310,37 @@ export function resumeToPreview(resume: Resume): ResumePreview {
       A.sort(byRecency),
       A.map(localizeDates),
     ),
-    certificates: pipe(
-      sectionOfType(resume, "certifications"),
-      O.mapWithDefault([], (section) => section.entries),
-      A.map((entry) => {
-        const url = plain(entry.fields.url);
-        return {
-          id: entry.id,
-          title: plain(entry.fields.name),
-          issuer: plain(entry.fields.issuer),
-          href: url ? withHttps(url) : undefined,
-          startDate: "",
-          endDate: "",
-        };
-      }),
-    ),
-    // Hiding proficiency is presentation-only: blank it here, the single view
-    // chokepoint, so every downstream renderer (preview, PDF, docx, plain text)
-    // drops it without threading a flag through each one.
-    skills: pipe(
-      sectionOfType(resume, "skills"),
-      O.mapWithDefault([], (section) => section.entries),
-      A.map((entry) => ({
+    courses: dated(courseItems(resume)),
+    certificates: A.map(entriesOfType(resume, "certifications"), (entry) => {
+      const url = plain(entry.fields.url);
+      return localizeDates({
         id: entry.id,
-        name: plain(entry.fields.name),
-        proficiency: skillsShowProficiency ? plain(entry.fields.level) : "",
-      })),
-    ),
-    skillsColumns: O.mapWithDefault(
-      sectionOfType(resume, "skills"),
-      2,
-      (section) => section.columns ?? 2,
-    ),
-    languages: pipe(
-      sectionOfType(resume, "languages"),
-      O.mapWithDefault([], (section) => section.entries),
-      A.map((entry) => ({
-        id: entry.id,
-        name: plain(entry.fields.name),
-        proficiency: languagesShowProficiency ? plain(entry.fields.level) : "",
-      })),
-    ),
-    languagesColumns: O.mapWithDefault(
-      sectionOfType(resume, "languages"),
-      2,
-      (section) => section.columns ?? 2,
-    ),
+        title: plain(entry.fields.name),
+        issuer: plain(entry.fields.issuer),
+        href: url ? withHttps(url) : undefined,
+        startDate: "",
+        endDate: plain(entry.fields.date),
+      });
+    }),
+    publications: dated(publicationItems(resume)),
+    references: referenceItems(resume),
+    skills: A.map(entriesOfType(resume, "skills"), (entry) => ({
+      id: entry.id,
+      name: plain(entry.fields.name),
+      proficiency: skillsShowProficiency ? plain(entry.fields.level) : "",
+      description: plain(entry.fields.description),
+    })),
+    skillsColumns: gridColumns(resume, "skills"),
+    languages: A.map(entriesOfType(resume, "languages"), (entry) => ({
+      id: entry.id,
+      name: plain(entry.fields.name),
+      proficiency: languagesShowProficiency ? plain(entry.fields.level) : "",
+      skills: languagesShowProficiency ? languageSkillsLine(entry, labels) : "",
+    })),
+    languagesColumns: gridColumns(resume, "languages"),
+    interests: interestBlocks(resume),
+    driving: drivingBlocks(resume),
+    salary: salaryBlocks(resume),
+    availability: availabilityBlocks(resume),
   };
 }

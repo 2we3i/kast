@@ -3,6 +3,7 @@ import type { TemplateId } from "@/lib/templates";
 import { buildResumeBlocks } from "./resume-blocks";
 import { ResumeFontFaces, resumeTypographyStyle } from "./resume-fonts";
 import { A4 } from "./resume-geometry";
+import { ResumeModeContext } from "./resume-mode";
 import { ResumePage } from "./resume-page";
 import type { ResumePreview } from "./resume-preview";
 import { TEMPLATE_BLOCK_VIEWS } from "./templates/template-block-view";
@@ -66,16 +67,18 @@ export function ResumeThumbnail(props: ResumeThumbnailProps) {
               transformOrigin: "top left",
             }}
           >
-            <ResumePage page={1} total={1}>
-              {blocks.map((block, index) => (
-                <div
-                  key={block.id}
-                  style={{ marginTop: index === 0 ? 0 : block.gapBefore }}
-                >
-                  <BlockView block={block} />
-                </div>
-              ))}
-            </ResumePage>
+            <ResumeModeContext value={{ atsMode: props.resume.atsMode }}>
+              <ResumePage page={1} total={1}>
+                {blocks.map((block, index) => (
+                  <div
+                    key={block.id}
+                    style={{ marginTop: index === 0 ? 0 : block.gapBefore }}
+                  >
+                    <BlockView block={block} />
+                  </div>
+                ))}
+              </ResumePage>
+            </ResumeModeContext>
           </div>
         </div>
       )}

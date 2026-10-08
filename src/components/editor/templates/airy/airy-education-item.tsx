@@ -1,0 +1,23 @@
+import { dateRangeText } from "../../resume-date-range";
+import { withLocation } from "../../resume-entry-location";
+import type { EducationItemView } from "../../resume-preview";
+import { ResumeRichText } from "../../resume-rich-text";
+
+export function AiryEducationItem(props: EducationItemView) {
+  return (
+    <article className="border-l-2 border-foreground/30 pl-4">
+      <div className="flex items-baseline justify-between gap-4">
+        <h3 className="resume-body-xs uppercase tracking-wide">
+          {props.degree}
+        </h3>
+        <span className="shrink-0 resume-body-xs text-muted-foreground">
+          {dateRangeText(props.startDate, props.endDate)}
+        </span>
+      </div>
+      <p className="resume-body-xs italic text-muted-foreground">
+        {withLocation(props.institution, props.location)}
+      </p>
+      <ResumeRichText blocks={props.details} className="mt-1" />
+    </article>
+  );
+}

@@ -267,18 +267,35 @@ function customBlocks(view: CustomSectionView): ResumeBlock[] {
   ];
 }
 
-function summaryBlocks(resume: ResumePreview): ReadonlyArray<ResumeBlock> {
-  if (isRichEmpty(resume.summary)) return [];
+interface BodyBlocksParams {
+  id: string;
+  label: string;
+  body: ReadonlyArray<RichBlock>;
+}
+
+// A heading over one rich-text body: Summary, and the singleton sections
+// (interests, driving licence, salary, availability). Omitted when empty.
+function bodyBlocks(params: BodyBlocksParams): ResumeBlock[] {
+  const { id, label, body } = params;
+  if (isRichEmpty(body)) return [];
   return [
-    heading("summary-heading", resume.headings.summary),
+    heading(`${id}-heading`, label),
     {
-      id: "summary-body",
+      id: `${id}-body`,
       kind: "summary",
-      body: resume.summary,
+      body,
       gapBefore: GAP.body,
       keepWithNext: false,
     },
   ];
+}
+
+function summaryBlocks(resume: ResumePreview): ReadonlyArray<ResumeBlock> {
+  return bodyBlocks({
+    id: "summary",
+    label: resume.headings.summary,
+    body: resume.summary,
+  });
 }
 
 function shiftHeading(block: ResumeBlock, spacing: number): ResumeBlock {
@@ -331,6 +348,50 @@ export function buildResumeBlocks(
         items: resume.organizations,
         headingId: "organizations-heading",
         label: headings.organizations,
+      }),
+    volunteering: () =>
+      experienceLikeBlocks({
+        items: resume.volunteering,
+        headingId: "volunteering-heading",
+        label: headings.volunteering,
+      }),
+    courses: () =>
+      experienceLikeBlocks({
+        items: resume.courses,
+        headingId: "courses-heading",
+        label: headings.courses,
+      }),
+    publications: () =>
+      experienceLikeBlocks({
+        items: resume.publications,
+        headingId: "publications-heading",
+        label: headings.publications,
+      }),
+    references: () =>
+      experienceLikeBlocks({
+        items: resume.references,
+        headingId: "references-heading",
+        label: headings.references,
+      }),
+    interests: () =>
+      bodyBlocks({
+        id: "interests",
+        label: headings.interests,
+        body: resume.interests,
+      }),
+    driving: () =>
+      bodyBlocks({
+        id: "driving",
+        label: headings.driving,
+        body: resume.driving,
+      }),
+    salary: () =>
+      bodyBlocks({ id: "salary", label: headings.salary, body: resume.salary }),
+    availability: () =>
+      bodyBlocks({
+        id: "availability",
+        label: headings.availability,
+        body: resume.availability,
       }),
     education: () => educationBlocks(resume.education, headings.education),
     certifications: () =>

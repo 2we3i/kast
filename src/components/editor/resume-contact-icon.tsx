@@ -1,5 +1,6 @@
 import {
   ArrowSquareOutIcon,
+  CakeIcon,
   EnvelopeSimpleIcon,
   GlobeIcon,
   LinkIcon,
@@ -19,6 +20,7 @@ const CONTACT_ICON: Record<ContactKind, typeof PhoneIcon> = {
   linkedin: LinkIcon,
   link: ArrowSquareOutIcon,
   location: MapPinIcon,
+  birth: CakeIcon,
 };
 
 type IconEdge = "start" | "end";

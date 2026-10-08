@@ -8,8 +8,10 @@ import {
   type SectionType,
 } from "@/lib/resume";
 
-export const INTERCHANGE_FORMAT = "lanjut-resume";
-export const INTERCHANGE_VERSION = 1;
+export const INTERCHANGE_FORMAT = "kast-resume";
+/** Files from before the rename carry this format id; they import the same. */
+export const LEGACY_INTERCHANGE_FORMAT = "lanjut-resume";
+export const INTERCHANGE_VERSION = 2;
 
 /**
  * The human-editable interchange shape shared by every serialization (JSON now,
@@ -38,12 +40,14 @@ function entryShape(fields: FieldSchema[]) {
   return z.strictObject(shape);
 }
 
-const summarySection = z.strictObject({
-  type: z.literal("summary"),
-  title: z.string().optional(),
-  hidden: z.boolean().optional(),
-  body: scalarString.optional(),
-});
+function bodySection<T extends "summary" | "interests">(type: T) {
+  return z.strictObject({
+    type: z.literal(type),
+    title: z.string().optional(),
+    hidden: z.boolean().optional(),
+    body: scalarString.optional(),
+  });
+}
 
 function listSection<T extends SectionType>(type: T) {
   return z.strictObject({
@@ -76,25 +80,72 @@ const customSection = z.strictObject({
 });
 
 const sectionSchema = z.discriminatedUnion("type", [
-  summarySection,
+  bodySection("summary"),
   listSection("experience"),
   listSection("internship"),
   listSection("projects"),
   listSection("organizations"),
+  listSection("volunteering"),
   listSection("education"),
+  listSection("courses"),
   listSection("certifications"),
+  listSection("publications"),
   gridSection("skills"),
   gridSection("languages"),
+  bodySection("interests"),
+  listSection("references"),
+  listSection("driving"),
+  listSection("salary"),
+  listSection("availability"),
   customSection,
 ]);
 
+const jobTargetSchema = z.strictObject({
+  company: z.string().optional(),
+  position: z.string().optional(),
+  url: z.string().optional(),
+  appliedAt: z.string().optional(),
+  status: z
+    .enum(["draft", "applied", "interview", "offer", "rejected"])
+    .optional(),
+  notes: z.string().optional(),
+  description: z.string().optional(),
+});
+
+const coverLetterSchema = z.strictObject({
+  recipient: z.string().optional(),
+  company: z.string().optional(),
+  date: z.string().optional(),
+  subject: z.string().optional(),
+  /** Markdown in the interchange dialect, like every rich field. */
+  body: z.string().optional(),
+  closing: z.string().optional(),
+});
+
+/** Résumé languages; "id" from files of the previous product reads as English. */
+const languageSchema = z.preprocess(
+  (value) => (value === "id" ? "en" : value),
+  z.enum(["en", "lt", "ru"]),
+);
+
 export const interchangeSchema = z
   .strictObject({
-    format: z.literal(INTERCHANGE_FORMAT),
-    version: z.literal(INTERCHANGE_VERSION),
+    format: z.union([
+      z.literal(INTERCHANGE_FORMAT),
+      z.literal(LEGACY_INTERCHANGE_FORMAT),
+    ]),
+    version: z.union([z.literal(1), z.literal(INTERCHANGE_VERSION)]),
     title: z.string().optional(),
     template: z.string().optional(),
-    language: z.enum(["en", "id"]).optional(),
+    language: languageSchema.optional(),
+    atsMode: z.boolean().optional(),
+    accentColor: z
+      .string()
+      .regex(/^#[0-9a-fA-F]{6}$/)
+      .optional(),
+    showQr: z.boolean().optional(),
+    target: jobTargetSchema.optional(),
+    coverLetter: coverLetterSchema.optional(),
     showIcons: z.boolean().optional(),
     sectionSpacing: z.number().int().min(-24).max(60).optional(),
     font: z.string().optional(),

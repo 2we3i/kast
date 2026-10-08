@@ -6,6 +6,7 @@ import { ResumeAnimatedBlock } from "./resume-animated-block";
 import { buildResumeBlocks } from "./resume-blocks";
 import { ResumeFontFaces, resumeTypographyStyle } from "./resume-fonts";
 import { A4, CONTENT_HEIGHT_PX, CONTENT_WIDTH_PX } from "./resume-geometry";
+import { ResumeModeContext } from "./resume-mode";
 import { ResumePage } from "./resume-page";
 import { paginate } from "./resume-paginate";
 import type { ResumePreview } from "./resume-preview";
@@ -89,6 +90,11 @@ export function ResumeDocument(props: ResumeDocumentProps) {
     [blocks, heights],
   );
 
+  const numberedPages = A.mapWithIndex(pages, (index, blocks) => ({
+    number: index + 1,
+    blocks,
+  }));
+
   const scale =
     availableWidth > 0 ? Math.min(1, availableWidth / A4.widthPx) : 1;
   const naturalHeight =
@@ -102,61 +108,66 @@ export function ResumeDocument(props: ResumeDocumentProps) {
       style={resumeTypographyStyle(props.resume, props.template)}
     >
       <ResumeFontFaces />
-      <div
-        ref={measureRef}
-        aria-hidden
-        className="pointer-events-none invisible fixed top-0 left-0 -z-10"
-        style={{ width: CONTENT_WIDTH_PX }}
-      >
-        {blocks.map((block) => (
-          <div key={block.id} data-block-id={block.id}>
-            <BlockView block={block} />
-          </div>
-        ))}
-      </div>
-
-      <div
-        className="mx-auto"
-        style={{ width: A4.widthPx * scale, height: naturalHeight * scale }}
-      >
+      <ResumeModeContext value={{ atsMode: props.resume.atsMode }}>
         <div
-          className="flex flex-col gap-6"
-          style={{
-            width: A4.widthPx,
-            transform: `scale(${scale})`,
-            transformOrigin: "top left",
-          }}
+          ref={measureRef}
+          aria-hidden
+          className="pointer-events-none invisible fixed top-0 left-0 -z-10"
+          style={{ width: CONTENT_WIDTH_PX }}
         >
-          {pages.map((pageBlocks, index) => {
-            // The page's identity is its position in the stack: keying by index
-            // keeps the container stable while blocks reflow through it, so a
-            // changed first block animates instead of remounting the page.
-            const signature = pipe(
-              pageBlocks,
-              A.map((block) => block.id),
-              A.join("|"),
-            );
-            return (
-              // biome-ignore lint/suspicious/noArrayIndexKey: pages have no id; position is their identity
-              <ResumePage page={index + 1} total={A.length(pages)} key={index}>
-                <AnimatePresence initial={false} mode="popLayout">
-                  {pageBlocks.map((block, blockIndex) => (
-                    <ResumeAnimatedBlock
-                      key={block.id}
-                      layoutDependency={signature}
-                      style={{
-                        marginTop: blockIndex === 0 ? 0 : block.gapBefore,
-                      }}
-                    >
-                      <BlockView block={block} />
-                    </ResumeAnimatedBlock>
-                  ))}
-                </AnimatePresence>
-              </ResumePage>
-            );
-          })}
+          {blocks.map((block) => (
+            <div key={block.id} data-block-id={block.id}>
+              <BlockView block={block} />
+            </div>
+          ))}
         </div>
-      </div>
+
+        <div
+          className="mx-auto"
+          style={{ width: A4.widthPx * scale, height: naturalHeight * scale }}
+        >
+          <div
+            className="flex flex-col gap-6"
+            style={{
+              width: A4.widthPx,
+              transform: `scale(${scale})`,
+              transformOrigin: "top left",
+            }}
+          >
+            {numberedPages.map((page) => {
+              const signature = pipe(
+                page.blocks,
+                A.map((block) => block.id),
+                A.join("|"),
+              );
+              // The page's identity is its position in the stack: keying by its
+              // number keeps the container stable while blocks reflow through
+              // it, so a changed first block animates instead of remounting.
+              return (
+                <ResumePage
+                  key={page.number}
+                  page={page.number}
+                  total={A.length(pages)}
+                >
+                  <AnimatePresence initial={false} mode="popLayout">
+                    {page.blocks.map((block, blockIndex) => (
+                      <ResumeAnimatedBlock
+                        key={block.id}
+                        layoutDependency={signature}
+                        style={{
+                          marginTop: blockIndex === 0 ? 0 : block.gapBefore,
+                        }}
+                      >
+                        <BlockView block={block} />
+                      </ResumeAnimatedBlock>
+                    ))}
+                  </AnimatePresence>
+                </ResumePage>
+              );
+            })}
+          </div>
+        </div>
+      </ResumeModeContext>
     </div>
   );
 }

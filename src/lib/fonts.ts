@@ -2,7 +2,9 @@ import { A, O, pipe } from "@mobily/ts-belt";
 
 /**
  * The catalog of document fonts offered in the editor. Every family is
- * OFL-licensed and self-hosted as static TTFs under `/fonts`, so the on-screen
+ * OFL-licensed, built by `scripts/build-fonts.py` with Latin, Latin Extended
+ * (Lithuanian), and Cyrillic coverage, and self-hosted as static TTFs under
+ * `/fonts`, so the on-screen
  * preview and the PDF export render from the exact same files and can never
  * drift apart. A résumé references a font by `id`; an absent or unknown id
  * means "template default" (the families the template ships with).
@@ -24,7 +26,7 @@ export type FontId =
   | "merriweather"
   | "geist-mono"
   | "jetbrains-mono"
-  | "courier-prime"
+  | "cousine"
   | "ibm-plex-mono";
 
 export interface FontFace {
@@ -107,7 +109,7 @@ export const FONTS: FontSummary[] = [
     id: "lora",
     family: "Lora",
     category: "serif",
-    faces: faceSet("Lora", { semibold: false }),
+    faces: faceSet("Lora"),
   },
   {
     id: "tinos",
@@ -137,7 +139,7 @@ export const FONTS: FontSummary[] = [
     id: "geist-mono",
     family: "GeistMono",
     category: "mono",
-    faces: faceSet("GeistMono", { semibold: false, italics: false }),
+    faces: faceSet("GeistMono"),
   },
   {
     id: "jetbrains-mono",
@@ -146,10 +148,10 @@ export const FONTS: FontSummary[] = [
     faces: faceSet("JetBrainsMono"),
   },
   {
-    id: "courier-prime",
-    family: "CourierPrime",
+    id: "cousine",
+    family: "Cousine",
     category: "mono",
-    faces: faceSet("CourierPrime", { semibold: false }),
+    faces: faceSet("Cousine", { semibold: false }),
   },
   {
     id: "ibm-plex-mono",
@@ -174,7 +176,7 @@ export const FONT_LABELS: Record<FontId, string> = {
   merriweather: "Merriweather",
   "geist-mono": "Geist Mono",
   "jetbrains-mono": "JetBrains Mono",
-  "courier-prime": "Courier Prime",
+  cousine: "Cousine",
   "ibm-plex-mono": "IBM Plex Mono",
 };
 

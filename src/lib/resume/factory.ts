@@ -1,8 +1,9 @@
 import { A, D, pipe } from "@mobily/ts-belt";
 import type { JSONContent } from "@tiptap/core";
 import { nanoid } from "nanoid";
+import type { FieldSchema } from "./schema-fields";
 import {
-  type FieldSchema,
+  CORE_SECTION_TYPES,
   getCustomFields,
   getSectionSchema,
   HEADER_SCHEMA,
@@ -104,23 +105,14 @@ export function createEmptyResume(title: string): Resume {
     id: nanoid(),
     schemaVersion: CURRENT_SCHEMA_VERSION,
     title,
-    templateId: "awal",
+    templateId: "standard",
     language: "en",
+    atsMode: true,
     showIcons: true,
     sectionSpacing: 0,
     letterSpacing: 0,
     header: createEmptyHeader(),
-    sections: [
-      createEmptySection("summary"),
-      createEmptySection("experience"),
-      createEmptySection("internship"),
-      createEmptySection("projects"),
-      createEmptySection("organizations"),
-      createEmptySection("education"),
-      createEmptySection("certifications"),
-      createEmptySection("skills"),
-      createEmptySection("languages"),
-    ],
+    sections: A.map(CORE_SECTION_TYPES, createEmptySection),
     createdAt: now,
     updatedAt: now,
   };

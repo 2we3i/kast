@@ -5,10 +5,10 @@ import type { JSONContent } from "@tiptap/core";
  * governs object-store/index structure only. Bumped whenever a persisted field
  * shape changes; every bump gets a forward-only step in the migration ladder.
  */
-export const CURRENT_SCHEMA_VERSION = 24;
+export const CURRENT_SCHEMA_VERSION = 25;
 
 /** The language the rendered document's fixed labels (headings, dates) use. */
-export type ResumeLanguage = "en" | "id";
+export type ResumeLanguage = "en" | "lt" | "ru";
 
 /**
  * Presentation-only column count for grid-rendered sections (skills, languages).
@@ -55,6 +55,14 @@ export type SectionType =
   | "skills"
   | "certifications"
   | "languages"
+  | "volunteering"
+  | "courses"
+  | "publications"
+  | "references"
+  | "interests"
+  | "driving"
+  | "salary"
+  | "availability"
   | "custom";
 
 /**
@@ -204,12 +212,69 @@ export interface Resume {
    * their internal hierarchy is preserved; see `nameScale`.
    */
   bodyScale?: number;
+  /**
+   * Presentation mode. `true` (or unset) is the ATS-safe mode: one column, no
+   * photo, no contact icons, no QR code, ink-only color. `false` is the design
+   * mode, where the template may draw those. The text, its order, and every
+   * text export are identical in both.
+   */
+  atsMode?: boolean;
+  /** Design-mode accent color as #rrggbb; unset uses the template's own. */
+  accentColor?: string;
+  /**
+   * Design mode only: draw a QR code of the portfolio link (website, else the
+   * extra link) in the header. The link text itself is always in the contacts.
+   */
+  showQr?: boolean;
+  /** The vacancy this version is tailored to; never rendered. */
+  target?: JobTarget;
+  /** The cover letter that goes with this résumé. */
+  coverLetter?: CoverLetter;
   header: Header;
   sections: ReadonlyArray<Section>;
   /** ISO 8601. */
   createdAt: string;
   /** ISO 8601. */
   updatedAt: string;
+}
+
+/** Where an application for this résumé version stands. */
+export type JobTargetStatus =
+  | "draft"
+  | "applied"
+  | "interview"
+  | "offer"
+  | "rejected";
+
+/**
+ * The vacancy a résumé version is tailored to. Bookkeeping only: it never
+ * renders into the document or any export, and it stays in this browser.
+ */
+export interface JobTarget {
+  company: string;
+  position: string;
+  url: string;
+  /** Application date, YYYY-MM-DD, or empty. */
+  appliedAt: string;
+  status: JobTargetStatus;
+  notes: string;
+  /** The vacancy text pasted for the ATS keyword check and AI tailoring. */
+  description: string;
+}
+
+/**
+ * A cover letter kept with its résumé, rendered with the same template and
+ * header so the two read as a set. The sender block comes from the header.
+ */
+export interface CoverLetter {
+  recipient: string;
+  company: string;
+  /** Free-text date line; empty means today's date at export. */
+  date: string;
+  subject: string;
+  body: JSONContent;
+  /** The sign-off line above the name, e.g. "Kind regards,". */
+  closing: string;
 }
 
 /**
@@ -220,4 +285,6 @@ export interface ResumeIndexEntry {
   id: string;
   title: string;
   updatedAt: string;
+  /** The tailored-for vacancy, shown as a badge in the Library. */
+  target?: Pick<JobTarget, "company" | "position" | "status">;
 }

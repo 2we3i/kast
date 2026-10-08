@@ -5,12 +5,9 @@ import { IntlProvider } from "use-intl";
 import { MESSAGES } from "@/i18n/messages";
 import { PathnameContext } from "@/i18n/navigation";
 import { type Locale, stripLocale } from "@/i18n/routing";
-import { IS_DESKTOP } from "@/lib/build-target";
 import { registerResumeFlushListeners } from "@/lib/store";
 import { Toaster } from "../ui/sonner";
 import { TooltipProvider } from "../ui/tooltip";
-import { DesktopLocaleMemory } from "./desktop-locale-memory";
-import { DesktopUpdater } from "./desktop-updater";
 
 /** The props Astro passes to every island. */
 export interface IslandProps {
@@ -52,6 +49,7 @@ export function AppThemeProvider(props: PropsWithChildren) {
   return (
     <ThemeProvider
       attribute="class"
+      storageKey="kast:theme"
       defaultTheme="system"
       enableSystem
       enableColorScheme
@@ -62,15 +60,13 @@ export function AppThemeProvider(props: PropsWithChildren) {
   );
 }
 
-/** Context for an application page: the platform, the editor, feedback. */
+/** Context for an application page: the platform and the editor. */
 export function AppProviders(props: PropsWithChildren<IslandProps>) {
   useEffect(() => registerResumeFlushListeners(), []);
 
   return (
     <IslandProviders locale={props.locale} pathname={props.pathname}>
       <NuqsAdapter>
-        {IS_DESKTOP && <DesktopLocaleMemory />}
-        {IS_DESKTOP && <DesktopUpdater />}
         <AppThemeProvider>
           <TooltipProvider>{props.children}</TooltipProvider>
           <Toaster />

@@ -1,14 +1,11 @@
 import type { PropsWithChildren } from "react";
-import { PlatformBugReportDialog } from "@/components/platform/platform-bug-report-dialog";
-import { PlatformFeatureRequestDialog } from "@/components/platform/platform-feature-request-dialog";
 import { PlatformNavbar } from "@/components/platform/platform-navbar";
 import { PlatformSidebar } from "@/components/platform/platform-sidebar";
 import { PlatformSidebarProvider } from "@/components/platform/platform-sidebar-provider";
 import { TourProvider } from "@/components/tour/tour-provider";
 import { Sidebar, SidebarInset } from "@/components/ui/sidebar";
-import { IS_DESKTOP } from "@/lib/build-target";
 
-/** The chrome every platform page shares: sidebar, navbar, tours, feedback. */
+/** The chrome every platform page shares: sidebar, navbar, tours. */
 export function PlatformShell(props: PropsWithChildren) {
   return (
     <TourProvider>
@@ -24,15 +21,6 @@ export function PlatformShell(props: PropsWithChildren) {
           <PlatformNavbar />
           {props.children}
         </SidebarInset>
-
-        {/* The desktop app files feedback through a hosted window, so these
-            never open there and their bot-check widget cannot run on its origin. */}
-        {!IS_DESKTOP && (
-          <>
-            <PlatformBugReportDialog />
-            <PlatformFeatureRequestDialog />
-          </>
-        )}
       </PlatformSidebarProvider>
     </TourProvider>
   );

@@ -1,3 +1,4 @@
+import { dateRangeText } from "./resume-date-range";
 import { locationSuffix } from "./resume-entry-location";
 import { ResumeOptionalLink } from "./resume-optional-link";
 import type { ExperienceItemView } from "./resume-preview";
@@ -9,7 +10,7 @@ export function ResumeExperienceItem(props: ExperienceItemView) {
       <div className="flex items-baseline justify-between gap-4">
         <h3 className="resume-body-xs font-semibold">{props.role}</h3>
         <span className="shrink-0 resume-body-xs text-muted-foreground">
-          {props.startDate} - {props.endDate}
+          {dateRangeText(props.startDate, props.endDate, "-")}
         </span>
       </div>
 

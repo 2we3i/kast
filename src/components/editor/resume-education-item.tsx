@@ -1,3 +1,4 @@
+import { dateRangeText } from "./resume-date-range";
 import { withLocation } from "./resume-entry-location";
 import type { EducationItemView } from "./resume-preview";
 import { ResumeRichText } from "./resume-rich-text";
@@ -8,7 +9,7 @@ export function ResumeEducationItem(props: EducationItemView) {
       <div className="flex items-baseline justify-between gap-4 pb-1">
         <h3 className="resume-body-xs font-semibold">{props.degree}</h3>
         <span className="shrink-0 resume-body-xs text-muted-foreground">
-          {props.startDate} - {props.endDate}
+          {dateRangeText(props.startDate, props.endDate, "-")}
         </span>
       </div>
       <p className="resume-body-xs text-muted-foreground">

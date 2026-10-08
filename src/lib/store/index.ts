@@ -1,6 +1,5 @@
 export { useChangelogStore } from "./changelog-store";
 export { type EditorTab, useEditorChromeStore } from "./editor-chrome-store";
-export { useIssueReportStore } from "./issue-report-store";
 export {
   type LandingDraft,
   useLandingDraftStore,
@@ -12,4 +11,3 @@ export {
 export { useResumeStore } from "./resume-store";
 export { useSidebarStore } from "./sidebar-store";
 export { useTourStore } from "./tour-store";
-export { updateCheckIsDue, useUpdaterStore } from "./updater-store";

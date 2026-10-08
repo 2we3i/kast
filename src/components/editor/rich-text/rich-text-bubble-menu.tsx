@@ -4,7 +4,7 @@ import { type Editor, useEditorState } from "@tiptap/react";
 import { BubbleMenu } from "@tiptap/react/menus";
 import { useTranslations } from "use-intl";
 import { Toggle } from "@/components/ui/toggle";
-import type { RichTextFeature } from "@/lib/resume/schema-registry";
+import type { RichTextFeature } from "@/lib/resume/schema-fields";
 import { RichTextLinkPopover } from "./rich-text-link-popover";
 
 interface RichTextBubbleMenuProps {

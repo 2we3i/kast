@@ -1,19 +1,24 @@
 import { A, G, pipe, S } from "@mobily/ts-belt";
 
 /**
- * The catalog of résumé templates shown on the Browse Templates page. Presentation
+ * The catalog of résumé templates shown on the Templates page. Presentation
  * metadata only; the rendering for each template lives under
- * `@/components/editor/templates`.
+ * `@/components/editor/templates`. Every template has an ATS-safe mode and a
+ * design mode; the document's `atsMode` flag picks between them.
  */
 export type TemplateId =
-  | "awal"
-  | "ketat"
-  | "luasa"
-  | "tebal"
-  | "klasik"
-  | "ketik";
+  | "standard"
+  | "compact"
+  | "airy"
+  | "bold"
+  | "classic"
+  | "mono"
+  | "modern"
+  | "elegant"
+  | "timeline"
+  | "executive";
 
-export const DEFAULT_TEMPLATE_ID: TemplateId = "awal";
+export const DEFAULT_TEMPLATE_ID: TemplateId = "standard";
 
 export interface TemplateSummary {
   id: TemplateId;
@@ -37,19 +42,57 @@ export function resolveTemplateId(id: string): TemplateId {
  * HTML, so it matches.
  */
 export const TEMPLATE_LINE_HEIGHT: Record<TemplateId, number> = {
-  awal: 1.4,
-  ketat: 1.4,
-  luasa: 1.45,
-  tebal: 1.4,
-  klasik: 1.45,
-  ketik: 1.4,
+  standard: 1.4,
+  compact: 1.35,
+  airy: 1.5,
+  bold: 1.4,
+  classic: 1.45,
+  mono: 1.4,
+  modern: 1.45,
+  elegant: 1.5,
+  timeline: 1.4,
+  executive: 1.4,
 };
 
-/** Templates whose headers draw contact icon glyphs; the rest render text-only contacts. */
+/**
+ * Each template's own accent for design mode, used until the user picks one.
+ * ATS mode draws every template in ink.
+ */
+export const TEMPLATE_ACCENT: Record<TemplateId, string> = {
+  standard: "#1e1b4b",
+  compact: "#1e3a5f",
+  airy: "#475569",
+  bold: "#111827",
+  classic: "#5b3a1e",
+  mono: "#0f766e",
+  modern: "#4338ca",
+  elegant: "#9a3412",
+  timeline: "#0e7490",
+  executive: "#1e1b4b",
+};
+
+/** Accent swatches offered in the design panel, after the template's own. */
+export const ACCENT_SWATCHES: ReadonlyArray<string> = [
+  "#1e1b4b",
+  "#4338ca",
+  "#0e7490",
+  "#0f766e",
+  "#15803d",
+  "#b45309",
+  "#b91c1c",
+  "#be185d",
+  "#475569",
+  "#111827",
+];
+
+/** Templates whose headers draw contact icon glyphs (in design mode). */
 const TEMPLATE_IDS_WITH_CONTACT_ICONS: TemplateId[] = [
-  "awal",
-  "ketat",
-  "tebal",
+  "standard",
+  "compact",
+  "bold",
+  "modern",
+  "timeline",
+  "executive",
 ];
 
 /** Whether a persisted template id renders contact icons. Unknown ids resolve to the default template first, matching renderer fallback. */
@@ -65,16 +108,20 @@ export const TEMPLATE_SORTS: TemplateSort[] = [
   "newest",
 ];
 
-/** Shared by the Browse Templates page and the create dialog, so both list templates in the same order. */
+/** Shared by the Templates page and the create dialog, so both list templates in the same order. */
 export const DEFAULT_TEMPLATE_SORT: TemplateSort = "name-asc";
 
 export const TEMPLATES: TemplateSummary[] = [
-  { id: "awal", name: "Awal", addedAt: "2026-01-01T00:00:00.000Z" },
-  { id: "ketat", name: "Ketat", addedAt: "2026-07-04T00:00:00.000Z" },
-  { id: "luasa", name: "Luasa", addedAt: "2026-07-04T00:00:00.000Z" },
-  { id: "tebal", name: "Tebal", addedAt: "2026-07-05T00:00:00.000Z" },
-  { id: "klasik", name: "Klasik", addedAt: "2026-07-05T00:00:00.000Z" },
-  { id: "ketik", name: "Ketik", addedAt: "2026-07-05T00:00:00.000Z" },
+  { id: "standard", name: "Standard", addedAt: "2026-10-01T00:00:00.000Z" },
+  { id: "compact", name: "Compact", addedAt: "2026-10-01T00:00:00.000Z" },
+  { id: "airy", name: "Airy", addedAt: "2026-10-01T00:00:00.000Z" },
+  { id: "bold", name: "Bold", addedAt: "2026-10-01T00:00:00.000Z" },
+  { id: "classic", name: "Classic", addedAt: "2026-10-01T00:00:00.000Z" },
+  { id: "mono", name: "Mono", addedAt: "2026-10-01T00:00:00.000Z" },
+  { id: "modern", name: "Modern", addedAt: "2026-10-08T00:00:00.000Z" },
+  { id: "elegant", name: "Elegant", addedAt: "2026-10-08T00:00:00.000Z" },
+  { id: "timeline", name: "Timeline", addedAt: "2026-10-08T00:00:00.000Z" },
+  { id: "executive", name: "Executive", addedAt: "2026-10-08T00:00:00.000Z" },
 ];
 
 export function filterTemplates(
@@ -93,10 +140,9 @@ export function filterTemplates(
 }
 
 /**
- * The catalog in the default browse order. Every template grid (browse page's
- * default sort, create dialog, editor Layout tab) renders this list so the
- * surfaces can never drift apart; only the browse page re-sorts, and only when
- * the user picks another sort.
+ * The catalog in the default browse order. Every template grid renders this
+ * list so the surfaces can never drift apart; only the Templates page
+ * re-sorts, and only when the user picks another sort.
  */
 export const SORTED_TEMPLATES: ReadonlyArray<TemplateSummary> = sortTemplates(
   TEMPLATES,

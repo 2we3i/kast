@@ -12,7 +12,7 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { PROSE_FEATURES } from "@/lib/resume/schema-registry";
+import { PROSE_FEATURES } from "@/lib/resume/schema-fields";
 import { RichTextEditor } from "../../rich-text/rich-text-editor";
 import { DateRangeFields } from "../date-range-fields";
 import type { ProjectsFormValues } from "../resume-form-adapter-jobs";

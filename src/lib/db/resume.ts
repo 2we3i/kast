@@ -62,8 +62,11 @@ export async function getResume(id: string): Promise<Resume | undefined> {
 export async function deleteResume(id: string): Promise<void> {
   const db = await getDb();
   await db.delete("resumes", id);
-  // Import leftovers are keyed by the same id; drop them with the document.
+  // Import leftovers and version history are keyed by the same id; drop them
+  // with the document.
   await db.delete("leftovers", id);
+  const history = await db.getAllKeysFromIndex("snapshots", "by-resume", id);
+  for (const key of history) await db.delete("snapshots", key);
 }
 
 /** The index fields of one stored document, or None when it fails to migrate. */

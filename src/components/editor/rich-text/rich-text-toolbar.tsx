@@ -12,7 +12,7 @@ import { useTranslations } from "use-intl";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Toggle } from "@/components/ui/toggle";
-import type { RichTextFeature } from "@/lib/resume/schema-registry";
+import type { RichTextFeature } from "@/lib/resume/schema-fields";
 import { RichTextLinkPopover } from "./rich-text-link-popover";
 
 interface RichTextToolbarProps {

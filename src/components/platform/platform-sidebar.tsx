@@ -4,7 +4,6 @@ import { PlatformSidebarOther } from "./platform-sidebar-other";
 import { PlatformSidebarPlatform } from "./platform-sidebar-platform";
 import { PlatformSidebarResume } from "./platform-sidebar-resume";
 import { PlatformSidebarSettings } from "./platform-sidebar-settings";
-import { PlatformSidebarSupport } from "./platform-sidebar-support";
 
 export function PlatformSidebar() {
   return (
@@ -14,7 +13,6 @@ export function PlatformSidebar() {
         <PlatformSidebarPlatform />
         <PlatformSidebarResume />
         <PlatformSidebarOther />
-        <PlatformSidebarSupport />
       </SidebarContent>
       <PlatformSidebarSettings />
     </>

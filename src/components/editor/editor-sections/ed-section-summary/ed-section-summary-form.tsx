@@ -7,7 +7,7 @@ import {
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
-import { PROSE_FEATURES } from "@/lib/resume/schema-registry";
+import { PROSE_FEATURES } from "@/lib/resume/schema-fields";
 import { useResumeStore } from "@/lib/store";
 import { RichTextEditor } from "../../rich-text/rich-text-editor";
 import {

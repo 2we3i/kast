@@ -6,6 +6,7 @@ import {
   type ResumeBlock,
 } from "../resume-blocks";
 import { resumeTypographyStyle } from "../resume-fonts";
+import { ResumeModeContext } from "../resume-mode";
 import { groupBlocks } from "../resume-paginate";
 import type { ResumePreview } from "../resume-preview";
 import { TextListMarkersContext } from "../resume-rich-text";
@@ -37,20 +38,22 @@ export function TakumiResumeFlow(props: TakumiResumeFlowProps) {
       className="font-sans text-foreground"
       style={resumeTypographyStyle(preview, template)}
     >
-      <TextListMarkersContext value={true}>
-        {groups.map((group, index) => (
-          <TakumiBlockGroup
-            key={O.mapWithDefault(
-              A.head(group),
-              `${index}`,
-              (block) => block.id,
-            )}
-            group={group}
-            isFirst={index === 0}
-            BlockView={BlockView}
-          />
-        ))}
-      </TextListMarkersContext>
+      <ResumeModeContext value={{ atsMode: preview.atsMode }}>
+        <TextListMarkersContext value={true}>
+          {groups.map((group, index) => (
+            <TakumiBlockGroup
+              key={O.mapWithDefault(
+                A.head(group),
+                `${index}`,
+                (block) => block.id,
+              )}
+              group={group}
+              isFirst={index === 0}
+              BlockView={BlockView}
+            />
+          ))}
+        </TextListMarkersContext>
+      </ResumeModeContext>
     </div>
   );
 }

@@ -12,6 +12,6 @@ export const useChangelogStore = create<ChangelogStoreState>()(
       lastSeenVersion: "",
       markSeen: (version) => set({ lastSeenVersion: version }),
     }),
-    { name: "lanjut:changelog-seen" },
+    { name: "kast:changelog-seen" },
   ),
 );

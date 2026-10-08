@@ -1,52 +1,12 @@
 import { A, O } from "@mobily/ts-belt";
-import type { CustomVariant, FieldKey, SectionType } from "./types";
-
-/**
- * The allowed TipTap features for a richtext Field: the Restricted schema
- * allowlist. Base document/paragraph/text are always implied. Both typing and
- * paste are filtered through this list so disallowed structure (tables, headings,
- * images) cannot be represented or pasted in.
- */
-export type RichTextFeature =
-  | "bold"
-  | "italic"
-  | "bulletList"
-  | "orderedList"
-  | "link";
-
-interface PlainFieldSchema {
-  key: FieldKey;
-  label: string;
-  kind: "plain";
-  placeholder?: string;
-}
-
-interface RichTextFieldSchema {
-  key: FieldKey;
-  label: string;
-  kind: "richtext";
-  features: RichTextFeature[];
-}
-
-export type FieldSchema = PlainFieldSchema | RichTextFieldSchema;
-
-export interface SectionSchema {
-  type: SectionType;
-  defaultTitle: string;
-  /** Singleton sections (summary, skills) hold exactly one Entry; others repeat. */
-  singleton: boolean;
-  /** The Field shape of every Entry in this Section. */
-  fields: FieldSchema[];
-}
-
-/** The default richtext allowlist shared by most body fields. */
-export const PROSE_FEATURES: RichTextFeature[] = [
-  "bold",
-  "italic",
-  "bulletList",
-  "orderedList",
-  "link",
-];
+import {
+  type FieldSchema,
+  LANGUAGE_SKILL_LEVELS,
+  PROSE_FEATURES,
+  type SectionSchema,
+} from "./schema-fields";
+import { EXTRA_SECTION_REGISTRY } from "./schema-registry-extra";
+import type { CustomVariant, SectionType } from "./types";
 
 /**
  * The privileged Header's Field shape. Identity and contact information only.
@@ -65,6 +25,12 @@ export const HEADER_SCHEMA: FieldSchema[] = [
     label: "Job title",
     kind: "plain",
     placeholder: "Senior Frontend Engineer",
+  },
+  {
+    key: "birthDate",
+    label: "Date of birth or age",
+    kind: "plain",
+    placeholder: "",
   },
   { key: "email", label: "Email", kind: "plain", placeholder: "john@doe.dev" },
   {
@@ -365,6 +331,12 @@ export const SECTION_REGISTRY: Record<SectionType, SectionSchema> = {
         kind: "plain",
         placeholder: "Advanced",
       },
+      {
+        key: "description",
+        label: "Description",
+        kind: "plain",
+        placeholder: "Typed APIs and design systems, 6 years",
+      },
     ],
   },
   certifications: {
@@ -390,6 +362,13 @@ export const SECTION_REGISTRY: Record<SectionType, SectionSchema> = {
         kind: "plain",
         placeholder: "https://…",
       },
+      {
+        key: "date",
+        label: "Date",
+        kind: "plain",
+        placeholder: "Mar 2024",
+        input: "date",
+      },
     ],
   },
   languages: {
@@ -404,8 +383,30 @@ export const SECTION_REGISTRY: Record<SectionType, SectionSchema> = {
         kind: "plain",
         placeholder: "Fluent",
       },
+      {
+        key: "speaking",
+        label: "Speaking",
+        kind: "plain",
+        input: "select",
+        options: LANGUAGE_SKILL_LEVELS,
+      },
+      {
+        key: "understanding",
+        label: "Understanding",
+        kind: "plain",
+        input: "select",
+        options: LANGUAGE_SKILL_LEVELS,
+      },
+      {
+        key: "writing",
+        label: "Writing",
+        kind: "plain",
+        input: "select",
+        options: LANGUAGE_SKILL_LEVELS,
+      },
     ],
   },
+  ...EXTRA_SECTION_REGISTRY,
   // A custom Section's Field shape depends on its `variant`; the registry lists
   // the `rich` (default) fields. Use `getCustomFields(variant)` for the actual
   // per-entry shape and `CUSTOM_LIST_FIELDS` for the `list` variant.
@@ -471,12 +472,52 @@ export const CANONICAL_SECTION_ORDER: SectionType[] = [
   "internship",
   "projects",
   "organizations",
+  "volunteering",
+  "education",
+  "courses",
+  "certifications",
+  "publications",
+  "skills",
+  "languages",
+  "interests",
+  "references",
+  "driving",
+  "salary",
+  "availability",
+  "custom",
+];
+
+/**
+ * Section types every document carries, even empty. The rest are optional:
+ * added from the editor's "Add section" menu and removable again.
+ */
+export const CORE_SECTION_TYPES: ReadonlyArray<SectionType> = [
+  "summary",
+  "experience",
+  "internship",
+  "projects",
+  "organizations",
   "education",
   "certifications",
   "skills",
   "languages",
-  "custom",
 ];
+
+/** Optional section types, in the order the "Add section" menu lists them. */
+export const OPTIONAL_SECTION_TYPES: ReadonlyArray<SectionType> = [
+  "volunteering",
+  "courses",
+  "publications",
+  "interests",
+  "references",
+  "driving",
+  "salary",
+  "availability",
+];
+
+export function isOptionalSection(type: SectionType): boolean {
+  return A.includes(OPTIONAL_SECTION_TYPES, type);
+}
 
 /**
  * Section types the user can drag to reorder. Summary is pinned directly below

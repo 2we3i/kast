@@ -1,5 +1,3 @@
-import { IS_DESKTOP } from "@/lib/build-target";
-
 export const EDITOR_PATHNAME = "/platform/editor";
 
 type EditorHref = `${typeof EDITOR_PATHNAME}?id=${string}`;
@@ -13,10 +11,7 @@ export function editorHref(id: string): EditorHref {
   return `${EDITOR_PATHNAME}?id=${id}`;
 }
 
-/**
- * Where the brand mark leads. The web app sends a visitor to the landing page.
- * The desktop app has nobody to sell itself to, so it stays in the workspace.
- */
-export function homeHref(): "/" | "/platform" {
-  return IS_DESKTOP ? "/platform" : "/";
+/** Where the brand mark leads: the landing page. */
+export function homeHref(): "/" {
+  return "/";
 }

@@ -11,6 +11,7 @@ import { useLocale, useTranslations } from "use-intl";
 import type { ImportResult, ParseResult } from "@/lib/import";
 import { runPdfImport } from "@/lib/import/run-import";
 import type { ResumeLanguage } from "@/lib/resume";
+import { DEFAULT_TEMPLATE_ID } from "@/lib/templates";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 
@@ -79,7 +80,7 @@ export function PlatformResumeImportDropzone(
       const options = {
         title: file.name,
         language: locale as ResumeLanguage,
-        templateId: "awal",
+        templateId: DEFAULT_TEMPLATE_ID,
       };
       let result: ({ ok: true } & ParseResult) | null = null;
       let failure: ErrorKey = "errorGeneric";

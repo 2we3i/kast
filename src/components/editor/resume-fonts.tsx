@@ -1,11 +1,17 @@
 import { A, pipe } from "@mobily/ts-belt";
 import type { CSSProperties } from "react";
 import { FONTS, resolveFont } from "@/lib/fonts";
-import { TEMPLATE_LINE_HEIGHT, type TemplateId } from "@/lib/templates";
+import {
+  TEMPLATE_ACCENT,
+  TEMPLATE_LINE_HEIGHT,
+  type TemplateId,
+} from "@/lib/templates";
 import type { ResumePreview } from "./resume-preview";
 
 type TypographySlice = Pick<
   ResumePreview,
+  | "atsMode"
+  | "accent"
   | "font"
   | "letterSpacing"
   | "lineHeight"
@@ -36,6 +42,7 @@ export function resumeTypographyStyle(
 ): CSSProperties {
   const override = resolveFont(resume.font ?? undefined);
   const lineHeight = resume.lineHeight ?? TEMPLATE_LINE_HEIGHT[template];
+  const accent = resolveResumeAccent(resume, template);
   // Per-group font-size multipliers; the resume-<group>-* utilities multiply
   // each element's baseline size by these (default 1 via the class fallback).
   return {
@@ -44,6 +51,8 @@ export function resumeTypographyStyle(
     "--font-geist-mono": `${override?.family ?? "GeistMono"}, ui-monospace, monospace`,
     lineHeight,
     "--resume-line-height": String(lineHeight),
+    "--resume-accent": accent,
+    "--resume-accent-soft": tint(accent, 0.9),
     ...(resume.letterSpacing !== 0 && {
       letterSpacing: `${resume.letterSpacing}px`,
     }),
@@ -53,6 +62,32 @@ export function resumeTypographyStyle(
     }),
     ...(resume.bodyScale !== 1 && { "--resume-body-scale": resume.bodyScale }),
   } as CSSProperties;
+}
+
+/** Ink, the color every template draws in ATS mode. */
+const INK = "#0a0a0a";
+
+/**
+ * The accent the templates draw with: ink in ATS mode, otherwise the user's
+ * pick or the template's own. Always a literal hex, never a nested var(),
+ * which the PDF renderer cannot resolve.
+ */
+export function resolveResumeAccent(
+  resume: Pick<ResumePreview, "atsMode" | "accent">,
+  template: TemplateId,
+): string {
+  if (resume.atsMode) return INK;
+  return resume.accent ?? TEMPLATE_ACCENT[template];
+}
+
+/** Mixes a #rrggbb color toward white by `amount` (0..1), as #rrggbb. */
+export function tint(hex: string, amount: number): string {
+  const channel = (offset: number) => {
+    const value = Number.parseInt(hex.slice(offset, offset + 2), 16);
+    const mixed = Math.round(value + (255 - value) * amount);
+    return mixed.toString(16).padStart(2, "0");
+  };
+  return `#${channel(1)}${channel(3)}${channel(5)}`;
 }
 
 const FONT_FACE_CSS = pipe(

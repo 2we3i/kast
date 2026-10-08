@@ -1,0 +1,47 @@
+import { ResumeContactIcon } from "../../resume-contact-icon";
+import { ResumeHeaderPhoto } from "../../resume-header-photo";
+import { ResumeHeaderQr } from "../../resume-header-qr";
+import { ResumeOptionalLink } from "../../resume-optional-link";
+import type { ContactView, HeaderView } from "../../resume-preview";
+
+function CompactHeaderContact(props: ContactView & { showIcons: boolean }) {
+  return (
+    <li className="flex items-center justify-end gap-2">
+      <ResumeOptionalLink href={props.href} className="underline" wrapPlain>
+        {props.value}
+      </ResumeOptionalLink>
+      <ResumeContactIcon kind={props.kind} show={props.showIcons} edge="end" />
+    </li>
+  );
+}
+
+export function CompactHeader(props: HeaderView) {
+  return (
+    <header className="flex flex-wrap items-start justify-between gap-6">
+      <div className="flex min-w-0 items-start gap-4">
+        <ResumeHeaderPhoto header={props} />
+        <div className="min-w-0">
+          <h1 className="font-serif resume-name-2xl uppercase tracking-wide">
+            {props.fullName}
+          </h1>
+          <p className="mt-1 font-serif resume-name-base text-muted-foreground">
+            {props.headline}
+          </p>
+        </div>
+      </div>
+
+      <div className="flex items-start gap-4">
+        <ul className="space-y-1.5 resume-body-xs">
+          {props.contacts.map((contact) => (
+            <CompactHeaderContact
+              key={contact.kind}
+              showIcons={props.showIcons}
+              {...contact}
+            />
+          ))}
+        </ul>
+        <ResumeHeaderQr header={props} />
+      </div>
+    </header>
+  );
+}

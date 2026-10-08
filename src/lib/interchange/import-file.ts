@@ -12,6 +12,10 @@ export type InterchangeImportResult =
 
 /** Settings that stay absent on the Resume unless the file sets them. */
 const OPTIONAL_SETTINGS = [
+  "accentColor",
+  "showQr",
+  "target",
+  "coverLetter",
   "font",
   "lineHeight",
   "nameScale",
@@ -46,6 +50,7 @@ function buildImportedResume(
     title: content.title || base.title,
     templateId: content.templateId ?? options.templateId,
     language: content.language ?? options.language,
+    atsMode: content.atsMode ?? true,
     showIcons: content.showIcons ?? true,
     sectionSpacing: content.sectionSpacing ?? 0,
     letterSpacing: content.letterSpacing ?? 0,
