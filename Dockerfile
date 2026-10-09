@@ -4,6 +4,7 @@
 FROM node:24-slim AS build
 WORKDIR /app
 ENV HUSKY=0 \
+    ASTRO_TELEMETRY_DISABLED=1 \
     COREPACK_ENABLE_DOWNLOAD_PROMPT=0 \
     PNPM_HOME=/pnpm \
     PATH=/pnpm:$PATH

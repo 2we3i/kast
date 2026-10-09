@@ -8,6 +8,9 @@ on:
 permissions:
   contents: read
 
+env:
+  ASTRO_TELEMETRY_DISABLED: "1"
+
 # A newer push makes the runs for the previous one pointless.
 concurrency:
   group: ci-${{ github.ref }}

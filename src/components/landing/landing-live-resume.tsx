@@ -1,6 +1,9 @@
+import { useMemo } from "react";
 import type { ResumePreview } from "@/components/editor/resume-preview";
 import { ResumeThumbnail } from "@/components/editor/resume-thumbnail";
-import { useSamplePreview } from "@/hooks/use-sample-preview";
+import { resumeToPreview } from "@/components/editor/resume-to-preview";
+import { sampleResume } from "@/lib/resume/seed-samples";
+import type { ResumeLanguage } from "@/lib/resume/types";
 import type { TemplateId } from "@/lib/templates";
 import { cn } from "@/lib/utils";
 
@@ -11,11 +14,19 @@ import { cn } from "@/lib/utils";
  */
 export function LandingLiveResume(props: {
   template: TemplateId;
+  /**
+   * The sample's language. Passed in rather than read from context: some
+   * of these islands render outside any translation provider.
+   */
+  language: ResumeLanguage;
   preview?: ResumePreview;
   cropHeight?: number;
   className?: string;
 }) {
-  const fallback = useSamplePreview();
+  const fallback = useMemo(
+    () => resumeToPreview(sampleResume(props.language)),
+    [props.language],
+  );
   return (
     <div
       className={cn(

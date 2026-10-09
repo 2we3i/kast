@@ -149,6 +149,7 @@ function LandingTryItForm() {
       <div className="md:col-span-7">
         <LandingLiveResume
           template={template}
+          language={language}
           preview={preview}
           cropHeight={520}
         />

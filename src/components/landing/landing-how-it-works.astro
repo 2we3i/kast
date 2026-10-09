@@ -31,7 +31,7 @@ const t = getTranslator(locale, "howItWorks");
       title={t("step1Title")}
       description={t("step1Description")}
     >
-      <LandingTemplateFan client:visible />
+      <LandingTemplateFan client:visible language={locale} />
     </LandingHowItWorksRow>
 
     <LandingHowItWorksRow
@@ -41,7 +41,12 @@ const t = getTranslator(locale, "howItWorks");
       flip
     >
       <div>
-        <LandingLiveResume client:visible template="bold" cropHeight={420} />
+        <LandingLiveResume
+          client:visible
+          template="bold"
+          language={locale}
+          cropHeight={420}
+        />
         <p class="mt-2 px-1 font-mono text-xs text-muted-foreground">
           {t("liveCaption")}
         </p>
