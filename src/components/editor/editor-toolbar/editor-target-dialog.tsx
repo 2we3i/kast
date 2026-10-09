@@ -30,16 +30,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { JOB_TARGET_STATUSES } from "@/lib/resume/job-target";
 import type { JobTarget, JobTargetStatus } from "@/lib/resume/types";
 import { useResumeStore } from "@/lib/store";
-
-const STATUSES: ReadonlyArray<JobTargetStatus> = [
-  "draft",
-  "applied",
-  "interview",
-  "offer",
-  "rejected",
-];
 
 export const EMPTY_TARGET: JobTarget = {
   company: "",
@@ -169,7 +162,7 @@ function EditorTargetDialog(props: EditorTargetDialogProps) {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectGroup>
-                            {STATUSES.map((status) => (
+                            {JOB_TARGET_STATUSES.map((status) => (
                               <SelectItem key={status} value={status}>
                                 {t(`statuses.${status}`)}
                               </SelectItem>

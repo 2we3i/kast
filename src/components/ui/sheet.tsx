@@ -1,6 +1,7 @@
 import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 import { XIcon } from "@phosphor-icons/react";
 import type * as React from "react";
+import { useTranslations } from "use-intl";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -70,7 +71,7 @@ function SheetContent({
             }
           >
             <XIcon />
-            <span className="sr-only">Close</span>
+            <CloseLabel />
           </SheetPrimitive.Close>
         )}
       </SheetPrimitive.Popup>
@@ -134,3 +135,9 @@ export {
   SheetTitle,
   SheetDescription,
 };
+
+/** The close button's accessible name, in the interface language. */
+function CloseLabel() {
+  const t = useTranslations("forms.common");
+  return <span className="sr-only">{t("close")}</span>;
+}

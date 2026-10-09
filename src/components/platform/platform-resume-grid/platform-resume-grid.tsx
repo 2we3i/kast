@@ -1,6 +1,7 @@
 import { A, S } from "@mobily/ts-belt";
 import { useHydrateResumeLibrary } from "@/hooks/use-hydrate-resume-library";
 import { useResumeSearchQuery } from "@/hooks/use-resume-search";
+import { useResumeStatusFilter } from "@/hooks/use-resume-status-filter";
 import { filterResumeIndex } from "@/lib/resume";
 import { useResumeStore } from "@/lib/store";
 import { PlatformResumeGridEmptySearch } from "./platform-resume-grid-empty-search";
@@ -14,12 +15,16 @@ export function PlatformResumeGrid() {
   const index = useResumeStore((state) => state.index);
   const indexStatus = useResumeStore((state) => state.indexStatus);
   const [query] = useResumeSearchQuery();
+  const [status] = useResumeStatusFilter();
 
   if (indexStatus === "error") return <PlatformResumeGridError />;
   if (indexStatus !== "ready") return <PlatformResumeGridSkeleton />;
   if (A.isEmpty(index)) return null;
 
-  const results = filterResumeIndex(index, query);
+  const results = A.filter(
+    filterResumeIndex(index, query),
+    (resume) => status === "all" || resume.target?.status === status,
+  );
 
   if (A.isEmpty(results)) {
     return <PlatformResumeGridEmptySearch query={S.trim(query)} />;

@@ -8,7 +8,9 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "../ui/input-group";
+import { PlatformAiBatchDialog } from "./platform-ai-batch/platform-ai-batch-dialog";
 import { PlatformResumeCreateDialog } from "./platform-resume-create-dialog";
+import { PlatformResumeStatusFilter } from "./platform-resume-status-filter";
 
 export function PlatformResumeToolbar() {
   const [open, setOpen] = useResumeCreateDialog();
@@ -16,8 +18,11 @@ export function PlatformResumeToolbar() {
   const t = useTranslations("platform.toolbar");
 
   return (
-    <div className="flex items-center gap-2">
-      <InputGroup id="tour-search-resume" className="max-w-xs">
+    <div className="flex flex-wrap items-center gap-2">
+      <InputGroup
+        id="tour-search-resume"
+        className="max-w-xs min-w-40 flex-1 basis-48"
+      >
         <InputGroupAddon>
           <MagnifyingGlassIcon />
         </InputGroupAddon>
@@ -27,8 +32,10 @@ export function PlatformResumeToolbar() {
           placeholder={t("searchResume")}
         />
       </InputGroup>
+      <PlatformResumeStatusFilter />
 
-      <nav className="inline-flex items-center gap-2 ml-auto">
+      <nav className="ml-auto inline-flex flex-wrap items-center gap-2">
+        <PlatformAiBatchDialog />
         <Button id="tour-create-resume" onClick={() => setOpen(true)}>
           <PlusIcon /> {t("resume")}
         </Button>

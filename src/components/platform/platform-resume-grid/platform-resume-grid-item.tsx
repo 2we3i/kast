@@ -15,6 +15,7 @@ import { Link } from "@/i18n/navigation";
 import type { ResumeIndexEntry } from "@/lib/resume";
 import { editorHref } from "@/lib/routes";
 import { PlatformResumeGridItemMenu } from "./platform-resume-grid-item-menu";
+import { PlatformResumeGridItemTarget } from "./platform-resume-grid-item-target";
 import { PlatformResumeGridItemThumbnail } from "./platform-resume-grid-item-thumbnail";
 
 interface PlatformResumeGridItemProps {
@@ -68,6 +69,9 @@ export function PlatformResumeGridItem(props: PlatformResumeGridItemProps) {
         <CardAction>
           <PlatformResumeGridItemMenu resume={resume} />
         </CardAction>
+        {resume.target && (
+          <PlatformResumeGridItemTarget target={resume.target} />
+        )}
       </CardHeader>
     </Card>
   );
