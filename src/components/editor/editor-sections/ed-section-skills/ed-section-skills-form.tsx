@@ -25,7 +25,7 @@ import { SkillsColumnsToggle } from "./skills-columns-toggle";
 import { SkillsProficiencyToggle } from "./skills-proficiency-toggle";
 
 function emptySkill(): SkillItemValues {
-  return { name: "", level: "" };
+  return { name: "", level: "", description: "" };
 }
 
 function initialValues(open: Resume | null): SkillsFormValues {

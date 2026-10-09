@@ -1,101 +1,33 @@
-import { A, pipe, S } from "@mobily/ts-belt";
-import {
-  BorderStyle,
-  Document,
-  ExternalHyperlink,
-  ImageRun,
-  type IRunOptions,
-  Paragraph,
-  TabStopType,
-  TextRun,
-} from "docx";
-import type { InlineRun, RichBlock } from "@/lib/resume/rich-content";
+import { A, S } from "@mobily/ts-belt";
+import { type Document, Paragraph, TabStopType, TextRun } from "docx";
+import type { TemplateId } from "@/lib/templates";
 import { buildResumeBlocks, type ResumeBlock } from "../resume-blocks";
+import { dateRangeText } from "../resume-date-range";
 import { locationSuffix, withLocation } from "../resume-entry-location";
+import { resolveResumeAccent } from "../resume-fonts";
 import type {
-  ContactView,
   EducationItemView,
   ExperienceItemView,
-  HeaderView,
   ResumePreview,
 } from "../resume-preview";
-
-const MUTED = "525252";
-/** Right page edge in twips for A4 with default 1-inch margins (11906 − 2·1440). */
-const RIGHT_TAB = 9026;
-
-function dateRange(start: string, end: string): string {
-  if (!start && !end) return "";
-  return `${start} - ${end}`;
-}
-
-/** Linked runs are underlined; plain runs carry no underline. */
-function linkUnderline(href: string | undefined): IRunOptions["underline"] {
-  if (!href) return undefined;
-  return {};
-}
-
-function linkedRun(
-  child: TextRun,
-  href: string | undefined,
-): TextRun | ExternalHyperlink {
-  if (!href) return child;
-  return new ExternalHyperlink({ link: href, children: [child] });
-}
-
-/** A muted run of `prefix + value`, or nothing when `value` is empty. */
-function mutedTail(value: string, prefix: string): ReadonlyArray<TextRun> {
-  if (!value) return [];
-  return [new TextRun({ text: `${prefix}${value}`, color: MUTED })];
-}
-
-function inlineRuns(
-  runs: ReadonlyArray<InlineRun>,
-): ReadonlyArray<TextRun | ExternalHyperlink> {
-  return A.map(runs, (run) => {
-    const child = new TextRun({
-      text: run.text,
-      bold: run.bold,
-      italics: run.italic,
-      underline: linkUnderline(run.href),
-    });
-    return linkedRun(child, run.href);
-  });
-}
-
-function richParagraphs(
-  blocks: ReadonlyArray<RichBlock>,
-): ReadonlyArray<Paragraph> {
-  return A.flatMap(blocks, (block): ReadonlyArray<Paragraph> => {
-    if (block.type === "paragraph") {
-      return [
-        new Paragraph({
-          children: inlineRuns(block.runs),
-          spacing: { after: 80 },
-        }),
-      ];
-    }
-    return A.map(
-      block.items,
-      (item) =>
-        new Paragraph({
-          children: inlineRuns(item),
-          bullet: { level: 0 },
-          spacing: { after: 40 },
-        }),
-    );
-  });
-}
+import {
+  headerParagraphs,
+  linkedRun,
+  linkUnderline,
+  mutedTail,
+  richParagraphs,
+} from "./docx-runs";
+import {
+  buildDocxDocument,
+  DOCX_HEADINGS,
+  MUTED,
+  RIGHT_TAB,
+} from "./docx-styles";
 
 function sectionHeading(title: string): Paragraph {
   return new Paragraph({
-    spacing: { before: 220, after: 100 },
-    border: {
-      bottom: { style: BorderStyle.SINGLE, size: 4, space: 2, color: "A3A3A3" },
-    },
-    children: [
-      new TextRun({ text: S.toUpperCase(title), bold: true, size: 20 }),
-    ],
+    heading: DOCX_HEADINGS.section,
+    children: [new TextRun({ text: S.toUpperCase(title) })],
   });
 }
 
@@ -105,18 +37,22 @@ interface TitleRowParams {
   href?: string;
 }
 
-/** A "Title …… Dates" row with the date right-aligned via a tab stop. */
+/** A "Title …… Dates" row (Heading 3) with the date on a right tab stop. */
 function titleRow(params: TitleRowParams): Paragraph {
   const { title, date, href } = params;
   const titleRun = new TextRun({
     text: title,
-    bold: true,
-    size: 19,
     underline: linkUnderline(href),
   });
   return new Paragraph({
+    heading: DOCX_HEADINGS.entry,
     tabStops: [{ type: TabStopType.RIGHT, position: RIGHT_TAB }],
-    children: [linkedRun(titleRun, href), ...mutedTail(date, "\t")],
+    children: [
+      linkedRun(titleRun, href),
+      ...(date
+        ? [new TextRun({ text: `\t${date}`, bold: false, color: MUTED })]
+        : []),
+    ],
   });
 }
 
@@ -145,83 +81,8 @@ function optionalSubtitle(text: string | undefined): ReadonlyArray<Paragraph> {
   return [subtitle({ text })];
 }
 
-/**
- * The photo data URL is a pre-cropped square JPEG from the upload path;
- * decode the base64 payload for docx's ImageRun.
- */
-function photoRuns(
-  photo: string | undefined,
-  size: number,
-): ReadonlyArray<ImageRun> {
-  if (!photo) return [];
-  const match = photo.match(/^data:image\/(jpeg|png);base64,(.+)$/);
-  if (!match) return [];
-  const bytes = Uint8Array.from(atob(match[2]), (char) => char.charCodeAt(0));
-  return [
-    new ImageRun({
-      type: match[1] === "png" ? "png" : "jpg",
-      data: bytes,
-      transformation: { width: size, height: size },
-    }),
-  ];
-}
-
-function headlineParagraphs(headline: string): ReadonlyArray<Paragraph> {
-  if (!headline) return [];
-  return [
-    new Paragraph({
-      spacing: { after: 80 },
-      children: [new TextRun({ text: headline, size: 21, color: MUTED })],
-    }),
-  ];
-}
-
-function contactParagraphs(
-  contacts: ReadonlyArray<ContactView>,
-): ReadonlyArray<Paragraph> {
-  if (A.isEmpty(contacts)) return [];
-  return [
-    new Paragraph({ spacing: { after: 80 }, children: contactRuns(contacts) }),
-  ];
-}
-
-function headerParagraphs(header: HeaderView): ReadonlyArray<Paragraph> {
-  // The photo rides inside the name paragraph: no extra paragraph means the
-  // extracted text stays byte-identical with and without a photo.
-  return [
-    new Paragraph({
-      children: [
-        ...photoRuns(header.photo, header.photoSize),
-        new TextRun({ text: header.fullName, bold: true, size: 36 }),
-      ],
-    }),
-    ...headlineParagraphs(header.headline),
-    ...contactParagraphs(header.contacts),
-  ];
-}
-
-function contactRuns(
-  contacts: ReadonlyArray<ContactView>,
-): ReadonlyArray<TextRun | ExternalHyperlink> {
-  return pipe(
-    contacts,
-    A.zipWithIndex,
-    A.flatMap(
-      ([contact, index]): ReadonlyArray<TextRun | ExternalHyperlink> => {
-        const child = new TextRun({
-          text: contact.value,
-          underline: linkUnderline(contact.href),
-        });
-        const run = linkedRun(child, contact.href);
-        if (index === 0) return [run];
-        return [new TextRun({ text: "   |   ", color: MUTED }), run];
-      },
-    ),
-  );
-}
-
 function gridParagraphs(
-  items: ReadonlyArray<{ name: string; proficiency: string }>,
+  items: ReadonlyArray<{ name: string; proficiency: string; detail: string }>,
 ): ReadonlyArray<Paragraph> {
   return A.map(
     items,
@@ -231,6 +92,7 @@ function gridParagraphs(
         children: [
           new TextRun({ text: item.name, bold: true }),
           ...mutedTail(item.proficiency, " - "),
+          ...mutedTail(item.detail, ". "),
         ],
       }),
   );
@@ -249,55 +111,68 @@ function companyParagraphs(item: ExperienceItemView): ReadonlyArray<Paragraph> {
 
 function experienceParagraphs(
   item: ExperienceItemView,
+  instance: number,
 ): ReadonlyArray<Paragraph> {
   return [
     titleRow({
       title: item.role,
-      date: dateRange(item.startDate, item.endDate),
+      date: dateRangeText(item.startDate, item.endDate, "-"),
       href: item.roleHref,
     }),
     ...companyParagraphs(item),
     ...optionalSubtitle(item.companyContext),
-    ...richParagraphs(item.description),
+    ...richParagraphs(item.description, instance),
   ];
 }
 
 function educationParagraphs(
   item: EducationItemView,
+  instance: number,
 ): ReadonlyArray<Paragraph> {
   return [
     titleRow({
       title: item.degree,
-      date: dateRange(item.startDate, item.endDate),
+      date: dateRangeText(item.startDate, item.endDate, "-"),
     }),
     ...optionalSubtitle(withLocation(item.institution, item.location)),
-    ...richParagraphs(item.details),
+    ...richParagraphs(item.details, instance),
   ];
 }
 
-function blockParagraphs(block: ResumeBlock): ReadonlyArray<Paragraph> {
+function blockParagraphs(
+  block: ResumeBlock,
+  index: number,
+): ReadonlyArray<Paragraph> {
+  // Each block owns a range of numbering instances so ordered lists restart.
+  const instance = index * 100 + 1;
   switch (block.kind) {
     case "header":
       return headerParagraphs(block.header);
     case "heading":
       return [sectionHeading(block.title)];
     case "summary":
-      return richParagraphs(block.body);
+      return richParagraphs(block.body, instance);
     case "experience":
-      return experienceParagraphs(block.item);
+      return experienceParagraphs(block.item, instance);
     case "education":
-      return educationParagraphs(block.item);
+      return educationParagraphs(block.item, instance);
     case "certificate":
       return [
         titleRow({
           title: block.item.title,
-          date: dateRange(block.item.startDate, block.item.endDate),
+          date: dateRangeText(block.item.startDate, block.item.endDate, "-"),
+          href: block.item.href,
         }),
         ...optionalSubtitle(block.item.issuer),
       ];
     case "skills":
+      return gridParagraphs(
+        A.map(block.items, (item) => ({ ...item, detail: item.description })),
+      );
     case "languages":
-      return gridParagraphs(block.items);
+      return gridParagraphs(
+        A.map(block.items, (item) => ({ ...item, detail: item.skills })),
+      );
   }
 }
 
@@ -305,22 +180,18 @@ function blockParagraphs(block: ResumeBlock): ReadonlyArray<Paragraph> {
  * Builds the résumé as a .docx `Document` in linear reading order, reusing
  * `buildResumeBlocks` so content, ordering, sorting, and empty-section gating
  * match the preview and other exports. No tables or columns are used, so the
- * document stays ATS-parseable; marks (bold/italic/links) and bullets are kept.
+ * document stays ATS-parseable; headings are real Heading styles, lists real
+ * Word lists, and marks (bold/italic/links) are kept.
  */
-export function buildAwalDocx(preview: ResumePreview): Document {
-  const children = A.flatMap(buildResumeBlocks(preview), blockParagraphs);
-
-  return new Document({
-    styles: {
-      default: {
-        document: { run: { font: "Calibri", size: 20, color: "0A0A0A" } },
-      },
-    },
-    sections: [
-      {
-        properties: { page: { size: { width: 11906, height: 16838 } } },
-        children,
-      },
-    ],
-  });
+export function buildResumeDocx(
+  preview: ResumePreview,
+  template: TemplateId,
+): Document {
+  const children = A.flat(
+    A.mapWithIndex(buildResumeBlocks(preview), (index, block) =>
+      blockParagraphs(block, index),
+    ),
+  );
+  const accent = resolveResumeAccent(preview, template).slice(1);
+  return buildDocxDocument({ children, accent });
 }

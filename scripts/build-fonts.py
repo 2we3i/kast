@@ -112,6 +112,45 @@ def write(font: TTFont, name: str) -> None:
     print("wrote", name, os.path.getsize(path))
 
 
+STYLE_NAMES = {
+    "Regular": ("Regular", 400, False),
+    "SemiBold": ("SemiBold", 600, False),
+    "Bold": ("Bold", 700, False),
+    "Italic": ("Italic", 400, True),
+    "BoldItalic": ("Bold Italic", 700, True),
+}
+
+
+def rename(font: TTFont, family: str, variant: str) -> TTFont:
+    """Names an instanced face after its weight, so a PDF that embeds it says
+    "Inter-Bold" (which the importer reads as bold), not the variable font's
+    default "Inter-Regular"."""
+    style, weight, italic = STYLE_NAMES[variant]
+    names = font["name"]
+    postscript = f"{family}-{variant}"
+    for record_id, value in (
+        (1, family if variant in ("Regular", "Bold", "Italic", "BoldItalic") else f"{family} {style}"),
+        (2, style if variant in ("Regular", "Bold", "Italic", "BoldItalic") else "Regular"),
+        (3, f"{postscript};kast"),
+        (4, f"{family} {style}"),
+        (6, postscript),
+        (16, family),
+        (17, style),
+    ):
+        names.setName(value, record_id, 3, 1, 0x409)
+        names.setName(value, record_id, 1, 0, 0)
+    font["OS/2"].usWeightClass = weight
+    selection = font["OS/2"].fsSelection & ~0b1100001
+    if weight >= 700:
+        selection |= 0b100000
+    if italic:
+        selection |= 0b1
+    if weight < 700 and not italic:
+        selection |= 0b1000000
+    font["OS/2"].fsSelection = selection
+    return font
+
+
 def build_variable(cache: str) -> None:
     for prefix, (roman, italic, pins) in VARIABLE.items():
         sources = [(roman, ROMAN)] + ([(italic, ITALIC)] if italic else [])
@@ -122,7 +161,7 @@ def build_variable(cache: str) -> None:
                 axes = {tag: value for tag, value in pins.items()}
                 axes["wght"] = weight
                 static = instancer.instantiateVariableFont(font, axes)
-                write(shrink(static), f"{prefix}-{variant}.ttf")
+                write(rename(shrink(static), prefix, variant), f"{prefix}-{variant}.ttf")
 
 
 def build_static(cache: str) -> None:

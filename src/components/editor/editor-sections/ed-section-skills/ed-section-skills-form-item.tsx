@@ -34,83 +34,102 @@ export function EditorSectionSkillsFormItem(
   props: EditorSectionSkillsFormItemProps,
 ) {
   const t = useTranslations("editor.skills");
+  const tl = useTranslations("editor.levels");
 
   return (
-    <SortableItem id={props.id} handleLabel={t("reorder")}>
-      <div className="flex flex-col md:flex-row md:items-center gap-2">
-        <div
-          data-proficiency={props.showProficiency}
-          className="flex items-center gap-2 flex-1"
-        >
-          <Controller
-            control={props.control}
-            name={`skills.${props.index}.name`}
-            render={(controller) => {
-              const { field, fieldState } = controller;
-              return (
-                <Field className="flex-1">
-                  <Input
-                    placeholder={t("namePlaceholder")}
-                    {...field}
-                    id={field.name}
-                  />
-                  <FieldError errors={[fieldState.error]} />
-                </Field>
-              );
-            }}
-          />
+    <SortableItem id={props.id} handleLabel={t("reorder")} align="start">
+      <div className="flex flex-col gap-2">
+        <div className="flex flex-col md:flex-row md:items-center gap-2">
+          <div
+            data-proficiency={props.showProficiency}
+            className="flex items-center gap-2 flex-1"
+          >
+            <Controller
+              control={props.control}
+              name={`skills.${props.index}.name`}
+              render={(controller) => {
+                const { field, fieldState } = controller;
+                return (
+                  <Field className="flex-1">
+                    <Input
+                      placeholder={t("namePlaceholder")}
+                      {...field}
+                      id={field.name}
+                    />
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                );
+              }}
+            />
+
+            <Button
+              type="button"
+              variant="outline"
+              size="icon-sm"
+              className="md:hidden"
+              onClick={() => props.onRemoveField(props.index)}
+            >
+              <TrashIcon className="size-3.5 text-destructive" />
+              <span className="sr-only">{t("remove")}</span>
+            </Button>
+          </div>
+
+          {props.showProficiency && (
+            <Controller
+              control={props.control}
+              name={`skills.${props.index}.level`}
+              render={(controller) => {
+                const { field } = controller;
+                return (
+                  <Select
+                    value={field.value || null}
+                    onValueChange={(value) => field.onChange(value)}
+                  >
+                    <SelectTrigger className="w-[87.888%] md:w-36">
+                      <SelectValue placeholder={t("proficiency")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        {PROFICIENCY_LEVELS.map((level) => (
+                          <SelectItem key={level} value={level}>
+                            {tl.has(level) ? tl(level) : level}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                );
+              }}
+            />
+          )}
 
           <Button
             type="button"
             variant="outline"
             size="icon-sm"
-            className="md:hidden"
+            className="max-md:hidden"
             onClick={() => props.onRemoveField(props.index)}
           >
             <TrashIcon className="size-3.5 text-destructive" />
             <span className="sr-only">{t("remove")}</span>
           </Button>
         </div>
-
-        {props.showProficiency && (
-          <Controller
-            control={props.control}
-            name={`skills.${props.index}.level`}
-            render={(controller) => {
-              const { field } = controller;
-              return (
-                <Select
-                  value={field.value || null}
-                  onValueChange={(value) => field.onChange(value)}
-                >
-                  <SelectTrigger className="w-[87.888%] md:w-36">
-                    <SelectValue placeholder={t("proficiency")} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      {PROFICIENCY_LEVELS.map((level) => (
-                        <SelectItem key={level} value={level}>
-                          {level}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              );
-            }}
-          />
-        )}
-
-        <Button
-          type="button"
-          variant="outline"
-          size="icon-sm"
-          className="max-md:hidden"
-          onClick={() => props.onRemoveField(props.index)}
-        >
-          <TrashIcon className="size-3.5 text-destructive" />
-          <span className="sr-only">{t("remove")}</span>
-        </Button>
+        <Controller
+          control={props.control}
+          name={`skills.${props.index}.description`}
+          render={(controller) => {
+            const { field } = controller;
+            return (
+              <Input
+                aria-label={t("description")}
+                placeholder={t("descriptionPlaceholder")}
+                className="h-7 text-xs"
+                {...field}
+                id={field.name}
+              />
+            );
+          }}
+        />
       </div>
     </SortableItem>
   );

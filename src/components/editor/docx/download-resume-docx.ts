@@ -1,7 +1,8 @@
 import { Packer } from "docx";
+import type { TemplateId } from "@/lib/templates";
 import { safeFileName, triggerDownload } from "../download-file";
 import type { ResumePreview } from "../resume-preview";
-import { buildAwalDocx } from "./resume-to-docx";
+import { buildResumeDocx } from "./resume-to-docx";
 
 /**
  * Builds the .docx entirely in the browser and downloads it as `<fileName>.docx`.
@@ -10,8 +11,9 @@ import { buildAwalDocx } from "./resume-to-docx";
  */
 export async function downloadResumeDocx(
   preview: ResumePreview,
+  template: TemplateId,
   fileName: string,
 ): Promise<boolean> {
-  const blob = await Packer.toBlob(buildAwalDocx(preview));
+  const blob = await Packer.toBlob(buildResumeDocx(preview, template));
   return triggerDownload(blob, `${safeFileName(fileName)}.docx`);
 }

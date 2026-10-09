@@ -58,12 +58,12 @@ export async function runParserProof(
   const pdfKb = Math.round(bytes.length / 1024);
 
   onPhase("extract");
-  const { extractPdfText } = await import("@/lib/import/extract");
-  const extracted = await extractPdfText(bytes);
-  if (!extracted.ok) return R.makeError(extracted.reason);
+  const { pdfToText } = await import("@/lib/import/pdf-import");
+  const extracted = await pdfToText(bytes);
+  if (R.isError(extracted)) return R.makeError(R.getExn(R.flip(extracted)));
 
   onPhase("check");
-  const text = extracted.text;
+  const text = R.getExn(extracted);
   const upper = S.toUpperCase(text);
   let cursor = -1;
   let orderOk = true;

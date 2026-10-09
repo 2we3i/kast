@@ -1,21 +1,23 @@
 import { A } from "@mobily/ts-belt";
-import { type ReactNode, useState } from "react";
+import type { ReactNode } from "react";
 import { useTranslations } from "use-intl";
 import { SortableList } from "@/components/shared/sortable-list";
 import { Accordion } from "@/components/ui/accordion";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
+  isOptionalSection,
   isReorderableSection,
   type Section,
   type SectionType,
 } from "@/lib/resume";
-import { useResumeStore } from "@/lib/store";
+import { useEditorChromeStore, useResumeStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
+import { EditorSectionAdd } from "./ed-section-add";
 import { EditorSectionCertifications } from "./ed-section-certifications/ed-section-certifications";
 import { EditorSectionCustom } from "./ed-section-custom/ed-section-custom";
-import { EditorSectionCustomAdd } from "./ed-section-custom/ed-section-custom-add";
 import { EditorSectionEducation } from "./ed-section-education/ed-section-education";
 import { EditorSectionExperience } from "./ed-section-experience/ed-section-experience";
+import { EditorSectionGeneric } from "./ed-section-generic/ed-section-generic";
 import { EditorSectionInternship } from "./ed-section-internship/ed-section-internship";
 import { EditorSectionLanguages } from "./ed-section-languages/ed-section-languages";
 import { EditorSectionOrganizations } from "./ed-section-organizations/ed-section-organizations";
@@ -46,6 +48,9 @@ function sectionEditor(section: Section): ReactNode {
   if (section.type === "custom") {
     return <EditorSectionCustom sectionId={section.id} />;
   }
+  if (isOptionalSection(section.type)) {
+    return <EditorSectionGeneric sectionId={section.id} />;
+  }
   const Editor = SECTION_EDITORS[section.type];
   if (!Editor) return null;
   return <Editor />;
@@ -63,7 +68,10 @@ export function EditorSectionList() {
   // newly added one can be opened by id) and the section type for the rest;
   // explicit values keep the open section open across the undo-epoch remount.
   // Stale ids from another résumé simply match nothing.
-  const [openSections, setOpenSections] = useState<string[]>([]);
+  const openSections = useEditorChromeStore((state) => state.openSections);
+  const setOpenSections = useEditorChromeStore(
+    (state) => state.setOpenSections,
+  );
 
   if (!open) {
     if (openStatus === "missing") {
@@ -131,7 +139,7 @@ export function EditorSectionList() {
         </SortableList>
       </Accordion>
 
-      <EditorSectionCustomAdd onAdded={(id) => setOpenSections([id])} />
+      <EditorSectionAdd onAdded={(id) => setOpenSections([id])} />
     </>
   );
 }

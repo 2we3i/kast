@@ -89,6 +89,13 @@ async function readIndexEntry(
       id: resume.id,
       title: resume.title,
       updatedAt: resume.updatedAt,
+      ...(resume.target && {
+        target: {
+          company: resume.target.company,
+          position: resume.target.position,
+          status: resume.target.status,
+        },
+      }),
     })),
   );
 }

@@ -1,24 +1,18 @@
-import { extractPdfText } from "./extract";
-import { type ParseOptions, type ParseResult, parseResumeText } from "./parse";
+import type { R } from "@mobily/ts-belt";
+import type { Resume } from "@/lib/resume/types";
+import type { ImportDraft } from "./import-draft";
+import type { ImportFailure } from "./pdf-items";
 
-export type { ParseOptions, ParseResult } from "./parse";
+export type { ImportDraft, ImportMetadata } from "./import-draft";
+export { REVIEW_THRESHOLD } from "./import-draft";
+export type { ImportOptions as ParseOptions } from "./pdf-import";
+export type { ImportFailure } from "./pdf-items";
+export { IMPORT_LIMITS } from "./pdf-items";
 
-export type ImportFailureReason = "empty" | "encrypted" | "error";
-
-export type ImportResult =
-  | ({ ok: true } & ParseResult)
-  | { ok: false; reason: ImportFailureReason };
-
-/**
- * Turn a PDF's bytes into a structured résumé plus its leftovers, fully on the
- * client. Returns a typed failure for the cases the UI blocks on (no text layer,
- * encrypted) instead of throwing.
- */
-export async function importResumeFromPdf(
-  bytes: Uint8Array,
-  options: ParseOptions,
-): Promise<ImportResult> {
-  const extracted = await extractPdfText(bytes);
-  if (!extracted.ok) return extracted;
-  return { ok: true, ...parseResumeText(extracted.text, options) };
+/** An import ready to become a résumé: the document and what fit nowhere. */
+export interface ParseResult {
+  resume: Resume;
+  leftovers: string[];
 }
+
+export type PdfImportResult = R.Result<ImportDraft, ImportFailure>;

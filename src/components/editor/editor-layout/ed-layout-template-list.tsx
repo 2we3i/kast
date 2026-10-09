@@ -7,6 +7,7 @@ import { useResumeStore } from "@/lib/store";
 import { resolveTemplateId, SORTED_TEMPLATES } from "@/lib/templates";
 import { buildResumeBlocks } from "../resume-blocks";
 import { resumeToPreview } from "../resume-to-preview";
+import { EditorLayoutMode } from "./ed-layout-mode";
 import { EditorLayoutTemplateItem } from "./ed-layout-template-item";
 
 const SKELETONS = [1, 2, 3, 4, 5, 6];
@@ -19,7 +20,8 @@ const SEED_PREVIEW = resumeToPreview(SEED_RESUME);
  * to keep the tiles comparable.
  */
 function toTilePreview(preview: ReturnType<typeof resumeToPreview>) {
-  return A.length(buildResumeBlocks(preview)) > 1 ? preview : SEED_PREVIEW;
+  if (A.length(buildResumeBlocks(preview)) > 1) return preview;
+  return { ...SEED_PREVIEW, atsMode: preview.atsMode, accent: preview.accent };
 }
 
 export function EditorLayoutTemplateList() {
@@ -43,6 +45,7 @@ export function EditorLayoutTemplateList() {
 
   return (
     <div className="py-4 lg:pb-6">
+      <EditorLayoutMode />
       <RadioGroup
         value={resolveTemplateId(open.templateId)}
         onValueChange={(value) => {

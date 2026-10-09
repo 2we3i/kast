@@ -10,7 +10,7 @@ import { inflateSync } from "node:zlib";
 import { Packer } from "docx";
 import JSZip from "jszip";
 import { extractText, getDocumentProxy } from "unpdf";
-import { buildAwalDocx } from "@/components/editor/docx/resume-to-docx";
+import { buildResumeDocx } from "@/components/editor/docx/resume-to-docx";
 import { resumeToPreview } from "@/components/editor/resume-to-preview";
 import { resumeToText } from "@/components/editor/resume-to-text";
 import { SEED_RESUME } from "@/lib/resume/seed";
@@ -200,7 +200,9 @@ async function main(): Promise<void> {
     ["TXT", resumeToText(preview)],
     [
       "DOCX",
-      await extractDocxText(await Packer.toBuffer(buildAwalDocx(preview))),
+      await extractDocxText(
+        await Packer.toBuffer(buildResumeDocx(preview, "standard")),
+      ),
     ],
   ];
 
@@ -217,14 +219,16 @@ async function main(): Promise<void> {
   // The opt-in photo is presentation-only: with a photo present, the extracted
   // text of the DOCX (and of every template PDF, in takumi-checks.ts) must be
   // identical to the photo-free output, or the photo has disturbed parsing.
+  // Design mode draws the photo (and icons, accents); ATS mode never does.
   const photoResume = structuredClone(SEED_RESUME);
   photoResume.header.photo = TEST_PHOTO;
+  photoResume.atsMode = false;
   const photoPreview = resumeToPreview(photoResume);
   const docxPlain = await extractDocxText(
-    await Packer.toBuffer(buildAwalDocx(preview)),
+    await Packer.toBuffer(buildResumeDocx(preview, "standard")),
   );
   const docxPhoto = await extractDocxText(
-    await Packer.toBuffer(buildAwalDocx(photoPreview)),
+    await Packer.toBuffer(buildResumeDocx(photoPreview, "standard")),
   );
   if (docxPlain !== docxPhoto) {
     errors.push("DOCX: adding a photo changed the extracted text");

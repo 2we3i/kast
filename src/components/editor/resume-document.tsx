@@ -15,6 +15,8 @@ import { TEMPLATE_BLOCK_VIEWS } from "./templates/template-block-view";
 interface ResumeDocumentProps {
   resume: ResumePreview;
   template: TemplateId;
+  /** Told the page count whenever pagination settles on a new one. */
+  onPageCount?: (count: number) => void;
 }
 
 /** Vertical gap between stacked pages (matches the `gap-6` on the page stack). */
@@ -89,6 +91,13 @@ export function ResumeDocument(props: ResumeDocumentProps) {
     () => paginate({ blocks, heights, budget: CONTENT_HEIGHT_PX }),
     [blocks, heights],
   );
+
+  const pageCount = A.length(pages);
+  const onPageCount = props.onPageCount;
+  // Reports pagination to the editor chrome, a store outside this tree.
+  useEffect(() => {
+    if (D.isNotEmpty(heights)) onPageCount?.(pageCount);
+  }, [pageCount, onPageCount, heights]);
 
   const numberedPages = A.mapWithIndex(pages, (index, blocks) => ({
     number: index + 1,

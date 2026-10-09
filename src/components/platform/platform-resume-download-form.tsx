@@ -5,7 +5,9 @@ import { useEffect, useMemo } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslations } from "use-intl";
 import {
+  EXPORT_EXTENSIONS,
   EXPORT_FORMATS,
+  EXPORT_LABELS,
   type ExportFormat,
 } from "@/components/editor/export-format";
 import { useValidationTranslator } from "@/hooks/use-validation-translator";
@@ -67,8 +69,8 @@ export function PlatformResumeDownloadForm(
             return (
               <ToggleGroup
                 variant="outline"
-                spacing={0}
-                className="w-full"
+                spacing={1}
+                className="grid w-full grid-cols-3"
                 value={[field.value]}
                 onValueChange={(value) => {
                   pipe(
@@ -80,8 +82,12 @@ export function PlatformResumeDownloadForm(
                 }}
               >
                 {EXPORT_FORMATS.map((value) => (
-                  <ToggleGroupItem key={value} value={value} className="flex-1">
-                    {S.toUpperCase(value)}
+                  <ToggleGroupItem
+                    key={value}
+                    value={value}
+                    className="w-full text-xs"
+                  >
+                    {EXPORT_LABELS[value]}
                   </ToggleGroupItem>
                 ))}
               </ToggleGroup>
@@ -106,7 +112,7 @@ export function PlatformResumeDownloadForm(
                   {...field}
                 />
                 <InputGroupAddon align="inline-end">
-                  <InputGroupText>.{format}</InputGroupText>
+                  <InputGroupText>.{EXPORT_EXTENSIONS[format]}</InputGroupText>
                 </InputGroupAddon>
               </InputGroup>
             </Field>

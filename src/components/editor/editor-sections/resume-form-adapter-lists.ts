@@ -11,6 +11,7 @@ import {
 export interface SkillItemValues {
   name: string;
   level: string;
+  description: string;
 }
 
 export interface SkillsFormValues {
@@ -21,6 +22,7 @@ export interface CertificationItemValues {
   name: string;
   issuer: string;
   url: string;
+  date: string;
 }
 
 export interface CertificationsFormValues {
@@ -30,6 +32,9 @@ export interface CertificationsFormValues {
 export interface LanguageItemValues {
   name: string;
   level: string;
+  speaking: string;
+  understanding: string;
+  writing: string;
 }
 
 export interface LanguagesFormValues {
@@ -52,6 +57,7 @@ export function toSkillsValues(resume: Resume): SkillsFormValues {
       A.map((entry) => ({
         name: plainValue(entry.fields.name),
         level: plainValue(entry.fields.level),
+        description: plainValue(entry.fields.description),
       })),
       F.toMutable,
     ),
@@ -68,7 +74,11 @@ export function applySkillsValues(
     values.skills,
     A.mapWithIndex((index, item) => ({
       id: entryId(section, index),
-      fields: { name: plain(item.name), level: plain(item.level) },
+      fields: {
+        name: plain(item.name),
+        level: plain(item.level),
+        description: plain(item.description),
+      },
     })),
   );
   return updateSections(
@@ -96,6 +106,7 @@ export function toCertificationsValues(
         name: plainValue(entry.fields.name),
         issuer: plainValue(entry.fields.issuer),
         url: plainValue(entry.fields.url),
+        date: plainValue(entry.fields.date),
       })),
       F.toMutable,
     ),
@@ -116,6 +127,7 @@ export function applyCertificationsValues(
         name: plain(item.name),
         issuer: plain(item.issuer),
         url: plain(item.url),
+        date: plain(item.date),
       },
     })),
   );
@@ -141,6 +153,9 @@ export function toLanguagesValues(resume: Resume): LanguagesFormValues {
       A.map((entry) => ({
         name: plainValue(entry.fields.name),
         level: plainValue(entry.fields.level),
+        speaking: plainValue(entry.fields.speaking),
+        understanding: plainValue(entry.fields.understanding),
+        writing: plainValue(entry.fields.writing),
       })),
       F.toMutable,
     ),
@@ -157,7 +172,13 @@ export function applyLanguagesValues(
     values.languages,
     A.mapWithIndex((index, item) => ({
       id: entryId(section, index),
-      fields: { name: plain(item.name), level: plain(item.level) },
+      fields: {
+        name: plain(item.name),
+        level: plain(item.level),
+        speaking: plain(item.speaking),
+        understanding: plain(item.understanding),
+        writing: plain(item.writing),
+      },
     })),
   );
   return updateSections(

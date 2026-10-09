@@ -1,4 +1,4 @@
-import { A, O } from "@mobily/ts-belt";
+import { A, O, R } from "@mobily/ts-belt";
 import {
   CircleNotchIcon,
   FileTextIcon,
@@ -8,11 +8,12 @@ import {
 import { useCallback, useState } from "react";
 import { type FileRejection, useDropzone } from "react-dropzone";
 import { useLocale, useTranslations } from "use-intl";
-import type { ImportResult, ParseResult } from "@/lib/import";
+import type { ImportDraft, ImportFailure, ParseResult } from "@/lib/import";
 import { runPdfImport } from "@/lib/import/run-import";
 import type { ResumeLanguage } from "@/lib/resume";
 import { DEFAULT_TEMPLATE_ID } from "@/lib/templates";
 import { cn } from "@/lib/utils";
+import { ImportReviewDialog } from "../import/import-review-dialog";
 import { Button } from "../ui/button";
 
 const MAX_BYTES = 10 * 1024 * 1024;
@@ -20,16 +21,18 @@ const MAX_BYTES = 10 * 1024 * 1024;
 type ErrorKey =
   | "errorUnsupported"
   | "errorTooLarge"
+  | "errorTooManyPages"
   | "errorEmpty"
   | "errorEncrypted"
   | "errorInvalidData"
   | "errorGeneric";
 
-type PdfFailureReason = Extract<ImportResult, { ok: false }>["reason"];
-
-const PDF_FAILURES: Partial<Record<PdfFailureReason, ErrorKey>> = {
-  empty: "errorEmpty",
+const PDF_FAILURES: Record<ImportFailure, ErrorKey> = {
+  "too-large": "errorTooLarge",
+  "too-many-pages": "errorTooManyPages",
+  "no-text": "errorEmpty",
   encrypted: "errorEncrypted",
+  error: "errorGeneric",
 };
 
 interface PlatformResumeImportDropzoneProps {
@@ -48,6 +51,11 @@ export function PlatformResumeImportDropzone(
   const [fileName, setFileName] = useState<string | null>(null);
   const [parsing, setParsing] = useState(false);
   const [error, setError] = useState<ErrorKey | null>(null);
+  // A parsed PDF waits here for the user's review before it counts as parsed.
+  const [review, setReview] = useState<{
+    file: File;
+    draft: ImportDraft;
+  } | null>(null);
 
   const { onParsingChange, onParsed, onCleared } = props;
 
@@ -82,7 +90,7 @@ export function PlatformResumeImportDropzone(
         language: locale as ResumeLanguage,
         templateId: DEFAULT_TEMPLATE_ID,
       };
-      let result: ({ ok: true } & ParseResult) | null = null;
+      let result: ParseResult | null = null;
       let failure: ErrorKey = "errorGeneric";
       if (/\.(json|ya?ml)$/i.test(file.name)) {
         const { importResumeFromJson, importResumeFromYaml } = await import(
@@ -91,14 +99,18 @@ export function PlatformResumeImportDropzone(
         const isJson = /\.json$/i.test(file.name);
         const importFile = isJson ? importResumeFromJson : importResumeFromYaml;
         const imported = importFile(await file.text(), options);
-        if (imported.ok) result = imported;
-        else failure = "errorInvalidData";
+        if (imported.ok) {
+          result = { resume: imported.resume, leftovers: imported.leftovers };
+        } else failure = "errorInvalidData";
       } else {
         const imported = await runPdfImport(await file.arrayBuffer(), options);
-        if (imported.ok) result = imported;
-        else {
-          failure = PDF_FAILURES[imported.reason] ?? "errorGeneric";
+        if (R.isOk(imported)) {
+          setParsing(false);
+          onParsingChange(false);
+          setReview({ file, draft: R.getExn(imported) });
+          return;
         }
+        failure = PDF_FAILURES[R.getExn(R.flip(imported))];
       }
 
       setParsing(false);
@@ -127,6 +139,21 @@ export function PlatformResumeImportDropzone(
     disabled: parsing,
   });
 
+  const reviewDialog = review && (
+    <ImportReviewDialog
+      draft={review.draft}
+      onCancel={() => {
+        setReview(null);
+        reset();
+      }}
+      onConfirm={(confirmed) => {
+        const file = review.file;
+        setReview(null);
+        onParsed(file, confirmed);
+      }}
+    />
+  );
+
   if (fileName && !error) {
     return (
       <div className="flex items-center gap-3 rounded-xl border bg-muted/40 p-3">
@@ -139,9 +166,12 @@ export function PlatformResumeImportDropzone(
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-medium">{fileName}</p>
           <p className="text-xs text-muted-foreground">
-            {parsing ? t("parsing") : t("parsed")}
+            {parsing && t("parsing")}
+            {!parsing && review && t("reviewing")}
+            {!parsing && !review && t("parsed")}
           </p>
         </div>
+        {reviewDialog}
         {!parsing && (
           <Button type="button" variant="ghost" size="icon-sm" onClick={reset}>
             <XIcon /> <span className="sr-only">{t("remove")}</span>

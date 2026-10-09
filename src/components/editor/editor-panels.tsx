@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { useEditorResume } from "@/hooks/use-editor-resume";
 import { MEDIA_XL, useMediaQuery } from "@/hooks/use-media-query";
+import { useAutoSnapshots } from "@/hooks/use-snapshots";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -9,12 +10,14 @@ import {
 import { ScrollArea } from "../ui/scroll-area";
 import { EditorSheet } from "./editor-sheet";
 import { EditorSidebar } from "./editor-sidebar";
+import { EditorToolbar } from "./editor-toolbar/editor-toolbar";
 import { EditorUndoShortcuts } from "./editor-undo-shortcuts";
 
 const PANELS_CONTAINER = "h-[calc(100svh-3rem-1px)] min-h-0 overflow-hidden";
 
 export function EditorPanels(props: { children: ReactNode }) {
   useEditorResume();
+  useAutoSnapshots();
   const isDesktop = useMediaQuery(MEDIA_XL);
 
   if (isDesktop) {
@@ -46,6 +49,7 @@ export function EditorPanels(props: { children: ReactNode }) {
 function EditorPreviewScroll(props: { children: ReactNode }) {
   return (
     <ScrollArea id="tour-editor-preview" className="h-full">
+      <EditorToolbar />
       <div className="bg-muted px-6 py-10 min-h-screen">{props.children}</div>
     </ScrollArea>
   );

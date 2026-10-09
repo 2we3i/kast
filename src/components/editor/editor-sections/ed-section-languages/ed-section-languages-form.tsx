@@ -25,7 +25,13 @@ import { LanguagesColumnsToggle } from "./languages-columns-toggle";
 import { LanguagesProficiencyToggle } from "./languages-proficiency-toggle";
 
 function emptyLanguage(): LanguageItemValues {
-  return { name: "", level: "" };
+  return {
+    name: "",
+    level: "",
+    speaking: "",
+    understanding: "",
+    writing: "",
+  };
 }
 
 function initialValues(open: Resume | null): LanguagesFormValues {

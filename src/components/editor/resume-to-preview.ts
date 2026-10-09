@@ -194,6 +194,11 @@ function showsProficiency(resume: Resume, type: "skills" | "languages") {
   );
 }
 
+/** A known proficiency word in the document's language; anything else as typed. */
+function localizeLevel(value: string, labels: Labels): string {
+  return labels.levels[value] ?? value;
+}
+
 function gridColumns(resume: Resume, type: "skills" | "languages") {
   return O.mapWithDefault(
     sectionOfType(resume, type),
@@ -327,14 +332,18 @@ export function resumeToPreview(resume: Resume): ResumePreview {
     skills: A.map(entriesOfType(resume, "skills"), (entry) => ({
       id: entry.id,
       name: plain(entry.fields.name),
-      proficiency: skillsShowProficiency ? plain(entry.fields.level) : "",
+      proficiency: skillsShowProficiency
+        ? localizeLevel(plain(entry.fields.level), labels)
+        : "",
       description: plain(entry.fields.description),
     })),
     skillsColumns: gridColumns(resume, "skills"),
     languages: A.map(entriesOfType(resume, "languages"), (entry) => ({
       id: entry.id,
       name: plain(entry.fields.name),
-      proficiency: languagesShowProficiency ? plain(entry.fields.level) : "",
+      proficiency: languagesShowProficiency
+        ? localizeLevel(plain(entry.fields.level), labels)
+        : "",
       skills: languagesShowProficiency ? languageSkillsLine(entry, labels) : "",
     })),
     languagesColumns: gridColumns(resume, "languages"),

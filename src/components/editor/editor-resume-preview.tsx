@@ -1,8 +1,10 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { type ReactNode, useMemo } from "react";
-import { useResumeStore } from "@/lib/store";
+import { useEditorChromeStore, useResumeStore } from "@/lib/store";
 import { resolveTemplateId } from "@/lib/templates";
 import { EditorResumeNotFound } from "./editor-resume-not-found";
+import { LetterDocument } from "./letter/letter-document";
+import { toLetterView } from "./letter/letter-view";
 import { ResumeDocument } from "./resume-document";
 import { resumeToPreview } from "./resume-to-preview";
 
@@ -21,6 +23,10 @@ export function EditorResumePreview() {
   const open = useResumeStore((state) => state.open);
   const openStatus = useResumeStore((state) => state.openStatus);
   const preview = useMemo(() => (open ? resumeToPreview(open) : null), [open]);
+  const setPageCount = useEditorChromeStore((state) => state.setPageCount);
+  const showLetter = useEditorChromeStore(
+    (state) => state.activeTab === "letter",
+  );
   const missing = openStatus === "missing";
 
   return (
@@ -39,10 +45,20 @@ export function EditorResumePreview() {
         <PreviewEnter key={open.id}>
           <PreviewContentReveal>
             <div data-template={resolveTemplateId(open.templateId)}>
-              <ResumeDocument
-                resume={preview}
-                template={resolveTemplateId(open.templateId)}
-              />
+              {showLetter && (
+                <LetterDocument
+                  view={toLetterView(open)}
+                  preview={preview}
+                  template={resolveTemplateId(open.templateId)}
+                />
+              )}
+              {!showLetter && (
+                <ResumeDocument
+                  resume={preview}
+                  template={resolveTemplateId(open.templateId)}
+                  onPageCount={setPageCount}
+                />
+              )}
             </div>
           </PreviewContentReveal>
         </PreviewEnter>

@@ -19,6 +19,7 @@ export interface PersonalFormValues {
   firstName: string;
   lastName: string;
   jobTitle: string;
+  birthDate: string;
   email: string;
   phone: string;
   website: string;
@@ -41,6 +42,7 @@ export function toPersonalValues(resume: Resume): PersonalFormValues {
     firstName: plainValue(fields.firstName),
     lastName: plainValue(fields.lastName),
     jobTitle: plainValue(fields.jobTitle),
+    birthDate: plainValue(fields.birthDate),
     email: plainValue(fields.email),
     phone: plainValue(fields.phone),
     website: plainValue(fields.website),
@@ -65,6 +67,7 @@ export function applyPersonalValues(
         firstName: plain(values.firstName),
         lastName: plain(values.lastName),
         jobTitle: plain(values.jobTitle),
+        birthDate: plain(values.birthDate),
         email: plain(values.email),
         phone: plain(values.phone),
         website: plain(values.website),

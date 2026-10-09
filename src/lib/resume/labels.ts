@@ -41,6 +41,11 @@ interface PhraseLabels {
   relocationNo: string;
   age: string;
   page: string;
+  /**
+   * Proficiency words the editor offers, stored in English, rendered in the
+   * document's language. Anything else (an imported "Įgudęs") shows as typed.
+   */
+  levels: Record<string, string>;
 }
 
 interface DocumentLabels extends HeadingLabels, PhraseLabels {
@@ -111,6 +116,17 @@ export const RESUME_LABELS: Record<ResumeLanguage, DocumentLabels> = {
     relocationNo: "Not open to relocation",
     age: "Age",
     page: "Page",
+    levels: {
+      Beginner: "Beginner",
+      Intermediate: "Intermediate",
+      Advanced: "Advanced",
+      Expert: "Expert",
+      Native: "Native",
+      Fluent: "Fluent",
+      Professional: "Professional",
+      Conversational: "Conversational",
+      Basic: "Basic",
+    },
   },
   lt: {
     summary: "Apie mane",
@@ -167,6 +183,17 @@ export const RESUME_LABELS: Record<ResumeLanguage, DocumentLabels> = {
     relocationNo: "Persikelti negaliu",
     age: "Amžius",
     page: "Puslapis",
+    levels: {
+      Beginner: "Pradedantysis",
+      Intermediate: "Vidutinis",
+      Advanced: "Pažengęs",
+      Expert: "Ekspertas",
+      Native: "Gimtoji",
+      Fluent: "Laisvai",
+      Professional: "Profesionaliai",
+      Conversational: "Pokalbio lygiu",
+      Basic: "Pagrindai",
+    },
   },
   ru: {
     summary: "О себе",
@@ -223,5 +250,16 @@ export const RESUME_LABELS: Record<ResumeLanguage, DocumentLabels> = {
     relocationNo: "Не готов к переезду",
     age: "Возраст",
     page: "Страница",
+    levels: {
+      Beginner: "Начальный",
+      Intermediate: "Средний",
+      Advanced: "Продвинутый",
+      Expert: "Эксперт",
+      Native: "Родной",
+      Fluent: "Свободно",
+      Professional: "Профессиональный",
+      Conversational: "Разговорный",
+      Basic: "Базовый",
+    },
   },
 };

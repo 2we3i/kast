@@ -24,6 +24,17 @@ export async function downloadResume(
     return downloadResumeJson(resume, fileName);
   }
 
+  if (format === "europass-xml" || format === "europass-json") {
+    const { downloadResumeEuropass } = await import(
+      "./download-resume-europass"
+    );
+    return downloadResumeEuropass(
+      resume,
+      fileName,
+      format === "europass-xml" ? "xml" : "json",
+    );
+  }
+
   if (format === "yaml") {
     const { downloadResumeYaml } = await import("./download-resume-yaml");
     return downloadResumeYaml(resume, fileName);
@@ -44,7 +55,11 @@ export async function downloadResume(
 
   if (format === "docx") {
     const { downloadResumeDocx } = await import("./docx/download-resume-docx");
-    return downloadResumeDocx(preview, fileName);
+    return downloadResumeDocx(
+      preview,
+      resolveTemplateId(resume.templateId),
+      fileName,
+    );
   }
 
   const { downloadResumeText } = await import("./download-resume-text");

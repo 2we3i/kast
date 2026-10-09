@@ -6,12 +6,14 @@ import { templateHasContactIcons } from "@/lib/templates";
 export function EditorDocumentIcon() {
   const templateId = useResumeStore((state) => state.open?.templateId);
   const showIcons = useResumeStore((state) => state.open?.showIcons ?? true);
+  const atsMode = useResumeStore((state) => state.open?.atsMode ?? true);
   const updateOpen = useResumeStore((state) => state.updateOpen);
   const t = useTranslations("editor.layout");
 
   if (templateId === undefined) return null;
 
-  const hasIcons = templateHasContactIcons(templateId);
+  // ATS mode never draws icons, whatever the switch says.
+  const hasIcons = templateHasContactIcons(templateId) && !atsMode;
 
   function handleChange(next: boolean) {
     updateOpen((resume) => ({ ...resume, showIcons: next }));

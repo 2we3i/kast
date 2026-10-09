@@ -22,7 +22,7 @@ import {
 import { EditorSectionCertificationsFormItem } from "./ed-section-certifications-form-item";
 
 function emptyCertification(): CertificationItemValues {
-  return { name: "", issuer: "", url: "" };
+  return { name: "", issuer: "", url: "", date: "" };
 }
 
 function initialValues(open: Resume | null): CertificationsFormValues {

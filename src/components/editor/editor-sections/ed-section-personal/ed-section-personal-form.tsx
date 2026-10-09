@@ -116,6 +116,27 @@ export function EditorSectionPersonalForm() {
                 );
               }}
             />
+
+            <Controller
+              control={form.control}
+              name="birthDate"
+              render={(controller) => {
+                const { field } = controller;
+                return (
+                  <Field>
+                    <FieldLabel htmlFor={field.name}>
+                      {t("birthDate")}
+                    </FieldLabel>
+                    <Input
+                      placeholder={t("birthDatePlaceholder")}
+                      {...field}
+                      id={field.name}
+                    />
+                    <FieldDescription>{t("birthDateDesc")}</FieldDescription>
+                  </Field>
+                );
+              }}
+            />
           </FieldGroup>
         </FieldSet>
 

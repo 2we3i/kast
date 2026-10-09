@@ -2,11 +2,15 @@ import { A, O, pipe, S } from "@mobily/ts-belt";
 import { nanoid } from "nanoid";
 import { create } from "zustand";
 import {
+  addSnapshot,
   deleteResume as dbDeleteResume,
+  deleteSnapshot,
   getResume,
+  getSnapshot,
   listResumeIndex,
   putLeftovers,
   putResume,
+  type SnapshotReason,
   setLastOpenedResumeId,
 } from "@/lib/db";
 import {
@@ -16,11 +20,14 @@ import {
   convertCustomSection,
   createCustomSection,
   createEmptyResume,
+  createEmptySection,
+  isOptionalSection,
   isReorderableSection,
   type Resume,
   type ResumeIndexEntry,
   type ResumeLanguage,
   SEED_RESUME,
+  type SectionType,
   updateSectionById,
   updateSections,
 } from "@/lib/resume";
@@ -95,6 +102,13 @@ interface ResumeStoreState {
   resetSectionOrder: () => void;
   /** Append a new custom section (rich variant) with the given title; returns its id. */
   addCustomSection: (title: string) => string;
+  /**
+   * Add an optional section type (volunteering, courses, ...) at its canonical
+   * position; returns its id, or the existing one's when already present.
+   */
+  addOptionalSection: (type: SectionType) => string;
+  /** Remove an optional or custom section by id; core sections stay. */
+  removeSection: (id: string) => void;
   /** Rename a custom section by id; no-op for a core or missing section. */
   renameCustomSection: (id: string, title: string) => void;
   /** Remove a custom section by id; no-op for a core or missing section. */
@@ -118,6 +132,23 @@ interface ResumeStoreState {
   }) => void;
   /** Force any pending write to commit now (e.g. before navigating away). */
   flush: () => Promise<void>;
+  /** Bumped whenever the open résumé's version history changes. */
+  snapshotsVersion: number;
+  /** Store the open résumé as a history entry; skipped when unchanged (auto). */
+  takeSnapshot: (reason: SnapshotReason, label?: string) => Promise<void>;
+  /**
+   * Bring back a history entry's content and design into the open résumé,
+   * keeping its id. The current state is saved to history first, and the
+   * restore is one undo step like any other edit.
+   */
+  restoreSnapshot: (snapshotId: string) => Promise<void>;
+  /**
+   * Apply an edit made outside the section forms (an AI suggestion, a
+   * restored letter): one undo step, and the forms remount to show it.
+   */
+  applyExternalEdit: (update: (resume: Resume) => Resume) => void;
+  /** Delete one history entry of the open résumé. */
+  removeSnapshot: (snapshotId: string) => Promise<void>;
 }
 
 const UNDO_LIMIT = 100;
@@ -143,7 +174,18 @@ function resetUndoHistory(): void {
 }
 
 function toIndexEntry(resume: Resume): ResumeIndexEntry {
-  return { id: resume.id, title: resume.title, updatedAt: resume.updatedAt };
+  return {
+    id: resume.id,
+    title: resume.title,
+    updatedAt: resume.updatedAt,
+    ...(resume.target && {
+      target: {
+        company: resume.target.company,
+        position: resume.target.position,
+        status: resume.target.status,
+      },
+    }),
+  };
 }
 
 /** Upsert the given Resume's projection into the index, keeping newest-first order. */
@@ -181,6 +223,43 @@ export const useResumeStore = create<ResumeStoreState>()((set, get) => ({
   undoEpoch: 0,
   canUndo: false,
   canRedo: false,
+  snapshotsVersion: 0,
+
+  async takeSnapshot(reason, label) {
+    const open = get().open;
+    if (!open) return;
+    const saved = await addSnapshot({ resume: open, reason, label });
+    if (saved)
+      set((state) => ({ snapshotsVersion: state.snapshotsVersion + 1 }));
+  },
+
+  async restoreSnapshot(snapshotId) {
+    const open = get().open;
+    const snapshot = await getSnapshot(snapshotId);
+    if (!open || !snapshot || snapshot.resumeId !== open.id) return;
+    await addSnapshot({ resume: open, reason: "before-restore" });
+    get().updateOpen((resume) => ({
+      ...snapshot.doc,
+      id: resume.id,
+      createdAt: resume.createdAt,
+    }));
+    // Forms own their values, so a restored document reaches them only by a
+    // remount, the same way an undo does.
+    set((state) => ({
+      undoEpoch: state.undoEpoch + 1,
+      snapshotsVersion: state.snapshotsVersion + 1,
+    }));
+  },
+
+  applyExternalEdit(update) {
+    get().updateOpen(update);
+    set((state) => ({ undoEpoch: state.undoEpoch + 1 }));
+  },
+
+  async removeSnapshot(snapshotId) {
+    await deleteSnapshot(snapshotId);
+    set((state) => ({ snapshotsVersion: state.snapshotsVersion + 1 }));
+  },
 
   async hydrateIndex() {
     set({ indexStatus: "loading" });
@@ -405,6 +484,50 @@ export const useResumeStore = create<ResumeStoreState>()((set, get) => ({
     const section = createCustomSection("rich", title);
     get().updateOpen((resume) => updateSections(resume, A.append(section)));
     return section.id;
+  },
+
+  addOptionalSection(type) {
+    const current = get().open;
+    const existing = A.find(
+      current?.sections ?? [],
+      (section) => section.type === type,
+    );
+    if (O.isSome(existing)) return existing.id;
+    const section = createEmptySection(type);
+    get().updateOpen((resume) =>
+      updateSections(resume, (sections) => {
+        // Insert after the last section that sorts before it canonically, so a
+        // new section lands where the default reading order puts it.
+        const rank = canonicalSectionIndex(type);
+        const before = A.filter(
+          sections,
+          (item) =>
+            item.type !== "custom" && canonicalSectionIndex(item.type) <= rank,
+        );
+        const anchor = A.last(before);
+        const index = O.match(
+          anchor,
+          (item) => A.getIndexBy(sections, (s) => s.id === item.id),
+          () => O.Some(-1),
+        );
+        const at = O.getWithDefault(index, A.length(sections) - 1) + 1;
+        return A.insertAt(sections, at, section);
+      }),
+    );
+    return section.id;
+  },
+
+  removeSection(id) {
+    get().updateOpen((resume) =>
+      updateSections(
+        resume,
+        A.reject(
+          (section) =>
+            section.id === id &&
+            (section.type === "custom" || isOptionalSection(section.type)),
+        ),
+      ),
+    );
   },
 
   renameCustomSection(id, title) {

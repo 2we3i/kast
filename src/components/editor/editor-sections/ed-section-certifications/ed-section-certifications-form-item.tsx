@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { MonthYearMenu } from "../../month-year-menu/month-year-menu";
 import type { CertificationsFormValues } from "../resume-form-adapter-lists";
 
 interface EditorSectionCertificationsFormItemProps {
@@ -111,6 +112,25 @@ export function EditorSectionCertificationsFormItem(
                   />
                   <FieldDescription>{t("urlDesc")}</FieldDescription>
                   <FieldError errors={[fieldState.error]} />
+                </Field>
+              );
+            }}
+          />
+
+          <Controller
+            control={props.control}
+            name={`certifications.${props.index}.date`}
+            render={(controller) => {
+              const { field } = controller;
+              return (
+                <Field>
+                  <FieldLabel htmlFor={field.name}>{t("date")}</FieldLabel>
+                  <MonthYearMenu
+                    id={field.name}
+                    value={field.value}
+                    placeholder={t("datePlaceholder")}
+                    onChange={field.onChange}
+                  />
                 </Field>
               );
             }}
