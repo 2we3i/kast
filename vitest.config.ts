@@ -8,6 +8,9 @@ export default defineConfig({
   test: {
     include: ["src/**/*.test.ts", "tests/unit/**/*.test.ts"],
     environment: "node",
+    // PDF rendering and the first import of the AI and export modules take
+    // several seconds on a cold CI runner.
+    testTimeout: 30_000,
     coverage: {
       provider: "v8",
       include: [

@@ -220,12 +220,14 @@ async function main(): Promise<void> {
   // text of the DOCX (and of every template PDF, in takumi-checks.ts) must be
   // identical to the photo-free output, or the photo has disturbed parsing.
   // Design mode draws the photo (and icons, accents); ATS mode never does.
-  const photoResume = structuredClone(SEED_RESUME);
-  photoResume.header.photo = TEST_PHOTO;
-  photoResume.atsMode = false;
-  const photoPreview = resumeToPreview(photoResume);
+  const designResume = { ...SEED_RESUME, atsMode: false };
+  const designPreview = resumeToPreview(designResume);
+  const photoPreview = resumeToPreview({
+    ...designResume,
+    header: { ...designResume.header, photo: TEST_PHOTO },
+  });
   const docxPlain = await extractDocxText(
-    await Packer.toBuffer(buildResumeDocx(preview, "standard")),
+    await Packer.toBuffer(buildResumeDocx(designPreview, "standard")),
   );
   const docxPhoto = await extractDocxText(
     await Packer.toBuffer(buildResumeDocx(photoPreview, "standard")),
@@ -237,6 +239,7 @@ async function main(): Promise<void> {
 
   const takumiErrors = await runTakumiChecks({
     preview,
+    designPreview,
     photoPreview,
     ligatureProbe: LIGATURE_PROBE,
     extractPdfText,

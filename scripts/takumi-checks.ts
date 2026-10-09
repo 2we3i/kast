@@ -14,6 +14,9 @@ import {
 
 interface TakumiChecksParams {
   preview: ResumePreview;
+  /** The same document in design mode, without a photo. */
+  designPreview: ResumePreview;
+  /** Design mode with a photo: its text must match `designPreview`'s. */
   photoPreview: ResumePreview;
   ligatureProbe: string;
   extractPdfText: (buffer: Uint8Array) => Promise<string>;
@@ -324,12 +327,21 @@ async function checkTemplate(
     }),
   );
 
+  // Design mode may lay a template out differently (the timeline rail), so
+  // it gets its own reading-order check, and the photo is compared against
+  // design mode without one.
+  const designText = await checks.extractPdfText(
+    await render({ takumi, preview: checks.designPreview, template }),
+  );
   const withPhoto = await checks.extractPdfText(
     await render({ takumi, preview: checks.photoPreview, template }),
   );
-  const photoErrors = failWhen(
-    text !== withPhoto,
-    `${label}: adding a photo changed the text`,
+  const photoErrors = A.concat(
+    checks.textErrors(designText, `${label} design`),
+    failWhen(
+      designText !== withPhoto,
+      `${label}: adding a photo changed the text`,
+    ),
   );
 
   const probe = splitProbe(checks.preview);

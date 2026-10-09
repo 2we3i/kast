@@ -131,7 +131,7 @@ export interface Resume {
   /** The résumé's name, e.g. "Frontend Engineer, Acme". Per-job tailoring is core. */
   title: string;
   /**
-   * Presentation-layer template rendering this document (e.g. "awal"). Kept a
+   * Presentation-layer template rendering this document (e.g. "standard"). Kept a
    * loose string so the schema doesn't couple to the UI catalog; renderers fall
    * back to the default template for unknown ids.
    */

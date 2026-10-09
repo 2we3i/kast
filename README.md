@@ -1,128 +1,124 @@
 <p align="center">
-  <img src="public/favicon.svg" alt="" width="56" height="56" />
+  <img src="public/brand/kast-mark.svg" alt="" width="64" height="64" />
 </p>
 
-<h1 align="center">Lanjut</h1>
+<h1 align="center">Kast</h1>
 
 <p align="center">
-  ATS Builder. Free, open-source resume builder. Runs locally in the browser. No account, no server-side storage of resume content.
-  <br />
-  <a href="https://lanjut.org"><strong>lanjut.org</strong></a>
+  A free, private résumé builder that passes applicant tracking systems.<br />
+  Lithuanian, English, and Russian. No account, no tracking, nothing uploaded.
 </p>
 
-## What This Is
+## What it is
 
-A resume builder split into two layers:
+Kast builds résumés entirely in the browser. Documents live in the browser's
+IndexedDB and never reach a server; the site itself is a set of static files.
+An optional AI assistant works with the user's own Anthropic or Google key,
+sending requests straight from the browser to the provider after consent.
 
-- **Structural layer**: fixed section types (header, summary, experience, internship, projects, organizations, education, certifications, skills, languages, plus custom sections from an approved list) with a restricted rich-text schema per field. This keeps export output parseable by Applicant Tracking System (ATS) software.
-- **Presentation layer**: typography, spacing, color, and theming. Fully customizable. Changes here never affect the underlying text structure used for parsing or export.
+Every résumé has two layers:
 
-Customization applies to how the resume looks. It does not extend to layouts that break ATS parsing (tables, multi-column body text, floating text boxes, embedded icons in text runs).
+- **Structure**: fixed section types with a restricted rich-text schema
+  (bold, italic, lists, links). This is what parsers read, and it never
+  changes with the design.
+- **Presentation**: template, typography, spacing, accent color, photo, icons,
+  QR code. Fully customizable, and checked to leave the extracted text
+  identical.
 
 ## Features
 
-- Six résumé templates, all sharing one linear document structure; only styling differs
-- Template gallery with search, sort, and live seed-data previews
-- Résumé library with live first-page thumbnails, rename, and delete
-- Print-accurate A4 preview with automatic pagination
-- Rich text editing per field, scoped to ATS-safe formatting (bold, italic, lists, links), with undo and redo per field
-- Optional company context for experience and internship entries, shown before achievements in every preview and export
-- Document-level undo and redo across every edit (typing, reorder, layout, settings), from the editor toolbar or Ctrl/Cmd+Z
-- Optional header photo (off by default): add a portrait in Personal Information and every template places it to match its own layout; exports embed it without affecting how parsers read the text
-- Custom sections alongside the fixed types, all sharing the same restricted schema
-- Drag to reorder sections and toggle any section's visibility (entries within a section sort by date automatically)
-- Document-level presentation controls: font, font size, section spacing, line height, letter spacing, contact-icon visibility, and a one-click style reset
-- Available in English and Indonesian (`use-intl`)
-- Export to PDF (linear reading order preserved) and plain text / .docx
-- Copy, download, and re-import a résumé as JSON or YAML
-- Guided tour of the editor and library for first-time users
-- Send bug reports and feature requests in-app, no GitHub account required
-- Local persistence via IndexedDB, no data leaves the browser
-- Fully local: works offline after initial load
+- **Ten templates**, each with a strict **ATS mode** (no photo, icons, or
+  color) and a **design mode** (accent color, contact icons, photo, QR code)
+- **Interface in LT / EN / RU**; each résumé has its own language, so headings,
+  dates, and levels follow the document, not the interface
+- **Sections**: summary, experience, internships, projects, organizations,
+  volunteering, education, courses, certifications, publications, skills with
+  level and description, languages rated for speaking, understanding, and
+  writing (CEFR), hobbies, references, driving licence, salary expectations,
+  availability, and custom sections; hide any section, reorder by drag or
+  keyboard
+- **ATS check**, local and rule-based (`src/lib/ats/ats-rules.json`): a 0–100
+  score by category with a fix for every finding, a keyword match against the
+  vacancy text, and a check that reads the real PDF's text layer back in
+  reading order
+- **PDF import** with column and sidebar detection, page-furniture filtering
+  (page numbers, portal footers, watermarks), tenure and level badges kept as
+  metadata, LT/EN/RU heading dictionaries, a date parser, per-field confidence,
+  and a review step before anything is saved; 20 fictional test PDFs, 100%
+  sections-and-dates accuracy
+- **Multiple résumés**: duplicate, rename, a vacancy label (company, position,
+  link, date, status, notes) with a status filter, and version history of the
+  last 20 snapshots with rollback
+- **Photo** with in-browser crop and compression
+- **Cover letter** in the résumé's design and language
+- **Exports**: PDF with a real text layer, DOCX with real heading and list
+  styles, plain text, JSON, YAML, and Europass XML / JSON
+- **AI assistant (optional)**: improve wording, tailor to a vacancy, ATS
+  review, consistency check, translation, cover letter, and import cleanup;
+  personal data masked before sending, a diff to accept, reject, or edit each
+  change, token and cost estimate, cancel, and a batch mode for several résumés
+- **Spell check** in the résumé's language, word and page counter with a
+  warning past two pages
+- **Installable PWA** that works offline; backup and restore of all data in
+  one file; "delete all data"
 
-## Templates
+## Privacy
 
-| Template | Character |
-|---|---|
-| **Awal** | Clean single-column starter with room for every section |
-| **Ketat** | Compact serif classic: ruled headings, italic dates |
-| **Luasa** | Airy minimalist: letterspaced headings, generous whitespace |
-| **Tebal** | Bold modern statement: oversized name, heavy uppercase headings |
-| **Klasik** | Traditional all-serif CV: centered, quiet, formal |
-| **Ketik** | Typewriter-flavored technical look, built for developers |
+- No accounts, analytics, cookies, or third-party requests by default.
+- The only outbound requests are AI calls the user starts, to the provider
+  they chose; the page's Content Security Policy allows nothing else.
+- API keys stay in memory, or encrypted with a user password (PBKDF2 +
+  AES-GCM) if the user opts in. They are never part of a backup or export.
 
-Every template renders the same linear block sequence, so switching templates never changes parse or export order.
+The full policy is at `/privacy` on any deployment.
 
-## Tech Stack
+## Development
 
-| Purpose | Library |
-|---|---|
-| Framework | Astro (static output, React islands) |
-| Hosting | Cloudflare Workers static assets, plus one Worker for the feedback relay |
-| Build targets | Web (default), desktop (`LANJUT_TARGET=desktop`) |
-| Desktop shell | Tauri 2 (macOS 13 or later) |
-| Internationalization | use-intl (English, Indonesian) |
-| UI components | shadcn (base-ui) |
-| Icons | Phosphor (@phosphor-icons/react) |
-| Styling | Tailwind CSS |
-| Rich text editor | TipTap |
-| Forms | react-hook-form + zod |
-| Drag and drop | @dnd-kit |
-| Export | takumi-pdf (PDF from the preview HTML), docx |
-| Animation | motion/react |
-| State | zustand |
-| Search params state | nuqs |
-| Persistence | IndexedDB (via idb) |
-| Utilities | @mobily/ts-belt |
-| Dates | date-fns |
-| Lint / format | Biome |
+Prerequisites: Node.js 24 and pnpm 10 (`corepack enable` picks the pinned
+version).
 
-## Getting Started
-
-```bash
-git clone https://github.com/rimzzlabs/lanjut.git
-cd lanjut
+```sh
 pnpm install
 pnpm dev
 ```
 
-Open `http://localhost:3000`.
-
-### Useful scripts
-
 | Script | What it does |
-|---|---|
-| `pnpm dev` | Start the Astro dev server and the feedback Worker |
-| `pnpm lint` / `pnpm format` | Check / write with Biome |
-| `pnpm typecheck` | Run `astro check` |
-| `pnpm build` | Generate the Open Graph images and build the site into `dist/` |
-| `LANJUT_TARGET=desktop pnpm build` | Build the static desktop assets into `dist-desktop/` |
-| `pnpm desktop:dev` | Run the desktop shell against the dev server |
-| `pnpm desktop:build` | Build the desktop app and installers |
-| `pnpm validate:exports` | Regenerate PDF/DOCX/TXT from the seed résumé and verify extraction order and field mapping |
-| `pnpm preview` | Build the site and serve it through the Worker locally |
-| `pnpm ship` | Build and deploy to Cloudflare |
-| `pnpm commit` | Commit via the commitizen prompt |
+| --- | --- |
+| `pnpm dev` | Dev server at http://localhost:4321 |
+| `pnpm build` | OG images, static build to `dist/`, offline service worker |
+| `pnpm preview` | Serve the built site |
+| `pnpm lint` / `pnpm format` | Biome check / format |
+| `pnpm typecheck` | `astro check` |
+| `pnpm test` / `pnpm test:coverage` | Vitest unit and integration tests |
+| `pnpm validate:exports` | Every template's PDF, plus DOCX and TXT, read back in order |
+| `pnpm fixtures:import` / `pnpm fixtures:kast` | Regenerate the fictional import fixtures |
+| `pnpm brand` | Rebuild favicons and PWA icons from the mark |
+| `pnpm fonts` | Rebuild the bundled résumé fonts (Python, fontTools) |
 
-## Data and Privacy
+Only fictional résumés belong in the repository: no real names, phone
+numbers, e-mail addresses, or photos.
 
-Resume content is stored in IndexedDB in the browser. No resume content is sent to any server, API route, or third-party service. Clearing browser storage deletes saved resumes; export your work before doing so.
+## Deployment
 
-## Export Formats
+The repository ships a `Dockerfile` (Node build, Caddy serving `dist/`) and a
+`railway.json`. Any static host works too: serve `dist/` with
+`try_files {path} {path}.html {path}/index.html`.
 
-- **PDF**: rendered from the same HTML as the preview, so the file matches what you see. It is real, selectable text in linear reading order for ATS text extraction, not a visual snapshot.
-- **DOCX / plain text**: direct ATS-submission-safe formats, recommended over PDF for systems with strict parsing requirements.
+Build-time environment:
 
-Changes to the export path are gated by `pnpm validate:exports`, which regenerates every format from the seed résumé and verifies, via real text extraction, that linear reading order is preserved and every field maps through.
+| Variable | Purpose |
+| --- | --- |
+| `PUBLIC_SITE_URL` | The deployment's address, for canonical links and the sitemap |
+| `PUBLIC_SOURCE_URL` | This repository's URL, shown as "Source code" (required by AGPL-3.0 §13 for modified deployments) |
 
-## Contributing
+## Tech stack
 
-Bug reports and feature requests go through the issue forms; note the scope rules there: presentation is customizable, structure is not, and accounts/server storage are non-goals.
+Astro (static) with React islands, Tailwind CSS, shadcn/ui (Base UI),
+TipTap, react-hook-form + zod, zustand, IndexedDB via idb, takumi-pdf
+(WebAssembly) for PDF, docx, pdf.js via unpdf for import, use-intl, ts-belt,
+Biome, Vitest.
 
-Commit messages follow Conventional Commits via commitlint and commitizen, and every commit must be signed off (`git commit -s`) under the Developer Certificate of Origin. Run `pnpm commit` instead of `git commit` to use the prompt. Pre-commit hooks (husky + lint-staged) run lint and format checks before any commit is accepted. PR titles follow the same convention with a fully lowercase subject; they become the squash-merge commit.
+## Credits and license
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the full workflow (setup, branches, commits, DCO, releases) and `AGENTS.md` for architecture rules and code conventions before submitting a PR.
-
-## License
-
-[AGPL-3.0-only](LICENSE). Copyright © 2026 Lanjut Contributors.
+Kast started as a fork of [Lanjut](https://github.com/rimzzlabs/lanjut) by
+Rizki Maulana Citra. Licensed under [AGPL-3.0-only](LICENSE).

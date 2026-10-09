@@ -1,14 +1,14 @@
 name: CI
 
 on:
+  push:
+    branches: [master]
   pull_request:
 
 permissions:
   contents: read
 
-# release-please force-pushes its branch, which leaves the runs from the
-# previous push building a commit that no longer exists. Those runs report a
-# failure with no jobs in it. Drop them when a newer push arrives.
+# A newer push makes the runs for the previous one pointless.
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
@@ -17,86 +17,49 @@ jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v6
+      - uses: pnpm/action-setup@v4
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
+        env:
+          HUSKY: "0"
 
       - run: pnpm lint
 
       - run: pnpm typecheck
 
-      - run: pnpm validate:exports
+      - name: Unit tests, import accuracy, coverage
+        run: pnpm test:coverage
+
+      - name: Every template's PDF, DOCX, and TXT read back in order
+        run: pnpm validate:exports
+
+      - name: Dependency audit
+        run: pnpm audit --prod --audit-level high
 
   build:
-    # The static build and the Worker bundle take seconds, so every PR proves
-    # both before a release deploys them.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v6
+      - uses: pnpm/action-setup@v4
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
+        env:
+          HUSKY: "0"
 
       - run: pnpm build
 
-      - run: pnpm exec wrangler deploy --dry-run --outdir .wrangler/dry-run
-
-  desktop:
-    # The desktop app is not covered by the checks job, and a broken Rust shell or
-    # a misplaced static export is invisible to lint and typecheck. This builds
-    # both halves on a clean checkout, which is the only place a stale local
-    # artifact cannot hide a fault.
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v7
-
-      - uses: pnpm/action-setup@v6
-
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: pnpm
-
-      - uses: dtolnay/rust-toolchain@stable
-
-      - uses: Swatinem/rust-cache@v2
-        with:
-          workspaces: src-tauri
-
-      - run: pnpm install --frozen-lockfile
-
-      - name: Build the static export
-        run: pnpm build
-        env:
-          LANJUT_TARGET: desktop
-
-      - name: Confirm the export is where the app loads it from
-        run: |
-          set -euo pipefail
-          dist=$(node -p "require('./src-tauri/tauri.conf.json').build.frontendDist")
-          resolved="src-tauri/${dist}"
-          test -f "${resolved}/platform/index.html" \
-            || { echo "frontendDist ${dist} has no exported page"; exit 1; }
-          test -f "${resolved}/splashscreen.html" \
-            || { echo "frontendDist ${dist} has no splash screen"; exit 1; }
-
-      # Both of these shipped broken once. Neither fails the build, and neither
-      # is visible until a user installs the app.
-      - name: Confirm the shell config still holds its load-bearing values
-        run: node .github/scripts/check-tauri-config.mjs
-
-      - name: Build the desktop shell
-        run: cargo build --manifest-path src-tauri/Cargo.toml
+      - name: The offline worker precaches the app
+        run: test -s dist/sw.js && grep -q '"/platform/"' dist/sw.js

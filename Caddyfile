@@ -1,0 +1,53 @@
+{
+	admin off
+	auto_https off
+	persist_config off
+}
+
+# Railway terminates TLS and passes the port in $PORT.
+:{$PORT:8080} {
+	root * /srv
+	encode zstd gzip
+
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy no-referrer
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+		Strict-Transport-Security "max-age=31536000"
+		# The page adds its full policy itself (src/scripts/csp.js), because the
+		# allowed AI endpoints depend on the user's settings. These directives
+		# cannot be set from a <meta> tag, so the server sends them.
+		Content-Security-Policy "frame-ancestors 'none'; object-src 'none'; base-uri 'self'"
+		-Server
+	}
+
+	@fingerprinted path /_astro/* /fonts/*
+	header @fingerprinted Cache-Control "public, max-age=31536000, immutable"
+
+	# Everything else (pages, sw.js, the manifest) is checked on every visit,
+	# so a deploy reaches visitors at once; the service worker serves offline.
+	@fresh not path /_astro/* /fonts/*
+	header @fresh Cache-Control "no-cache"
+
+	# Pages are written as files (build.format "preserve"): /platform/editor
+	# is platform/editor.html, /platform is platform/index.html.
+	try_files {path} {path}.html {path}/index.html
+	file_server
+
+	handle_errors 404 {
+		@lt path /lt /lt/*
+		handle @lt {
+			rewrite * /lt/404.html
+			file_server
+		}
+		@ru path /ru /ru/*
+		handle @ru {
+			rewrite * /ru/404.html
+			file_server
+		}
+		handle {
+			rewrite * /404.html
+			file_server
+		}
+	}
+}

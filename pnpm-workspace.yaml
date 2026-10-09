@@ -9,6 +9,12 @@ onlyBuiltDependencies:
 patchedDependencies:
   nextstepjs@2.2.0: patches/nextstepjs@2.2.0.patch
 
-# nextstepjs and nuqs list next as an optional peer. Lanjut does not use it.
+# nextstepjs and nuqs list next as an optional peer. Kast does not use it.
 overrides:
   next: "-"
+
+# No fixed release exists. Astro pulls it in for its server-side image cache,
+# which a static build never runs, and none of it reaches the browser bundle.
+auditConfig:
+  ignoreGhsas:
+    - GHSA-ch52-4w7c-c8xp

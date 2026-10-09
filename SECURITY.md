@@ -1,42 +1,30 @@
 # Security Policy
 
-Lanjut is local-first: résumé content is stored only in the user's browser
-(IndexedDB) and is never sent to a server. That narrows the attack surface but
-does not eliminate it. Vulnerabilities we care about include, for example:
+Kast is local-first: résumé content is stored only in the user's browser
+(IndexedDB) and is never sent to a server. The only outbound requests are AI
+calls the user starts with their own key. That narrows the attack surface but
+does not eliminate it. Vulnerabilities we care about include:
 
-- Script injection through résumé content (the editor renders rich text and
-  imported data into the preview and exports)
-- Any code path that would exfiltrate résumé data off the device, including
-  through the export pipeline or third-party requests
+- Script injection through résumé content or imported files (the editor
+  renders rich text and imported data into the preview and exports)
+- Any code path that would send résumé data off the device other than an AI
+  request the user confirmed, including through exports or the service worker
+- Leaks of an API key: to storage in plain text, to exports or backups, or to
+  any host other than the chosen provider
 - Supply-chain issues in dependencies that ship to the client
 
 ## Reporting a vulnerability
 
-Please report vulnerabilities privately. Do not open a public issue or pull
-request for a security problem.
+Please report vulnerabilities privately through GitHub's private
+vulnerability reporting on this repository (Security → Report a
+vulnerability). Do not open a public issue or pull request for a security
+problem.
 
-Preferred channel: GitHub private vulnerability reporting, at
-<https://github.com/rimzzlabs/lanjut/security/advisories/new>.
-
-Alternatively, email rimzzlabs@proton.me with a subject line starting with
-`[SECURITY]`.
-
-In your report, include:
-
-- A description of the issue and the affected code path or component
-- Steps to reproduce, or a proof of concept
-- Your assessment of the impact (what data or users are at risk)
-
-## What to expect
-
-- Acknowledgment of your report within 72 hours
-- An assessment and, if confirmed, a remediation plan within 14 days
-- Credit in the release notes for the fix, unless you prefer to stay anonymous
-
-Please give us a reasonable window to ship a fix before any public disclosure.
+Include a description of the issue and the affected code path, steps to
+reproduce or a proof of concept, and your assessment of the impact.
 
 ## Supported versions
 
-Lanjut is a continuously deployed web application; only the latest deployed
-version (the tip of `main`) is supported. If you self-host a fork, please
-verify the issue reproduces on the current release before reporting.
+Kast is a continuously deployed web application; only the tip of `master` is
+supported. If you self-host a fork, please confirm the issue reproduces on
+the current code before reporting.
