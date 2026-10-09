@@ -15,13 +15,15 @@ function words(text: string): number {
 
 /**
  * A heading row: its whole text names a known section (in any of the three
- * languages), or, once a known section has started, it is set clearly larger
- * and bold like the known headings are.
+ * languages), or, once a known section has started, it is bold and set as
+ * large as the known headings are. Measuring against the known headings
+ * rather than the body keeps bold job titles, a size between the two, from
+ * opening sections of their own.
  */
 function headingOf(
   row: TextRow,
   bodySize: number,
-  seenKnown: boolean,
+  headingSize: number | null,
 ): { kind: RawSection["kind"]; title: string; rest: TextRow | null } | null {
   // A label naming a section ("Laisvalaikio pomėgiai" beside its text) opens
   // that section with the text beside it as its first row.
@@ -34,9 +36,9 @@ function headingOf(
   const kind = headingKind(text);
   if (kind) return { kind, title: text, rest: null };
   const looksLikeHeading =
-    seenKnown &&
+    headingSize !== null &&
     row.bold &&
-    row.size >= bodySize * 1.15 &&
+    row.size >= Math.max(bodySize * 1.15, headingSize - 0.5) &&
     !isBullet(text) &&
     !/\d/.test(text) &&
     !/[.,;]$/.test(text);
@@ -52,7 +54,8 @@ export function splitSections(
     sections: [
       { kind: "preamble", title: "", rows: [] },
     ] as ReadonlyArray<RawSection>,
-    seenKnown: false,
+    /** The size of the first known heading, once one has been seen. */
+    headingSize: null as number | null,
     labelHeading: null as TextRow | null,
   };
   return A.reduce(rows, initial, (acc, row) => {
@@ -68,7 +71,7 @@ export function splitSections(
     ) {
       return { ...acc, labelHeading: row };
     }
-    const heading = headingOf(row, bodySize, acc.seenKnown);
+    const heading = headingOf(row, bodySize, acc.headingSize);
     if (heading) {
       return {
         sections: A.append(acc.sections, {
@@ -76,7 +79,8 @@ export function splitSections(
           title: heading.title,
           rows: heading.rest ? [heading.rest] : [],
         }),
-        seenKnown: acc.seenKnown || heading.kind !== "custom",
+        headingSize:
+          acc.headingSize ?? (heading.kind === "custom" ? null : row.size),
         labelHeading: S.isNotEmpty(row.label) ? row : null,
       };
     }

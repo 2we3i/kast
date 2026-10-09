@@ -26,11 +26,11 @@ import {
   type Resume,
   type ResumeIndexEntry,
   type ResumeLanguage,
-  SEED_RESUME,
   type SectionType,
   updateSectionById,
   updateSections,
 } from "@/lib/resume";
+import { sampleResume } from "@/lib/resume/seed-samples";
 import {
   flushOpenResumePersist,
   scheduleOpenResumePersist,
@@ -210,7 +210,7 @@ function startingResume(title: string, options?: CreateResumeOptions): Resume {
     return { ...options.imported.resume, id: nanoid(), title };
   }
   if (options?.source === "empty") return createEmptyResume(title);
-  return cloneResumeAsNew(SEED_RESUME, title);
+  return cloneResumeAsNew(sampleResume(options?.language ?? "en"), title);
 }
 
 export const useResumeStore = create<ResumeStoreState>()((set, get) => ({

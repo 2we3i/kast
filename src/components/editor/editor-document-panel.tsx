@@ -9,6 +9,7 @@ import { EditorDocumentLanguage } from "./editor-document-language";
 import { EditorDocumentLetterSpacing } from "./editor-document-letter-spacing";
 import { EditorDocumentLineHeight } from "./editor-document-line-height";
 import { EditorDocumentSpacing } from "./editor-document-spacing";
+import { EditorDocumentSpellcheck } from "./editor-document-spellcheck";
 import { EditorDocumentStyleReset } from "./editor-document-style-reset";
 
 /** The Document tab: document-level actions (language, export, import). */
@@ -23,6 +24,7 @@ export function EditorDocumentPanel() {
         </div>
         <EditorDocumentIcon />
         <EditorDocumentLanguage />
+        <EditorDocumentSpellcheck />
         <EditorDocumentFont />
         <EditorDocumentFontSize />
         <EditorDocumentSpacing />

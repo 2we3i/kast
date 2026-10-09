@@ -1,8 +1,6 @@
-import { useMemo } from "react";
 import type { ResumePreview } from "@/components/editor/resume-preview";
 import { ResumeThumbnail } from "@/components/editor/resume-thumbnail";
-import { resumeToPreview } from "@/components/editor/resume-to-preview";
-import { SEED_RESUME } from "@/lib/resume";
+import { useSamplePreview } from "@/hooks/use-sample-preview";
 import type { TemplateId } from "@/lib/templates";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +15,7 @@ export function LandingLiveResume(props: {
   cropHeight?: number;
   className?: string;
 }) {
-  const fallback = useMemo(() => resumeToPreview(SEED_RESUME), []);
+  const fallback = useSamplePreview();
   return (
     <div
       className={cn(

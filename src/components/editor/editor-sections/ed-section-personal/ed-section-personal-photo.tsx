@@ -1,5 +1,5 @@
-import { ImageIcon, TrashIcon } from "@phosphor-icons/react";
-import { useRef } from "react";
+import { CropIcon, ImageIcon, TrashIcon } from "@phosphor-icons/react";
+import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { useTranslations } from "use-intl";
 import { SegmentedControl } from "@/components/shared/segmented-control";
@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
 import { Slider } from "@/components/ui/slider";
 import { useResumeStore } from "@/lib/store";
-import { processPhotoFile } from "./photo-process";
+import { PhotoCropDialog } from "./photo-crop-dialog";
+import { readPhotoSource } from "./photo-process";
 
 const PHOTO_SIZE_MIN = 40;
 const PHOTO_SIZE_MAX = 96;
@@ -31,27 +32,34 @@ export function EditorSectionPersonalPhoto() {
   );
   const photoRadius = useResumeStore((state) => state.open?.photoRadius ?? 0);
   const photoAlign = useResumeStore((state) => state.open?.photoAlign ?? "top");
+  const atsMode = useResumeStore((state) => state.open?.atsMode ?? true);
   const updateOpen = useResumeStore((state) => state.updateOpen);
   const t = useTranslations("editor.personal");
   const inputRef = useRef<HTMLInputElement>(null);
+  const [cropSource, setCropSource] = useState<string | null>(null);
 
   async function onFile(file: File | undefined) {
     if (!file) return;
-    const processed = await processPhotoFile(file);
-    if (!processed) {
+    const source = await readPhotoSource(file);
+    if (!source) {
       toast.error(t("photoError"));
       return;
     }
+    setCropSource(source);
+  }
+
+  function applyPhoto(photo: string) {
+    setCropSource(null);
     updateOpen((resume) => ({
       ...resume,
-      header: { ...resume.header, photo: processed },
+      header: { ...resume.header, photo },
     }));
   }
 
   return (
     <Field>
       <FieldLabel htmlFor="header-photo">{t("photo")}</FieldLabel>
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
         {Boolean(photo) && (
           <img
             src={photo}
@@ -82,6 +90,17 @@ export function EditorSectionPersonalPhoto() {
           <ImageIcon />
           {photo ? t("photoReplace") : t("photoAdd")}
         </Button>
+        {Boolean(photo) && (
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={() => setCropSource(photo ?? null)}
+          >
+            <CropIcon />
+            {t("photoCrop")}
+          </Button>
+        )}
         {Boolean(photo) && (
           <Button
             type="button"
@@ -170,7 +189,15 @@ export function EditorSectionPersonalPhoto() {
           </div>
         </div>
       )}
+      {Boolean(photo) && atsMode && (
+        <p className="text-xs text-muted-foreground">{t("photoAtsNote")}</p>
+      )}
       <FieldDescription>{t("photoHint")}</FieldDescription>
+      <PhotoCropDialog
+        source={cropSource}
+        onCancel={() => setCropSource(null)}
+        onApply={applyPhoto}
+      />
     </Field>
   );
 }

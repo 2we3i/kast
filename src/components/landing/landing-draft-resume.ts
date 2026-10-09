@@ -1,5 +1,6 @@
 import { S } from "@mobily/ts-belt";
-import { type PlainField, type Resume, SEED_RESUME } from "@/lib/resume";
+import type { PlainField, Resume, ResumeLanguage } from "@/lib/resume";
+import { sampleResume } from "@/lib/resume/seed-samples";
 import type { LandingDraft } from "@/lib/store";
 import { joinPresent } from "@/lib/utils";
 
@@ -10,8 +11,11 @@ import { joinPresent } from "@/lib/utils";
  * the visitor sees, what gets verified, and what lands in the editor are the
  * same document.
  */
-export function draftToResume(draft: LandingDraft): Resume {
-  const resume = structuredClone(SEED_RESUME);
+export function draftToResume(
+  draft: LandingDraft,
+  language: ResumeLanguage,
+): Resume {
+  const resume = structuredClone(sampleResume(language));
   const firstName = S.trim(draft.firstName);
   const lastName = S.trim(draft.lastName);
   const jobTitle = S.trim(draft.jobTitle);

@@ -2,7 +2,7 @@ import { A } from "@mobily/ts-belt";
 import { useMemo } from "react";
 import { RadioGroup } from "@/components/ui/radio-group";
 import { Skeleton } from "@/components/ui/skeleton";
-import { SEED_RESUME } from "@/lib/resume";
+import { useSamplePreview } from "@/hooks/use-sample-preview";
 import { useResumeStore } from "@/lib/store";
 import { resolveTemplateId, SORTED_TEMPLATES } from "@/lib/templates";
 import { buildResumeBlocks } from "../resume-blocks";
@@ -12,25 +12,27 @@ import { EditorLayoutTemplateItem } from "./ed-layout-template-item";
 
 const SKELETONS = [1, 2, 3, 4, 5, 6];
 
-const SEED_PREVIEW = resumeToPreview(SEED_RESUME);
-
 /**
  * A document whose preview renders nothing beyond the header block would make
  * every template tile look identically blank, so fall back to the seed fixture
  * to keep the tiles comparable.
  */
-function toTilePreview(preview: ReturnType<typeof resumeToPreview>) {
+function toTilePreview(
+  preview: ReturnType<typeof resumeToPreview>,
+  sample: ReturnType<typeof resumeToPreview>,
+) {
   if (A.length(buildResumeBlocks(preview)) > 1) return preview;
-  return { ...SEED_PREVIEW, atsMode: preview.atsMode, accent: preview.accent };
+  return { ...sample, atsMode: preview.atsMode, accent: preview.accent };
 }
 
 export function EditorLayoutTemplateList() {
   const open = useResumeStore((state) => state.open);
   const updateOpen = useResumeStore((state) => state.updateOpen);
+  const sample = useSamplePreview();
 
   const preview = useMemo(
-    () => (open ? toTilePreview(resumeToPreview(open)) : null),
-    [open],
+    () => (open ? toTilePreview(resumeToPreview(open), sample) : null),
+    [open, sample],
   );
 
   if (!open || !preview) {

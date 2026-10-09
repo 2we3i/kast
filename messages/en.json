@@ -997,7 +997,8 @@
       "verifyMissing": "Missing: {values}",
       "verifyError": "The check couldn't run in this browser.",
       "spellcheck": "Spell check",
-      "spellcheckHint": "Uses your browser's dictionary for the résumé language. Nothing is sent anywhere."
+      "spellcheckHint": "Uses your browser's dictionary for the résumé language. Nothing is sent anywhere.",
+      "verifyOrder": "Every value is in the PDF, but some read out of order. Check the section order and the template."
     }
   },
   "ats": {
@@ -1562,7 +1563,7 @@
     "extractedChars": "{chars} characters",
     "checkName": "name “{name}” survives extraction",
     "checkTitle": "job title survives extraction",
-    "checkEmployer": "employer “Acme Corp” survives extraction",
+    "checkEmployer": "employer “{employer}” survives extraction",
     "checkEmail": "email address intact",
     "checkOrder": "sections in reading order:",
     "passed": "{count}/5 checks passed. This exact document is what an ATS reads.",

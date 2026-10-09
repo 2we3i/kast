@@ -21,7 +21,8 @@
     "validate:exports": "tsx scripts/validate-exports.ts",
     "commit": "cz",
     "ui:add": "pnpm dlx shadcn add",
-    "prepare": "husky"
+    "prepare": "husky",
+    "fixtures:kast": "tsx scripts/generate-kast-fixtures.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.132.1",

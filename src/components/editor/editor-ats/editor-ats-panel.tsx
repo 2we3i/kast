@@ -11,6 +11,7 @@ import { resumeToText } from "../resume-to-text";
 import { AtsCategories } from "./ats-categories";
 import { AtsIssueItem } from "./ats-issue-item";
 import { AtsKeywords } from "./ats-keywords";
+import { AtsPdfCheck } from "./ats-pdf-check";
 import { AtsScore } from "./ats-score";
 
 /**
@@ -72,9 +73,10 @@ export function EditorAtsPanel() {
 
       <section className="py-4">
         <h3 className="mb-2 text-sm font-medium">{t("exportHeading")}</h3>
-        <p className="text-xs text-muted-foreground text-pretty">
+        <p className="mb-4 text-xs text-muted-foreground text-pretty">
           {t("exportNote")}
         </p>
+        {open && <AtsPdfCheck resume={open} />}
       </section>
     </div>
   );

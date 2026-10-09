@@ -147,7 +147,7 @@
         "content": "Keiskite šabloną, perjunkite ATS ir dizaino režimus, pasirinkite akcento spalvą."
       },
       "document": {
-        "title": "Dokumentas",
+        "title": "Stilius",
         "content": "Šriftai, dydžiai, tarpai, CV kalba, importas ir kopijavimas JSON ar YAML formatu."
       },
       "check": {
@@ -181,7 +181,7 @@
         "content": "Keiskite šabloną, perjunkite ATS ir dizaino režimus, pasirinkite akcento spalvą."
       },
       "document": {
-        "title": "Dokumentas",
+        "title": "Stilius",
         "content": "Šriftai, dydžiai, tarpai, CV kalba, importas ir kopijavimas JSON ar YAML formatu."
       }
     }
@@ -997,7 +997,8 @@
       "verifyMissing": "Trūksta: {values}",
       "verifyError": "Šioje naršyklėje patikros paleisti nepavyko.",
       "spellcheck": "Rašybos tikrinimas",
-      "spellcheckHint": "Naudoja naršyklės žodyną CV kalbai. Niekas niekur nesiunčiama."
+      "spellcheckHint": "Naudoja naršyklės žodyną CV kalbai. Niekas niekur nesiunčiama.",
+      "verifyOrder": "Visos reikšmės yra PDF, bet dalis skaitoma ne iš eilės. Patikrinkite dalių tvarką ir šabloną."
     }
   },
   "ats": {
@@ -1417,7 +1418,7 @@
     "appearance": {
       "heading": "Sąsaja",
       "language": "Sąsajos kalba",
-      "languageHint": "Kiekvienas CV turi savo kalbą – ji nustatoma skirtuke „Dokumentas“.",
+      "languageHint": "Kiekvienas CV turi savo kalbą – ji nustatoma skirtuke „Stilius“.",
       "theme": "Tema"
     },
     "ai": {
@@ -1562,7 +1563,7 @@
     "extractedChars": "simbolių: {chars}",
     "checkName": "vardas „{name}“ išliko ištraukus",
     "checkTitle": "pareigos išliko ištraukus",
-    "checkEmployer": "darbdavys „Acme Corp“ išliko ištraukus",
+    "checkEmployer": "darbdavys „{employer}“ išliko ištraukus",
     "checkEmail": "el. pašto adresas nepakitęs",
     "checkOrder": "dalys skaitymo tvarka:",
     "passed": "Įveikta patikrų: {count} iš 5. Būtent šį dokumentą skaito ATS.",

@@ -9,6 +9,7 @@ import {
 } from "./dictionary";
 import { type ImportMetadata, type Parsed, parsed } from "./import-draft";
 import { asContent, rowsToPlain, type TextRow } from "./import-rows";
+import { gridLanguages, gridSkills } from "./parse-grid";
 
 function plain(value: string): Field {
   return { kind: "plain", value: S.trim(value) };
@@ -129,12 +130,36 @@ export function parseSkills(
       leftovers: [],
     };
   }
+  if (A.some(rows, (row) => A.length(row.cells) >= 2)) {
+    const entries = A.map(gridSkills(rows), (item) =>
+      withFields(createEmptyEntry("skills"), {
+        name: item.name,
+        level: item.level,
+        description: item.description,
+      }),
+    );
+    return parsed(entries, {
+      confidence: D.fromPairs(
+        A.flatMap(entries, (entry) => [
+          [`${entry.id}/name`, 0.8] as const,
+          [`${entry.id}/level`, 0.75] as const,
+        ]),
+      ),
+    });
+  }
   // With "Skill — Level" pairs, a bar belongs to the name ("SAP | Navision");
   // only commas and semicolons separate skills then.
   const joined = rowsToPlain(asContent(rows));
   const split = /\s[-–—:]\s/.test(joined) ? /\s*[,;]\s*/ : ITEM_SPLIT;
+  // One "Skill — Level" per line (a sidebar list) splits at the lines too.
+  const lines = A.map(asContent(rows), (row) => S.trim(row.text));
+  const perLine =
+    A.length(lines) >= 2 &&
+    A.length(A.filter(lines, (line) => /\s[-–—:]\s/.test(line))) >=
+      A.length(lines) * 0.6;
   const items = pipe(
-    S.splitByRe(joined, split),
+    perLine ? lines : [joined],
+    A.flatMap((text) => S.splitByRe(text, split)),
     A.map((item) => S.trim(item ?? "")),
     A.reject((item) => S.isEmpty(item) || S.length(item) > 80),
   );
@@ -228,20 +253,27 @@ export function parseLanguages(
             mapped: A.length(levels) === A.length(skillRows),
           };
         })
-      : A.filterMap(rows, (row) => {
-          const text = S.trim(`${row.label} ${row.text}`);
-          if (S.isEmpty(text)) return undefined;
-          const match = NAME_LEVEL.exec(text);
-          const name = match ? S.trim(match[1] ?? "") : text;
-          const raw = match ? S.trim(match[2] ?? "") : "";
-          const level = languageLevel(raw);
-          return {
-            name,
-            level: level ? (level === "native" ? "Native" : level) : raw,
-            skills: {},
-            mapped: level !== null || S.isEmpty(raw),
-          };
-        });
+      : A.some(rows, (row) => A.length(row.cells) >= 2)
+        ? A.map(gridLanguages(rows), (item) => ({
+            name: item.name,
+            level: item.level,
+            skills: item.skills,
+            mapped: true,
+          }))
+        : A.filterMap(rows, (row) => {
+            const text = S.trim(`${row.label} ${row.text}`);
+            if (S.isEmpty(text)) return undefined;
+            const match = NAME_LEVEL.exec(text);
+            const name = match ? S.trim(match[1] ?? "") : text;
+            const raw = match ? S.trim(match[2] ?? "") : "";
+            const level = languageLevel(raw);
+            return {
+              name,
+              level: level ? (level === "native" ? "Native" : level) : raw,
+              skills: {},
+              mapped: level !== null || S.isEmpty(raw),
+            };
+          });
   const entries = A.map(drafts, (draft) =>
     withFields(createEmptyEntry("languages"), {
       name: draft.name,

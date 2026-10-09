@@ -1,6 +1,7 @@
 import { A, O, pipe, R, S } from "@mobily/ts-belt";
 import { resumeToPreview } from "@/components/editor/resume-to-preview";
-import type { Resume } from "@/lib/resume";
+import type { Resume, SectionType } from "@/lib/resume";
+import { RESUME_LABELS } from "@/lib/resume/labels";
 import type { TemplateId } from "@/lib/templates";
 import { joinPresent } from "@/lib/utils";
 
@@ -13,13 +14,19 @@ export interface ParserProofReport {
   name: string;
   nameFound: boolean;
   titleFound: boolean;
+  employer: string;
   employerFound: boolean;
   emailFound: boolean;
   orderOk: boolean;
   order: string[];
 }
 
-const SECTION_ORDER = ["SUMMARY", "EXPERIENCE", "EDUCATION", "SKILLS"];
+const SECTION_ORDER: ReadonlyArray<SectionType> = [
+  "summary",
+  "experience",
+  "education",
+  "skills",
+];
 
 function plainValue(field: unknown): string {
   if (field && typeof field === "object" && "value" in field) {
@@ -65,9 +72,13 @@ export async function runParserProof(
   onPhase("check");
   const text = R.getExn(extracted);
   const upper = S.toUpperCase(text);
+  const labels = RESUME_LABELS[resume.language];
+  const order = A.map(SECTION_ORDER, (type) =>
+    S.toUpperCase(labels[type as keyof typeof labels] as string),
+  );
   let cursor = -1;
   let orderOk = true;
-  for (const section of SECTION_ORDER) {
+  for (const section of order) {
     const index = S.indexOf(upper, section);
     if (O.isNone(index) || index < cursor) {
       orderOk = false;
@@ -89,8 +100,14 @@ export async function runParserProof(
     S.split("\n"),
     A.filter((line) => S.isNotEmpty(S.trim(line))),
   );
-  const headingIndex = A.getIndexBy(lines, (line) =>
-    /^experience$/i.test(S.trim(line)),
+  const headingIndex = A.getIndexBy(
+    lines,
+    (line) => S.toUpperCase(S.trim(line)) === S.toUpperCase(labels.experience),
+  );
+  const employer = pipe(
+    A.find(resume.sections, (section) => section.type === "experience"),
+    O.flatMap((section) => A.head(section.entries)),
+    O.mapWithDefault("", (entry) => plainValue(entry.fields.company)),
   );
   const excerpt = O.match(
     headingIndex,
@@ -105,9 +122,10 @@ export async function runParserProof(
     name,
     nameFound: Boolean(name) && S.includes(text, name),
     titleFound: Boolean(title) && S.includes(text, title),
-    employerFound: S.includes(text, "Acme Corp"),
+    employer,
+    employerFound: Boolean(employer) && S.includes(text, employer),
     emailFound: Boolean(email) && S.includes(text, email),
     orderOk,
-    order: SECTION_ORDER,
+    order: [...order],
   });
 }

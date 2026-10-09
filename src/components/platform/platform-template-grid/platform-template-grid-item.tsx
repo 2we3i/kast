@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useTranslations } from "use-intl";
 import { ResumeThumbnail } from "@/components/editor/resume-thumbnail";
-import { resumeToPreview } from "@/components/editor/resume-to-preview";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,12 +9,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { SEED_RESUME } from "@/lib/resume";
+import { useSamplePreview } from "@/hooks/use-sample-preview";
 import type { TemplateSummary } from "@/lib/templates";
 import { PlatformPaperFrame } from "../platform-paper-frame";
 import { PlatformResumeCreateDialog } from "../platform-resume-create-dialog";
-
-const SEED_PREVIEW = resumeToPreview(SEED_RESUME);
 
 interface PlatformTemplateGridItemProps {
   template: TemplateSummary;
@@ -25,12 +22,13 @@ export function PlatformTemplateGridItem(props: PlatformTemplateGridItemProps) {
   const { template } = props;
   const [open, setOpen] = useState(false);
   const t = useTranslations("platform.templates");
+  const sample = useSamplePreview();
 
   return (
     <Card size="sm" className="pt-0">
       <div className="relative">
         <PlatformPaperFrame>
-          <ResumeThumbnail resume={SEED_PREVIEW} template={template.id} />
+          <ResumeThumbnail resume={sample} template={template.id} />
         </PlatformPaperFrame>
         <button
           type="button"

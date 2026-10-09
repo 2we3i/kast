@@ -113,10 +113,6 @@ function cellsText(cells: ReadonlyArray<Cell>): string {
   );
 }
 
-/**
- * A sidebar holds its own headings and runs on lines of its own; a label
- * column mostly sits on the same lines as the content it labels.
- */
 /** Share of values within `tolerance` of the most common one. */
 function alignment(values: ReadonlyArray<number>, tolerance: number): number {
   if (A.isEmpty(values)) return 0;
@@ -131,28 +127,48 @@ function alignment(values: ReadonlyArray<number>, tolerance: number): number {
   return best / A.length(values);
 }
 
+/** Share of rows holding only the given parts. */
+function share(rows: ReadonlyArray<Row>, test: (row: Row) => boolean): number {
+  return A.isEmpty(rows) ? 0 : A.length(A.filter(rows, test)) / A.length(rows);
+}
+
 /**
  * Labels sit on the same lines as the content they describe, and portals
  * usually right-align them against the gutter. A sidebar is a column of its
  * own: left-aligned, with its own headings, and its lines only meet the
- * main column's by chance.
+ * main column's by chance. A single column with a two-column grid (skills,
+ * languages) or right-aligned dates also yields a gutter, but its body text
+ * crosses it, and nothing ever sits right of it alone.
  */
 function classify(rows: ReadonlyArray<Row>): LayoutKind {
   const withLeft = A.filter(rows, (row) => A.isNotEmpty(row.left));
   if (A.length(withLeft) < 3) return "single";
+  const rightOnly = share(
+    rows,
+    (row) =>
+      A.isNotEmpty(row.right) && A.isEmpty(row.left) && A.isEmpty(row.full),
+  );
+  const crossing = share(rows, (row) => A.isNotEmpty(row.full));
+  if (rightOnly < 0.05 && crossing >= 0.25) return "single";
   const paired = A.filter(withLeft, (row) => A.isNotEmpty(row.right));
   const ratio = A.length(paired) / A.length(withLeft);
-  const labelCells = A.flatMap(paired, (row) => row.left);
+  const labelCells = A.filterMap(paired, (row) => A.head(row.left));
   const rightAligned =
     alignment(
       A.map(labelCells, (cell) => cell.right),
       3,
     ) >= 0.6;
+  const leftAligned =
+    alignment(
+      A.map(labelCells, (cell) => cell.x),
+      3,
+    ) >= 0.8;
   const leftHeadings = A.filter(
     withLeft,
     (row) => A.isEmpty(row.right) && headingKind(cellsText(row.left)) !== null,
   );
   if (rightAligned && ratio >= 0.25) return "labels";
+  if (leftAligned && A.length(labelCells) >= 3) return "sidebar";
   if (ratio >= 0.6) return "labels";
   if (A.length(leftHeadings) >= 1) return "sidebar";
   return ratio >= 0.25 ? "labels" : "single";
@@ -162,17 +178,44 @@ function textLength(rows: ReadonlyArray<Row>, side: "left" | "right"): number {
   return A.reduce(rows, 0, (sum, row) => sum + S.length(cellsText(row[side])));
 }
 
-/** A row holding only one side's cells, the other side's moved out. */
+/** The largest font size among `cells`, or `fallback` without any. */
+function cellsSize(cells: ReadonlyArray<Cell>, fallback: number): number {
+  return A.isEmpty(cells)
+    ? fallback
+    : A.reduce(cells, 0, (max, cell) => Math.max(max, cell.size));
+}
+
+/**
+ * A row holding only one side's cells, the other side's moved out. Its size
+ * is measured again from the cells it keeps: a sidebar heading on the same
+ * line must not make a job title beside it look like a heading too.
+ */
 function onlySide(row: Row, side: "left" | "right"): Row {
+  const full =
+    side === "left"
+      ? A.concat(row.full, row.left)
+      : A.concat(row.full, row.right);
   return {
     ...row,
+    size: cellsSize(full, row.size),
     left: [],
     right: [],
-    full:
-      side === "left"
-        ? A.concat(row.full, row.left)
-        : A.concat(row.full, row.right),
+    full,
   };
+}
+
+/** Every line split at its page's gutter, or kept whole without one. */
+export function splitRows(
+  doc: PdfDocument,
+  lines: ReadonlyArray<Line>,
+): ReadonlyArray<Row> {
+  return A.flatMap(doc.pages, (page) => {
+    const pageLines = A.filter(lines, (line) => line.page === page.number);
+    const gutter = findGutter(pageLines, page.width);
+    return gutter === null
+      ? A.map(pageLines, wholeRow)
+      : A.map(pageLines, (line) => splitRow(line, gutter));
+  });
 }
 
 /**
@@ -184,13 +227,7 @@ export function buildLayout(
   doc: PdfDocument,
   lines: ReadonlyArray<Line>,
 ): Layout {
-  const rows = A.flatMap(doc.pages, (page) => {
-    const pageLines = A.filter(lines, (line) => line.page === page.number);
-    const gutter = findGutter(pageLines, page.width);
-    return gutter === null
-      ? A.map(pageLines, wholeRow)
-      : A.map(pageLines, (line) => splitRow(line, gutter));
-  });
+  const rows = splitRows(doc, lines);
   const kind = classify(rows);
   if (kind === "single") {
     return {
@@ -219,7 +256,11 @@ export function buildLayout(
   const sidebar = pipe(
     rows,
     A.filter((row) => A.isNotEmpty(row[sideSide])),
-    A.map((row) => ({ ...onlySide(row, sideSide), full: row[sideSide] })),
+    A.map((row) => ({
+      ...onlySide(row, sideSide),
+      size: cellsSize(row[sideSide], row.size),
+      full: row[sideSide],
+    })),
   );
   return { kind, streams: [main, sidebar] };
 }

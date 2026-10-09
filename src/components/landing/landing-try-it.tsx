@@ -1,7 +1,7 @@
 import { A, S } from "@mobily/ts-belt";
 import { ArrowRightIcon } from "@phosphor-icons/react";
 import { useMemo, useState } from "react";
-import { useTranslations } from "use-intl";
+import { useLocale, useTranslations } from "use-intl";
 import { resumeToPreview } from "@/components/editor/resume-to-preview";
 import {
   type IslandProps,
@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "@/i18n/navigation";
+import { isLocale } from "@/i18n/routing";
 import { editorHref } from "@/lib/routes";
 import {
   type LandingDraft,
@@ -51,7 +52,12 @@ function LandingTryItForm() {
   const createResume = useResumeStore((state) => state.createResume);
   const [creating, setCreating] = useState(false);
 
-  const preview = useMemo(() => resumeToPreview(draftToResume(draft)), [draft]);
+  const locale = useLocale();
+  const language = isLocale(locale) ? locale : "en";
+  const preview = useMemo(
+    () => resumeToPreview(draftToResume(draft, language)),
+    [draft, language],
+  );
 
   const field = (key: keyof LandingDraft) => ({
     value: draft[key],
@@ -73,7 +79,7 @@ function LandingTryItForm() {
         draftFullName(draft) || t("draftTitle"),
         {
           source: "import",
-          imported: { resume: draftToResume(draft), leftovers: [] },
+          imported: { resume: draftToResume(draft, language), leftovers: [] },
           templateId: template,
         },
       );

@@ -16,6 +16,7 @@ import { EditorAiPanel } from "./editor-ai/editor-ai-panel";
 import { EditorAtsPanel } from "./editor-ats/editor-ats-panel";
 import { EditorDocumentPanel } from "./editor-document-panel";
 import { EditorImportLeftovers } from "./editor-import-leftovers";
+import { EditorLanguageScope } from "./editor-language-scope";
 import { EditorLayoutTemplateList } from "./editor-layout/ed-layout-template-list";
 import { EditorLetterPanel } from "./editor-letter/editor-letter-panel";
 import { EditorSectionList } from "./editor-sections/ed-section-list";
@@ -115,7 +116,9 @@ export function EditorSidebarContent() {
               </h3>
               <EditorSectionOrderReset />
             </div>
-            <EditorSectionList />
+            <EditorLanguageScope>
+              <EditorSectionList />
+            </EditorLanguageScope>
           </ScrollArea>
         </TabsContent>
 
@@ -145,7 +148,9 @@ export function EditorSidebarContent() {
 
         <TabsContent value="letter">
           <ScrollArea id="tour-editor-letter" className={PANEL_HEIGHT}>
-            <EditorLetterPanel />
+            <EditorLanguageScope>
+              <EditorLetterPanel />
+            </EditorLanguageScope>
           </ScrollArea>
         </TabsContent>
       </Tabs>

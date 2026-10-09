@@ -2,12 +2,13 @@ import { A, pipe, R } from "@mobily/ts-belt";
 import { ArrowClockwiseIcon } from "@phosphor-icons/react";
 import { motion, useReducedMotion } from "motion/react";
 import { useRef, useState } from "react";
-import { useTranslations } from "use-intl";
+import { useLocale, useTranslations } from "use-intl";
 import {
   type IslandProps,
   IslandProviders,
 } from "@/components/shared/providers";
 import { Button } from "@/components/ui/button";
+import { isLocale } from "@/i18n/routing";
 import { useLandingDraftStore } from "@/lib/store";
 import { draftToResume } from "./landing-draft-resume";
 import {
@@ -39,6 +40,7 @@ export function LandingParserProof(props: IslandProps) {
 function LandingParserProofTerminal() {
   const t = useTranslations("parserProof");
   const reduceMotion = useReducedMotion();
+  const locale = useLocale();
   const draft = useLandingDraftStore((state) => state.draft);
   const template = useLandingDraftStore((state) => state.template);
   const [state, setState] = useState<ProofState>({ status: "idle" });
@@ -51,7 +53,7 @@ function LandingParserProofTerminal() {
     const startedAt = Date.now();
     try {
       const result = await runParserProof({
-        resume: draftToResume(draft),
+        resume: draftToResume(draft, isLocale(locale) ? locale : "en"),
         template,
         onPhase: (phase) => setState({ status: "running", phase }),
       });
@@ -161,7 +163,7 @@ function LandingParserProofTerminal() {
               </CheckLine>
               <CheckLine ok={report.titleFound}>{t("checkTitle")}</CheckLine>
               <CheckLine ok={report.employerFound}>
-                {t("checkEmployer")}
+                {t("checkEmployer", { employer: report.employer })}
               </CheckLine>
               <CheckLine ok={report.emailFound}>{t("checkEmail")}</CheckLine>
               <CheckLine ok={report.orderOk}>
