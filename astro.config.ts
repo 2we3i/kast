@@ -2,15 +2,20 @@ import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 
-const desktop = process.env.LANJUT_TARGET === "desktop";
+// Interface fonts are fetched once at build time and self-hosted with the
+// site, so visitors never contact a font CDN. Every family carries Latin
+// Extended (Lithuanian) and Cyrillic (Russian) next to basic Latin.
+const SUBSETS: [string, ...string[]] = [
+  "latin",
+  "latin-ext",
+  "cyrillic",
+  "cyrillic-ext",
+];
 
 export default defineConfig({
-  site: "https://lanjut.org",
-  // Separate output folders: the desktop build bakes a different target flag
-  // into the bundle, so one build must never overwrite the other.
-  outDir: desktop ? "dist-desktop" : "dist",
+  site: process.env.PUBLIC_SITE_URL || "http://localhost:4321",
   // Pages land where their source sits: platform/editor.astro becomes
-  // platform/editor.html, and id/404.astro the localized id/404.html.
+  // platform/editor.html, and lt/404.astro the localized lt/404.html.
   build: { format: "preserve" },
   trailingSlash: "ignore",
   server: { port: 4321 },
@@ -20,9 +25,6 @@ export default defineConfig({
       babel: { plugins: [["babel-plugin-react-compiler", { target: "19" }]] },
     }),
   ],
-  // Google, like next/font before it: the files carry the weight axis only.
-  // Fontsource ships Fraunces with its optical-size axis, which narrows the
-  // display headings.
   fonts: [
     {
       provider: fontProviders.google(),
@@ -30,7 +32,7 @@ export default defineConfig({
       cssVariable: "--font-sans",
       weights: ["100 900"],
       styles: ["normal"],
-      subsets: ["latin"],
+      subsets: SUBSETS,
     },
     {
       provider: fontProviders.google(),
@@ -38,7 +40,7 @@ export default defineConfig({
       cssVariable: "--font-geist-sans",
       weights: ["100 900"],
       styles: ["normal"],
-      subsets: ["latin"],
+      subsets: ["latin", "latin-ext", "cyrillic"],
     },
     {
       provider: fontProviders.google(),
@@ -46,23 +48,15 @@ export default defineConfig({
       cssVariable: "--font-geist-mono",
       weights: ["100 900"],
       styles: ["normal"],
-      subsets: ["latin"],
+      subsets: ["latin", "latin-ext", "cyrillic"],
     },
     {
       provider: fontProviders.google(),
-      name: "Plus Jakarta Sans",
-      cssVariable: "--font-brand",
-      weights: [700, 800],
-      styles: ["normal"],
-      subsets: ["latin"],
-    },
-    {
-      provider: fontProviders.google(),
-      name: "Fraunces",
+      name: "Manrope",
       cssVariable: "--font-display",
-      weights: ["100 900"],
+      weights: ["200 800"],
       styles: ["normal"],
-      subsets: ["latin"],
+      subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
     },
   ],
   vite: {
@@ -73,11 +67,6 @@ export default defineConfig({
     environments: {
       prerender: { resolve: { noExternal: ["nextstepjs"] } },
     },
-    define: {
-      "import.meta.env.PUBLIC_LANJUT_TARGET": JSON.stringify(
-        process.env.LANJUT_TARGET ?? "",
-      ),
-    },
     build: {
       rollupOptions: {
         onwarn(warning, warn) {
@@ -85,10 +74,6 @@ export default defineConfig({
           warn(warning);
         },
       },
-    },
-    server: {
-      // The feedback relay runs in the Worker; `pnpm dev` starts it beside Astro.
-      proxy: { "/api": { target: "http://localhost:8787" } },
     },
   },
 });

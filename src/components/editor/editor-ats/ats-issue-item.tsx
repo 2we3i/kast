@@ -1,3 +1,4 @@
+import { A, D } from "@mobily/ts-belt";
 import {
   ArrowRightIcon,
   InfoIcon,
@@ -64,12 +65,17 @@ export function AtsIssueItem(props: AtsIssueItemProps) {
   );
 }
 
+const SECTION_PARAMS = ["section", "before", "after"] as const;
+
 /** Section types in params ("experience") read as their UI names. */
 function localizeParams(
   params: Record<string, string | number>,
   sectionName: (type: string) => string,
 ): Record<string, string | number> {
-  const section = params.section;
-  if (typeof section !== "string") return params;
-  return { ...params, section: sectionName(section) };
+  return A.reduce(SECTION_PARAMS, params, (result, key) => {
+    const value = result[key];
+    return typeof value === "string"
+      ? D.set(result, key, sectionName(value))
+      : result;
+  });
 }

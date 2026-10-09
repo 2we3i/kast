@@ -1,11 +1,14 @@
 {
-  "name": "Lanjut - Resume ATS Platform",
-  "short_name": "Lanjut",
-  "description": "Build and optimize resumes for applicant tracking systems.",
-  "start_url": "/",
+  "id": "/platform/",
+  "name": "Kast — résumé builder",
+  "short_name": "Kast",
+  "description": "A private résumé builder that runs in your browser and passes ATS.",
+  "start_url": "/platform/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0e8a66",
+  "background_color": "#1E1B4B",
+  "theme_color": "#1E1B4B",
+  "categories": ["productivity", "business"],
   "icons": [
     {
       "src": "/favicon-192x192.png",

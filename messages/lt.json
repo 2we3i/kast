@@ -1,1011 +1,1578 @@
 {
   "meta": {
-    "title": "Lanjut: Free, local-first ATS resume builder",
-    "description": "Lanjut is a free, open-source resume builder that stays entirely in your browser; no account, nothing uploaded. Style it freely; every export is structured to sail through applicant tracking systems."
+    "title": "Kast – nemokamas privatus CV kūrimo įrankis, kurį perskaito ATS",
+    "description": "Kast – nemokamas atvirojo kodo CV kūrimo įrankis, veikiantis tik jūsų naršyklėje. Jokios paskyros, jokio sekimo, niekas neįkeliama. Dešimt šablonų, ATS patikra, PDF importas ir neprivalomas DI asistentas su jūsų raktu."
   },
   "language": {
-    "label": "Language",
+    "label": "Kalba",
     "en": "English",
-    "id": "Indonesia"
+    "lt": "Lietuvių",
+    "ru": "Русский"
   },
   "hero": {
-    "badge": "Free & open source",
-    "srHeading": "Lanjut, ATS Resume builder:",
-    "headingLine1": "Land The Interview,",
-    "headingLine2": "Not The Reject Pile.",
-    "description": "Lanjut is a local-first resume builder that stays entirely in your browser. No account, nothing uploaded. Style it freely, and every export is structured to sail through applicant tracking systems.",
-    "ctaPrimary": "Start building free",
-    "ctaSecondary": "Browse Templates",
+    "badge": "Nemokama, privatu, atviras kodas",
+    "srHeading": "Kast – ATS draugiškų CV kūrimo įrankis:",
+    "headingLine1": "Gaukite pokalbį,",
+    "headingLine2": "o ne atmetimą.",
+    "description": "Kast sukuria CV tiesiog naršyklėje. Jokios paskyros, jokio sekimo, niekas neįkeliama. Apipavidalinkite kaip norite – kiekvienas eksportas išlaiko švarią struktūrą, kurią kandidatų atrankos sistemos perskaito teisingai.",
+    "ctaPrimary": "Pradėti nemokamai",
+    "ctaSecondary": "Peržiūrėti šablonus",
     "stat1Value": "100%",
-    "stat1Label": "Local-first",
-    "stat2Value": "No",
-    "stat2Label": "Accounts",
-    "stat3Value": "5",
-    "stat3Label": "Export formats"
+    "stat1Label": "Jūsų naršyklėje",
+    "stat2Value": "0",
+    "stat2Label": "Paskyrų ir sekiklių",
+    "stat3Value": "7",
+    "stat3Label": "Eksporto formatai"
+  },
+  "features": {
+    "heading": "Viskas, ko reikia ieškant darbo",
+    "subheading": "Vienas įrankis nuo pirmo juodraščio iki versijos, pritaikytos konkrečiam skelbimui.",
+    "atsTitle": "ATS patikra be interneto",
+    "atsBody": "Įvertinimas nuo 0 iki 100 pagal kategorijas su konkrečiais patarimais ir raktažodžių palyginimas su skelbimu. Viskas skaičiuojama jūsų įrenginyje.",
+    "importTitle": "Importuokite seną PDF",
+    "importBody": "Kast perskaito CV.lt, CV-Online, hh.ru ir CV kūrimo įrankių eksportus, pašalina puslapių šiukšles ir leidžia patikrinti kiekvieną abejotiną lauką.",
+    "templatesTitle": "Dešimt šablonų, du režimai",
+    "templatesBody": "Kiekvienas šablonas turi griežtą ATS režimą ir dizaino režimą su akcento spalva, piktogramomis, nuotrauka ir QR kodu.",
+    "languagesTitle": "Lietuvių, anglų, rusų",
+    "languagesBody": "Sąsaja ir kiekvienas CV turi savo kalbą, todėl kiekvienai rinkai galite laikyti atskirą CV.",
+    "aiTitle": "DI su jūsų raktu",
+    "aiBody": "Perrašykite, pritaikykite skelbimui, išverskite ar parenkite motyvacinį laišką su Claude arba Gemini. Asmens duomenys užmaskuojami, o kiekvienas pakeitimas laukia jūsų sprendimo.",
+    "versionsTitle": "Versijos ir skelbimai",
+    "versionsBody": "Laikykite atskirą versiją kiekvienai paraiškai, pasižymėkite, kur išsiuntėte, ir grįžkite prie bet kurios iš 20 paskutinių kopijų.",
+    "offlineTitle": "Veikia be interneto",
+    "offlineBody": "Įdiekite Kast kaip programėlę ir rašykite net lėktuve. Duomenys nepalieka įrenginio, kol patys jų neeksportuojate.",
+    "exportTitle": "Visi reikalingi formatai",
+    "exportBody": "PDF su tikru teksto sluoksniu, Word su tikrais stiliais, paprastas tekstas, JSON, YAML ir Europass XML arba JSON."
   },
   "howItWorks": {
-    "heading": "How it works",
-    "subheading": "The same resume at every stage: what you type, what recruiters see, and what the parser reads back.",
-    "step1Kicker": "01 · Template",
-    "step1Title": "Pick a template",
-    "step1Description": "Start from a template you like. Each one only changes typography, spacing, and accents; the structure underneath stays ATS-safe.",
-    "step2Kicker": "02 · Content",
-    "step2Title": "Type it once",
-    "step2Description": "Fill structured sections: experience, education, skills. Every change lands in your browser's storage and nowhere else.",
-    "step3Kicker": "03 · Export",
-    "step3Title": "Survive the parser",
-    "step3Description": "Download PDF, DOCX, or plain text, and any extractor reads it back in the order you wrote it. That's the whole trick.",
-    "liveCaption": "Live render, same engine as your PDF."
+    "heading": "Kaip tai veikia",
+    "subheading": "Tas pats CV kiekviename etape: ką rašote, ką mato atrankos specialistas ir ką perskaito analizatorius.",
+    "step1Kicker": "01 · Šablonas",
+    "step1Title": "Pasirinkite šabloną",
+    "step1Description": "Pradėkite nuo patinkančio šablono. Šablonai keičia šriftus, tarpus ir akcentus, o struktūra po jais lieka saugi ATS.",
+    "step2Kicker": "02 · Turinys",
+    "step2Title": "Užpildykite vieną kartą",
+    "step2Description": "Pildykite struktūrizuotas dalis: patirtį, išsilavinimą, įgūdžius, kalbas ir kt. Visi pakeitimai saugomi naršyklėje ir niekur kitur.",
+    "step3Kicker": "03 · Eksportas",
+    "step3Title": "Įveikite analizatorių",
+    "step3Description": "Atsisiųskite PDF, DOCX arba tekstą – bet kuris analizatorius jį perskaitys ta tvarka, kuria rašėte.",
+    "liveCaption": "Gyvas atvaizdavimas, tas pats variklis kaip PDF."
   },
   "closure": {
-    "kicker": "04 · Apply",
-    "heading": "Lanjut. Resume. Résumé.",
-    "description": "The name is the pitch: lanjut means continue. Pick a template or start from a blank page; either way it's free, open source, and your resume never leaves your browser.",
-    "ctaPrimary": "Create your resume",
-    "ctaSecondary": "Browse templates"
-  },
-  "desktop": {
-    "kicker": "05 · Desktop",
-    "heading": "Or keep it on your Mac",
-    "description": "The same builder as a native app. Your résumés live on your own machine, and it keeps working with the network off.",
-    "cta": "Download for macOS",
-    "gatekeeper": "Beta, and not yet signed by Apple, so macOS asks you to confirm the first time you open it."
-  },
-  "updater": {
-    "title": "Lanjut {version} is available",
-    "description": "You are up to date otherwise. Installing takes a moment and reopens the app.",
-    "install": "Install",
-    "later": "Not now",
-    "installing": "Downloading the update"
+    "kicker": "04 · Paraiška",
+    "heading": "Naujas darbas prasideda nuo švaraus lapo.",
+    "description": "Pasirinkite šabloną arba pradėkite nuo tuščio puslapio. Kast nemokamas ir atviras, o jūsų CV nepalieka naršyklės.",
+    "ctaPrimary": "Sukurti CV",
+    "ctaSecondary": "Peržiūrėti šablonus"
   },
   "footer": {
-    "ariaLabel": "Footer",
-    "tagline": "Local-first: your resume never leaves your browser.",
-    "startBuilding": "Start building",
-    "templates": "Templates",
-    "github": "GitHub",
-    "support": "Support this project:",
-    "supportAriaLabel": "Donation links",
-    "rights": "© {year} Lanjut. Open source, AGPL-3.0 licensed."
+    "ariaLabel": "Poraštė",
+    "tagline": "Privatumas pagal nutylėjimą: jūsų CV nepalieka naršyklės.",
+    "startBuilding": "Pradėti",
+    "templates": "Šablonai",
+    "about": "Apie",
+    "privacy": "Privatumas",
+    "github": "Šaltinio kodas",
+    "rights": "© {year} Kast. Atvirasis kodas pagal AGPL-3.0 licenciją."
   },
   "nav": {
-    "skipToContent": "Skip to main content",
-    "dashboard": "Dashboard",
-    "templates": "Templates",
-    "createResume": "Create Resume",
-    "openMenu": "Open menu",
-    "menuTitle": "Menu",
-    "menuDescription": "Browse Lanjut and jump into the resume builder.",
-    "display": "Display",
-    "close": "Close"
+    "skipToContent": "Pereiti prie turinio",
+    "dashboard": "Mano CV",
+    "templates": "Šablonai",
+    "createResume": "Sukurti CV",
+    "openMenu": "Atidaryti meniu",
+    "menuTitle": "Meniu",
+    "menuDescription": "Kast skiltys ir perėjimas į CV kūrimo įrankį.",
+    "display": "Išvaizda",
+    "close": "Uždaryti"
   },
   "tour": {
     "controls": {
-      "skip": "Skip",
-      "back": "Back",
-      "next": "Next",
-      "done": "Done"
+      "skip": "Praleisti",
+      "back": "Atgal",
+      "next": "Toliau",
+      "done": "Baigti"
     },
     "library": {
       "welcome": {
-        "title": "Welcome to Lanjut",
-        "content": "A free, local-first resume builder. Everything you write stays in this browser; nothing is ever sent to a server."
+        "title": "Sveiki atvykę į Kast",
+        "content": "Nemokamas CV kūrimo įrankis, kuris viską laiko šioje naršyklėje. Į serverį niekas nesiunčiama, nebent patys nuspręsite naudoti DI asistentą."
       },
       "create": {
-        "title": "Create a resume",
-        "content": "Start a new resume from here. You can keep as many as you like."
+        "title": "Sukurkite CV",
+        "content": "Naują CV pradėkite čia: iš pavyzdžio, nuo tuščio lapo arba iš PDF. Versijų gali būti kiek tik norite."
       },
       "search": {
-        "title": "Find it later",
-        "content": "Search your library by title once it grows."
+        "title": "Raskite vėliau",
+        "content": "Kai CV padaugės, ieškokite jų pagal pavadinimą."
       },
       "nav": {
-        "title": "Get around",
-        "content": "Switch between your dashboard and the template gallery from here."
+        "title": "Naršymas",
+        "content": "Iš čia pereikite prie savo CV, šablonų galerijos ir nustatymų."
       },
       "resumes": {
-        "title": "Your resumes",
-        "content": "Every resume you create shows up here; pick one to jump into the editor."
+        "title": "Jūsų CV",
+        "content": "Čia rodomas kiekvienas CV kartu su skelbimu, kuriam jis skirtas. Pasirinkite bet kurį, kad atidarytumėte redaktorių."
       },
       "replay": {
-        "title": "Replay anytime",
-        "content": "Rerun the guide for whichever page you are on with this button."
+        "title": "Kartokite bet kada",
+        "content": "Šis mygtukas vėl paleidžia dabartinio puslapio gidą."
       }
     },
     "template": {
       "browse": {
-        "title": "Browse templates",
-        "content": "Templates change presentation only: typography, spacing, accents. The structure stays linear so ATS parsers can always read your resume."
+        "title": "Šablonai",
+        "content": "Šablonai keičia tik apipavidalinimą: šriftus, tarpus, akcentus. Struktūra lieka linijinė, todėl ATS visada perskaitys jūsų CV."
       },
       "search": {
-        "title": "Search",
-        "content": "Look up a template by name."
+        "title": "Paieška",
+        "content": "Raskite šabloną pagal pavadinimą."
       },
       "sort": {
-        "title": "Sort",
-        "content": "Order the gallery by name or by newest."
+        "title": "Rikiavimas",
+        "content": "Rikiuokite galeriją pagal pavadinimą arba naujumą."
       }
     },
     "editor": {
       "preview": {
-        "title": "Live preview",
-        "content": "This is your live preview, exactly what gets exported. It updates as you type and saves to this browser automatically."
+        "title": "Gyva peržiūra",
+        "content": "Taip CV atrodys eksportuotas. Peržiūra atsinaujina jums rašant ir automatiškai išsaugoma šioje naršyklėje."
       },
       "sections": {
-        "title": "Editor tab",
-        "content": "Fill in each section here. Drag to reorder them or hide the ones you don't need; the structure stays ATS-parseable underneath."
+        "title": "Turinys",
+        "content": "Čia pildykite dalis. Pridėkite neprivalomų dalių, keiskite jų tvarką arba slėpkite – struktūra lieka perskaitoma ATS."
       },
       "layout": {
-        "title": "Layout tab",
-        "content": "Swap templates from the Layout tab. Each one restyles typography and spacing only, so your content and its reading order never change."
+        "title": "Dizainas",
+        "content": "Keiskite šabloną, perjunkite ATS ir dizaino režimus, pasirinkite akcento spalvą."
       },
       "document": {
-        "title": "Document tab",
-        "content": "Style the whole resume here: font, sizes, spacing, line height, and letter spacing. It's also where you switch language and export or import as PDF, DOCX, JSON, or YAML."
+        "title": "Dokumentas",
+        "content": "Šriftai, dydžiai, tarpai, CV kalba, importas ir kopijavimas JSON ar YAML formatu."
+      },
+      "check": {
+        "title": "ATS patikra",
+        "content": "Įvertinimas nuo 0 iki 100 su konkrečiais patarimais. Įklijuokite skelbimą ir pamatysite, kokių raktažodžių trūksta."
+      },
+      "ai": {
+        "title": "DI asistentas",
+        "content": "Neprivaloma. Pridėkite savo Anthropic arba Gemini raktą, kad galėtumėte perrašyti, pritaikyti, išversti CV ar parengti laišką. Kiekvienas pakeitimas laukia jūsų peržiūros."
+      },
+      "toolbar": {
+        "title": "Versijos ir eksportas",
+        "content": "Šioje juostoje išsaugokite versiją, pažymėkite skelbimą ir atsisiųskite bet kuriuo formatu."
       }
     },
     "editor-sheet": {
       "preview": {
-        "title": "Live preview",
-        "content": "This is your live preview, exactly what gets exported. It updates as you type and saves to this browser automatically."
+        "title": "Gyva peržiūra",
+        "content": "Taip CV atrodys eksportuotas. Peržiūra atsinaujina jums rašant ir automatiškai išsaugoma šioje naršyklėje."
       },
       "edit": {
-        "title": "Open the editor",
-        "content": "Tap Edit anytime to open this panel and make changes."
+        "title": "Atidarykite redaktorių",
+        "content": "Bet kada palieskite „Redaguoti“, kad atidarytumėte šį skydelį ir atliktumėte pakeitimus."
       },
       "sections": {
-        "title": "Editor tab",
-        "content": "Fill in each section here. Drag to reorder them or hide the ones you don't need; the structure stays ATS-parseable underneath."
+        "title": "Turinys",
+        "content": "Čia pildykite dalis. Pridėkite neprivalomų dalių, keiskite jų tvarką arba slėpkite – struktūra lieka perskaitoma ATS."
       },
       "layout": {
-        "title": "Layout tab",
-        "content": "Swap templates from the Layout tab. Each one restyles typography and spacing only, so your content and its reading order never change."
+        "title": "Dizainas",
+        "content": "Keiskite šabloną, perjunkite ATS ir dizaino režimus, pasirinkite akcento spalvą."
       },
       "document": {
-        "title": "Document tab",
-        "content": "Style the whole resume here: font, sizes, spacing, line height, and letter spacing. It's also where you switch language and export or import as PDF, DOCX, JSON, or YAML."
+        "title": "Dokumentas",
+        "content": "Šriftai, dydžiai, tarpai, CV kalba, importas ir kopijavimas JSON ar YAML formatu."
       }
     }
   },
   "platform": {
     "breadcrumb": {
-      "platform": "Dashboard",
-      "editor": "Editor",
-      "browseTemplates": "Browse Templates"
+      "platform": "Mano CV",
+      "editor": "Redaktorius",
+      "browseTemplates": "Šablonai",
+      "settings": "Nustatymai"
     },
     "theme": {
-      "system": "System",
-      "light": "Light",
-      "dark": "Dark",
-      "choose": "Choose theme",
-      "appearance": "Appearance",
-      "chooseAppearance": "Choose Appearance"
+      "system": "Kaip sistemoje",
+      "light": "Šviesi",
+      "dark": "Tamsi",
+      "choose": "Pasirinkti temą",
+      "appearance": "Išvaizda",
+      "chooseAppearance": "Pasirinkti išvaizdą"
     },
     "changelog": {
-      "whatsNew": "What's new",
-      "description": "The latest from Lanjut",
-      "latest": "Latest",
-      "fullChangelog": "Full changelog on GitHub",
+      "whatsNew": "Kas naujo",
+      "description": "Naujausi Kast pakeitimai",
+      "latest": "Naujausia",
+      "fullChangelog": "Visas pakeitimų sąrašas",
       "entries": {
-        "0_19_0": [
+        "1_0_0": [
           {
-            "title": "Your PDF now matches the preview",
-            "description": "PDF downloads are now drawn from the same page you see in the editor, so the fonts, sizes, and spacing in the file match the preview. The text stays selectable for applicant tracking systems."
-          }
-        ],
-        "0_18_0": [
-          {
-            "title": "Add context about a company",
-            "description": "Experience and internship entries now have an optional company context field for briefly explaining an unfamiliar employer. It appears in every preview and export before your achievements."
-          }
-        ],
-        "0_17_1": [
-          {
-            "title": "The Mac app can update itself",
-            "description": "When a new version is out, the Mac app now offers it to you. It looks at most once every few days, and nothing installs until you click."
+            "title": "Kast 1.0",
+            "description": "Naujas vardas, nauja išvaizda ir trys sąsajos kalbos: lietuvių, anglų ir rusų. Kiekvienas CV turi savo kalbą."
           },
           {
-            "title": "Bug fixes",
-            "description": "In the Mac app the sidebar covered the page when the app opened, and the button that hides it did nothing. Both are fixed."
-          }
-        ],
-        "0_16_0": [
-          {
-            "title": "Lanjut on your Mac",
-            "description": "There is now a Mac app. It is the same builder you already use, running on your own machine, and it keeps working with the network off. Your resumes stay on that machine. Download it from the link on the home page. It is a beta and it is not signed by Apple yet, so macOS will ask you to confirm the first time you open it."
+            "title": "Dešimt šablonų su ATS ir dizaino režimais",
+            "description": "Keturi nauji šablonai: „Modernus“, „Elegantiškas“, „Laiko juosta“ ir „Vadovas“. Kiekvienas šablonas turi griežtą ATS režimą ir dizaino režimą su akcento spalva, piktogramomis, nuotrauka ir QR kodu."
           },
           {
-            "title": "A page for feedback",
-            "description": "Bug reports and feature requests now have their own page, so you can send one from anywhere, including from the Mac app. You still do not need a GitHub account."
-          }
-        ],
-        "0_14_0": [
-          {
-            "title": "Add a photo to your header",
-            "description": "You can now put a photo on your resume. It is optional and off by default. Add it in Personal Information, then pick the size, corner roundness, and position. It comes along in PDF and Word exports, and the text of your resume stays fully readable to parsers."
+            "title": "ATS patikra",
+            "description": "Vietinis įvertinimas nuo 0 iki 100 pagal kategorijas su konkrečiais patarimais ir raktažodžių palyginimu su skelbimu."
           },
           {
-            "title": "A fresh new look",
-            "description": "Lanjut has a new logo and a rebuilt landing page. The previews there are rendered by the real templates, so what you see is exactly what you get."
+            "title": "Išmanesnis PDF importas",
+            "description": "Perskaito etikečių stulpelius ir šonines juostas, pašalina puslapių numerius ir portalų poraštes, stažo ir lygio ženklelius išsaugo kaip metaduomenis ir paprašo patikrinti abejotinus laukus."
           },
           {
-            "title": "Support Lanjut",
-            "description": "Lanjut is free and always will be. If it helped you, you can now support development through Saweria or SociaBuzz, right from the sidebar or the footer."
-          }
-        ],
-        "0_13_0": [
-          {
-            "title": "One more link in your header",
-            "description": "A new optional Link field sits next to LinkedIn in Personal Information, for your portfolio, GitHub, or anything else. It shows in the preview and every export, and importing a PDF picks it up too."
-          }
-        ],
-        "0_12_0": [
-          {
-            "title": "Undo and redo",
-            "description": "Change your mind freely: every edit can now be undone and redone, from typing and deleted entries to section order and layout settings. Use the arrows beside the sidebar tabs or Ctrl/Cmd+Z, and each text field keeps its own history while you write."
+            "title": "DI asistentas su jūsų raktu",
+            "description": "Claude arba Gemini perrašo, pritaiko, išverčia, patikrina ir rašo motyvacinius laiškus. Asmens duomenys užmaskuojami, be sutikimo niekas nesiunčiama, o kiekvienas pakeitimas laukia jūsų peržiūros."
           },
           {
-            "title": "One section at a time",
-            "description": "The editor list now keeps a single section open, so the form you are working in stays in view instead of pushing the others off screen."
+            "title": "Naujos dalys",
+            "description": "Savanorystė, kursai, publikacijos, rekomendacijos, pomėgiai, vairuotojo pažymėjimas, atlyginimo lūkesčiai ir galimybė pradėti dirbti. Kalboms dabar atskirai vertinamas kalbėjimas, supratimas ir rašymas."
           },
           {
-            "title": "Bug fixes",
-            "description": "Fixed three reported bugs: links in your exports now show as clickable, a stray dash no longer appears in the PDF contact line, and locations land in the right field when you import a PDF."
-          }
-        ],
-        "0_11_0": [
-          {
-            "title": "Company location",
-            "description": "Experience and internship entries now carry a location, shown next to the employer in the preview, the PDF, and every other export. Education locations render too, instead of being kept out of sight."
-          }
-        ],
-        "0_10_0": [
-          {
-            "title": "Feedback without a GitHub account",
-            "description": "Report a bug or request a feature right from the app; we file the GitHub issue for you under the name you provide, guarded by a quick verification."
+            "title": "Versijos, skelbimai ir laiškai",
+            "description": "Iki 20 kopijų kiekvienam CV su atkūrimu, skelbimo žymė su būsena ir motyvacinis laiškas CV dizainu."
           },
           {
-            "title": "JSON and YAML export and import",
-            "description": "Copy or download your resume as JSON or YAML, and import either back losslessly. Rich text travels as simple markdown."
-          },
-          {
-            "title": "Hide sections",
-            "description": "Every section, Summary included, now has an eye toggle in the editor list. Hidden sections keep their content but drop out of the preview and every export until you show them again."
-          },
-          {
-            "title": "Hide contact icons",
-            "description": "A new toggle in the Document tab hides the small icons next to your contact details, for a plainer header in the preview and PDF. Your contact text always stays."
-          },
-          {
-            "title": "Section spacing",
-            "description": "A slider in the Document tab adjusts the room above every section, in the preview and the PDF alike. Open it up for an airy layout, or tighten it below each template's default until sections sit flush."
-          },
-          {
-            "title": "Choose your font",
-            "description": "Pick from fifteen resume-safe fonts, grouped as sans, serif, and mono, and the whole document follows in the preview and the PDF. Every template keeps its own default until you choose, and the preview now renders the exact same font files the PDF embeds."
-          },
-          {
-            "title": "Line height and letter spacing",
-            "description": "Two more sliders in the Document tab, resting at each template's real values: tighten or loosen line height and letter spacing either way, both bounded to the range where PDF text still extracts cleanly, so your styling never costs you ATS parsing."
-          },
-          {
-            "title": "Font size controls",
-            "description": "Resize your name, section headings, and body text independently from the Document tab. Each slider scales its group on top of the template's proportions, so a bigger name never flattens the rest, and the preview and PDF stay in step."
-          }
-        ],
-        "0_9_0": [
-          {
-            "title": "Import from PDF",
-            "description": "Start a new resume from an existing PDF. Lanjut reads it in your browser and fills the sections for you to tidy up."
-          },
-          {
-            "title": "Custom sections",
-            "description": "Add your own sections beyond the built-in set, either as a rich text block or a list of entries."
-          },
-          {
-            "title": "Reorder certifications",
-            "description": "Drag certifications into the order you want, the same way skills and languages already work."
-          },
-          {
-            "title": "Hide proficiency",
-            "description": "Turn the proficiency level off on skills and languages when you would rather just list them, with a toggle in each section."
-          },
-          {
-            "title": "Language columns",
-            "description": "Show your languages in one column or two, matching the layout control already in Skills."
-          },
-          {
-            "title": "Undo a deletion",
-            "description": "Deleting a resume now waits ten seconds and shows an Undo, so an accidental delete is easy to take back."
-          },
-          {
-            "title": "Duplicate a resume",
-            "description": "Copy any resume from its menu to branch a new version without starting over."
-          }
-        ],
-        "0_8_0": [
-          {
-            "title": "Skills column layout",
-            "description": "A toggle in the Skills section switches between one and two columns, and your choice carries through to the preview and every export."
-          },
-          {
-            "title": "Newest entries first",
-            "description": "The editor lists your entries newest first, matching the order they appear in the preview, so the forms and your resume always line up."
-          },
-          {
-            "title": "New landing navbar",
-            "description": "The landing page has a new navigation bar, with a menu that opens cleanly on mobile."
-          },
-          {
-            "title": "Page load progress",
-            "description": "Moving between pages shows a slim progress bar at the top, so you get instant feedback while a page loads."
-          }
-        ],
-        "0_7_0": [
-          {
-            "title": "Internship section",
-            "description": "List internships as their own entries, separate from full-time roles, with the same fields as Experience."
-          },
-          {
-            "title": "Projects section",
-            "description": "Give side projects, open-source work, and anything you have shipped their own space, each with a name, link, dates, and description."
-          },
-          {
-            "title": "Blank resume preview",
-            "description": "A blank resume shows a preview placeholder in your library instead of an empty white card, so a new resume looks intentional until you start writing."
-          }
-        ],
-        "0_6_0": [
-          {
-            "title": "Bahasa Indonesia",
-            "description": "Switch the entire interface between English and Indonesian anytime with the language toggle in the navbar."
-          },
-          {
-            "title": "Per-resume language",
-            "description": "Pick English or Indonesian per document, and the section headings and dates in your PDF, DOCX, and TXT exports follow that choice."
-          },
-          {
-            "title": "Reorder skills and languages",
-            "description": "Grab the handle next to an entry and drag it into place, or use the keyboard to move it. The new order flows straight into the preview and every export."
-          },
-          {
-            "title": "Empty section prompts",
-            "description": "Instead of a lone button, each section without entries shows a short prompt for what to add."
-          },
-          {
-            "title": "Refreshed hero gradient",
-            "description": "The landing page hero heading has a new gradient, tuned for both light and dark mode."
-          }
-        ],
-        "0_5_0": [
-          {
-            "title": "Switch templates in the editor",
-            "description": "The new Layout tab shows your resume rendered in every template, and one click applies your pick."
-          },
-          {
-            "title": "Start from a blank resume",
-            "description": "Untick “Pre-fill with example content” in the create dialog to begin with a blank document instead of the example resume."
-          },
-          {
-            "title": "Emptyable sections",
-            "description": "Every entry has a delete button, and removing the last one drops the section from the preview until you add another."
-          }
-        ],
-        "0_4_0": [
-          {
-            "title": "Organization section",
-            "description": "Showcase volunteer, student, and community roles with dates and highlights, just like work experience. It shows up in every template and export, and existing resumes get it automatically."
-          },
-          {
-            "title": "Safer app updates",
-            "description": "A backup copy is kept on your device before any data-format upgrade, and a resume the app cannot read yet is flagged with a notice instead of disappearing."
-          },
-          {
-            "title": "Guided tour",
-            "description": "A guided tour walks you through the dashboard, the templates, and the editor on your first visit."
-          },
-          {
-            "title": "Landing page walkthrough",
-            "description": "The landing page walks through how Lanjut works, ending with a one-click way to start a new resume."
-          },
-          {
-            "title": "Report bugs and requests",
-            "description": "Report a bug or feature request from the sidebar; we prefill the GitHub issue for you."
-          },
-          {
-            "title": "Mobile drawers",
-            "description": "On your phone, dialogs open as drawers that are easier to reach and swipe away."
-          }
-        ],
-        "0_3_0": [
-          {
-            "title": "Template browser",
-            "description": "Browse templates on their own page, with search and sorting."
-          },
-          {
-            "title": "Five new templates",
-            "description": "Ketat, Luasa, Tebal, Klasik, and Ketik."
-          },
-          {
-            "title": "Live thumbnails",
-            "description": "Template and resume cards show a live thumbnail of your actual document."
-          },
-          {
-            "title": "Sidebar and quick actions",
-            "description": "The sidebar highlights where you are, and each resume gets a quick actions menu."
-          }
-        ],
-        "0_2_0": [
-          {
-            "title": "Export your resume",
-            "description": "Save your resume as PDF, DOCX, or plain text."
-          },
-          {
-            "title": "Rich text in the preview",
-            "description": "Bold, italics, links, and lists show up in the live preview."
-          },
-          {
-            "title": "Full editor sections",
-            "description": "The editor covers summary, experience, education, skills, certifications, and languages."
+            "title": "Europass, atsarginės kopijos ir darbas be interneto",
+            "description": "Eksportas į Europass XML ar JSON, visų duomenų atsarginė kopija ir atkūrimas vienu failu, Kast diegimas darbui be interneto."
           }
         ]
       }
     },
     "download": {
-      "trigger": "Resume",
-      "srDownload": "Download",
-      "title": "Download resume",
-      "description": "Pick a format and name your file."
+      "trigger": "CV",
+      "srDownload": "Atsisiųsti",
+      "title": "Atsisiųsti CV",
+      "description": "Pasirinkite formatą ir pavadinkite failą."
     },
     "menu": {
-      "label": "Menu",
-      "downloadResume": "Download Resume"
+      "label": "Meniu",
+      "downloadResume": "Atsisiųsti CV"
     },
     "sidebar": {
-      "home": "Lanjut - Home Page",
-      "logoAlt": "Lanjut Logo",
-      "localFirst": "Local-First",
-      "tagline": "ATS Resume Builder",
-      "platform": "Platform",
-      "dashboard": "Dashboard",
-      "browseTemplate": "Browse Template",
-      "other": "Other",
-      "support": "Support",
-      "guide": "Guide",
-      "reportBug": "Report a bug",
-      "featureRequest": "Feature request",
-      "myResume": "My Resume",
-      "createResume": "Create Resume",
-      "noResume": "No resume yet",
-      "noResumeDescription": "When you add resume, they will be visible here.",
-      "itemMenu": "Menu",
-      "modify": "Modify <b>{title}</b>",
-      "rename": "Rename",
-      "duplicate": "Duplicate",
-      "copyOf": "Copy of {title}",
-      "delete": "Delete"
+      "home": "Kast pagrindinis puslapis",
+      "logoAlt": "Kast logotipas",
+      "localFirst": "Privatu",
+      "tagline": "CV kūrimo įrankis",
+      "platform": "Platforma",
+      "dashboard": "Mano CV",
+      "browseTemplate": "Šablonai",
+      "other": "Kita",
+      "support": "Pagalba",
+      "guide": "Gidas",
+      "settings": "Nustatymai",
+      "about": "Apie Kast",
+      "myResume": "Mano CV",
+      "createResume": "Sukurti CV",
+      "noResume": "CV dar nėra",
+      "noResumeDescription": "Sukurti CV bus rodomi čia.",
+      "itemMenu": "Meniu",
+      "modify": "Keisti <b>{title}</b>",
+      "rename": "Pervadinti",
+      "duplicate": "Dubliuoti",
+      "copyOf": "{title} kopija",
+      "delete": "Ištrinti"
     },
     "toolbar": {
-      "searchResume": "Search your resume",
-      "resume": "Resume",
-      "searchTemplates": "Search templates",
-      "sortNameAsc": "Name (A–Z)",
-      "sortNameDesc": "Name (Z–A)",
-      "sortNewest": "Newest"
+      "searchResume": "Ieškoti CV",
+      "resume": "CV",
+      "searchTemplates": "Ieškoti šablonų",
+      "sortNameAsc": "Pavadinimas (A–Ž)",
+      "sortNameDesc": "Pavadinimas (Ž–A)",
+      "sortNewest": "Naujausi"
     },
     "emptyState": {
-      "title": "No resumes yet",
-      "description": "Nothing is saved on this device yet. Start from a template, or create a blank resume.",
-      "browseTemplates": "Browse templates",
-      "newResume": "New resume"
+      "title": "CV dar nėra",
+      "description": "Šiame įrenginyje dar niekas neišsaugota. Pradėkite nuo šablono, importuokite PDF arba sukurkite tuščią CV.",
+      "browseTemplates": "Peržiūrėti šablonus",
+      "newResume": "Naujas CV"
     },
     "unreadable": {
-      "title": "Some resumes need a newer version of the app",
-      "description": "{count, plural, one {# resume was} other {# resumes were}} saved by a newer version of Lanjut than the one this tab is running. They are still stored safely on this device. Refresh the page to update the app and see them again."
+      "title": "Kai kuriems CV reikia naujesnės Kast versijos",
+      "description": "{count, plural, one {# CV išsaugotas} few {# CV išsaugoti} other {# CV išsaugota}} naujesne Kast versija nei atidaryta šiame skirtuke. Jie vis dar saugiai laikomi šiame įrenginyje. Atnaujinkite puslapį, kad vėl juos matytumėte."
     },
     "grid": {
-      "emptyTitle": "No resumes match",
-      "create": "Create “{query}”",
-      "errorTitle": "Couldn't load your resumes",
-      "errorDescription": "Nothing was deleted. The library just failed to load from this browser's storage. Refresh the page to try again.",
-      "open": "Open {title}",
-      "emptyDocument": "Blank resume, nothing added yet",
-      "edited": "Edited",
-      "menu": "Menu",
-      "rename": "Rename",
-      "duplicate": "Duplicate",
-      "copyOf": "Copy of {title}",
-      "download": "Download",
-      "delete": "Delete",
-      "newResume": "New resume"
+      "emptyTitle": "Nieko nerasta",
+      "create": "Sukurti „{query}“",
+      "errorTitle": "Nepavyko įkelti CV",
+      "errorDescription": "Niekas neištrinta – tiesiog biblioteka neįsikėlė iš naršyklės saugyklos. Atnaujinkite puslapį ir bandykite dar kartą.",
+      "open": "Atidaryti {title}",
+      "emptyDocument": "Tuščias CV, dar nieko nepridėta",
+      "edited": "Redaguota",
+      "menu": "Meniu",
+      "rename": "Pervadinti",
+      "duplicate": "Dubliuoti",
+      "copyOf": "{title} kopija",
+      "download": "Atsisiųsti",
+      "delete": "Ištrinti",
+      "newResume": "Naujas CV",
+      "targetAt": "{position}, {company}",
+      "filterAll": "Visi",
+      "filterLabel": "Filtruoti pagal būseną"
     },
     "templates": {
-      "noMatch": "No templates match “{query}”.",
-      "use": "Use {name}",
-      "useTemplate": "Use {name} template",
+      "noMatch": "Pagal užklausą „{query}“ šablonų nerasta.",
+      "use": "Naudoti {name}",
+      "useTemplate": "Naudoti šabloną {name}",
       "descriptions": {
-        "awal": "A clean, single-column ATS-safe starter. Linear reading order, no columns or tables, with room for every section.",
-        "ketat": "A compact serif classic: centered ruled section headings, right-aligned contact column, and italic dates. Dense without feeling cramped.",
-        "luasa": "An airy minimalist layout: letterspaced headings, a single contact line, and slim accent bars. Generous whitespace throughout.",
-        "tebal": "A bold, modern statement: oversized name, heavy uppercase headings over thick rules, and strong typographic hierarchy.",
-        "klasik": "A traditional all-serif CV: centered name and contacts, quiet centered headings, and italic dates. Timeless and formal.",
-        "ketik": "A typewriter-flavored technical look: monospace name, headings, and dates over a clean sans body. Built for developers."
+        "standard": "Švarus vieno stulpelio šablonas. Linijinė skaitymo tvarka, be stulpelių ir lentelių, vietos bet kuriai daliai.",
+        "compact": "Kompaktiška klasika su serifais: centruotos antraštės su linijomis, kontaktai dešinėje, datos kursyvu. Tankiai, bet ne ankštai.",
+        "airy": "Erdvus minimalizmas: išretintos antraštės, kontaktai vienoje eilutėje ir plonos akcento juostos.",
+        "bold": "Drąsus pareiškimas: didelis vardas, ryškios didžiosiomis raidėmis rašytos antraštės virš storų linijų ir aiški hierarchija.",
+        "classic": "Tradicinis CV su serifais: centruotas vardas ir kontaktai, ramios antraštės, datos kursyvu.",
+        "mono": "Techninis rašomosios mašinėlės stilius: lygiaplotis vardas, antraštės ir datos šalia švaraus pagrindinio teksto.",
+        "modern": "Užtikrintas modernus maketas: atspalvinta juosta su vardu, akcentinės antraštės ir tvarkingos datos dešinėje.",
+        "elegant": "Rafinuotas šablonas su serifais: antraštės kapitėlėmis, plonos linijos ir platūs paraščių tarpai.",
+        "timeline": "Dizaino režime patirtis išdėstyta vertikalioje laiko juostoje, ATS režime – paprastas sąrašas su datomis.",
+        "executive": "Maketas vadovams: stiprus vardo blokas, išryškinta santrauka ir tankūs, lengvai peržvelgiami įrašai."
       }
     }
   },
   "forms": {
     "common": {
-      "cancel": "Cancel",
-      "save": "Save",
-      "delete": "Delete",
-      "undo": "Undo",
-      "download": "Download",
-      "openIssue": "Open GitHub issue"
+      "cancel": "Atšaukti",
+      "save": "Išsaugoti",
+      "delete": "Ištrinti",
+      "undo": "Atšaukti veiksmą",
+      "download": "Atsisiųsti",
+      "close": "Uždaryti"
     },
     "validation": {
-      "titleMin": "Use at least {min} characters.",
-      "titleMax": "Keep it to {max} characters or fewer.",
-      "fileNameRequired": "Name the file before downloading.",
-      "bugWhatHappened": "Describe what went wrong.",
-      "featureProblem": "Describe the problem this would solve.",
-      "sectionTitleRequired": "Enter a section name.",
-      "reporterNameRequired": "Tell us your name first.",
-      "verificationRequired": "Finish the quick verification first."
-    },
-    "direct": {
-      "name": "Your name",
-      "namePlaceholder": "e.g. Sinta",
-      "nameDescription": "Shown on the public GitHub issue so we know who it's from.",
-      "send": "Send it for me",
-      "githubAlt": "Have a GitHub account? Open a prefilled issue instead.",
-      "sentToast": "Sent! Thank you; we filed the GitHub issue for you.",
-      "errorToast": "Couldn't send it. Try again, or use the GitHub button."
+      "titleMin": "Bent {min} simboliai.",
+      "titleMax": "Ne daugiau kaip {max} simbolių.",
+      "fileNameRequired": "Prieš atsisiųsdami pavadinkite failą.",
+      "sectionTitleRequired": "Įveskite dalies pavadinimą."
     },
     "create": {
-      "title": "Create a new resume",
-      "description": "Name it, choose where to start, and pick a template.",
-      "label": "Resume name",
-      "placeholder": "Software Engineer",
-      "template": "Template",
-      "sourceLabel": "Start from",
-      "sourceSample": "Sample",
-      "sourceEmpty": "Blank",
-      "sourceImport": "Import a file",
-      "submit": "Create resume"
+      "title": "Naujas CV",
+      "description": "Pavadinkite jį, pasirinkite, nuo ko pradėti, ir parinkite šabloną.",
+      "label": "CV pavadinimas",
+      "placeholder": "Programuotojas",
+      "template": "Šablonas",
+      "sourceLabel": "Pradėti nuo",
+      "sourceSample": "Pavyzdys",
+      "sourceEmpty": "Tuščias",
+      "sourceImport": "Importuoti failą",
+      "submit": "Sukurti CV"
     },
     "rename": {
-      "title": "Rename",
-      "description": "You can rename this resume label to whatever you want. If the value of the label is same as before, it won't be saved.",
-      "label": "Resume label",
-      "placeholder": "e.g: Software Engineer",
-      "fieldDescription": "At least 3 characters or up. Max 100 characters."
+      "title": "Pervadinti",
+      "description": "Duokite CV atpažįstamą pavadinimą. Jei pavadinimas nepasikeitė, niekas neišsaugoma.",
+      "label": "CV pavadinimas",
+      "placeholder": "pvz., Programuotojas",
+      "fieldDescription": "Nuo 3 iki 100 simbolių."
     },
     "delete": {
-      "title": "Delete <b>{title}</b>?",
-      "description": "This will delete <b>{title}</b>. You'll have a few seconds to undo. Are you sure?",
-      "toast": "Deleting \"{title}\"..."
+      "title": "Ištrinti <b>{title}</b>?",
+      "description": "Bus ištrintas <b>{title}</b> ir visos jo išsaugotos versijos. Turėsite kelias sekundes atšaukti. Tęsti?",
+      "toast": "Trinama „{title}“…"
     },
     "download": {
-      "title": "Download {title}",
-      "description": "Pick a format and name your file. The export is generated in your browser.",
-      "missing": "This resume could not be loaded from this browser's storage.",
-      "drawerTitle": "Download resume",
-      "drawerDescription": "Pick a format and name your file.",
-      "format": "Format",
-      "fileName": "File name",
-      "fileNamePlaceholder": "Senior Frontend Engineer"
-    },
-    "bug": {
-      "title": "Report a bug",
-      "description": "Send it right here and we'll file the GitHub issue for you; no account needed. If you have a GitHub account, you can open a prefilled issue yourself instead.",
-      "descriptionGitHubOnly": "This opens a prefilled GitHub issue for you to review and submit; a GitHub account is required, and your browser details are filled in for you.",
-      "whatHappened": "What happened?",
-      "whatHappenedPlaceholder": "The editor preview goes blank when...",
-      "whatHappenedDescription": "Include the steps to reproduce it; a numbered list works great.",
-      "area": "Where does the bug show up?",
-      "areaPlaceholder": "Area"
-    },
-    "feature": {
-      "title": "Request a feature",
-      "description": "Send it right here and we'll file the GitHub issue for you; no account needed. Note that resume structure (tables, columns, images) is out of scope by design; presentation is fair game.",
-      "descriptionGitHubOnly": "This opens a prefilled GitHub issue for you to review and submit; a GitHub account is required. Note that resume structure (tables, columns, images) is out of scope by design; presentation is fair game.",
-      "problem": "What problem does this solve?",
-      "problemPlaceholder": "When I tailor my resume for different roles, I have to...",
-      "problemDescription": "Describe the situation where you needed this, rather than the solution itself.",
-      "layer": "Which layer does this touch?",
-      "layerPlaceholder": "Layer"
+      "title": "Atsisiųsti {title}",
+      "description": "Pasirinkite formatą ir pavadinkite failą. Eksportas sukuriamas jūsų naršyklėje.",
+      "missing": "Nepavyko įkelti šio CV iš naršyklės saugyklos.",
+      "drawerTitle": "Atsisiųsti CV",
+      "drawerDescription": "Pasirinkite formatą ir pavadinkite failą.",
+      "format": "Formatas",
+      "fileName": "Failo pavadinimas",
+      "fileNamePlaceholder": "Vyresnysis front-end programuotojas"
     },
     "import": {
-      "dropPrompt": "Drop a PDF, JSON, or YAML file here, or click to browse",
-      "hint": "Your file is read on your device and never uploaded.",
-      "parsing": "Reading your resume…",
-      "parsed": "Ready to import",
-      "remove": "Remove file",
-      "errorUnsupported": "Only PDF, JSON, and YAML files are supported.",
-      "errorTooLarge": "That file is too large. The limit is 10 MB.",
-      "errorEmpty": "This PDF has no readable text. It looks scanned; try exporting a text-based PDF.",
-      "errorEncrypted": "This PDF is password-protected. Remove the password and try again.",
-      "errorGeneric": "We couldn't read this PDF. Try a different file.",
-      "disclaimer": "Importing is best-effort and can miss or misplace details. If something comes out wrong, it would really help if you",
-      "reportIssue": "report an issue",
-      "errorInvalidData": "This file isn't a valid resume export."
+      "dropPrompt": "Nuvilkite čia PDF, JSON ar YAML failą arba spustelėkite ir pasirinkite",
+      "hint": "Failas perskaitomas šiame įrenginyje ir niekur neįkeliamas. PDF – iki 10 MB ir 10 puslapių.",
+      "parsing": "Skaitome CV…",
+      "reviewing": "Patikrinkite importą",
+      "parsed": "Paruošta importuoti",
+      "remove": "Pašalinti failą",
+      "errorUnsupported": "Palaikomi tik PDF, JSON ir YAML failai.",
+      "errorTooLarge": "Failas per didelis. Riba – 10 MB.",
+      "errorTooManyPages": "PDF turi daugiau nei 10 puslapių. Eksportuokite trumpesnę versiją ir bandykite dar kartą.",
+      "errorEmpty": "Šiame PDF nėra teksto sluoksnio – panašu į skenuotą dokumentą. Kast neatpažįsta teksto vaizduose (OCR). Eksportuokite tekstinį PDF iš originalaus dokumento arba įveskite CV ranka.",
+      "errorEncrypted": "PDF apsaugotas slaptažodžiu. Pašalinkite slaptažodį ir bandykite dar kartą.",
+      "errorGeneric": "Nepavyko perskaityti šio PDF. Pabandykite kitą failą.",
+      "disclaimer": "Importas veikia pagal galimybes. Prieš išsaugodami patikrinsite abejotinus laukus, o rezultatą visada galėsite redaguoti.",
+      "errorInvalidData": "Šis failas nėra CV eksportas."
     }
-  },
-  "feedback": {
-    "metaTitle": "Send feedback",
-    "metaDescription": "Report a bug or request a feature. We file the GitHub issue for you, so no account is needed.",
-    "kindLabel": "Choose bug report or feature request",
-    "sentTitle": "Thank you",
-    "sentBody": "We filed the GitHub issue for you. You can close this window.",
-    "sendAnother": "Send another",
-    "offlineToast": "You need to be online to send feedback. Check your connection and try again."
   },
   "editor": {
     "common": {
-      "add": "Add"
+      "add": "Pridėti"
     },
     "layout": {
-      "documentLanguage": "Document language",
-      "documentIcons": "Show contact icons",
-      "sectionSpacing": "Section spacing",
-      "documentFont": "Font",
-      "templateDefault": "Default",
-      "fontSans": "Sans",
-      "fontSerif": "Serif",
-      "fontMono": "Mono",
-      "lineHeight": "Line height",
-      "letterSpacing": "Letter spacing",
-      "fontSizeName": "Name size",
-      "fontSizeTitle": "Heading size",
-      "fontSizeBody": "Body size"
+      "documentLanguage": "CV kalba",
+      "documentLanguageHint": "Nuo jos priklauso dalių antraštės, datos ir lygiai. Ji nesusijusi su sąsajos kalba.",
+      "documentIcons": "Rodyti kontaktų piktogramas",
+      "sectionSpacing": "Tarpai tarp dalių",
+      "documentFont": "Šriftas",
+      "templateDefault": "Numatytasis",
+      "fontSans": "Be serifų",
+      "fontSerif": "Su serifais",
+      "fontMono": "Lygiapločiai",
+      "lineHeight": "Eilučių aukštis",
+      "letterSpacing": "Tarpai tarp raidžių",
+      "fontSizeName": "Vardo dydis",
+      "fontSizeTitle": "Antraščių dydis",
+      "fontSizeBody": "Teksto dydis"
     },
     "chrome": {
-      "edit": "Edit",
-      "editorTitle": "Editor",
-      "editorDescription": "Resume Editor",
-      "tabEditor": "Editor",
-      "tabLayout": "Layout",
-      "notFound": "Resume not found",
-      "didYouMean": "did you mean:",
-      "notExist": "This resume doesn't exist in this browser's storage.",
-      "headTo": "or head to",
-      "dashboard": "Dashboard",
-      "or": "or",
-      "browseTemplates": "Browse Templates",
-      "showSection": "Show section",
-      "hideSection": "Hide section",
-      "reorderSection": "Reorder section",
-      "resetOrder": "Reset section order",
-      "sectionsHeading": "Sections",
-      "addSection": "Custom Section",
-      "tabDocument": "Document",
-      "undo": "Undo",
-      "redo": "Redo"
+      "edit": "Redaguoti",
+      "editorTitle": "Redaktorius",
+      "editorDescription": "CV redaktorius",
+      "tabEditor": "Turinys",
+      "tabLayout": "Dizainas",
+      "tabDocument": "Stilius",
+      "tabCheck": "ATS",
+      "tabAi": "DI",
+      "tabLetter": "Laiškas",
+      "notFound": "CV nerastas",
+      "didYouMean": "galbūt turėjote omenyje:",
+      "notExist": "Tokio CV šios naršyklės saugykloje nėra.",
+      "headTo": "arba eikite į",
+      "dashboard": "Mano CV",
+      "or": "arba",
+      "browseTemplates": "Šablonus",
+      "showSection": "Rodyti dalį",
+      "hideSection": "Slėpti dalį",
+      "reorderSection": "Perkelti dalį",
+      "resetOrder": "Atkurti dalių tvarką",
+      "sectionsHeading": "Dalys",
+      "addSection": "Pridėti dalį",
+      "addSectionLabel": "Pridėti neprivalomą dalį",
+      "addCustomSection": "Sava dalis…",
+      "undo": "Atšaukti",
+      "redo": "Pakartoti"
     },
     "dateRange": {
-      "startDate": "Start Date",
-      "startPlaceholder": "Start date",
-      "endDate": "End Date",
-      "endPlaceholder": "End date",
-      "present": "Present"
+      "startDate": "Pradžia",
+      "startPlaceholder": "Pradžios data",
+      "endDate": "Pabaiga",
+      "endPlaceholder": "Pabaigos data",
+      "present": "Iki dabar"
+    },
+    "levels": {
+      "Beginner": "Pradedantysis",
+      "Intermediate": "Vidutinis",
+      "Advanced": "Pažengęs",
+      "Expert": "Ekspertas",
+      "Native": "Gimtoji",
+      "Fluent": "Laisvai",
+      "Professional": "Profesinis",
+      "Conversational": "Pokalbio lygis",
+      "Basic": "Pagrindai",
+      "A1": "A1 · Pradedantysis",
+      "A2": "A2 · Elementarus",
+      "B1": "B1 · Vidutinis",
+      "B2": "B2 · Aukštesnysis vidutinis",
+      "C1": "C1 · Pažengęs",
+      "C2": "C2 · Puikus",
+      "native": "Gimtoji"
     },
     "personal": {
-      "accordionTitle": "Personal Information",
-      "personalInfo": "Personal Information",
-      "personalInfoDesc": "So HR can identify you",
-      "firstName": "First name",
-      "firstNamePlaceholder": "John",
-      "lastName": "Last name",
-      "lastNamePlaceholder": "Doe",
-      "jobTitle": "Job Title",
-      "jobTitlePlaceholder": "UX Engineer",
-      "contactInfo": "Contact Information",
-      "contactInfoDesc": "So HR can reach you easily",
-      "email": "Email address",
-      "emailPlaceholder": "john@acme.inc",
-      "phone": "Phone Number",
-      "phonePlaceholder": "+62812345678",
-      "website": "Website",
-      "websitePlaceholder": "rimzzlabs.com",
+      "accordionTitle": "Asmeninė informacija",
+      "personalInfo": "Asmeninė informacija",
+      "personalInfoDesc": "Kad atrankos specialistas žinotų, kas jūs",
+      "firstName": "Vardas",
+      "firstNamePlaceholder": "Jonas",
+      "lastName": "Pavardė",
+      "lastNamePlaceholder": "Petraitis",
+      "jobTitle": "Pareigos",
+      "jobTitlePlaceholder": "Produkto dizaineris",
+      "birthDate": "Gimimo data",
+      "birthDatePlaceholder": "1994-05-12",
+      "birthDateDesc": "Neprivaloma. Vienose šalyse jos tikimasi, kitose nerekomenduojama – jei abejojate, palikite tuščią.",
+      "contactInfo": "Kontaktai",
+      "contactInfoDesc": "Kad su jumis būtų lengva susisiekti",
+      "email": "El. paštas",
+      "emailPlaceholder": "jonas@example.com",
+      "phone": "Telefonas",
+      "phonePlaceholder": "+370 600 00000",
+      "website": "Svetainė",
+      "websitePlaceholder": "example.com",
       "linkedin": "LinkedIn",
-      "linkedinPlaceholder": "johndoe",
-      "link": "Link",
-      "linkPlaceholder": "github.com/johndoe",
-      "location": "Location",
-      "locationDesc": "Where are you from?",
-      "city": "City",
-      "cityPlaceholder": "Pandeglang",
-      "province": "Province",
-      "provincePlaceholder": "Banten",
-      "country": "Country",
-      "countryPlaceholder": "Indonesia",
-      "photo": "Photo",
-      "photoAdd": "Add photo",
-      "photoReplace": "Replace",
-      "photoRemove": "Remove",
-      "photoHint": "Optional. Common for applications in Indonesia; many ATS and US employers ignore or discourage photos. The text of your resume always stays fully readable to parsers.",
-      "photoError": "That file could not be read as an image.",
-      "photoSize": "Photo size",
-      "photoRadius": "Corner radius",
-      "photoAlign": "Position",
-      "photoAlignTop": "Top",
-      "photoAlignCenter": "Center",
-      "photoAlignBottom": "Bottom"
+      "linkedinPlaceholder": "jonaspetraitis",
+      "link": "Nuoroda",
+      "linkPlaceholder": "github.com/jonas",
+      "location": "Vieta",
+      "locationDesc": "Kur gyvenate?",
+      "city": "Miestas",
+      "cityPlaceholder": "Vilnius",
+      "province": "Regionas",
+      "provincePlaceholder": "Vilniaus apskritis",
+      "country": "Šalis",
+      "countryPlaceholder": "Lietuva",
+      "photo": "Nuotrauka",
+      "photoAdd": "Pridėti nuotrauką",
+      "photoReplace": "Pakeisti",
+      "photoRemove": "Pašalinti",
+      "photoCrop": "Apkirpti",
+      "photoHint": "Neprivaloma ir rodoma tik dizaino režime. Lietuvoje ir daugelyje Europos šalių nuotrauka įprasta; daug ATS ir JAV darbdavių ją ignoruoja arba nerekomenduoja. Nuotrauka suspaudžiama ir nekeičia teksto, kurį skaito analizatoriai.",
+      "photoError": "Nepavyko perskaityti failo kaip paveikslėlio.",
+      "photoSize": "Nuotraukos dydis",
+      "photoRadius": "Kampų apvalinimas",
+      "photoAlign": "Padėtis",
+      "photoAlignTop": "Viršuje",
+      "photoAlignCenter": "Centre",
+      "photoAlignBottom": "Apačioje",
+      "photoAtsNote": "ATS režime nuotrauka paslėpta. Kad ją parodytumėte, skirtuke „Dizainas“ įjunkite dizaino režimą.",
+      "cropTitle": "Nuotraukos apkirpimas",
+      "cropDescription": "Vilkite, kad pastumtumėte, o mastelį keiskite slankikliu arba pelės ratuku. Nuotrauka išsaugoma kaip mažas kvadratinis JPEG.",
+      "cropZoom": "Mastelis",
+      "cropApply": "Naudoti nuotrauką",
+      "cropCancel": "Atšaukti",
+      "cropReset": "Atkurti"
     },
     "summary": {
-      "accordionTitle": "Professional Summary",
-      "label": "Professional Summary",
-      "placeholder": "I'm a passionate UX engineer. Creating visually engaging..."
+      "accordionTitle": "Apie mane",
+      "label": "Apie mane",
+      "placeholder": "Produkto dizaineris, šešerius metus dirbantis finansų technologijų srityje. Tyrimus paverčiu sąsajomis, kurios…"
     },
     "experience": {
-      "accordionTitle": "Professional Experience",
-      "legend": "Professional Experience",
-      "legendDesc": "Describe your past experience",
-      "add": "Professional Experience",
-      "emptyTitle": "No experience yet",
-      "emptyDescription": "Add your roles to build out your work history.",
-      "itemLegend": "Experience {index}",
-      "jobTitle": "Job Title",
-      "jobTitlePlaceholder": "UX Engineer",
-      "company": "Company",
-      "companyPlaceholder": "Acme Inc.",
-      "location": "Location",
-      "locationPlaceholder": "San Francisco, CA",
-      "companyContext": "Company Context",
-      "companyContextPlaceholder": "B2B payments platform serving 2M merchants",
-      "companyWebsite": "Company Website",
-      "companyWebsitePlaceholder": "acme.com",
-      "present": "I currently work here",
-      "summary": "Summary",
-      "summaryPlaceholder": "Creating real-time application that....",
-      "remove": "Remove"
+      "accordionTitle": "Darbo patirtis",
+      "legend": "Darbo patirtis",
+      "legendDesc": "Aprašykite ankstesnes darbovietes",
+      "add": "Darbovietė",
+      "emptyTitle": "Patirties dar nėra",
+      "emptyDescription": "Pridėkite pareigas, kad parodytumėte savo darbo istoriją.",
+      "itemLegend": "Darbovietė {index}",
+      "jobTitle": "Pareigos",
+      "jobTitlePlaceholder": "Produkto dizaineris",
+      "company": "Įmonė",
+      "companyPlaceholder": "Example UAB",
+      "location": "Vieta",
+      "locationPlaceholder": "Vilnius, Lietuva",
+      "companyContext": "Apie įmonę",
+      "companyContextPlaceholder": "B2B mokėjimų platforma, aptarnaujanti 2 mln. prekybininkų",
+      "companyWebsite": "Įmonės svetainė",
+      "companyWebsitePlaceholder": "example.com",
+      "present": "Dirbu čia dabar",
+      "summary": "Pasiekimai",
+      "summaryPlaceholder": "Pertvarkiau naujų naudotojų pažindinimą ir sumažinau nutekėjimą 18 %…",
+      "remove": "Pašalinti"
     },
     "internship": {
-      "accordionTitle": "Internship",
-      "legend": "Internship",
-      "legendDesc": "Add internships you've completed",
-      "add": "Internship",
-      "emptyTitle": "No internships yet",
-      "emptyDescription": "Add internships to show early hands-on experience.",
-      "itemLegend": "Internship {index}",
-      "role": "Role",
-      "rolePlaceholder": "Frontend Engineering Intern",
-      "company": "Company",
-      "companyPlaceholder": "Acme Inc.",
-      "location": "Location",
-      "locationPlaceholder": "San Francisco, CA",
-      "companyContext": "Company Context",
-      "companyContextPlaceholder": "B2B payments platform serving 2M merchants",
-      "companyWebsite": "Company Website",
-      "companyWebsitePlaceholder": "acme.com",
-      "present": "I'm currently interning here",
-      "summary": "Summary",
-      "summaryPlaceholder": "Built internal tooling that....",
-      "remove": "Remove"
+      "accordionTitle": "Praktikos",
+      "legend": "Praktikos",
+      "legendDesc": "Pridėkite atliktas praktikas",
+      "add": "Praktika",
+      "emptyTitle": "Praktikų dar nėra",
+      "emptyDescription": "Pridėkite praktikas, kad parodytumėte pirmąją praktinę patirtį.",
+      "itemLegend": "Praktika {index}",
+      "role": "Pareigos",
+      "rolePlaceholder": "Front-end programavimo praktikantas",
+      "company": "Įmonė",
+      "companyPlaceholder": "Example UAB",
+      "location": "Vieta",
+      "locationPlaceholder": "Kaunas, Lietuva",
+      "companyContext": "Apie įmonę",
+      "companyContextPlaceholder": "B2B mokėjimų platforma, aptarnaujanti 2 mln. prekybininkų",
+      "companyWebsite": "Įmonės svetainė",
+      "companyWebsitePlaceholder": "example.com",
+      "present": "Atlieku praktiką dabar",
+      "summary": "Pasiekimai",
+      "summaryPlaceholder": "Sukūriau vidinius įrankius, kurie…",
+      "remove": "Pašalinti"
     },
     "projects": {
-      "accordionTitle": "Projects",
-      "legend": "Projects",
-      "legendDesc": "Show off the things you've built",
-      "add": "Project",
-      "emptyTitle": "No projects yet",
-      "emptyDescription": "Add side projects, open-source work, or things you've shipped.",
-      "itemLegend": "Project {index}",
-      "name": "Project name",
-      "namePlaceholder": "react-a11y-kit",
-      "role": "Role",
-      "rolePlaceholder": "Maintainer",
-      "url": "Project URL",
+      "accordionTitle": "Projektai",
+      "legend": "Projektai",
+      "legendDesc": "Parodykite, ką sukūrėte",
+      "add": "Projektas",
+      "emptyTitle": "Projektų dar nėra",
+      "emptyDescription": "Pridėkite asmeninius, atvirojo kodo ar įgyvendintus projektus.",
+      "itemLegend": "Projektas {index}",
+      "name": "Projekto pavadinimas",
+      "namePlaceholder": "Prieinamų formų rinkinys",
+      "role": "Vaidmuo",
+      "rolePlaceholder": "Prižiūrėtojas",
+      "url": "Projekto nuoroda",
       "urlPlaceholder": "github.com/you/project",
-      "present": "This is ongoing",
-      "summary": "Description",
-      "summaryPlaceholder": "What it does, what you built, the impact....",
-      "remove": "Remove"
+      "present": "Projektas tęsiasi",
+      "summary": "Aprašymas",
+      "summaryPlaceholder": "Ką projektas daro, ką sukūrėte, koks rezultatas…",
+      "remove": "Pašalinti"
     },
     "organizations": {
-      "accordionTitle": "Organization",
-      "legend": "Organization Experience",
-      "legendDesc": "Describe your volunteer, student, and community roles",
-      "add": "Organization Experience",
-      "emptyTitle": "No organizations yet",
-      "emptyDescription": "Add volunteer, student, or community roles here.",
-      "itemLegend": "Organization {index}",
-      "role": "Role",
-      "rolePlaceholder": "Head of Public Relations",
-      "organization": "Organization",
-      "organizationPlaceholder": "Student Executive Board",
-      "present": "I'm currently active here",
-      "summary": "Summary",
-      "summaryPlaceholder": "Organized events that....",
-      "remove": "Remove"
+      "accordionTitle": "Organizacijos",
+      "legend": "Organizacijos",
+      "legendDesc": "Studentų, bendruomenių ir profesinės organizacijos",
+      "add": "Organizacija",
+      "emptyTitle": "Organizacijų dar nėra",
+      "emptyDescription": "Pridėkite vaidmenis studentų, bendruomenių ar profesinėse organizacijose.",
+      "itemLegend": "Organizacija {index}",
+      "role": "Vaidmuo",
+      "rolePlaceholder": "Ryšių su visuomene vadovas",
+      "organization": "Organizacija",
+      "organizationPlaceholder": "Studentų atstovybė",
+      "present": "Dalyvauju dabar",
+      "summary": "Aprašymas",
+      "summaryPlaceholder": "Organizavau renginius, kurie…",
+      "remove": "Pašalinti"
     },
     "education": {
-      "accordionTitle": "Education",
-      "legend": "Education",
-      "legendDesc": "Where you studied",
-      "add": "Education",
-      "emptyTitle": "No education yet",
-      "emptyDescription": "Add your degrees, schools, and courses.",
-      "itemLegend": "Education {index}",
-      "institution": "Institution",
-      "institutionPlaceholder": "State University",
-      "degree": "Degree",
-      "degreePlaceholder": "B.Sc. Computer Science",
-      "location": "Location",
-      "locationPlaceholder": "Boston, MA",
-      "present": "I currently study here",
-      "details": "Details",
-      "detailsPlaceholder": "Graduated with honors. Relevant coursework…",
-      "remove": "Remove"
+      "accordionTitle": "Išsilavinimas",
+      "legend": "Išsilavinimas",
+      "legendDesc": "Kur mokėtės",
+      "add": "Išsilavinimas",
+      "emptyTitle": "Išsilavinimo dar nėra",
+      "emptyDescription": "Pridėkite mokymo įstaigas ir įgytus laipsnius.",
+      "itemLegend": "Išsilavinimas {index}",
+      "institution": "Mokymo įstaiga",
+      "institutionPlaceholder": "Vilniaus universitetas",
+      "degree": "Laipsnis ar specialybė",
+      "degreePlaceholder": "Informatikos bakalauras",
+      "location": "Vieta",
+      "locationPlaceholder": "Vilnius, Lietuva",
+      "present": "Mokausi dabar",
+      "details": "Išsamiau",
+      "detailsPlaceholder": "Baigiau su pagyrimu. Susiję dalykai…",
+      "remove": "Pašalinti"
     },
     "certifications": {
-      "accordionTitle": "Certifications",
-      "legend": "Certifications",
-      "legendDesc": "Licenses and certifications",
-      "add": "Certification",
-      "emptyTitle": "No certifications yet",
-      "emptyDescription": "Add licenses and certifications you've earned.",
-      "itemLegend": "Certification {index}",
-      "name": "Name",
+      "accordionTitle": "Sertifikatai",
+      "legend": "Sertifikatai",
+      "legendDesc": "Licencijos ir sertifikatai",
+      "add": "Sertifikatas",
+      "emptyTitle": "Sertifikatų dar nėra",
+      "emptyDescription": "Pridėkite gautas licencijas ir sertifikatus.",
+      "itemLegend": "Sertifikatas {index}",
+      "name": "Pavadinimas",
       "namePlaceholder": "AWS Certified Solutions Architect",
-      "issuer": "Issuer",
+      "issuer": "Išdavė",
       "issuerPlaceholder": "Amazon Web Services",
-      "url": "Certificate URL",
-      "urlPlaceholder": "acme.com/cert",
-      "urlDesc": "Link to the certificate or the issuer's site.",
-      "reorder": "Reorder certification",
-      "remove": "Remove"
+      "date": "Data",
+      "datePlaceholder": "Mar 2024",
+      "url": "Sertifikato nuoroda",
+      "urlPlaceholder": "example.com/certificate",
+      "urlDesc": "Nuoroda į sertifikatą arba išdavusios organizacijos svetainę.",
+      "reorder": "Perkelti sertifikatą",
+      "remove": "Pašalinti"
     },
     "skills": {
-      "accordionTitle": "Skills",
-      "legend": "Skills",
-      "legendDesc": "List your skills",
-      "add": "Skill",
-      "emptyTitle": "No skills yet",
-      "emptyDescription": "Add the tools and technologies you work with.",
+      "accordionTitle": "Įgūdžiai",
+      "legend": "Įgūdžiai",
+      "legendDesc": "Pagrindiniai įgūdžiai su lygiu ir, jei reikia, trumpu paaiškinimu",
+      "add": "Įgūdis",
+      "emptyTitle": "Įgūdžių dar nėra",
+      "emptyDescription": "Pridėkite įrankius, metodus ir stipriąsias puses.",
       "namePlaceholder": "TypeScript",
-      "proficiency": "Proficiency",
-      "reorder": "Reorder skill",
-      "remove": "Remove skill",
-      "columnsLabel": "Columns",
+      "proficiency": "Lygis",
+      "description": "Paaiškinimas",
+      "descriptionPlaceholder": "5 metai, dizaino sistemos ir testavimas",
+      "reorder": "Perkelti įgūdį",
+      "remove": "Pašalinti įgūdį",
+      "columnsLabel": "Stulpeliai",
       "columnsOne": "1",
-      "columnsOneAria": "One column",
+      "columnsOneAria": "Vienas stulpelis",
       "columnsTwo": "2",
-      "columnsTwoAria": "Two columns",
-      "proficiencyLabel": "Show proficiency"
+      "columnsTwoAria": "Du stulpeliai",
+      "proficiencyLabel": "Rodyti lygį"
     },
     "languages": {
-      "accordionTitle": "Languages",
-      "legend": "Languages",
-      "legendDesc": "Languages you speak",
-      "add": "Language",
-      "emptyTitle": "No languages yet",
-      "emptyDescription": "Add the languages you speak and your proficiency.",
-      "namePlaceholder": "English",
-      "proficiency": "Proficiency",
-      "proficiencyLabel": "Show proficiency",
-      "columnsLabel": "Columns",
+      "accordionTitle": "Kalbos",
+      "legend": "Kalbos",
+      "legendDesc": "Kalbos, kuriomis kalbate, su neprivalomais CEFR lygiais",
+      "add": "Kalba",
+      "emptyTitle": "Kalbų dar nėra",
+      "emptyDescription": "Pridėkite kalbas ir mokėjimo lygį.",
+      "namePlaceholder": "Anglų",
+      "proficiency": "Bendras lygis",
+      "speaking": "Kalbėjimas",
+      "understanding": "Supratimas",
+      "writing": "Rašymas",
+      "proficiencyLabel": "Rodyti lygį",
+      "columnsLabel": "Stulpeliai",
       "columnsOne": "1",
-      "columnsOneAria": "One column",
+      "columnsOneAria": "Vienas stulpelis",
       "columnsTwo": "2",
-      "columnsTwoAria": "Two columns",
-      "reorder": "Reorder language",
-      "remove": "Remove language"
+      "columnsTwoAria": "Du stulpeliai",
+      "reorder": "Perkelti kalbą",
+      "remove": "Pašalinti kalbą"
+    },
+    "generic": {
+      "titles": {
+        "header": "Antraštė",
+        "summary": "Apie mane",
+        "experience": "Darbo patirtis",
+        "internship": "Praktikos",
+        "projects": "Projektai",
+        "organizations": "Organizacijos",
+        "volunteering": "Savanorystė",
+        "education": "Išsilavinimas",
+        "courses": "Kursai ir mokymai",
+        "certifications": "Sertifikatai",
+        "publications": "Publikacijos",
+        "skills": "Įgūdžiai",
+        "languages": "Kalbos",
+        "interests": "Pomėgiai",
+        "references": "Rekomendacijos",
+        "driving": "Vairuotojo pažymėjimas",
+        "salary": "Atlyginimo lūkesčiai",
+        "availability": "Galimybė pradėti dirbti",
+        "custom": "Sava dalis"
+      },
+      "fields": {
+        "volunteering": {
+          "role": "Vaidmuo",
+          "rolePlaceholder": "Savanorių koordinatorius",
+          "organization": "Organizacija",
+          "organizationPlaceholder": "Maisto bankas",
+          "location": "Vieta",
+          "locationPlaceholder": "Vilnius",
+          "startDate": "Pradžia",
+          "endDate": "Pabaiga",
+          "description": "Ką veikėte"
+        },
+        "courses": {
+          "title": "Kursas",
+          "titlePlaceholder": "UX tyrimų pagrindai",
+          "provider": "Organizatorius",
+          "providerPlaceholder": "Coursera",
+          "url": "Kurso ar sertifikato nuoroda",
+          "urlPlaceholder": "example.com/course",
+          "startDate": "Pradžia",
+          "endDate": "Pabaiga",
+          "description": "Pastabos"
+        },
+        "publications": {
+          "title": "Pavadinimas",
+          "titlePlaceholder": "Pasitikėjimo dizainas mokėjimų paslaugose",
+          "publisher": "Leidinys ar platforma",
+          "publisherPlaceholder": "UX Collective",
+          "url": "Nuoroda",
+          "urlPlaceholder": "example.com/article",
+          "date": "Data",
+          "description": "Trumpai"
+        },
+        "references": {
+          "name": "Vardas, pavardė",
+          "namePlaceholder": "Rūta Kazlauskienė",
+          "position": "Pareigos",
+          "positionPlaceholder": "Dizaino skyriaus vadovė",
+          "company": "Įmonė",
+          "companyPlaceholder": "Example UAB",
+          "email": "El. paštas",
+          "emailPlaceholder": "ruta@example.com",
+          "phone": "Telefonas",
+          "phonePlaceholder": "+370 600 00000"
+        },
+        "interests": {
+          "body": "Pomėgiai",
+          "bodyPlaceholder": "Bėgimas gamtoje, šachmatai, savanorystė gyvūnų prieglaudoje"
+        },
+        "driving": {
+          "categories": "Kategorijos",
+          "categoriesPlaceholder": "B, C",
+          "note": "Pastaba",
+          "notePlaceholder": "Nuosavas automobilis, 10 metų patirtis"
+        },
+        "salary": {
+          "amount": "Suma",
+          "amountPlaceholder": "2500",
+          "currency": "Valiuta",
+          "currencyPlaceholder": "EUR",
+          "period": "Už",
+          "tax": "Prieš ar po mokesčių"
+        },
+        "availability": {
+          "status": "Būsena",
+          "from": "Galiu pradėti nuo",
+          "notice": "Įspėjimo laikotarpis",
+          "noticePlaceholder": "1 mėnuo",
+          "workType": "Darbo pobūdis",
+          "workTypePlaceholder": "Visu etatu, hibridinis",
+          "relocation": "Galiu persikelti"
+        }
+      },
+      "add": {
+        "volunteering": "Savanorystė",
+        "courses": "Kursas",
+        "publications": "Publikacija",
+        "references": "Rekomendacija",
+        "interests": "Pomėgiai",
+        "driving": "Vairuotojo pažymėjimas",
+        "salary": "Atlyginimas",
+        "availability": "Galimybė pradėti"
+      },
+      "empty": {
+        "volunteering": "Pridėkite neapmokamą veiklą, kuri atskleidžia jūsų vertybes ir įgūdžius.",
+        "courses": "Pridėkite baigtus kursus, intensyvias programas ir mokymus.",
+        "publications": "Pridėkite straipsnius, mokslinius darbus, pranešimus ar knygas.",
+        "references": "Pridėkite žmones, galinčius už jus laiduoti. Pirmiausia jų paklauskite.",
+        "interests": "Keli žodžiai apie tai, ką veikiate laisvalaikiu.",
+        "driving": "Nurodykite pažymėjimo kategorijas.",
+        "salary": "Nurodykite pageidaujamą atlyginimą.",
+        "availability": "Nurodykite, kada galite pradėti."
+      },
+      "options": {
+        "month": "Mėnesį",
+        "year": "Metus",
+        "hour": "Valandą",
+        "gross": "Neatskaičius mokesčių (bruto)",
+        "net": "Į rankas (neto)",
+        "immediately": "Iš karto",
+        "notice": "Po įspėjimo laikotarpio",
+        "from-date": "Nuo tam tikros datos",
+        "open": "Svarstau pasiūlymus",
+        "not-looking": "Darbo neieškau",
+        "yes": "Taip",
+        "no": "Ne"
+      },
+      "emptyTitle": "Kol kas tuščia",
+      "entryLegend": "Įrašas {index}",
+      "remove": "Pašalinti",
+      "removeSection": "Pašalinti dalį",
+      "menuLabel": "Dalies parinktys",
+      "ongoing": "Tęsiasi",
+      "datePlaceholder": "Mar 2024",
+      "selectPlaceholder": "Pasirinkite…"
+    },
+    "mode": {
+      "label": "Režimas",
+      "ats": "ATS",
+      "atsAria": "ATS režimas",
+      "design": "Dizainas",
+      "designAria": "Dizaino režimas",
+      "atsHint": "Griežta ir paprasta: be nuotraukos, piktogramų ir QR kodo, juodas tekstas. Patikimiausias pasirinkimas internetinėms paraiškų formoms.",
+      "designHint": "Prideda akcento spalvą, kontaktų piktogramas, nuotrauką ir neprivalomą QR kodą. Teksto sluoksnis analizatoriams nesikeičia.",
+      "accent": "Akcento spalva",
+      "accentSwatch": "Akcentas {color}",
+      "accentCustom": "Sava spalva",
+      "qr": "QR kodas",
+      "qrHint": "Veda į {link}. Rodomas tik dizaino režime.",
+      "qrNeedsLink": "Kad būtų rodomas QR kodas, asmeninėje informacijoje pridėkite svetainę, LinkedIn ar nuorodą."
+    },
+    "stats": {
+      "summary": "{words, plural, one {# žodis} few {# žodžiai} other {# žodžių}} · {pages, plural, one {# puslapis} few {# puslapiai} other {# puslapių}}",
+      "tooLong": "Ilgesnis nei {max} puslapiai",
+      "hint": "Pirmam perskaitymui atrankos specialistas skiria kelias sekundes. Daugumai CV geriausia tilpti į vieną ar du puslapius."
+    },
+    "versions": {
+      "open": "Versijos",
+      "title": "Versijų istorija",
+      "description": "Kast išsaugo kopiją kas kelias minutes jums dirbant, taip pat prieš importą, atkūrimą ir DI pakeitimus. Laikomos {limit} naujausios.",
+      "labelField": "Versijos pavadinimas",
+      "labelPlaceholder": "Prieš pritaikant Example UAB",
+      "save": "Išsaugoti versiją",
+      "emptyTitle": "Versijų dar nėra",
+      "emptyDescription": "Kopijos atsiras čia jums redaguojant.",
+      "restore": "Atkurti",
+      "delete": "Ištrinti versiją",
+      "restored": "Versija atkurta. Ankstesnė būsena išsaugota kaip kopija.",
+      "reasons": {
+        "auto": "Automatinis išsaugojimas",
+        "manual": "Išsaugojote jūs",
+        "before-restore": "Prieš atkūrimą",
+        "before-import": "Prieš importą",
+        "before-ai": "Prieš DI pakeitimus"
+      }
+    },
+    "target": {
+      "empty": "Skelbimas",
+      "title": "Šiam skelbimui",
+      "description": "Pažymėkite, kuriam darbo skelbimui skirta ši versija. Tai tik jums: į CV ir eksportą nepatenka.",
+      "position": "Pareigos",
+      "company": "Įmonė",
+      "url": "Skelbimo nuoroda",
+      "appliedAt": "Paraiškos data",
+      "status": "Būsena",
+      "notes": "Pastabos",
+      "vacancy": "Skelbimo tekstas",
+      "vacancyPlaceholder": "Įklijuokite darbo skelbimo aprašymą…",
+      "vacancyHint": "Naudojamas raktažodžių patikrai ir DI asistentui.",
+      "statuses": {
+        "draft": "Juodraštis",
+        "applied": "Paraiška išsiųsta",
+        "interview": "Pokalbis",
+        "offer": "Pasiūlymas",
+        "rejected": "Atmesta"
+      }
+    },
+    "export": {
+      "open": "Eksportas",
+      "documents": "Dokumentai",
+      "data": "Duomenys",
+      "failed": "Eksportuoti nepavyko. Bandykite dar kartą arba pasirinkite kitą formatą.",
+      "hints": {
+        "pdf": "Tekstą galima pažymėti, paruošta siųsti",
+        "docx": "Redaguojamas Word dokumentas",
+        "txt": "Paprastas tekstas internetinėms formoms",
+        "json": "Kast duomenys be praradimų",
+        "yaml": "Kast duomenys be praradimų",
+        "europass-xml": "Europass CV, XML",
+        "europass-json": "Europass CV, JSON"
+      }
+    },
+    "letter": {
+      "intro": "Motyvacinis laiškas CV dizainu ir kalba. Užpildykite patys arba paprašykite DI asistento.",
+      "writeWithAi": "Parašyti su DI",
+      "recipient": "Gavėjas",
+      "company": "Įmonė",
+      "date": "Data",
+      "subject": "Tema",
+      "body": "Laiško tekstas",
+      "bodyPlaceholder": "Laba diena, …",
+      "closing": "Pabaiga",
+      "closingPlaceholder": "Pagarbiai,",
+      "export": "Atsisiųsti laišką",
+      "exportFailed": "Nepavyko eksportuoti laiško. Bandykite dar kartą."
     },
     "richText": {
-      "undo": "Undo",
-      "redo": "Redo",
-      "bold": "Bold",
-      "italic": "Italic",
-      "bulletList": "Bullet list",
-      "orderedList": "Ordered list",
-      "link": "Link",
+      "undo": "Atšaukti",
+      "redo": "Pakartoti",
+      "bold": "Paryškintas",
+      "italic": "Kursyvas",
+      "bulletList": "Sąrašas su ženkleliais",
+      "orderedList": "Numeruotas sąrašas",
+      "link": "Nuoroda",
       "linkPlaceholder": "https://example.com",
-      "apply": "Apply",
-      "removeLink": "Remove link"
+      "apply": "Taikyti",
+      "removeLink": "Pašalinti nuorodą"
     },
     "custom": {
-      "defaultTitle": "Custom section",
-      "variantLabel": "Layout",
-      "variantText": "Text",
-      "variantTextAria": "Single text block",
-      "variantList": "List",
-      "variantListAria": "List of entries",
-      "menuLabel": "Section options",
-      "rename": "Rename",
-      "remove": "Delete",
-      "addHeading": "Add a section",
-      "addDescription": "Name your new section. You can rename it later.",
-      "renameHeading": "Rename section",
-      "renameDescription": "Give this section a new name.",
-      "nameLabel": "Section name",
-      "namePlaceholder": "Name this section",
-      "bodyLabel": "Content",
-      "bodyPlaceholder": "Write the section content…",
-      "addEntry": "Add entry",
-      "emptyTitle": "No entries yet",
-      "emptyDescription": "Add an entry to fill in this section.",
-      "itemLegend": "Entry {index}",
-      "entryTitle": "Title",
-      "entryTitlePlaceholder": "Entry title",
-      "entrySubtitle": "Subtitle",
-      "entrySubtitlePlaceholder": "Entry subtitle",
-      "present": "This is ongoing",
-      "entryDescription": "Description",
-      "entryDescriptionPlaceholder": "Add details…",
-      "removeEntry": "Remove entry"
+      "defaultTitle": "Sava dalis",
+      "variantLabel": "Išdėstymas",
+      "variantText": "Tekstas",
+      "variantTextAria": "Vienas teksto blokas",
+      "variantList": "Sąrašas",
+      "variantListAria": "Įrašų sąrašas",
+      "menuLabel": "Dalies parinktys",
+      "rename": "Pervadinti",
+      "remove": "Ištrinti",
+      "addHeading": "Nauja dalis",
+      "addDescription": "Pavadinkite naują dalį. Pavadinimą galėsite pakeisti vėliau.",
+      "renameHeading": "Pervadinti dalį",
+      "renameDescription": "Suteikite daliai naują pavadinimą.",
+      "nameLabel": "Dalies pavadinimas",
+      "namePlaceholder": "Dalies pavadinimas",
+      "bodyLabel": "Turinys",
+      "bodyPlaceholder": "Parašykite dalies tekstą…",
+      "addEntry": "Pridėti įrašą",
+      "emptyTitle": "Įrašų dar nėra",
+      "emptyDescription": "Pridėkite įrašą, kad užpildytumėte dalį.",
+      "itemLegend": "Įrašas {index}",
+      "entryTitle": "Pavadinimas",
+      "entryTitlePlaceholder": "Įrašo pavadinimas",
+      "entrySubtitle": "Paantraštė",
+      "entrySubtitlePlaceholder": "Įrašo paantraštė",
+      "present": "Tęsiasi",
+      "entryDescription": "Aprašymas",
+      "entryDescriptionPlaceholder": "Pridėkite išsamumo…",
+      "removeEntry": "Pašalinti įrašą"
     },
     "leftovers": {
-      "button": "Unplaced text ({count})",
-      "title": "Text we couldn't place",
-      "description": "The import couldn't fit these into a section. Copy anything worth keeping, then dismiss.",
-      "copy": "Copy",
-      "close": "Close",
-      "dismiss": "Dismiss all"
+      "button": "Nepriskirtas tekstas ({count})",
+      "title": "Tekstas, kurio nepavyko priskirti",
+      "description": "Importui nepavyko šių eilučių priskirti dalims. Nukopijuokite, ką verta išsaugoti, ir uždarykite.",
+      "copy": "Kopijuoti",
+      "close": "Uždaryti",
+      "dismiss": "Pašalinti viską"
     },
     "document": {
-      "downloadHeading": "Download",
-      "importHeading": "Import resume",
-      "importHint": "Bring in details from an existing PDF resume, or restore a JSON or YAML export. It's read on your device and never uploaded.",
-      "replacePrompt": "This resume already has content. Replace it, or keep it and create a new one?",
-      "replace": "Replace this one",
-      "createNew": "Create new",
-      "stylingHeading": "Document styling",
-      "resetStyling": "Reset to defaults",
-      "resetStylingHint": "Reset document styling to default",
-      "copyHeading": "Copy",
-      "copyHint": "Copy this resume to the clipboard as structured text. Rich text travels as simple markdown, and pasting it into an import restores it exactly.",
-      "copyAs": "Copy as",
+      "downloadHeading": "Atsisiuntimas",
+      "importHeading": "CV importas",
+      "importHint": "Perkelkite duomenis iš esamo PDF CV arba atkurkite JSON ar YAML eksportą. Failas perskaitomas šiame įrenginyje ir niekur neįkeliamas.",
+      "replacePrompt": "Šiame CV jau yra turinio. Pakeisti jį ar palikti ir sukurti naują?",
+      "replace": "Pakeisti šį",
+      "createNew": "Sukurti naują",
+      "stylingHeading": "Dokumento apipavidalinimas",
+      "resetStyling": "Atkurti numatytuosius",
+      "resetStylingHint": "Atkurti numatytąjį dokumento apipavidalinimą",
+      "copyHeading": "Kopijavimas",
+      "copyHint": "Nukopijuokite CV į iškarpinę kaip struktūrizuotą tekstą. Formatavimas perduodamas paprastu markdown, o įklijavus į importą viskas atkuriama tiksliai.",
+      "copyAs": "Kopijuoti kaip",
       "copyJson": "JSON",
       "copyYaml": "YAML",
-      "copied": "Copied to clipboard",
-      "copyFailed": "Couldn't copy to the clipboard."
+      "copied": "Nukopijuota į iškarpinę",
+      "copyFailed": "Nepavyko nukopijuoti į iškarpinę.",
+      "verifyHeading": "PDF teksto sluoksnio patikra",
+      "verifyHint": "Sukuria PDF, perskaito jo tekstą taip, kaip tai daro ATS, ir palygina su jūsų CV.",
+      "verifyRun": "Patikrinti PDF",
+      "verifyRunning": "Kuriame ir skaitome PDF…",
+      "verifyPassed": "Visos pagrindinės reikšmės ({total}) rastos teisinga tvarka.",
+      "verifyFailed": "{missing, plural, one {# reikšmė nerasta} few {# reikšmės nerastos} other {# reikšmių nerasta}} PDF tekste.",
+      "verifyMissing": "Trūksta: {values}",
+      "verifyError": "Šioje naršyklėje patikros paleisti nepavyko.",
+      "spellcheck": "Rašybos tikrinimas",
+      "spellcheckHint": "Naudoja naršyklės žodyną CV kalbai. Niekas niekur nesiunčiama."
     }
   },
+  "ats": {
+    "local": "Patikrinta šiame įrenginyje. Niekas niekur nesiunčiama.",
+    "bands": {
+      "good": {
+        "title": "Paruošta ATS",
+        "description": "Analizatoriai šį CV perskaitys gerai. Likę patarimai – pagal norą."
+      },
+      "fair": {
+        "title": "Iš esmės perskaitoma",
+        "description": "Keli pataisymai padarys analizę patikimesnę, o turinį – stipresnį."
+      },
+      "poor": {
+        "title": "Reikia patobulinti",
+        "description": "Analizatoriai gali praleisti svarbią informaciją. Pradėkite nuo klaidų žemiau."
+      }
+    },
+    "categories": {
+      "structure": "Struktūra",
+      "format": "Formatavimas",
+      "contacts": "Kontaktai",
+      "dates": "Datos",
+      "content": "Turinys",
+      "keywords": "Raktažodžiai"
+    },
+    "notApplicable": "Netikrinta",
+    "issuesHeading": "{count, plural, one {# dalykas taisytinas} few {# dalykai taisytini} other {# dalykų taisytina}}",
+    "noIssuesTitle": "Nėra ko taisyti",
+    "noIssuesDescription": "Visos patikros įveiktos.",
+    "keywordsHeading": "Palyginimas su skelbimu",
+    "exportHeading": "Prieš siųsdami",
+    "exportNote": "Internetinėms paraiškų formoms siųskite DOCX arba PDF ATS režimu. Dizaino režimą palikite laiškams ir spausdinimui.",
+    "goToSection": "Į dalį",
+    "keywords": {
+      "label": "Skelbimo tekstas",
+      "placeholder": "Įklijuokite darbo skelbimą, kad palygintumėte raktažodžius…",
+      "hint": "Išsaugoma šio CV skelbimo žymėje ir niekur nesiunčiama.",
+      "found": "{count, plural, one {Rastas # raktažodis} few {Rasti # raktažodžiai} other {Rasta # raktažodžių}}",
+      "missing": "{count, plural, one {Trūksta # raktažodžio} few {Trūksta # raktažodžių} other {Trūksta # raktažodžių}}",
+      "honesty": "Pridėkite trūkstamą žodį tik tada, jei jis tikrai apie jus. Atrankos specialistai tikrina."
+    },
+    "rules": {
+      "name-present": {
+        "title": "Nurodykite vardą",
+        "fix": "Asmeninėje informacijoje užpildykite vardą ir pavardę."
+      },
+      "headline-present": {
+        "title": "Nurodykite pareigas",
+        "fix": "Eilutė po vardu analizatoriams ir atrankos specialistams parodo, kokių pareigų siekiate."
+      },
+      "required-sections": {
+        "title": "Trūksta dalies: {section}",
+        "fix": "Dauguma ATS tikisi dalies „{section}“. Pridėkite ją, net jei bus tik vienas įrašas."
+      },
+      "summary-present": {
+        "title": "Pridėkite trumpą santrauką",
+        "fix": "Du–keturi sakiniai apie tai, kas esate ir ką galite pasiūlyti."
+      },
+      "standard-headings": {
+        "title": "Neįprasta antraštė „{heading}“",
+        "fix": "Analizatoriai ieško standartinių pavadinimų. Pervadinkite dalį arba palikite, jei tai tikrai ypatinga dalis."
+      },
+      "section-order": {
+        "title": "„{before}“ yra po „{after}“",
+        "fix": "Perkelkite „{before}“ virš „{after}“, nebent neseniai baigėte studijas."
+      },
+      "ats-mode": {
+        "title": "Įjungtas dizaino režimas",
+        "fix": "Nuotrauka, piktogramos ir QR kodas tinka laiškui, bet internetinėms paraiškų formoms perjunkite ATS režimą."
+      },
+      "special-bullets": {
+        "title": "Neįprasti simboliai: {chars}",
+        "fix": "Naudokite paprastus ženklelius ir brūkšnius – dekoratyvūs simboliai analizuojant virsta šiukšlėmis."
+      },
+      "emoji": {
+        "title": "Jaustukai tekste: {chars}",
+        "fix": "Pašalinkite jaustukus: daug ATS juos praranda arba iškraipo."
+      },
+      "letter-spacing": {
+        "title": "Dideli tarpai tarp raidžių ({value})",
+        "fix": "Dėl išretinto teksto ištraukiant žodžiai gali suskilti. Priartinkite tarpus prie nulio."
+      },
+      "email-present": {
+        "title": "Nurodykite el. paštą",
+        "fix": "Atrankos specialistams ir ATS reikia būdo su jumis susisiekti."
+      },
+      "email-format": {
+        "title": "Patikrinkite adresą „{email}“",
+        "fix": "Jis nepanašus į tinkamą el. pašto adresą."
+      },
+      "phone-present": {
+        "title": "Nurodykite telefoną",
+        "fix": "Daug atrankos specialistų pirmiausia skambina. Nurodykite šalies kodą."
+      },
+      "phone-format": {
+        "title": "Patikrinkite telefoną „{phone}“",
+        "fix": "Naudokite skaitmenis su + ir šalies kodu, pvz., +370 600 00000."
+      },
+      "location-present": {
+        "title": "Nurodykite miestą",
+        "fix": "Filtras pagal vietą dažnas ATS paieškose."
+      },
+      "dates-present": {
+        "title": "Nėra datų: {entry}",
+        "fix": "Pridėkite pradžios ir pabaigos datas, kad chronologija būtų aiški."
+      },
+      "dates-consistent": {
+        "title": "Skirtingi datų formatai",
+        "fix": "Visur naudokite mėnesį ir metus arba visur tik metus."
+      },
+      "dates-order": {
+        "title": "Pabaiga ankstesnė už pradžią: {entry}",
+        "fix": "Sukeiskite datas vietomis arba ištaisykite rašybos klaidą."
+      },
+      "employment-gaps": {
+        "title": "{months} mėn. pertrauka ({from} – {to})",
+        "fix": "Tai normalu, bet ją galima užpildyti kursais, projektu ar trumpu paaiškinimu."
+      },
+      "employment-overlaps": {
+        "title": "Persidengimas: {first} ir {second}",
+        "fix": "Jei viskas teisinga, palikite; kitaip patikrinkite datas."
+      },
+      "word-count": {
+        "title": "{kind, select, short {Trumpas CV: {count} žodž.} other {Ilgas CV: {count} žodž.}}",
+        "fix": "{kind, select, short {Siekite bent {min} žodžių su konkrečiais pasiekimais.} other {Stenkitės neviršyti {max} žodžių: sutrumpinkite seną ir nesusijusią informaciją.}}"
+      },
+      "summary-length": {
+        "title": "{kind, select, short {Santrauka trumpa ({count} žodž.)} other {Santrauka ilga ({count} žodž.)}}",
+        "fix": "Optimaliai – nuo {min} iki {max} žodžių."
+      },
+      "bullets-per-entry": {
+        "title": "{entry}: punktų – {count}",
+        "fix": "Kiekvienoms pareigoms rašykite nuo {min} iki {max} punktų, kiekvieną pradėkite nuo rezultato."
+      },
+      "weak-phrases": {
+        "title": "Silpna formuluotė „{phrase}“",
+        "fix": "Pakeiskite ją veiksmažodžiu ir rezultatu."
+      },
+      "repeated-words": {
+        "title": "„{word}“ pasikartoja {count} k.",
+        "fix": "Įvairinkite formuluotes, kad tekstas neatrodytų monotoniškas."
+      },
+      "quantified-results": {
+        "title": "Mažai skaičių ({percent} % punktų)",
+        "fix": "Siekite bent {target} %: procentai, pinigai, komandos dydis ar kiekiai daro rezultatą konkretų."
+      },
+      "page-count": {
+        "title": "Puslapių: {pages}",
+        "fix": "Daugumai CV geriausia tilpti į {max} puslapius."
+      },
+      "keywords-match": {
+        "title": "Raktažodžių atitiktis {percent} %",
+        "fix": "Trūksta žodžių iš skelbimo: {missing}. Pridėkite tuos, kurie tikrai apie jus."
+      }
+    }
+  },
+  "ai": {
+    "provider": "Tiekėjas",
+    "model": "Modelis",
+    "vacancy": "Skelbimo tekstas",
+    "vacancyPlaceholder": "Įklijuokite darbo skelbimo aprašymą…",
+    "targetLanguage": "Versti į",
+    "targetLanguagePlaceholder": "Pasirinkite kalbą",
+    "snapshotLabel": "Prieš DI: {mode}",
+    "usage": "Žetonai: {input} įvestis + {output} išvestis{cost, select, none {} other { · ≈ {cost}}}",
+    "panel": {
+      "title": "DI asistentas (neprivaloma)",
+      "intro": "Veikia su jūsų API raktu. Užklausos keliauja tiesiai iš naršyklės pas tiekėją, asmens duomenys užmaskuojami, o kiekvienas pakeitimas laukia jūsų peržiūros.",
+      "provider": "Tiekėjas",
+      "model": "Modelis",
+      "settingsLink": "Daugiau parinkčių nustatymuose",
+      "pending": "Laukia peržiūros",
+      "task": "Užduotis",
+      "sent": "Kas bus išsiųsta",
+      "vacancy": "Skelbimo tekstas",
+      "vacancyPlaceholder": "Įklijuokite darbo skelbimo aprašymą…",
+      "targetLanguage": "Versti į",
+      "targetLanguagePlaceholder": "Pasirinkite kalbą",
+      "needsVacancy": "Pirmiausia įklijuokite skelbimo tekstą.",
+      "running": "Dirbame… {seconds} s",
+      "cancel": "Atšaukti",
+      "send": "Siųsti į {provider}"
+    },
+    "modes": {
+      "label": "Užduotis",
+      "rewrite": {
+        "title": "Patobulinti formuluotes",
+        "description": "Stipresni ir aiškesni punktai bei santrauka be išgalvotų faktų."
+      },
+      "tailor": {
+        "title": "Pritaikyti skelbimui",
+        "description": "Perkelia akcentus ir formuluotes pagal darbo skelbimą."
+      },
+      "ats": {
+        "title": "ATS analizė",
+        "description": "Randa rizikas analizatoriams ir trūkstamus raktažodžius, pasiūlo pataisymus."
+      },
+      "consistency": {
+        "title": "Nuoseklumo patikra",
+        "description": "Veiksmažodžių laikai, skyryba, datų formatai ir terminai visame CV."
+      },
+      "translate": {
+        "title": "Vertimas",
+        "description": "Išverčia turinį į kitą CV kalbą."
+      },
+      "cover-letter": {
+        "title": "Motyvacinis laiškas",
+        "description": "Parašo laišką skelbimui pagal jūsų CV."
+      }
+    },
+    "preview": {
+      "maskLegend": "Prieš siunčiant pakeisti žymekliais",
+      "mask": {
+        "name": "Vardas",
+        "email": "El. paštas",
+        "phone": "Telefonas",
+        "address": "Adresas",
+        "links": "Nuorodos"
+      },
+      "photoNever": "Nuotrauka ir gimimo data niekada nesiunčiami.",
+      "estimate": "≈ {input} įvesties žetonų, iki {output} išvesties · ≈ {cost}",
+      "estimateNoPrice": "≈ {input} įvesties žetonų, iki {output} išvesties",
+      "show": "Rodyti tikslų tekstą"
+    },
+    "consent": {
+      "title": "Siųsti CV tekstą į {provider}?",
+      "body": "DI asistentas veikia taip: dalis jūsų CV siunčiama į {provider}. Kast neturi serverio – užklausa keliauja tiesiai iš šios naršyklės.",
+      "pointDirect": "Tekstas keliauja tiesiai į {provider} su jūsų API raktu ir pagal jų duomenų tvarkymo taisykles.",
+      "pointMasked": "El. paštas, telefonas, adresas ir nuorodos pagal nutylėjimą pakeičiami žymekliais; tai galima pakeisti.",
+      "pointPhoto": "Nuotrauka ir gimimo data niekada nesiunčiami.",
+      "pointBilling": "{provider} už kiekvieną užklausą apmokestina jūsų paskyrą.",
+      "pointRevoke": "Sutikimą bet kada galite atšaukti nustatymuose.",
+      "agree": "Sutinku siųsti duomenis į {provider}",
+      "cancel": "Atšaukti",
+      "confirm": "Sutikti ir siųsti"
+    },
+    "errors": {
+      "invalid-key": "API raktas atmestas",
+      "permission": "Šiuo raktu negalima naudoti pasirinkto modelio",
+      "insufficient-funds": "Paskyroje baigėsi lėšos",
+      "rate-limit": "Per daug užklausų, palaukite minutę",
+      "overloaded": "Tiekėjas perkrautas, bandykite netrukus",
+      "timeout": "Užklausa truko per ilgai",
+      "network": "Nepavyko susisiekti su tiekėju",
+      "server": "Tiekėjas grąžino klaidą",
+      "refused": "Modelis atsisakė vykdyti užklausą",
+      "invalid-response": "Atsakymas gautas ne tokiu formatu, kokio tikėtasi",
+      "bad-request": "Tiekėjas atmetė užklausą",
+      "cancelled": "Atšaukta"
+    },
+    "key": {
+      "label": "{provider} API raktas",
+      "where": "Gauti raktą",
+      "verify": "Patikrinti",
+      "use": "Naudoti raktą",
+      "valid": "Raktas veikia.",
+      "memoryNote": "Laikomas tik šio skirtuko atmintyje ir pamirštamas jį uždarius.",
+      "remember": "Įsiminti šiame įrenginyje, užšifravus slaptažodžiu",
+      "password": "Slaptažodis",
+      "passwordHint": "Bent 8 simboliai. Kast negalės jo atkurti.",
+      "statusMemory": "Raktas atmintyje šiai sesijai",
+      "statusStored": "Užšifruotas raktas išsaugotas įrenginyje",
+      "storedNote": "Įveskite slaptažodį, kad atrakintumėte išsaugotą raktą šiai sesijai.",
+      "unlockLabel": "Slaptažodis",
+      "unlock": "Atrakinti",
+      "wrongPassword": "Neteisingas slaptažodis.",
+      "delete": "Pamiršti raktą"
+    },
+    "review": {
+      "dismiss": "Paslėpti",
+      "missingKeywords": "Trūkstami raktažodžiai",
+      "questions": "Klausimai jums",
+      "translateNote": "Išversta į: {language}. Dalių antraštės pasikeis pritaikius.",
+      "changesHeading": "{count, plural, one {# siūlomas pakeitimas} few {# siūlomi pakeitimai} other {# siūlomų pakeitimų}}",
+      "noChanges": "Pakeitimų nepasiūlyta.",
+      "acceptAll": "Priimti visus",
+      "apply": "Taikyti ({count})",
+      "applyNote": "Pirmiausia išsaugoma kopija, todėl viską galima atkurti.",
+      "accept": "Priimti",
+      "reject": "Atmesti",
+      "edit": "Redaguoti",
+      "editLabel": "Jūsų variantas",
+      "saveEdit": "Naudoti mano variantą",
+      "needsInput": "Reikia jūsų patikslinimo: {question}",
+      "fix": "Siūlomas pataisymas",
+      "goTo": "Pereiti",
+      "noFindings": "Problemų nerasta.",
+      "letterSubject": "Tema",
+      "letterBody": "Laiško tekstas",
+      "letterClosing": "Pabaiga",
+      "useLetter": "Naudoti šį laišką",
+      "severity": {
+        "high": "Svarbu",
+        "medium": "Verta pataisyti",
+        "low": "Smulkmena"
+      }
+    },
+    "fields": {
+      "jobTitle": "Pareigos",
+      "description": "Aprašymas",
+      "details": "Išsamiau",
+      "body": "Tekstas",
+      "summary": "Apie mane",
+      "title": "Pavadinimas",
+      "name": "Pavadinimas"
+    },
+    "batch": {
+      "open": "DI keliems",
+      "title": "DI keliems CV",
+      "description": "Pasirinkite nuo {min} iki {max} CV ir vieną užduotį. Kiekvienas siunčiamas atskira užklausa su vienodu maskavimu, o rezultatai laukia peržiūros kiekvieno CV skirtuke „DI“.",
+      "resumes": "CV",
+      "limit": "Pasirinkite nuo {min} iki {max} CV.",
+      "task": "Užduotis",
+      "estimate": "≈ {input} įvesties žetonų iš viso · ≈ {cost}",
+      "estimateNoPrice": "≈ {input} įvesties žetonų iš viso",
+      "run": "Paleisti ({count})",
+      "running": "Apdorojame „{title}“ ({done} iš {total})",
+      "done": "Baigta. Atidarykite kiekvieno CV skirtuką „DI“, kad peržiūrėtumėte rezultatą.",
+      "failed": "„{title}“: {error}",
+      "review": "Peržiūrėti",
+      "needsKey": "Pirmiausia nustatymuose pridėkite API raktą.",
+      "cancel": "Atšaukti",
+      "close": "Uždaryti"
+    }
+  },
+  "import": {
+    "review": {
+      "title": "Patikrinkite importą",
+      "description": "Štai ką Kast perskaitė iš PDF. Pataisykite viską, kas pažymėta kaip abejotina, ir išsaugokite.",
+      "layout": {
+        "single": "Vienas stulpelis",
+        "labels": "Etikečių stulpelis",
+        "sidebar": "Šoninė juosta"
+      },
+      "sections": "{count, plural, one {# dalis} few {# dalys} other {# dalių}}",
+      "uncertain": "{count, plural, =0 {visi laukai atrodo teisingi} one {# abejotinas laukas} few {# abejotini laukai} other {# abejotinų laukų}}",
+      "onlyUncertain": "Tik abejotini laukai",
+      "preview": "Peržiūra",
+      "aiFailed": "DI nepavyko patobulinti importo. Vietinis rezultatas nepakito.",
+      "cancel": "Atšaukti",
+      "improveWithAi": "Patobulinti su DI",
+      "confirm": "Išsaugoti CV",
+      "nothingUncertain": "Abejotinų laukų nėra – viskas perskaityta užtikrintai.",
+      "headerGroup": "Antraštė",
+      "confidenceTitle": "Patikimumas",
+      "removed": "{count, plural, one {Pašalinta # puslapio šiukšlių eilutė} few {Pašalintos # puslapio šiukšlių eilutės} other {Pašalinta # puslapio šiukšlių eilučių}}",
+      "metadata": "{count, plural, one {# ženklelis išsaugotas kaip metaduomenys} few {# ženkleliai išsaugoti kaip metaduomenys} other {# ženklelių išsaugota kaip metaduomenys}}",
+      "leftovers": "{count, plural, one {# eilutės nepavyko priskirti} few {# eilučių nepavyko priskirti} other {# eilučių nepavyko priskirti}}",
+      "page": "{page} psl.",
+      "reasons": {
+        "page-number": "puslapio numeris",
+        "repeated": "kartojasi kiekviename puslapyje",
+        "portal": "darbo portalo poraštė",
+        "watermark": "vandenženklis"
+      },
+      "metadataKinds": {
+        "duration": "stažas",
+        "level": "lygis",
+        "label": "žyma",
+        "contract": "sutarties tipas"
+      }
+    },
+    "fields": {
+      "firstName": "Vardas",
+      "lastName": "Pavardė",
+      "jobTitle": "Pareigos",
+      "birthDate": "Gimimo data",
+      "email": "El. paštas",
+      "phone": "Telefonas",
+      "website": "Svetainė",
+      "linkedin": "LinkedIn",
+      "link": "Nuoroda",
+      "city": "Miestas",
+      "province": "Regionas",
+      "country": "Šalis",
+      "title": "Pavadinimas",
+      "company": "Įmonė",
+      "location": "Vieta",
+      "companyContext": "Apie įmonę",
+      "startDate": "Pradžia",
+      "endDate": "Pabaiga",
+      "role": "Vaidmuo",
+      "organization": "Organizacija",
+      "institution": "Mokymo įstaiga",
+      "degree": "Laipsnis",
+      "name": "Pavadinimas",
+      "level": "Lygis",
+      "description": "Aprašymas",
+      "issuer": "Išdavė",
+      "url": "Nuoroda",
+      "date": "Data",
+      "provider": "Organizatorius",
+      "publisher": "Leidinys",
+      "position": "Pareigos",
+      "categories": "Kategorijos",
+      "note": "Pastaba",
+      "amount": "Suma",
+      "currency": "Valiuta",
+      "period": "Už",
+      "tax": "Mokesčiai",
+      "status": "Būsena",
+      "from": "Nuo",
+      "notice": "Įspėjimo laikotarpis",
+      "workType": "Darbo pobūdis",
+      "relocation": "Persikėlimas",
+      "speaking": "Kalbėjimas",
+      "understanding": "Supratimas",
+      "writing": "Rašymas"
+    }
+  },
+  "settings": {
+    "metaTitle": "Nustatymai",
+    "metaDescription": "Sąsajos kalba, tema, neprivalomas DI asistentas ir jūsų duomenys.",
+    "title": "Nustatymai",
+    "description": "Viskas čia saugoma tik šioje naršyklėje.",
+    "appearance": {
+      "heading": "Sąsaja",
+      "language": "Sąsajos kalba",
+      "languageHint": "Kiekvienas CV turi savo kalbą – ji nustatoma skirtuke „Dokumentas“.",
+      "theme": "Tema"
+    },
+    "ai": {
+      "heading": "DI asistentas",
+      "description": "Neprivaloma. Naudokite savo Anthropic arba Google raktą. Užklausos keliauja tiesiai iš naršyklės pas tiekėją – Kast neturi serverio ir niekada nemato jūsų rakto.",
+      "provider": "Tiekėjas",
+      "model": "Modelis",
+      "customModel": "Savas modelio identifikatorius",
+      "customModelHint": "Palikite tuščią, kad būtų naudojamas aukščiau pasirinktas modelis.",
+      "baseUrl": "Savas API adresas",
+      "baseUrlHint": "Tik jūsų valdomam šliuzui ar tarpiniam serveriui. Palikite tuščią, kad būtų naudojamas oficialus tiekėjo adresas. Pakeitę perkraukite puslapį.",
+      "baseUrlInvalid": "Reikia https:// adreso.",
+      "consentHeading": "Sutikimas",
+      "consentGiven": "Sutikote siųsti duomenis į {provider} {date}.",
+      "consentNone": "Į {provider} niekas nesiųsta. Kast paklaus prieš pirmą užklausą.",
+      "revoke": "Atšaukti sutikimą",
+      "revoked": "Sutikimas atšauktas. Kast vėl paklaus prieš kitą užklausą.",
+      "maskHeading": "Numatytasis maskavimas",
+      "maskDescription": "Prieš siunčiant pakeičiama žymekliais ir sugrąžinama gavus atsakymą.",
+      "keyHeading": "API raktas"
+    },
+    "data": {
+      "heading": "Jūsų duomenys",
+      "description": "CV, versijos ir nustatymai saugomi šioje naršyklėje. Niekas nesinchronizuojama. Prieš valydami naršyklės duomenis ar keisdami įrenginį, atsisiųskite atsarginę kopiją.",
+      "stats": "CV: {resumes} · išsaugotų versijų: {snapshots}",
+      "storage": "Naudojama {used} iš maždaug {quota} galimų",
+      "export": "Atsisiųsti atsarginę kopiją",
+      "exportHint": "Vienas JSON failas su visais CV ir jų versijomis. API raktai niekada neįtraukiami.",
+      "import": "Atkurti iš kopijos",
+      "importHint": "Įrenginyje jau esantys CV išlieka; pridedami tik trūkstami.",
+      "restored": "{count, plural, =0 {Nėra ką atkurti.} one {Atkurtas # CV.} few {Atkurti # CV.} other {Atkurta # CV.}}",
+      "invalid": "Šis failas nėra Kast atsarginė kopija.",
+      "persist": "Apsaugoti saugyklą",
+      "persistHint": "Paprašo naršyklės netrinti Kast duomenų, kai baigiasi vieta diske.",
+      "persisted": "Naršyklė išsaugos Kast duomenis.",
+      "persistDenied": "Naršyklė atsisakė. Duomenys lieka, bet turėkite atsarginę kopiją.",
+      "clear": "Ištrinti visus duomenis",
+      "clearTitle": "Ištrinti viską, ką Kast saugo šioje naršyklėje?",
+      "clearDescription": "Bus negrįžtamai ištrinti visi CV, versijos, nustatymai ir išsaugoti API raktai šioje naršyklėje. Jei jų gali prireikti, pirmiausia atsisiųskite atsarginę kopiją. To atšaukti negalima.",
+      "clearConfirmLabel": "Patvirtindami įveskite {word}",
+      "clearWord": "IŠTRINTI",
+      "clearConfirm": "Ištrinti viską",
+      "cleared": "Visi duomenys ištrinti."
+    },
+    "offline": {
+      "heading": "Darbas be interneto",
+      "ready": "Kast išsaugotas šiame įrenginyje ir veikia be ryšio.",
+      "preparing": "Ruošiame kopiją darbui be interneto…",
+      "unsupported": "Ši naršyklė nepalaiko darbo be interneto.",
+      "install": "Įdiegti programėlę",
+      "installHint": "Prideda Kast į pradžios ekraną ar doką. Tie patys duomenys, atskiras langas."
+    }
+  },
+  "pwa": {
+    "updateTitle": "Paruošta nauja Kast versija",
+    "updateDescription": "Perkraukite, kad ją naudotumėte. Jūsų darbas išsaugotas.",
+    "updateAction": "Perkrauti",
+    "offlineReady": "Dabar Kast veikia be interneto."
+  },
+  "about": {
+    "metaTitle": "Apie Kast",
+    "metaDescription": "Kodėl atsirado Kast, kaip jis saugo jūsų duomenis ir kaip sukurtas.",
+    "kicker": "Apie",
+    "title": "CV kūrimo įrankis, kuris nesikiša į jūsų reikalus",
+    "lead": "Kast padeda parašyti CV, kurį malonu skaityti žmonėms ir kurį teisingai išanalizuoja kandidatų atrankos sistemos, – neklausdamas, kas esate, ir nepasilikdamas kopijos.",
+    "principlesHeading": "Principai",
+    "principle1Title": "Duomenys lieka pas jus",
+    "principle1Body": "Nėra nei paskyrų, nei saugojimo serveryje. CV gyvena jūsų naršyklės IndexedDB, kol jų neeksportuojate ar neištrinate.",
+    "principle2Title": "Pirmiausia struktūra, tada stilius",
+    "principle2Body": "Šablonai keičia šriftus, tarpus ir spalvas. Skaitymo tvarka po jais nesikeičia, todėl kiekvienas eksportas analizuojamas vienodai.",
+    "principle3Title": "DI – pagal norą ir skaidriai",
+    "principle3Body": "Be rakto Kast veikia visiškai. Su raktu matote, kas tiksliai siunčiama, asmens duomenys užmaskuojami, ir niekas nesikeičia be jūsų pritarimo.",
+    "principle4Title": "Atvirasis kodas",
+    "principle4Body": "Kast – laisva programinė įranga pagal AGPL-3.0 licenciją, sukurta atvirojo kodo projekto Lanjut pagrindu. Kodą galima skaityti, paleisti ir tobulinti.",
+    "builtHeading": "Kaip sukurtas",
+    "builtBody": "Astro ir React, Tailwind CSS, TipTap formatuotam tekstui, IndexedDB saugojimui, takumi-pdf PDF failams su tikru teksto sluoksniu, docx Word dokumentams ir pdf.js importui. Šriftai pateikiami kartu su programa, todėl niekas nekraunama iš trečiųjų šalių serverių.",
+    "creditsHeading": "Padėkos",
+    "creditsBody": "Kast prasidėjo kaip Rizki Maulana Citra projekto Lanjut atšaka. Ačiū visiems, kurie kuria atvirojo kodo bibliotekas, ant kurių jis pastatytas.",
+    "cta": "Pradėti",
+    "privacyLink": "Privatumo politika"
+  },
+  "privacy": {
+    "metaTitle": "Privatumo politika",
+    "metaDescription": "Ką saugo Kast, kur ir kas palieka jūsų įrenginį.",
+    "kicker": "Privatumas",
+    "title": "Privatumo politika",
+    "updated": "Atnaujinta {date}",
+    "summary": "Trumpai: Kast neturi paskyrų, analitikos ir serverio, kuris gautų jūsų CV. Viskas lieka naršyklėje, kol patys neeksportuojate duomenų arba nenusprendžiate naudoti DI asistento su savo raktu.",
+    "storedHeading": "Kas saugoma ir kur",
+    "storedBody": "CV, jų versijos, skelbimų žymės, motyvaciniai laiškai ir nustatymai saugomi šios naršyklės IndexedDB ir vietinėje saugykloje jūsų įrenginyje. Kast jų nesinchronizuoja ir nekopijuoja. Išvalius svetainės duomenis arba nustatymuose paspaudus „Ištrinti visus duomenis“, jie pašalinami.",
+    "leavesHeading": "Kas palieka įrenginį",
+    "leavesBody": "Pagal nutylėjimą – nieko. Kast vieną kartą įkelia savo puslapius, šriftus ir kodą iš svetainės, kurioje jį atidarėte, ir nesikreipia į jokias kitas paslaugas. Eksportas sukuriamas naršyklėje ir išsaugomas tiesiai įrenginyje.",
+    "aiHeading": "DI asistentas",
+    "aiBody": "Jei pridėsite API raktą ir sutiksite siųsti duomenis, Kast išsiųs pasirinktą CV tekstą tiesiai iš naršyklės jūsų pasirinktam tiekėjui (Anthropic arba Google). Prieš siųsdamas Kast parodo tikslų tekstą ir pakeičia el. paštą, telefoną, adresą ir nuorodas žymekliais, jei to neišjungėte. Nuotrauka ir gimimo data niekada nesiunčiami. Tiekėjas užklausą tvarko pagal savo sąlygas ir privatumo politiką. Sutikimą atšaukti ir raktą pašalinti galite bet kada nustatymuose.",
+    "keysHeading": "API raktai",
+    "keysBody": "Pagal nutylėjimą raktas laikomas tik dabartinio skirtuko atmintyje. Jei nuspręsite jį įsiminti, jis užšifruojamas jūsų slaptažodžiu (PBKDF2 ir AES-GCM) ir saugomas šioje naršyklėje. Kast negali jo perskaityti ar atkurti.",
+    "hostingHeading": "Talpinimas",
+    "hostingBody": "Serveris, pateikiantis Kast failus, gali kaupti įprastus prieigos žurnalus, pavyzdžiui, IP adresą ir užklausos laiką, kaip bet kuri svetainė. Kast neprideda slapukų, sekiklių ar analitikos.",
+    "childrenHeading": "Vaikai",
+    "childrenBody": "Kast nėra skirtas vaikams ir iš nieko nerenka duomenų.",
+    "changesHeading": "Pakeitimai",
+    "changesBody": "Jei ši politika pasikeis, kartu pasikeis ir aukščiau nurodyta data, o šaltinio kodo istorija parodys kiekvieną pataisymą.",
+    "contactHeading": "Klausimai",
+    "contactBody": "Sukurkite pranešimą (issue) projekto šaltinio kodo saugykloje."
+  },
+  "offline": {
+    "metaTitle": "Nėra ryšio",
+    "title": "Esate neprisijungę",
+    "body": "Šis puslapis dar neišsaugotas darbui be interneto. Jūsų CV saugūs šiame įrenginyje.",
+    "dashboard": "Atidaryti mano CV"
+  },
   "tryIt": {
-    "kicker": "Try it right here",
-    "heading": "Type your name. Watch it become a resume.",
-    "description": "This is not a mockup. The page you see on the right is drawn by the same engine that renders the editor and prints your PDF, live, as you type.",
-    "firstName": "First name",
-    "firstNamePlaceholder": "John",
-    "lastName": "Last name",
-    "lastNamePlaceholder": "Doe",
-    "jobTitle": "Job title",
-    "jobTitlePlaceholder": "Senior Frontend Engineer",
-    "template": "Template",
-    "cta": "Create your resume",
-    "note": "Free, no account. Everything stays in your browser.",
-    "caption": "Rendered live by the export engine. Never a screenshot.",
-    "draftTitle": "My resume"
+    "kicker": "Išbandykite čia pat",
+    "heading": "Įveskite vardą – ir stebėkite, kaip atsiranda CV.",
+    "description": "Tai ne maketas. Puslapį dešinėje piešia tas pats variklis, kuris rodo redaktorių ir spausdina PDF, – realiu laiku, jums rašant.",
+    "firstName": "Vardas",
+    "firstNamePlaceholder": "Jonas",
+    "lastName": "Pavardė",
+    "lastNamePlaceholder": "Petraitis",
+    "jobTitle": "Pareigos",
+    "jobTitlePlaceholder": "Vyresnysis front-end programuotojas",
+    "template": "Šablonas",
+    "cta": "Sukurti CV",
+    "note": "Nemokamai, be paskyros. Viskas lieka naršyklėje.",
+    "caption": "Atvaizduota gyvai eksporto varikliu. Ne ekrano kopija.",
+    "draftTitle": "Mano CV"
   },
   "values": {
-    "localTitle": "Yours, locally",
-    "localBody": "Your resume lives in your browser and nowhere else. No account, no server, no one reading over your shoulder.",
-    "parseTitle": "Machines read it right",
-    "parseBody": "Every template keeps one linear reading order, and every export is verified by real text extraction before it ships.",
-    "freeTitle": "Free and open source",
-    "freeBody": "The whole builder is open source and free to use. Inspect the code, file an issue, or run it yourself."
+    "localTitle": "Jūsų ir tik pas jus",
+    "localBody": "CV gyvena jūsų naršyklėje ir niekur kitur. Jokios paskyros, jokio serverio, niekas nežiūri per petį.",
+    "parseTitle": "Mašinos perskaito teisingai",
+    "parseBody": "Kiekvienas šablonas išlaiko vieną linijinę skaitymo tvarką, o kiekvienas eksportas tikrinamas tikru teksto ištraukimu.",
+    "freeTitle": "Nemokama ir atvira",
+    "freeBody": "Visas įrankis – atvirasis kodas ir nemokamas. Skaitykite kodą, siūlykite patobulinimų arba paleiskite pas save."
   },
   "parserProof": {
-    "caption": "Runs in your browser, on this page, right now",
-    "waiting": "waiting for you to scroll here…",
-    "rendering": "rendering resume.pdf",
-    "renderedKb": "done · {kb} KB",
-    "extracting": "extracting text with a real parser",
-    "extractedChars": "{chars} characters",
-    "checkName": "name “{name}” survives extraction",
-    "checkTitle": "job title survives extraction",
-    "checkEmployer": "employer “Acme Corp” survives extraction",
-    "checkEmail": "email address intact",
-    "checkOrder": "sections in reading order:",
-    "passed": "{count}/5 checks passed. This exact document is what an ATS reads.",
-    "failed": "the run hit an error in this browser. Try again.",
-    "rerun": "Run it again"
+    "caption": "Veikia jūsų naršyklėje, šiame puslapyje, dabar",
+    "waiting": "laukiame, kol nuslinksite čia…",
+    "rendering": "piešiame resume.pdf",
+    "renderedKb": "baigta · {kb} KB",
+    "extracting": "ištraukiame tekstą tikru analizatoriumi",
+    "extractedChars": "simbolių: {chars}",
+    "checkName": "vardas „{name}“ išliko ištraukus",
+    "checkTitle": "pareigos išliko ištraukus",
+    "checkEmployer": "darbdavys „Acme Corp“ išliko ištraukus",
+    "checkEmail": "el. pašto adresas nepakitęs",
+    "checkOrder": "dalys skaitymo tvarka:",
+    "passed": "Įveikta patikrų: {count} iš 5. Būtent šį dokumentą skaito ATS.",
+    "failed": "šioje naršyklėje įvyko klaida. Bandykite dar kartą.",
+    "rerun": "Paleisti dar kartą"
   },
   "notFound": {
-    "metaTitle": "Page not found",
-    "title": "This page does not exist",
-    "body": "The link is broken, or the page moved.",
-    "home": "Go to the home page"
+    "metaTitle": "Puslapis nerastas",
+    "title": "Tokio puslapio nėra",
+    "body": "Nuoroda neveikia arba puslapis perkeltas.",
+    "home": "Į pagrindinį puslapį"
   }
 }

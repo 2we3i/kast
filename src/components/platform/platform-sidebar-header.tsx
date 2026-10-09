@@ -21,13 +21,15 @@ export function PlatformSidebarHeader() {
         >
           <img
             src="/favicon.svg"
-            alt={t("logoAlt")}
+            alt=""
             width={28}
             height={28}
             className="size-7"
           />
           <div className="flex flex-col">
-            <span className="font-brand text-sm font-bold">Lanjut</span>
+            <span className="font-brand text-base leading-tight font-extrabold tracking-tight">
+              Kast
+            </span>
             <span className="text-xs text-muted-foreground">
               <span className="sr-only">{t("localFirst")}</span> {t("tagline")}
             </span>

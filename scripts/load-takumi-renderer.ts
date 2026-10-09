@@ -26,7 +26,7 @@ export async function loadTakumiRenderer(): Promise<TakumiRenderer> {
     server: { middlewareMode: true, hmr: false },
     plugins: [tailwindcss()],
     resolve: { alias: { "@": `${ROOT}src` } },
-    define: { "import.meta.env.PUBLIC_LANJUT_TARGET": JSON.stringify("") },
+    define: { "import.meta.env.PUBLIC_SITE_URL": JSON.stringify("") },
   });
   const module = await server.ssrLoadModule(
     "/src/components/editor/takumi/render-resume-pdf.ts",

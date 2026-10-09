@@ -23,7 +23,7 @@ export function AiDiffView(props: AiDiffViewProps) {
             part.kind === "removed" &&
               "bg-destructive/10 text-destructive line-through",
             part.kind === "added" &&
-              "bg-success/15 text-success-foreground underline decoration-success",
+              "bg-success/15 text-success underline decoration-success",
           )}
         >
           {part.kind === "removed" && <span className="sr-only">−</span>}

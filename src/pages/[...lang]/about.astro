@@ -1,0 +1,78 @@
+---
+import InfoLayout from "@/components/info/info-layout.astro";
+import InfoSection from "@/components/info/info-section.astro";
+import { buttonVariants } from "@/components/ui/button";
+import { type Locale, localeStaticPaths, localizePath } from "@/i18n/routing";
+import { getTranslator } from "@/i18n/translator";
+import { SITE } from "@/lib/site";
+import { cn } from "@/lib/utils";
+
+export function getStaticPaths() {
+  return localeStaticPaths();
+}
+
+interface Props {
+  locale: Locale;
+}
+
+const locale = Astro.props.locale;
+const t = getTranslator(locale, "about");
+const tFooter = getTranslator(locale, "footer");
+
+const PRINCIPLES = [1, 2, 3, 4] as const;
+---
+
+<InfoLayout
+  locale={locale}
+  title={t("metaTitle")}
+  description={t("metaDescription")}
+  kicker={t("kicker")}
+  heading={t("title")}
+>
+  <p class="mt-6 text-lg leading-relaxed text-foreground/80">{t("lead")}</p>
+
+  <section class="mt-14">
+    <h2 class="font-display text-2xl font-bold tracking-tight">
+      {t("principlesHeading")}
+    </h2>
+    <ul class="mt-6 grid gap-4 sm:grid-cols-2">
+      {
+        PRINCIPLES.map((index) => (
+          <li class="rounded-xl border bg-card p-5">
+            <h3 class="font-semibold">{t(`principle${index}Title`)}</h3>
+            <p class="mt-2 text-sm text-muted-foreground">
+              {t(`principle${index}Body`)}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <InfoSection heading={t("builtHeading")} body={t("builtBody")} />
+  <InfoSection heading={t("creditsHeading")} body={t("creditsBody")} />
+
+  <div class="mt-12 flex flex-wrap items-center gap-4">
+    <a href={localizePath("/platform", locale)} class={cn(buttonVariants({ size: "lg" }))}>
+      {t("cta")}
+    </a>
+    <a
+      href={localizePath("/privacy", locale)}
+      class="text-sm text-primary underline-offset-4 hover:underline"
+    >
+      {t("privacyLink")}
+    </a>
+    {
+      SITE.sourceUrl && (
+        <a
+          href={SITE.sourceUrl}
+          target="_blank"
+          rel="noreferrer"
+          class="text-sm text-primary underline-offset-4 hover:underline"
+        >
+          {tFooter("github")}
+        </a>
+      )
+    }
+  </div>
+</InfoLayout>

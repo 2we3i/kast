@@ -1,21 +1,16 @@
-/** Canonical site identity, shared by metadata, Open Graph, robots, and the sitemap. */
-export const SITE = {
-  name: "Lanjut",
-  url: "https://lanjut.org",
-  title: "Lanjut: Free, local-first ATS resume builder",
-  description:
-    "Lanjut is a free, open-source resume builder that stays entirely in your browser; no account, nothing uploaded. Style it freely; every export is structured to sail through applicant tracking systems.",
-} as const;
-
-/** Donation profiles, shared by the landing footer and the platform sidebar. */
-export const DONATION_LINKS = {
-  saweria: "https://saweria.co/rimzzlabs",
-  sociabuzz: "https://sociabuzz.com/rimzzlabs/tribe",
-} as const;
-
 /**
- * Where the desktop download points. The latest-release page rather than a
- * pinned asset, so the link does not rot when a new version publishes.
+ * Canonical site identity, shared by metadata, Open Graph, robots, and the
+ * sitemap. Both URLs come from the build environment so a deployment sets
+ * them once: PUBLIC_SITE_URL is the address Kast is served from, and
+ * PUBLIC_SOURCE_URL the public repository of the code it runs. AGPL-3.0
+ * requires offering that source to everyone who uses a modified copy over a
+ * network, so a deployment should always set it.
  */
-export const DESKTOP_RELEASE_URL =
-  "https://github.com/rimzzlabs/lanjut/releases/latest";
+export const SITE = {
+  name: "Kast",
+  url: import.meta.env?.PUBLIC_SITE_URL || "http://localhost:4321",
+  sourceUrl: import.meta.env?.PUBLIC_SOURCE_URL || "",
+} as const;
+
+/** The date the privacy policy last changed, shown on /privacy. */
+export const PRIVACY_UPDATED = "2026-10-09";

@@ -27,9 +27,10 @@ interface EditorSectionAddProps {
  * custom section with a heading of the user's choosing.
  */
 export function EditorSectionAdd(props: EditorSectionAddProps) {
-  const present = useResumeStore((state) =>
-    A.map(state.open?.sections ?? [], (section) => section.type),
-  );
+  // Selecting the array itself keeps the snapshot stable; mapping inside the
+  // selector would return a new array on every read and loop forever.
+  const sections = useResumeStore((state) => state.open?.sections);
+  const present = A.map(sections ?? [], (section) => section.type);
   const addOptionalSection = useResumeStore(
     (state) => state.addOptionalSection,
   );

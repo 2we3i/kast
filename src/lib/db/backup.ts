@@ -143,3 +143,18 @@ export async function clearAllData(): Promise<void> {
     // Storage blocked: nothing was stored there.
   }
 }
+
+export interface StoredCounts {
+  resumes: number;
+  snapshots: number;
+}
+
+/** How many résumés and saved versions this browser holds. */
+export async function countStored(): Promise<StoredCounts> {
+  const db = await getDb();
+  const [resumes, snapshots] = await Promise.all([
+    db.count("resumes"),
+    db.count("snapshots"),
+  ]);
+  return { resumes, snapshots };
+}

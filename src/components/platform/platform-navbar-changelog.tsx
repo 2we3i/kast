@@ -13,6 +13,7 @@ import {
   type ChangelogEntry,
   LATEST_CHANGELOG_VERSION,
 } from "@/lib/changelog";
+import { SITE } from "@/lib/site";
 import { useChangelogStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import { ExternalLink } from "../shared/external-link";
@@ -123,15 +124,17 @@ export function PlatformNavbarChangelog() {
           </div>
         </div>
 
-        <SheetFooter className="border-t">
-          <ExternalLink
-            href="https://github.com/rimzzlabs/lanjut/releases"
-            className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            {t("fullChangelog")}
-            <ArrowUpRightIcon className="size-4" />
-          </ExternalLink>
-        </SheetFooter>
+        {SITE.sourceUrl && (
+          <SheetFooter className="border-t">
+            <ExternalLink
+              href={`${SITE.sourceUrl}/releases`}
+              className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {t("fullChangelog")}
+              <ArrowUpRightIcon className="size-4" />
+            </ExternalLink>
+          </SheetFooter>
+        )}
       </SheetContent>
     </Sheet>
   );

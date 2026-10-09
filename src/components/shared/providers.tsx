@@ -8,6 +8,7 @@ import { type Locale, stripLocale } from "@/i18n/routing";
 import { registerResumeFlushListeners } from "@/lib/store";
 import { Toaster } from "../ui/sonner";
 import { TooltipProvider } from "../ui/tooltip";
+import { PwaUpdateToast } from "./pwa-update-toast";
 
 /** The props Astro passes to every island. */
 export interface IslandProps {
@@ -70,6 +71,7 @@ export function AppProviders(props: PropsWithChildren<IslandProps>) {
         <AppThemeProvider>
           <TooltipProvider>{props.children}</TooltipProvider>
           <Toaster />
+          <PwaUpdateToast />
         </AppThemeProvider>
       </NuqsAdapter>
     </IslandProviders>

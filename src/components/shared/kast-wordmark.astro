@@ -1,0 +1,18 @@
+---
+/** The Kast mark beside its name, linking home. */
+interface Props {
+  href: string;
+  label: string;
+}
+
+const { href, label } = Astro.props;
+---
+
+<a
+  href={href}
+  aria-label={label}
+  class="inline-flex items-center gap-2 rounded-md font-brand text-xl font-extrabold tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-ring"
+>
+  <img src="/favicon.svg" alt="" width="28" height="28" class="size-7" />
+  <span aria-hidden="true">Kast</span>
+</a>

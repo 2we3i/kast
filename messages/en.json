@@ -1,81 +1,88 @@
 {
   "meta": {
-    "title": "Lanjut: Free, local-first ATS resume builder",
-    "description": "Lanjut is a free, open-source resume builder that stays entirely in your browser; no account, nothing uploaded. Style it freely; every export is structured to sail through applicant tracking systems."
+    "title": "Kast: free, private résumé builder that passes ATS",
+    "description": "Kast is a free, open-source résumé builder that runs entirely in your browser. No account, no tracking, nothing uploaded. Ten templates, an ATS check, PDF import, and an optional AI assistant with your own key."
   },
   "language": {
     "label": "Language",
     "en": "English",
-    "id": "Indonesia"
+    "lt": "Lietuvių",
+    "ru": "Русский"
   },
   "hero": {
-    "badge": "Free & open source",
-    "srHeading": "Lanjut, ATS Resume builder:",
-    "headingLine1": "Land The Interview,",
-    "headingLine2": "Not The Reject Pile.",
-    "description": "Lanjut is a local-first resume builder that stays entirely in your browser. No account, nothing uploaded. Style it freely, and every export is structured to sail through applicant tracking systems.",
+    "badge": "Free, private, open source",
+    "srHeading": "Kast, an ATS-friendly résumé builder:",
+    "headingLine1": "Land the interview,",
+    "headingLine2": "not the reject pile.",
+    "description": "Kast builds your résumé right in the browser. No account, no tracking, nothing uploaded. Style it freely; every export keeps a clean structure that applicant tracking systems read correctly.",
     "ctaPrimary": "Start building free",
-    "ctaSecondary": "Browse Templates",
+    "ctaSecondary": "Browse templates",
     "stat1Value": "100%",
-    "stat1Label": "Local-first",
-    "stat2Value": "No",
-    "stat2Label": "Accounts",
-    "stat3Value": "5",
+    "stat1Label": "In your browser",
+    "stat2Value": "0",
+    "stat2Label": "Accounts or trackers",
+    "stat3Value": "7",
     "stat3Label": "Export formats"
+  },
+  "features": {
+    "heading": "Everything a job search needs",
+    "subheading": "One tool from the first draft to the tailored version you send.",
+    "atsTitle": "ATS check, offline",
+    "atsBody": "A 0–100 score by category with concrete fixes, plus a keyword match against the vacancy. It runs on your device.",
+    "importTitle": "Import your old PDF",
+    "importBody": "Kast reads CV.lt, CV-Online, hh.ru, and builder exports, filters page clutter, and lets you check every uncertain field.",
+    "templatesTitle": "Ten templates, two modes",
+    "templatesBody": "Every template has a strict ATS mode and a design mode with an accent color, icons, a photo, and a QR code.",
+    "languagesTitle": "Lithuanian, English, Russian",
+    "languagesBody": "The interface and each résumé have their own language, so you can keep one CV per market.",
+    "aiTitle": "AI with your own key",
+    "aiBody": "Rewrite, tailor to a vacancy, translate, or draft a cover letter with Claude or Gemini. Personal data is masked and every change waits for your approval.",
+    "versionsTitle": "Versions and vacancies",
+    "versionsBody": "Keep a version per application, note where you sent it, and roll back to any of the last 20 snapshots.",
+    "offlineTitle": "Works offline",
+    "offlineBody": "Install Kast as an app and keep writing on a plane. Your data never leaves this device unless you export it.",
+    "exportTitle": "Every format you need",
+    "exportBody": "PDF with a real text layer, Word with real styles, plain text, JSON, YAML, and Europass XML or JSON."
   },
   "howItWorks": {
     "heading": "How it works",
-    "subheading": "The same resume at every stage: what you type, what recruiters see, and what the parser reads back.",
+    "subheading": "The same résumé at every stage: what you type, what recruiters see, and what the parser reads back.",
     "step1Kicker": "01 · Template",
     "step1Title": "Pick a template",
-    "step1Description": "Start from a template you like. Each one only changes typography, spacing, and accents; the structure underneath stays ATS-safe.",
+    "step1Description": "Start from a template you like. Templates change typography, spacing, and accents; the structure underneath stays ATS-safe.",
     "step2Kicker": "02 · Content",
     "step2Title": "Type it once",
-    "step2Description": "Fill structured sections: experience, education, skills. Every change lands in your browser's storage and nowhere else.",
+    "step2Description": "Fill structured sections: experience, education, skills, languages, and more. Every change is saved in your browser and nowhere else.",
     "step3Kicker": "03 · Export",
     "step3Title": "Survive the parser",
-    "step3Description": "Download PDF, DOCX, or plain text, and any extractor reads it back in the order you wrote it. That's the whole trick.",
+    "step3Description": "Download PDF, DOCX, or plain text, and any extractor reads it back in the order you wrote it.",
     "liveCaption": "Live render, same engine as your PDF."
   },
   "closure": {
     "kicker": "04 · Apply",
-    "heading": "Lanjut. Resume. Résumé.",
-    "description": "The name is the pitch: lanjut means continue. Pick a template or start from a blank page; either way it's free, open source, and your resume never leaves your browser.",
-    "ctaPrimary": "Create your resume",
+    "heading": "Your next job starts with a clean page.",
+    "description": "Pick a template or start from a blank page. Kast is free and open source, and your résumé never leaves your browser.",
+    "ctaPrimary": "Create your résumé",
     "ctaSecondary": "Browse templates"
-  },
-  "desktop": {
-    "kicker": "05 · Desktop",
-    "heading": "Or keep it on your Mac",
-    "description": "The same builder as a native app. Your résumés live on your own machine, and it keeps working with the network off.",
-    "cta": "Download for macOS",
-    "gatekeeper": "Beta, and not yet signed by Apple, so macOS asks you to confirm the first time you open it."
-  },
-  "updater": {
-    "title": "Lanjut {version} is available",
-    "description": "You are up to date otherwise. Installing takes a moment and reopens the app.",
-    "install": "Install",
-    "later": "Not now",
-    "installing": "Downloading the update"
   },
   "footer": {
     "ariaLabel": "Footer",
-    "tagline": "Local-first: your resume never leaves your browser.",
+    "tagline": "Private by design: your résumé never leaves your browser.",
     "startBuilding": "Start building",
     "templates": "Templates",
-    "github": "GitHub",
-    "support": "Support this project:",
-    "supportAriaLabel": "Donation links",
-    "rights": "© {year} Lanjut. Open source, AGPL-3.0 licensed."
+    "about": "About",
+    "privacy": "Privacy",
+    "github": "Source code",
+    "rights": "© {year} Kast. Open source under AGPL-3.0."
   },
   "nav": {
     "skipToContent": "Skip to main content",
     "dashboard": "Dashboard",
     "templates": "Templates",
-    "createResume": "Create Resume",
+    "createResume": "Create résumé",
     "openMenu": "Open menu",
     "menuTitle": "Menu",
-    "menuDescription": "Browse Lanjut and jump into the resume builder.",
+    "menuDescription": "Browse Kast and jump into the résumé builder.",
     "display": "Display",
     "close": "Close"
   },
@@ -88,12 +95,12 @@
     },
     "library": {
       "welcome": {
-        "title": "Welcome to Lanjut",
-        "content": "A free, local-first resume builder. Everything you write stays in this browser; nothing is ever sent to a server."
+        "title": "Welcome to Kast",
+        "content": "A free résumé builder that keeps everything in this browser. Nothing is sent to a server unless you choose to use the AI assistant."
       },
       "create": {
-        "title": "Create a resume",
-        "content": "Start a new resume from here. You can keep as many as you like."
+        "title": "Create a résumé",
+        "content": "Start a new résumé here: from the example, a blank page, or an imported PDF. Keep as many versions as you like."
       },
       "search": {
         "title": "Find it later",
@@ -101,11 +108,11 @@
       },
       "nav": {
         "title": "Get around",
-        "content": "Switch between your dashboard and the template gallery from here."
+        "content": "Switch between your dashboard, the template gallery, and settings from here."
       },
       "resumes": {
-        "title": "Your resumes",
-        "content": "Every resume you create shows up here; pick one to jump into the editor."
+        "title": "Your résumés",
+        "content": "Every résumé shows up here with the vacancy it's for; pick one to open the editor."
       },
       "replay": {
         "title": "Replay anytime",
@@ -115,7 +122,7 @@
     "template": {
       "browse": {
         "title": "Browse templates",
-        "content": "Templates change presentation only: typography, spacing, accents. The structure stays linear so ATS parsers can always read your resume."
+        "content": "Templates change presentation only: typography, spacing, accents. The structure stays linear so ATS parsers can always read your résumé."
       },
       "search": {
         "title": "Search",
@@ -132,16 +139,28 @@
         "content": "This is your live preview, exactly what gets exported. It updates as you type and saves to this browser automatically."
       },
       "sections": {
-        "title": "Editor tab",
-        "content": "Fill in each section here. Drag to reorder them or hide the ones you don't need; the structure stays ATS-parseable underneath."
+        "title": "Content",
+        "content": "Fill in each section here. Add optional sections, reorder or hide them; the structure stays ATS-readable underneath."
       },
       "layout": {
-        "title": "Layout tab",
-        "content": "Swap templates from the Layout tab. Each one restyles typography and spacing only, so your content and its reading order never change."
+        "title": "Design",
+        "content": "Swap templates, switch between ATS and design mode, and pick an accent color."
       },
       "document": {
-        "title": "Document tab",
-        "content": "Style the whole resume here: font, sizes, spacing, line height, and letter spacing. It's also where you switch language and export or import as PDF, DOCX, JSON, or YAML."
+        "title": "Document",
+        "content": "Fonts, sizes, spacing, the résumé language, and import or copy as JSON or YAML."
+      },
+      "check": {
+        "title": "ATS check",
+        "content": "A score from 0 to 100 with concrete fixes. Paste a vacancy to see which keywords you're missing."
+      },
+      "ai": {
+        "title": "AI assistant",
+        "content": "Optional. Add your own Anthropic or Gemini key to rewrite, tailor, translate, or draft a cover letter. Every change waits for your review."
+      },
+      "toolbar": {
+        "title": "Versions and export",
+        "content": "Save a version, note the vacancy, and download in any format from this bar."
       }
     },
     "editor-sheet": {
@@ -154,16 +173,16 @@
         "content": "Tap Edit anytime to open this panel and make changes."
       },
       "sections": {
-        "title": "Editor tab",
-        "content": "Fill in each section here. Drag to reorder them or hide the ones you don't need; the structure stays ATS-parseable underneath."
+        "title": "Content",
+        "content": "Fill in each section here. Add optional sections, reorder or hide them; the structure stays ATS-readable underneath."
       },
       "layout": {
-        "title": "Layout tab",
-        "content": "Swap templates from the Layout tab. Each one restyles typography and spacing only, so your content and its reading order never change."
+        "title": "Design",
+        "content": "Swap templates, switch between ATS and design mode, and pick an accent color."
       },
       "document": {
-        "title": "Document tab",
-        "content": "Style the whole resume here: font, sizes, spacing, line height, and letter spacing. It's also where you switch language and export or import as PDF, DOCX, JSON, or YAML."
+        "title": "Document",
+        "content": "Fonts, sizes, spacing, the résumé language, and import or copy as JSON or YAML."
       }
     }
   },
@@ -171,7 +190,8 @@
     "breadcrumb": {
       "platform": "Dashboard",
       "editor": "Editor",
-      "browseTemplates": "Browse Templates"
+      "browseTemplates": "Browse templates",
+      "settings": "Settings"
     },
     "theme": {
       "system": "System",
@@ -179,305 +199,77 @@
       "dark": "Dark",
       "choose": "Choose theme",
       "appearance": "Appearance",
-      "chooseAppearance": "Choose Appearance"
+      "chooseAppearance": "Choose appearance"
     },
     "changelog": {
       "whatsNew": "What's new",
-      "description": "The latest from Lanjut",
+      "description": "The latest in Kast",
       "latest": "Latest",
-      "fullChangelog": "Full changelog on GitHub",
+      "fullChangelog": "Full changelog",
       "entries": {
-        "0_19_0": [
+        "1_0_0": [
           {
-            "title": "Your PDF now matches the preview",
-            "description": "PDF downloads are now drawn from the same page you see in the editor, so the fonts, sizes, and spacing in the file match the preview. The text stays selectable for applicant tracking systems."
-          }
-        ],
-        "0_18_0": [
-          {
-            "title": "Add context about a company",
-            "description": "Experience and internship entries now have an optional company context field for briefly explaining an unfamiliar employer. It appears in every preview and export before your achievements."
-          }
-        ],
-        "0_17_1": [
-          {
-            "title": "The Mac app can update itself",
-            "description": "When a new version is out, the Mac app now offers it to you. It looks at most once every few days, and nothing installs until you click."
+            "title": "Kast 1.0",
+            "description": "A new name, a new look, and three interface languages: Lithuanian, English, and Russian. Each résumé keeps its own language."
           },
           {
-            "title": "Bug fixes",
-            "description": "In the Mac app the sidebar covered the page when the app opened, and the button that hides it did nothing. Both are fixed."
-          }
-        ],
-        "0_16_0": [
-          {
-            "title": "Lanjut on your Mac",
-            "description": "There is now a Mac app. It is the same builder you already use, running on your own machine, and it keeps working with the network off. Your resumes stay on that machine. Download it from the link on the home page. It is a beta and it is not signed by Apple yet, so macOS will ask you to confirm the first time you open it."
+            "title": "Ten templates with ATS and design modes",
+            "description": "Four new templates: Modern, Elegant, Timeline, and Executive. Every template has a strict ATS mode and a design mode with an accent color, icons, a photo, and a QR code."
           },
           {
-            "title": "A page for feedback",
-            "description": "Bug reports and feature requests now have their own page, so you can send one from anywhere, including from the Mac app. You still do not need a GitHub account."
-          }
-        ],
-        "0_14_0": [
-          {
-            "title": "Add a photo to your header",
-            "description": "You can now put a photo on your resume. It is optional and off by default. Add it in Personal Information, then pick the size, corner roundness, and position. It comes along in PDF and Word exports, and the text of your resume stays fully readable to parsers."
+            "title": "ATS check",
+            "description": "A local 0–100 score by category with concrete fixes and a keyword match against the vacancy."
           },
           {
-            "title": "A fresh new look",
-            "description": "Lanjut has a new logo and a rebuilt landing page. The previews there are rendered by the real templates, so what you see is exactly what you get."
+            "title": "Smarter PDF import",
+            "description": "Reads label columns and sidebars, removes page numbers and portal footers, keeps tenure and level badges as metadata, and asks you to review uncertain fields."
           },
           {
-            "title": "Support Lanjut",
-            "description": "Lanjut is free and always will be. If it helped you, you can now support development through Saweria or SociaBuzz, right from the sidebar or the footer."
-          }
-        ],
-        "0_13_0": [
-          {
-            "title": "One more link in your header",
-            "description": "A new optional Link field sits next to LinkedIn in Personal Information, for your portfolio, GitHub, or anything else. It shows in the preview and every export, and importing a PDF picks it up too."
-          }
-        ],
-        "0_12_0": [
-          {
-            "title": "Undo and redo",
-            "description": "Change your mind freely: every edit can now be undone and redone, from typing and deleted entries to section order and layout settings. Use the arrows beside the sidebar tabs or Ctrl/Cmd+Z, and each text field keeps its own history while you write."
+            "title": "AI assistant with your own key",
+            "description": "Claude or Gemini rewrite, tailor, translate, check, and draft cover letters. Personal data is masked, nothing is sent without consent, and every change waits for your review."
           },
           {
-            "title": "One section at a time",
-            "description": "The editor list now keeps a single section open, so the form you are working in stays in view instead of pushing the others off screen."
+            "title": "New sections",
+            "description": "Volunteering, courses, publications, references, hobbies, driving licence, salary expectations, and availability. Languages now rate speaking, understanding, and writing."
           },
           {
-            "title": "Bug fixes",
-            "description": "Fixed three reported bugs: links in your exports now show as clickable, a stray dash no longer appears in the PDF contact line, and locations land in the right field when you import a PDF."
-          }
-        ],
-        "0_11_0": [
-          {
-            "title": "Company location",
-            "description": "Experience and internship entries now carry a location, shown next to the employer in the preview, the PDF, and every other export. Education locations render too, instead of being kept out of sight."
-          }
-        ],
-        "0_10_0": [
-          {
-            "title": "Feedback without a GitHub account",
-            "description": "Report a bug or request a feature right from the app; we file the GitHub issue for you under the name you provide, guarded by a quick verification."
+            "title": "Versions, vacancies, and cover letters",
+            "description": "Up to 20 snapshots per résumé with rollback, a vacancy label with status, and a cover letter that shares the résumé's design."
           },
           {
-            "title": "JSON and YAML export and import",
-            "description": "Copy or download your resume as JSON or YAML, and import either back losslessly. Rich text travels as simple markdown."
-          },
-          {
-            "title": "Hide sections",
-            "description": "Every section, Summary included, now has an eye toggle in the editor list. Hidden sections keep their content but drop out of the preview and every export until you show them again."
-          },
-          {
-            "title": "Hide contact icons",
-            "description": "A new toggle in the Document tab hides the small icons next to your contact details, for a plainer header in the preview and PDF. Your contact text always stays."
-          },
-          {
-            "title": "Section spacing",
-            "description": "A slider in the Document tab adjusts the room above every section, in the preview and the PDF alike. Open it up for an airy layout, or tighten it below each template's default until sections sit flush."
-          },
-          {
-            "title": "Choose your font",
-            "description": "Pick from fifteen resume-safe fonts, grouped as sans, serif, and mono, and the whole document follows in the preview and the PDF. Every template keeps its own default until you choose, and the preview now renders the exact same font files the PDF embeds."
-          },
-          {
-            "title": "Line height and letter spacing",
-            "description": "Two more sliders in the Document tab, resting at each template's real values: tighten or loosen line height and letter spacing either way, both bounded to the range where PDF text still extracts cleanly, so your styling never costs you ATS parsing."
-          },
-          {
-            "title": "Font size controls",
-            "description": "Resize your name, section headings, and body text independently from the Document tab. Each slider scales its group on top of the template's proportions, so a bigger name never flattens the rest, and the preview and PDF stay in step."
-          }
-        ],
-        "0_9_0": [
-          {
-            "title": "Import from PDF",
-            "description": "Start a new resume from an existing PDF. Lanjut reads it in your browser and fills the sections for you to tidy up."
-          },
-          {
-            "title": "Custom sections",
-            "description": "Add your own sections beyond the built-in set, either as a rich text block or a list of entries."
-          },
-          {
-            "title": "Reorder certifications",
-            "description": "Drag certifications into the order you want, the same way skills and languages already work."
-          },
-          {
-            "title": "Hide proficiency",
-            "description": "Turn the proficiency level off on skills and languages when you would rather just list them, with a toggle in each section."
-          },
-          {
-            "title": "Language columns",
-            "description": "Show your languages in one column or two, matching the layout control already in Skills."
-          },
-          {
-            "title": "Undo a deletion",
-            "description": "Deleting a resume now waits ten seconds and shows an Undo, so an accidental delete is easy to take back."
-          },
-          {
-            "title": "Duplicate a resume",
-            "description": "Copy any resume from its menu to branch a new version without starting over."
-          }
-        ],
-        "0_8_0": [
-          {
-            "title": "Skills column layout",
-            "description": "A toggle in the Skills section switches between one and two columns, and your choice carries through to the preview and every export."
-          },
-          {
-            "title": "Newest entries first",
-            "description": "The editor lists your entries newest first, matching the order they appear in the preview, so the forms and your resume always line up."
-          },
-          {
-            "title": "New landing navbar",
-            "description": "The landing page has a new navigation bar, with a menu that opens cleanly on mobile."
-          },
-          {
-            "title": "Page load progress",
-            "description": "Moving between pages shows a slim progress bar at the top, so you get instant feedback while a page loads."
-          }
-        ],
-        "0_7_0": [
-          {
-            "title": "Internship section",
-            "description": "List internships as their own entries, separate from full-time roles, with the same fields as Experience."
-          },
-          {
-            "title": "Projects section",
-            "description": "Give side projects, open-source work, and anything you have shipped their own space, each with a name, link, dates, and description."
-          },
-          {
-            "title": "Blank resume preview",
-            "description": "A blank resume shows a preview placeholder in your library instead of an empty white card, so a new resume looks intentional until you start writing."
-          }
-        ],
-        "0_6_0": [
-          {
-            "title": "Bahasa Indonesia",
-            "description": "Switch the entire interface between English and Indonesian anytime with the language toggle in the navbar."
-          },
-          {
-            "title": "Per-resume language",
-            "description": "Pick English or Indonesian per document, and the section headings and dates in your PDF, DOCX, and TXT exports follow that choice."
-          },
-          {
-            "title": "Reorder skills and languages",
-            "description": "Grab the handle next to an entry and drag it into place, or use the keyboard to move it. The new order flows straight into the preview and every export."
-          },
-          {
-            "title": "Empty section prompts",
-            "description": "Instead of a lone button, each section without entries shows a short prompt for what to add."
-          },
-          {
-            "title": "Refreshed hero gradient",
-            "description": "The landing page hero heading has a new gradient, tuned for both light and dark mode."
-          }
-        ],
-        "0_5_0": [
-          {
-            "title": "Switch templates in the editor",
-            "description": "The new Layout tab shows your resume rendered in every template, and one click applies your pick."
-          },
-          {
-            "title": "Start from a blank resume",
-            "description": "Untick “Pre-fill with example content” in the create dialog to begin with a blank document instead of the example resume."
-          },
-          {
-            "title": "Emptyable sections",
-            "description": "Every entry has a delete button, and removing the last one drops the section from the preview until you add another."
-          }
-        ],
-        "0_4_0": [
-          {
-            "title": "Organization section",
-            "description": "Showcase volunteer, student, and community roles with dates and highlights, just like work experience. It shows up in every template and export, and existing resumes get it automatically."
-          },
-          {
-            "title": "Safer app updates",
-            "description": "A backup copy is kept on your device before any data-format upgrade, and a resume the app cannot read yet is flagged with a notice instead of disappearing."
-          },
-          {
-            "title": "Guided tour",
-            "description": "A guided tour walks you through the dashboard, the templates, and the editor on your first visit."
-          },
-          {
-            "title": "Landing page walkthrough",
-            "description": "The landing page walks through how Lanjut works, ending with a one-click way to start a new resume."
-          },
-          {
-            "title": "Report bugs and requests",
-            "description": "Report a bug or feature request from the sidebar; we prefill the GitHub issue for you."
-          },
-          {
-            "title": "Mobile drawers",
-            "description": "On your phone, dialogs open as drawers that are easier to reach and swipe away."
-          }
-        ],
-        "0_3_0": [
-          {
-            "title": "Template browser",
-            "description": "Browse templates on their own page, with search and sorting."
-          },
-          {
-            "title": "Five new templates",
-            "description": "Ketat, Luasa, Tebal, Klasik, and Ketik."
-          },
-          {
-            "title": "Live thumbnails",
-            "description": "Template and resume cards show a live thumbnail of your actual document."
-          },
-          {
-            "title": "Sidebar and quick actions",
-            "description": "The sidebar highlights where you are, and each resume gets a quick actions menu."
-          }
-        ],
-        "0_2_0": [
-          {
-            "title": "Export your resume",
-            "description": "Save your resume as PDF, DOCX, or plain text."
-          },
-          {
-            "title": "Rich text in the preview",
-            "description": "Bold, italics, links, and lists show up in the live preview."
-          },
-          {
-            "title": "Full editor sections",
-            "description": "The editor covers summary, experience, education, skills, certifications, and languages."
+            "title": "Europass, backups, and offline",
+            "description": "Export to Europass XML or JSON, back up or restore everything in one file, and install Kast to keep working offline."
           }
         ]
       }
     },
     "download": {
-      "trigger": "Resume",
+      "trigger": "Résumé",
       "srDownload": "Download",
-      "title": "Download resume",
+      "title": "Download résumé",
       "description": "Pick a format and name your file."
     },
     "menu": {
       "label": "Menu",
-      "downloadResume": "Download Resume"
+      "downloadResume": "Download résumé"
     },
     "sidebar": {
-      "home": "Lanjut - Home Page",
-      "logoAlt": "Lanjut Logo",
-      "localFirst": "Local-First",
-      "tagline": "ATS Resume Builder",
+      "home": "Kast home page",
+      "logoAlt": "Kast logo",
+      "localFirst": "Private",
+      "tagline": "Résumé builder",
       "platform": "Platform",
       "dashboard": "Dashboard",
-      "browseTemplate": "Browse Template",
+      "browseTemplate": "Templates",
       "other": "Other",
       "support": "Support",
       "guide": "Guide",
-      "reportBug": "Report a bug",
-      "featureRequest": "Feature request",
-      "myResume": "My Resume",
-      "createResume": "Create Resume",
-      "noResume": "No resume yet",
-      "noResumeDescription": "When you add resume, they will be visible here.",
+      "settings": "Settings",
+      "about": "About Kast",
+      "myResume": "My résumés",
+      "createResume": "Create résumé",
+      "noResume": "No résumés yet",
+      "noResumeDescription": "Résumés you create will show up here.",
       "itemMenu": "Menu",
       "modify": "Modify <b>{title}</b>",
       "rename": "Rename",
@@ -486,30 +278,30 @@
       "delete": "Delete"
     },
     "toolbar": {
-      "searchResume": "Search your resume",
-      "resume": "Resume",
+      "searchResume": "Search your résumés",
+      "resume": "Résumé",
       "searchTemplates": "Search templates",
       "sortNameAsc": "Name (A–Z)",
       "sortNameDesc": "Name (Z–A)",
       "sortNewest": "Newest"
     },
     "emptyState": {
-      "title": "No resumes yet",
-      "description": "Nothing is saved on this device yet. Start from a template, or create a blank resume.",
+      "title": "No résumés yet",
+      "description": "Nothing is saved on this device yet. Start from a template, import a PDF, or create a blank résumé.",
       "browseTemplates": "Browse templates",
-      "newResume": "New resume"
+      "newResume": "New résumé"
     },
     "unreadable": {
-      "title": "Some resumes need a newer version of the app",
-      "description": "{count, plural, one {# resume was} other {# resumes were}} saved by a newer version of Lanjut than the one this tab is running. They are still stored safely on this device. Refresh the page to update the app and see them again."
+      "title": "Some résumés need a newer version of Kast",
+      "description": "{count, plural, one {# résumé was} other {# résumés were}} saved by a newer version of Kast than the one this tab is running. They are still stored safely on this device. Refresh the page to update and see them again."
     },
     "grid": {
-      "emptyTitle": "No resumes match",
+      "emptyTitle": "No résumés match",
       "create": "Create “{query}”",
-      "errorTitle": "Couldn't load your resumes",
+      "errorTitle": "Couldn't load your résumés",
       "errorDescription": "Nothing was deleted. The library just failed to load from this browser's storage. Refresh the page to try again.",
       "open": "Open {title}",
-      "emptyDocument": "Blank resume, nothing added yet",
+      "emptyDocument": "Blank résumé, nothing added yet",
       "edited": "Edited",
       "menu": "Menu",
       "rename": "Rename",
@@ -517,19 +309,26 @@
       "copyOf": "Copy of {title}",
       "download": "Download",
       "delete": "Delete",
-      "newResume": "New resume"
+      "newResume": "New résumé",
+      "targetAt": "{position} at {company}",
+      "filterAll": "All",
+      "filterLabel": "Filter by status"
     },
     "templates": {
       "noMatch": "No templates match “{query}”.",
       "use": "Use {name}",
-      "useTemplate": "Use {name} template",
+      "useTemplate": "Use the {name} template",
       "descriptions": {
-        "awal": "A clean, single-column ATS-safe starter. Linear reading order, no columns or tables, with room for every section.",
-        "ketat": "A compact serif classic: centered ruled section headings, right-aligned contact column, and italic dates. Dense without feeling cramped.",
-        "luasa": "An airy minimalist layout: letterspaced headings, a single contact line, and slim accent bars. Generous whitespace throughout.",
-        "tebal": "A bold, modern statement: oversized name, heavy uppercase headings over thick rules, and strong typographic hierarchy.",
-        "klasik": "A traditional all-serif CV: centered name and contacts, quiet centered headings, and italic dates. Timeless and formal.",
-        "ketik": "A typewriter-flavored technical look: monospace name, headings, and dates over a clean sans body. Built for developers."
+        "standard": "A clean single-column starter. Linear reading order, no columns or tables, room for every section.",
+        "compact": "A compact serif classic: centered ruled headings, a right-aligned contact column, and italic dates. Dense without feeling cramped.",
+        "airy": "An airy minimalist layout: letterspaced headings, a single contact line, and slim accent bars.",
+        "bold": "A bold statement: an oversized name, heavy uppercase headings over thick rules, and a strong hierarchy.",
+        "classic": "A traditional all-serif CV: centered name and contacts, quiet centered headings, and italic dates.",
+        "mono": "A typewriter-flavored technical look: monospace name, headings, and dates over a clean sans body.",
+        "modern": "A confident modern layout: a tinted name band, accent headings, and tidy right-aligned dates.",
+        "elegant": "A refined serif design: small caps headings, hairline rules, and generous margins.",
+        "timeline": "Experience along a vertical timeline in design mode; a plain dated list in ATS mode.",
+        "executive": "A senior-level layout: a strong name block, a highlighted summary, and dense, scannable entries."
       }
     }
   },
@@ -540,112 +339,72 @@
       "delete": "Delete",
       "undo": "Undo",
       "download": "Download",
-      "openIssue": "Open GitHub issue"
+      "close": "Close"
     },
     "validation": {
       "titleMin": "Use at least {min} characters.",
       "titleMax": "Keep it to {max} characters or fewer.",
       "fileNameRequired": "Name the file before downloading.",
-      "bugWhatHappened": "Describe what went wrong.",
-      "featureProblem": "Describe the problem this would solve.",
-      "sectionTitleRequired": "Enter a section name.",
-      "reporterNameRequired": "Tell us your name first.",
-      "verificationRequired": "Finish the quick verification first."
-    },
-    "direct": {
-      "name": "Your name",
-      "namePlaceholder": "e.g. Sinta",
-      "nameDescription": "Shown on the public GitHub issue so we know who it's from.",
-      "send": "Send it for me",
-      "githubAlt": "Have a GitHub account? Open a prefilled issue instead.",
-      "sentToast": "Sent! Thank you; we filed the GitHub issue for you.",
-      "errorToast": "Couldn't send it. Try again, or use the GitHub button."
+      "sectionTitleRequired": "Enter a section name."
     },
     "create": {
-      "title": "Create a new resume",
+      "title": "Create a new résumé",
       "description": "Name it, choose where to start, and pick a template.",
-      "label": "Resume name",
-      "placeholder": "Software Engineer",
+      "label": "Résumé name",
+      "placeholder": "Software engineer",
       "template": "Template",
       "sourceLabel": "Start from",
-      "sourceSample": "Sample",
+      "sourceSample": "Example",
       "sourceEmpty": "Blank",
       "sourceImport": "Import a file",
-      "submit": "Create resume"
+      "submit": "Create résumé"
     },
     "rename": {
       "title": "Rename",
-      "description": "You can rename this resume label to whatever you want. If the value of the label is same as before, it won't be saved.",
-      "label": "Resume label",
-      "placeholder": "e.g: Software Engineer",
-      "fieldDescription": "At least 3 characters or up. Max 100 characters."
+      "description": "Give this résumé a name you'll recognize. If the name is unchanged, nothing is saved.",
+      "label": "Résumé name",
+      "placeholder": "e.g. Software engineer",
+      "fieldDescription": "Between 3 and 100 characters."
     },
     "delete": {
       "title": "Delete <b>{title}</b>?",
-      "description": "This will delete <b>{title}</b>. You'll have a few seconds to undo. Are you sure?",
-      "toast": "Deleting \"{title}\"..."
+      "description": "This deletes <b>{title}</b> and its saved versions. You'll have a few seconds to undo. Are you sure?",
+      "toast": "Deleting “{title}”…"
     },
     "download": {
       "title": "Download {title}",
       "description": "Pick a format and name your file. The export is generated in your browser.",
-      "missing": "This resume could not be loaded from this browser's storage.",
-      "drawerTitle": "Download resume",
+      "missing": "This résumé could not be loaded from this browser's storage.",
+      "drawerTitle": "Download résumé",
       "drawerDescription": "Pick a format and name your file.",
       "format": "Format",
       "fileName": "File name",
-      "fileNamePlaceholder": "Senior Frontend Engineer"
-    },
-    "bug": {
-      "title": "Report a bug",
-      "description": "Send it right here and we'll file the GitHub issue for you; no account needed. If you have a GitHub account, you can open a prefilled issue yourself instead.",
-      "descriptionGitHubOnly": "This opens a prefilled GitHub issue for you to review and submit; a GitHub account is required, and your browser details are filled in for you.",
-      "whatHappened": "What happened?",
-      "whatHappenedPlaceholder": "The editor preview goes blank when...",
-      "whatHappenedDescription": "Include the steps to reproduce it; a numbered list works great.",
-      "area": "Where does the bug show up?",
-      "areaPlaceholder": "Area"
-    },
-    "feature": {
-      "title": "Request a feature",
-      "description": "Send it right here and we'll file the GitHub issue for you; no account needed. Note that resume structure (tables, columns, images) is out of scope by design; presentation is fair game.",
-      "descriptionGitHubOnly": "This opens a prefilled GitHub issue for you to review and submit; a GitHub account is required. Note that resume structure (tables, columns, images) is out of scope by design; presentation is fair game.",
-      "problem": "What problem does this solve?",
-      "problemPlaceholder": "When I tailor my resume for different roles, I have to...",
-      "problemDescription": "Describe the situation where you needed this, rather than the solution itself.",
-      "layer": "Which layer does this touch?",
-      "layerPlaceholder": "Layer"
+      "fileNamePlaceholder": "Senior frontend engineer"
     },
     "import": {
       "dropPrompt": "Drop a PDF, JSON, or YAML file here, or click to browse",
-      "hint": "Your file is read on your device and never uploaded.",
-      "parsing": "Reading your resume…",
+      "hint": "Your file is read on this device and never uploaded. PDF up to 10 MB and 10 pages.",
+      "parsing": "Reading your résumé…",
+      "reviewing": "Review the import",
       "parsed": "Ready to import",
       "remove": "Remove file",
       "errorUnsupported": "Only PDF, JSON, and YAML files are supported.",
       "errorTooLarge": "That file is too large. The limit is 10 MB.",
-      "errorEmpty": "This PDF has no readable text. It looks scanned; try exporting a text-based PDF.",
+      "errorTooManyPages": "That PDF has more than 10 pages. Export a shorter version and try again.",
+      "errorEmpty": "This PDF has no text layer; it looks scanned. Kast doesn't run OCR. Export a text-based PDF from the original document, or type the résumé in.",
       "errorEncrypted": "This PDF is password-protected. Remove the password and try again.",
       "errorGeneric": "We couldn't read this PDF. Try a different file.",
-      "disclaimer": "Importing is best-effort and can miss or misplace details. If something comes out wrong, it would really help if you",
-      "reportIssue": "report an issue",
-      "errorInvalidData": "This file isn't a valid resume export."
+      "disclaimer": "Importing is best-effort. You'll review uncertain fields before anything is saved, and you can always edit the result.",
+      "errorInvalidData": "This file isn't a valid résumé export."
     }
-  },
-  "feedback": {
-    "metaTitle": "Send feedback",
-    "metaDescription": "Report a bug or request a feature. We file the GitHub issue for you, so no account is needed.",
-    "kindLabel": "Choose bug report or feature request",
-    "sentTitle": "Thank you",
-    "sentBody": "We filed the GitHub issue for you. You can close this window.",
-    "sendAnother": "Send another",
-    "offlineToast": "You need to be online to send feedback. Check your connection and try again."
   },
   "editor": {
     "common": {
       "add": "Add"
     },
     "layout": {
-      "documentLanguage": "Document language",
+      "documentLanguage": "Résumé language",
+      "documentLanguageHint": "Section headings, dates, and levels follow this language. It's separate from the interface language.",
       "documentIcons": "Show contact icons",
       "sectionSpacing": "Section spacing",
       "documentFont": "Font",
@@ -662,161 +421,195 @@
     "chrome": {
       "edit": "Edit",
       "editorTitle": "Editor",
-      "editorDescription": "Resume Editor",
-      "tabEditor": "Editor",
-      "tabLayout": "Layout",
-      "notFound": "Resume not found",
+      "editorDescription": "Résumé editor",
+      "tabEditor": "Content",
+      "tabLayout": "Design",
+      "tabDocument": "Document",
+      "tabCheck": "ATS",
+      "tabAi": "AI",
+      "tabLetter": "Letter",
+      "notFound": "Résumé not found",
       "didYouMean": "did you mean:",
-      "notExist": "This resume doesn't exist in this browser's storage.",
+      "notExist": "This résumé doesn't exist in this browser's storage.",
       "headTo": "or head to",
       "dashboard": "Dashboard",
       "or": "or",
-      "browseTemplates": "Browse Templates",
+      "browseTemplates": "Browse templates",
       "showSection": "Show section",
       "hideSection": "Hide section",
       "reorderSection": "Reorder section",
       "resetOrder": "Reset section order",
       "sectionsHeading": "Sections",
-      "addSection": "Custom Section",
-      "tabDocument": "Document",
+      "addSection": "Add section",
+      "addSectionLabel": "Add an optional section",
+      "addCustomSection": "Custom section…",
       "undo": "Undo",
       "redo": "Redo"
     },
     "dateRange": {
-      "startDate": "Start Date",
+      "startDate": "Start date",
       "startPlaceholder": "Start date",
-      "endDate": "End Date",
+      "endDate": "End date",
       "endPlaceholder": "End date",
       "present": "Present"
     },
+    "levels": {
+      "Beginner": "Beginner",
+      "Intermediate": "Intermediate",
+      "Advanced": "Advanced",
+      "Expert": "Expert",
+      "Native": "Native",
+      "Fluent": "Fluent",
+      "Professional": "Professional",
+      "Conversational": "Conversational",
+      "Basic": "Basic",
+      "A1": "A1 · Beginner",
+      "A2": "A2 · Elementary",
+      "B1": "B1 · Intermediate",
+      "B2": "B2 · Upper intermediate",
+      "C1": "C1 · Advanced",
+      "C2": "C2 · Proficient",
+      "native": "Native"
+    },
     "personal": {
-      "accordionTitle": "Personal Information",
-      "personalInfo": "Personal Information",
-      "personalInfoDesc": "So HR can identify you",
+      "accordionTitle": "Personal information",
+      "personalInfo": "Personal information",
+      "personalInfoDesc": "So recruiters can identify you",
       "firstName": "First name",
-      "firstNamePlaceholder": "John",
+      "firstNamePlaceholder": "Jonas",
       "lastName": "Last name",
-      "lastNamePlaceholder": "Doe",
-      "jobTitle": "Job Title",
-      "jobTitlePlaceholder": "UX Engineer",
-      "contactInfo": "Contact Information",
-      "contactInfoDesc": "So HR can reach you easily",
+      "lastNamePlaceholder": "Petraitis",
+      "jobTitle": "Job title",
+      "jobTitlePlaceholder": "Product designer",
+      "birthDate": "Date of birth",
+      "birthDatePlaceholder": "1994-05-12",
+      "birthDateDesc": "Optional. Expected in some countries, discouraged in others; leave it empty if unsure.",
+      "contactInfo": "Contact information",
+      "contactInfoDesc": "So recruiters can reach you easily",
       "email": "Email address",
-      "emailPlaceholder": "john@acme.inc",
-      "phone": "Phone Number",
-      "phonePlaceholder": "+62812345678",
+      "emailPlaceholder": "jonas@example.com",
+      "phone": "Phone number",
+      "phonePlaceholder": "+370 600 00000",
       "website": "Website",
-      "websitePlaceholder": "rimzzlabs.com",
+      "websitePlaceholder": "example.com",
       "linkedin": "LinkedIn",
-      "linkedinPlaceholder": "johndoe",
+      "linkedinPlaceholder": "jonaspetraitis",
       "link": "Link",
-      "linkPlaceholder": "github.com/johndoe",
+      "linkPlaceholder": "github.com/jonas",
       "location": "Location",
-      "locationDesc": "Where are you from?",
+      "locationDesc": "Where are you based?",
       "city": "City",
-      "cityPlaceholder": "Pandeglang",
-      "province": "Province",
-      "provincePlaceholder": "Banten",
+      "cityPlaceholder": "Vilnius",
+      "province": "Region",
+      "provincePlaceholder": "Vilnius County",
       "country": "Country",
-      "countryPlaceholder": "Indonesia",
+      "countryPlaceholder": "Lithuania",
       "photo": "Photo",
       "photoAdd": "Add photo",
       "photoReplace": "Replace",
       "photoRemove": "Remove",
-      "photoHint": "Optional. Common for applications in Indonesia; many ATS and US employers ignore or discourage photos. The text of your resume always stays fully readable to parsers.",
+      "photoCrop": "Crop",
+      "photoHint": "Optional, and shown only in design mode. Common in Lithuania and much of Europe; many ATS and US employers ignore or discourage photos. The photo is compressed and never changes the text parsers read.",
       "photoError": "That file could not be read as an image.",
       "photoSize": "Photo size",
       "photoRadius": "Corner radius",
       "photoAlign": "Position",
       "photoAlignTop": "Top",
       "photoAlignCenter": "Center",
-      "photoAlignBottom": "Bottom"
+      "photoAlignBottom": "Bottom",
+      "photoAtsNote": "ATS mode hides the photo. Switch to design mode on the Design tab to show it.",
+      "cropTitle": "Crop photo",
+      "cropDescription": "Drag to move, use the slider or scroll to zoom. The photo is saved as a small square JPEG.",
+      "cropZoom": "Zoom",
+      "cropApply": "Use photo",
+      "cropCancel": "Cancel",
+      "cropReset": "Reset"
     },
     "summary": {
-      "accordionTitle": "Professional Summary",
-      "label": "Professional Summary",
-      "placeholder": "I'm a passionate UX engineer. Creating visually engaging..."
+      "accordionTitle": "Professional summary",
+      "label": "Professional summary",
+      "placeholder": "Product designer with six years in fintech. I turn research into interfaces that…"
     },
     "experience": {
-      "accordionTitle": "Professional Experience",
-      "legend": "Professional Experience",
-      "legendDesc": "Describe your past experience",
-      "add": "Professional Experience",
+      "accordionTitle": "Work experience",
+      "legend": "Work experience",
+      "legendDesc": "Describe your past roles",
+      "add": "Work experience",
       "emptyTitle": "No experience yet",
       "emptyDescription": "Add your roles to build out your work history.",
       "itemLegend": "Experience {index}",
-      "jobTitle": "Job Title",
-      "jobTitlePlaceholder": "UX Engineer",
+      "jobTitle": "Job title",
+      "jobTitlePlaceholder": "Product designer",
       "company": "Company",
-      "companyPlaceholder": "Acme Inc.",
+      "companyPlaceholder": "Example UAB",
       "location": "Location",
-      "locationPlaceholder": "San Francisco, CA",
-      "companyContext": "Company Context",
+      "locationPlaceholder": "Vilnius, Lithuania",
+      "companyContext": "Company context",
       "companyContextPlaceholder": "B2B payments platform serving 2M merchants",
-      "companyWebsite": "Company Website",
-      "companyWebsitePlaceholder": "acme.com",
+      "companyWebsite": "Company website",
+      "companyWebsitePlaceholder": "example.com",
       "present": "I currently work here",
-      "summary": "Summary",
-      "summaryPlaceholder": "Creating real-time application that....",
+      "summary": "Achievements",
+      "summaryPlaceholder": "Redesigned onboarding, cutting drop-off by 18%…",
       "remove": "Remove"
     },
     "internship": {
-      "accordionTitle": "Internship",
-      "legend": "Internship",
+      "accordionTitle": "Internships",
+      "legend": "Internships",
       "legendDesc": "Add internships you've completed",
       "add": "Internship",
       "emptyTitle": "No internships yet",
       "emptyDescription": "Add internships to show early hands-on experience.",
       "itemLegend": "Internship {index}",
       "role": "Role",
-      "rolePlaceholder": "Frontend Engineering Intern",
+      "rolePlaceholder": "Frontend engineering intern",
       "company": "Company",
-      "companyPlaceholder": "Acme Inc.",
+      "companyPlaceholder": "Example UAB",
       "location": "Location",
-      "locationPlaceholder": "San Francisco, CA",
-      "companyContext": "Company Context",
+      "locationPlaceholder": "Kaunas, Lithuania",
+      "companyContext": "Company context",
       "companyContextPlaceholder": "B2B payments platform serving 2M merchants",
-      "companyWebsite": "Company Website",
-      "companyWebsitePlaceholder": "acme.com",
+      "companyWebsite": "Company website",
+      "companyWebsitePlaceholder": "example.com",
       "present": "I'm currently interning here",
-      "summary": "Summary",
-      "summaryPlaceholder": "Built internal tooling that....",
+      "summary": "Achievements",
+      "summaryPlaceholder": "Built internal tooling that…",
       "remove": "Remove"
     },
     "projects": {
       "accordionTitle": "Projects",
       "legend": "Projects",
-      "legendDesc": "Show off the things you've built",
+      "legendDesc": "Show the things you've built",
       "add": "Project",
       "emptyTitle": "No projects yet",
       "emptyDescription": "Add side projects, open-source work, or things you've shipped.",
       "itemLegend": "Project {index}",
       "name": "Project name",
-      "namePlaceholder": "react-a11y-kit",
+      "namePlaceholder": "Accessible form kit",
       "role": "Role",
       "rolePlaceholder": "Maintainer",
       "url": "Project URL",
       "urlPlaceholder": "github.com/you/project",
       "present": "This is ongoing",
       "summary": "Description",
-      "summaryPlaceholder": "What it does, what you built, the impact....",
+      "summaryPlaceholder": "What it does, what you built, the impact…",
       "remove": "Remove"
     },
     "organizations": {
-      "accordionTitle": "Organization",
-      "legend": "Organization Experience",
-      "legendDesc": "Describe your volunteer, student, and community roles",
-      "add": "Organization Experience",
+      "accordionTitle": "Organizations",
+      "legend": "Organizations",
+      "legendDesc": "Student, community, and association roles",
+      "add": "Organization",
       "emptyTitle": "No organizations yet",
-      "emptyDescription": "Add volunteer, student, or community roles here.",
+      "emptyDescription": "Add student, community, or association roles here.",
       "itemLegend": "Organization {index}",
       "role": "Role",
-      "rolePlaceholder": "Head of Public Relations",
+      "rolePlaceholder": "Head of public relations",
       "organization": "Organization",
-      "organizationPlaceholder": "Student Executive Board",
+      "organizationPlaceholder": "Student union",
       "present": "I'm currently active here",
       "summary": "Summary",
-      "summaryPlaceholder": "Organized events that....",
+      "summaryPlaceholder": "Organized events that…",
       "remove": "Remove"
     },
     "education": {
@@ -825,14 +618,14 @@
       "legendDesc": "Where you studied",
       "add": "Education",
       "emptyTitle": "No education yet",
-      "emptyDescription": "Add your degrees, schools, and courses.",
+      "emptyDescription": "Add your degrees and schools.",
       "itemLegend": "Education {index}",
       "institution": "Institution",
-      "institutionPlaceholder": "State University",
+      "institutionPlaceholder": "Vilnius University",
       "degree": "Degree",
-      "degreePlaceholder": "B.Sc. Computer Science",
+      "degreePlaceholder": "BSc Computer Science",
       "location": "Location",
-      "locationPlaceholder": "Boston, MA",
+      "locationPlaceholder": "Vilnius, Lithuania",
       "present": "I currently study here",
       "details": "Details",
       "detailsPlaceholder": "Graduated with honors. Relevant coursework…",
@@ -850,8 +643,10 @@
       "namePlaceholder": "AWS Certified Solutions Architect",
       "issuer": "Issuer",
       "issuerPlaceholder": "Amazon Web Services",
+      "date": "Date",
+      "datePlaceholder": "Mar 2024",
       "url": "Certificate URL",
-      "urlPlaceholder": "acme.com/cert",
+      "urlPlaceholder": "example.com/certificate",
       "urlDesc": "Link to the certificate or the issuer's site.",
       "reorder": "Reorder certification",
       "remove": "Remove"
@@ -859,12 +654,14 @@
     "skills": {
       "accordionTitle": "Skills",
       "legend": "Skills",
-      "legendDesc": "List your skills",
+      "legendDesc": "Key skills with a level and, if useful, a line of context",
       "add": "Skill",
       "emptyTitle": "No skills yet",
-      "emptyDescription": "Add the tools and technologies you work with.",
+      "emptyDescription": "Add the tools, methods, and strengths you work with.",
       "namePlaceholder": "TypeScript",
-      "proficiency": "Proficiency",
+      "proficiency": "Level",
+      "description": "Description",
+      "descriptionPlaceholder": "5 years, design systems and testing",
       "reorder": "Reorder skill",
       "remove": "Remove skill",
       "columnsLabel": "Columns",
@@ -872,18 +669,21 @@
       "columnsOneAria": "One column",
       "columnsTwo": "2",
       "columnsTwoAria": "Two columns",
-      "proficiencyLabel": "Show proficiency"
+      "proficiencyLabel": "Show level"
     },
     "languages": {
       "accordionTitle": "Languages",
       "legend": "Languages",
-      "legendDesc": "Languages you speak",
+      "legendDesc": "Languages you speak, with optional CEFR levels",
       "add": "Language",
       "emptyTitle": "No languages yet",
-      "emptyDescription": "Add the languages you speak and your proficiency.",
+      "emptyDescription": "Add the languages you speak and your level.",
       "namePlaceholder": "English",
-      "proficiency": "Proficiency",
-      "proficiencyLabel": "Show proficiency",
+      "proficiency": "Overall level",
+      "speaking": "Speaking",
+      "understanding": "Understanding",
+      "writing": "Writing",
+      "proficiencyLabel": "Show level",
       "columnsLabel": "Columns",
       "columnsOne": "1",
       "columnsOneAria": "One column",
@@ -892,13 +692,241 @@
       "reorder": "Reorder language",
       "remove": "Remove language"
     },
+    "generic": {
+      "titles": {
+        "header": "Header",
+        "summary": "Summary",
+        "experience": "Experience",
+        "internship": "Internships",
+        "projects": "Projects",
+        "organizations": "Organizations",
+        "volunteering": "Volunteering",
+        "education": "Education",
+        "courses": "Courses and training",
+        "certifications": "Certifications",
+        "publications": "Publications",
+        "skills": "Skills",
+        "languages": "Languages",
+        "interests": "Hobbies and interests",
+        "references": "References",
+        "driving": "Driving licence",
+        "salary": "Salary expectations",
+        "availability": "Availability",
+        "custom": "Custom section"
+      },
+      "fields": {
+        "volunteering": {
+          "role": "Role",
+          "rolePlaceholder": "Volunteer coordinator",
+          "organization": "Organization",
+          "organizationPlaceholder": "Food Bank",
+          "location": "Location",
+          "locationPlaceholder": "Vilnius",
+          "startDate": "Start date",
+          "endDate": "End date",
+          "description": "What you did"
+        },
+        "courses": {
+          "title": "Course",
+          "titlePlaceholder": "UX research fundamentals",
+          "provider": "Provider",
+          "providerPlaceholder": "Coursera",
+          "url": "Certificate or course link",
+          "urlPlaceholder": "example.com/course",
+          "startDate": "Start date",
+          "endDate": "End date",
+          "description": "Notes"
+        },
+        "publications": {
+          "title": "Title",
+          "titlePlaceholder": "Designing for trust in payments",
+          "publisher": "Publisher or venue",
+          "publisherPlaceholder": "UX Collective",
+          "url": "Link",
+          "urlPlaceholder": "example.com/article",
+          "date": "Date",
+          "description": "Summary"
+        },
+        "references": {
+          "name": "Name",
+          "namePlaceholder": "Rūta Kazlauskienė",
+          "position": "Position",
+          "positionPlaceholder": "Head of design",
+          "company": "Company",
+          "companyPlaceholder": "Example UAB",
+          "email": "Email",
+          "emailPlaceholder": "ruta@example.com",
+          "phone": "Phone",
+          "phonePlaceholder": "+370 600 00000"
+        },
+        "interests": {
+          "body": "Hobbies and interests",
+          "bodyPlaceholder": "Trail running, chess, volunteering at the animal shelter"
+        },
+        "driving": {
+          "categories": "Categories",
+          "categoriesPlaceholder": "B, C",
+          "note": "Note",
+          "notePlaceholder": "Own car, 10 years of experience"
+        },
+        "salary": {
+          "amount": "Amount",
+          "amountPlaceholder": "2500",
+          "currency": "Currency",
+          "currencyPlaceholder": "EUR",
+          "period": "Per",
+          "tax": "Before or after tax"
+        },
+        "availability": {
+          "status": "Status",
+          "from": "Available from",
+          "notice": "Notice period",
+          "noticePlaceholder": "1 month",
+          "workType": "Work type",
+          "workTypePlaceholder": "Full-time, hybrid",
+          "relocation": "Open to relocation"
+        }
+      },
+      "add": {
+        "volunteering": "Volunteering",
+        "courses": "Course",
+        "publications": "Publication",
+        "references": "Reference",
+        "interests": "Hobbies",
+        "driving": "Driving licence",
+        "salary": "Salary",
+        "availability": "Availability"
+      },
+      "empty": {
+        "volunteering": "Add unpaid roles that show your values and skills.",
+        "courses": "Add courses, bootcamps, and training you've completed.",
+        "publications": "Add articles, papers, talks, or books.",
+        "references": "Add people who can vouch for your work. Ask them first.",
+        "interests": "A line about what you do outside work.",
+        "driving": "Add your licence categories.",
+        "salary": "Add the pay you expect.",
+        "availability": "Say when you can start."
+      },
+      "options": {
+        "month": "Month",
+        "year": "Year",
+        "hour": "Hour",
+        "gross": "Before tax (gross)",
+        "net": "After tax (net)",
+        "immediately": "Immediately",
+        "notice": "After notice period",
+        "from-date": "From a date",
+        "open": "Open to offers",
+        "not-looking": "Not looking",
+        "yes": "Yes",
+        "no": "No"
+      },
+      "emptyTitle": "Nothing here yet",
+      "entryLegend": "Entry {index}",
+      "remove": "Remove",
+      "removeSection": "Remove section",
+      "menuLabel": "Section options",
+      "ongoing": "Ongoing",
+      "datePlaceholder": "Mar 2024",
+      "selectPlaceholder": "Choose…"
+    },
+    "mode": {
+      "label": "Mode",
+      "ats": "ATS",
+      "atsAria": "ATS mode",
+      "design": "Design",
+      "designAria": "Design mode",
+      "atsHint": "Strict and plain: no photo, icons, or QR code, and black text. The safest choice for online application forms.",
+      "designHint": "Adds the accent color, contact icons, your photo, and an optional QR code. The text layer stays the same for parsers.",
+      "accent": "Accent color",
+      "accentSwatch": "Accent {color}",
+      "accentCustom": "Custom color",
+      "qr": "QR code",
+      "qrHint": "Links to {link}. Shown in design mode only.",
+      "qrNeedsLink": "Add a website, LinkedIn, or link in Personal information to show a QR code."
+    },
+    "stats": {
+      "summary": "{words, plural, one {# word} other {# words}} · {pages, plural, one {# page} other {# pages}}",
+      "tooLong": "Longer than {max} pages",
+      "hint": "Recruiters spend seconds on a first read. Most résumés work best on one or two pages."
+    },
+    "versions": {
+      "open": "Versions",
+      "title": "Version history",
+      "description": "Kast saves a snapshot every few minutes while you edit, before imports, restores, and AI changes. The newest {limit} are kept.",
+      "labelField": "Name this version",
+      "labelPlaceholder": "Before tailoring for Example UAB",
+      "save": "Save version",
+      "emptyTitle": "No versions yet",
+      "emptyDescription": "Snapshots appear here as you edit.",
+      "restore": "Restore",
+      "delete": "Delete version",
+      "restored": "Version restored. The previous state was saved as a snapshot.",
+      "reasons": {
+        "auto": "Autosave",
+        "manual": "Saved by you",
+        "before-restore": "Before restore",
+        "before-import": "Before import",
+        "before-ai": "Before AI changes"
+      }
+    },
+    "target": {
+      "empty": "Vacancy",
+      "title": "For this vacancy",
+      "description": "Note which job this version is for. It's only for you: it never appears in the résumé or exports.",
+      "position": "Position",
+      "company": "Company",
+      "url": "Vacancy link",
+      "appliedAt": "Applied on",
+      "status": "Status",
+      "notes": "Notes",
+      "vacancy": "Vacancy text",
+      "vacancyPlaceholder": "Paste the job description here…",
+      "vacancyHint": "Used by the keyword check and the AI assistant.",
+      "statuses": {
+        "draft": "Draft",
+        "applied": "Applied",
+        "interview": "Interview",
+        "offer": "Offer",
+        "rejected": "Rejected"
+      }
+    },
+    "export": {
+      "open": "Export",
+      "documents": "Documents",
+      "data": "Data",
+      "failed": "Export failed. Try again, or pick another format.",
+      "hints": {
+        "pdf": "Selectable text, ready to send",
+        "docx": "Editable Word document",
+        "txt": "Plain text for web forms",
+        "json": "Lossless Kast data",
+        "yaml": "Lossless Kast data",
+        "europass-xml": "Europass CV, XML",
+        "europass-json": "Europass CV, JSON"
+      }
+    },
+    "letter": {
+      "intro": "A cover letter in the résumé's design and language. Fill it in or draft it with the AI assistant.",
+      "writeWithAi": "Draft with AI",
+      "recipient": "Recipient",
+      "company": "Company",
+      "date": "Date",
+      "subject": "Subject",
+      "body": "Letter",
+      "bodyPlaceholder": "Dear hiring team, …",
+      "closing": "Closing",
+      "closingPlaceholder": "Kind regards,",
+      "export": "Download letter",
+      "exportFailed": "The letter couldn't be exported. Try again."
+    },
     "richText": {
       "undo": "Undo",
       "redo": "Redo",
       "bold": "Bold",
       "italic": "Italic",
       "bulletList": "Bullet list",
-      "orderedList": "Ordered list",
+      "orderedList": "Numbered list",
       "link": "Link",
       "linkPlaceholder": "https://example.com",
       "apply": "Apply",
@@ -945,46 +973,585 @@
     },
     "document": {
       "downloadHeading": "Download",
-      "importHeading": "Import resume",
-      "importHint": "Bring in details from an existing PDF resume, or restore a JSON or YAML export. It's read on your device and never uploaded.",
-      "replacePrompt": "This resume already has content. Replace it, or keep it and create a new one?",
+      "importHeading": "Import résumé",
+      "importHint": "Bring in details from an existing PDF résumé, or restore a JSON or YAML export. It's read on this device and never uploaded.",
+      "replacePrompt": "This résumé already has content. Replace it, or keep it and create a new one?",
       "replace": "Replace this one",
       "createNew": "Create new",
       "stylingHeading": "Document styling",
       "resetStyling": "Reset to defaults",
-      "resetStylingHint": "Reset document styling to default",
+      "resetStylingHint": "Reset document styling to defaults",
       "copyHeading": "Copy",
-      "copyHint": "Copy this resume to the clipboard as structured text. Rich text travels as simple markdown, and pasting it into an import restores it exactly.",
+      "copyHint": "Copy this résumé to the clipboard as structured text. Rich text travels as simple markdown, and pasting it into an import restores it exactly.",
       "copyAs": "Copy as",
       "copyJson": "JSON",
       "copyYaml": "YAML",
       "copied": "Copied to clipboard",
-      "copyFailed": "Couldn't copy to the clipboard."
+      "copyFailed": "Couldn't copy to the clipboard.",
+      "verifyHeading": "Check the PDF text layer",
+      "verifyHint": "Builds the PDF, reads its text back the way an ATS does, and compares it with your résumé.",
+      "verifyRun": "Check PDF",
+      "verifyRunning": "Building and reading the PDF…",
+      "verifyPassed": "All {total} key values were found in reading order.",
+      "verifyFailed": "{missing, plural, one {# value was} other {# values were}} not found in the PDF text.",
+      "verifyMissing": "Missing: {values}",
+      "verifyError": "The check couldn't run in this browser.",
+      "spellcheck": "Spell check",
+      "spellcheckHint": "Uses your browser's dictionary for the résumé language. Nothing is sent anywhere."
     }
+  },
+  "ats": {
+    "local": "Checked on this device. Nothing is sent anywhere.",
+    "bands": {
+      "good": {
+        "title": "Ready for ATS",
+        "description": "Parsers will read this résumé well. Polish the remaining tips if you like."
+      },
+      "fair": {
+        "title": "Mostly readable",
+        "description": "A few fixes will make parsing more reliable and the content stronger."
+      },
+      "poor": {
+        "title": "Needs work",
+        "description": "Parsers may miss important details. Start with the errors below."
+      }
+    },
+    "categories": {
+      "structure": "Structure",
+      "format": "Formatting",
+      "contacts": "Contacts",
+      "dates": "Dates",
+      "content": "Content",
+      "keywords": "Keywords"
+    },
+    "notApplicable": "Not checked",
+    "issuesHeading": "{count, plural, one {# thing to fix} other {# things to fix}}",
+    "noIssuesTitle": "Nothing to fix",
+    "noIssuesDescription": "Every check passed.",
+    "keywordsHeading": "Match a vacancy",
+    "exportHeading": "Before you send",
+    "exportNote": "For online application forms, send DOCX or a PDF in ATS mode. Keep design mode for email and printed copies.",
+    "goToSection": "Go to section",
+    "keywords": {
+      "label": "Vacancy text",
+      "placeholder": "Paste the job description to compare keywords…",
+      "hint": "Saved with this résumé's vacancy note and never sent anywhere.",
+      "found": "{count, plural, one {# keyword found} other {# keywords found}}",
+      "missing": "{count, plural, one {# keyword missing} other {# keywords missing}}",
+      "honesty": "Add a missing keyword only if it's true for you. Recruiters check."
+    },
+    "rules": {
+      "name-present": {
+        "title": "Add your name",
+        "fix": "Fill in your first and last name in Personal information."
+      },
+      "headline-present": {
+        "title": "Add a job title",
+        "fix": "A headline under your name tells parsers and recruiters what role you're after."
+      },
+      "required-sections": {
+        "title": "Missing section: {section}",
+        "fix": "Most ATS expect {section}. Add it, even with one entry."
+      },
+      "summary-present": {
+        "title": "Add a short summary",
+        "fix": "Two to four sentences about who you are and what you bring."
+      },
+      "standard-headings": {
+        "title": "Unusual heading “{heading}”",
+        "fix": "Parsers look for standard names. Rename it to a common heading, or keep it if it really is a custom section."
+      },
+      "section-order": {
+        "title": "{before} comes after {after}",
+        "fix": "Put {before} above {after} unless you're a recent graduate."
+      },
+      "ats-mode": {
+        "title": "Design mode is on",
+        "fix": "Photos, icons, and QR codes are fine in email, but switch to ATS mode for online application forms."
+      },
+      "special-bullets": {
+        "title": "Unusual symbols: {chars}",
+        "fix": "Use plain bullets and dashes; decorative symbols can turn into garbage when parsed."
+      },
+      "emoji": {
+        "title": "Emoji in the text: {chars}",
+        "fix": "Remove emoji; many ATS drop or mangle them."
+      },
+      "letter-spacing": {
+        "title": "Wide letter spacing ({value})",
+        "fix": "Wide tracking can split words when text is extracted. Bring letter spacing closer to zero."
+      },
+      "email-present": {
+        "title": "Add an email address",
+        "fix": "Recruiters and ATS need a way to reach you."
+      },
+      "email-format": {
+        "title": "Check the email “{email}”",
+        "fix": "It doesn't look like a valid address."
+      },
+      "phone-present": {
+        "title": "Add a phone number",
+        "fix": "Many recruiters call first. Include the country code."
+      },
+      "phone-format": {
+        "title": "Check the phone “{phone}”",
+        "fix": "Use digits with an optional + and country code, e.g. +370 600 00000."
+      },
+      "location-present": {
+        "title": "Add your city",
+        "fix": "Location filters are common in ATS searches."
+      },
+      "dates-present": {
+        "title": "No dates: {entry}",
+        "fix": "Add start and end dates so the timeline is clear."
+      },
+      "dates-consistent": {
+        "title": "Mixed date formats",
+        "fix": "Use month and year everywhere, or years only everywhere."
+      },
+      "dates-order": {
+        "title": "End date before start: {entry}",
+        "fix": "Swap the dates or fix the typo."
+      },
+      "employment-gaps": {
+        "title": "Gap of {months} months ({from} – {to})",
+        "fix": "That's fine, but consider covering it with a course, project, or a short note."
+      },
+      "employment-overlaps": {
+        "title": "Overlap: {first} and {second}",
+        "fix": "If both are right, keep them; otherwise check the dates."
+      },
+      "word-count": {
+        "title": "{kind, select, short {Short résumé: {count} words} other {Long résumé: {count} words}}",
+        "fix": "{kind, select, short {Aim for at least {min} words with concrete achievements.} other {Aim for under {max} words; cut older or less relevant details.}}"
+      },
+      "summary-length": {
+        "title": "{kind, select, short {Summary is short ({count} words)} other {Summary is long ({count} words)}}",
+        "fix": "Aim for {min} to {max} words."
+      },
+      "bullets-per-entry": {
+        "title": "{entry}: {count} bullet points",
+        "fix": "Use {min} to {max} bullets per role, each starting with what you achieved."
+      },
+      "weak-phrases": {
+        "title": "Weak phrase “{phrase}”",
+        "fix": "Replace it with an action verb and a result."
+      },
+      "repeated-words": {
+        "title": "“{word}” is used {count} times",
+        "fix": "Vary the wording so it reads less repetitive."
+      },
+      "quantified-results": {
+        "title": "Few numbers ({percent}% of bullets)",
+        "fix": "Aim for at least {target}%: percentages, money, team sizes, or counts make results concrete."
+      },
+      "page-count": {
+        "title": "{pages} pages",
+        "fix": "Most résumés work best on {max} pages or fewer."
+      },
+      "keywords-match": {
+        "title": "Keyword match {percent}%",
+        "fix": "Missing from the vacancy: {missing}. Add the ones that are true for you."
+      }
+    }
+  },
+  "ai": {
+    "provider": "Provider",
+    "model": "Model",
+    "vacancy": "Vacancy text",
+    "vacancyPlaceholder": "Paste the job description…",
+    "targetLanguage": "Translate to",
+    "targetLanguagePlaceholder": "Choose a language",
+    "snapshotLabel": "Before AI: {mode}",
+    "usage": "{input} input + {output} output tokens{cost, select, none {} other { · ≈ {cost}}}",
+    "panel": {
+      "title": "AI assistant (optional)",
+      "intro": "Uses your own API key. Requests go straight from this browser to the provider, personal details are masked, and every change waits for your review.",
+      "provider": "Provider",
+      "model": "Model",
+      "settingsLink": "More options in Settings",
+      "pending": "Waiting for review",
+      "task": "Task",
+      "sent": "What will be sent",
+      "vacancy": "Vacancy text",
+      "vacancyPlaceholder": "Paste the job description…",
+      "targetLanguage": "Translate to",
+      "targetLanguagePlaceholder": "Choose a language",
+      "needsVacancy": "Paste the vacancy text first.",
+      "running": "Working… {seconds}s",
+      "cancel": "Cancel",
+      "send": "Send to {provider}"
+    },
+    "modes": {
+      "label": "Task",
+      "rewrite": {
+        "title": "Improve wording",
+        "description": "Stronger, clearer bullets and summary without inventing facts."
+      },
+      "tailor": {
+        "title": "Tailor to vacancy",
+        "description": "Reorders emphasis and wording to match the job description."
+      },
+      "ats": {
+        "title": "ATS review",
+        "description": "Finds parsing risks and missing keywords, with suggested fixes."
+      },
+      "consistency": {
+        "title": "Consistency check",
+        "description": "Tense, punctuation, date formats, and terminology across the résumé."
+      },
+      "translate": {
+        "title": "Translate",
+        "description": "Translates the content into another résumé language."
+      },
+      "cover-letter": {
+        "title": "Cover letter",
+        "description": "Drafts a letter for the vacancy from your résumé."
+      }
+    },
+    "preview": {
+      "maskLegend": "Replace with placeholders before sending",
+      "mask": {
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone",
+        "address": "Address",
+        "links": "Links"
+      },
+      "photoNever": "Your photo and date of birth are never sent.",
+      "estimate": "≈ {input} input tokens, up to {output} output · ≈ {cost}",
+      "estimateNoPrice": "≈ {input} input tokens, up to {output} output",
+      "show": "Show the exact text"
+    },
+    "consent": {
+      "title": "Send résumé text to {provider}?",
+      "body": "The AI assistant works by sending part of your résumé to {provider}. Kast has no server: the request goes directly from this browser.",
+      "pointDirect": "Text goes straight to {provider} under your own API key and their data policy.",
+      "pointMasked": "Email, phone, address, and links are replaced with placeholders by default; you can change this.",
+      "pointPhoto": "Your photo and date of birth are never sent.",
+      "pointBilling": "{provider} bills your account for each request.",
+      "pointRevoke": "You can revoke this consent anytime in Settings.",
+      "agree": "I agree to send data to {provider}",
+      "cancel": "Cancel",
+      "confirm": "Agree and send"
+    },
+    "errors": {
+      "invalid-key": "The API key was rejected",
+      "permission": "This key can't use that model",
+      "insufficient-funds": "The account has no credit left",
+      "rate-limit": "Too many requests; wait a minute",
+      "overloaded": "The provider is overloaded; try again shortly",
+      "timeout": "The request took too long",
+      "network": "Couldn't reach the provider",
+      "server": "The provider returned an error",
+      "refused": "The model declined this request",
+      "invalid-response": "The answer wasn't in the expected format",
+      "bad-request": "The provider rejected the request",
+      "cancelled": "Cancelled"
+    },
+    "key": {
+      "label": "{provider} API key",
+      "where": "Get a key",
+      "verify": "Check",
+      "use": "Use key",
+      "valid": "The key works.",
+      "memoryNote": "Kept only in this tab's memory and forgotten when you close it.",
+      "remember": "Remember on this device, encrypted with a password",
+      "password": "Password",
+      "passwordHint": "At least 8 characters. Kast can't recover it.",
+      "statusMemory": "Key in memory for this session",
+      "statusStored": "Encrypted key saved on this device",
+      "storedNote": "Enter your password to unlock the saved key for this session.",
+      "unlockLabel": "Password",
+      "unlock": "Unlock",
+      "wrongPassword": "Wrong password.",
+      "delete": "Forget key"
+    },
+    "review": {
+      "dismiss": "Dismiss",
+      "missingKeywords": "Missing keywords",
+      "questions": "Questions for you",
+      "translateNote": "Translated into {language}. Section headings switch when you apply.",
+      "changesHeading": "{count, plural, one {# suggested change} other {# suggested changes}}",
+      "noChanges": "No changes suggested.",
+      "acceptAll": "Accept all",
+      "apply": "Apply {count, plural, one {# change} other {# changes}}",
+      "applyNote": "A snapshot is saved first, so you can roll back.",
+      "accept": "Accept",
+      "reject": "Reject",
+      "edit": "Edit",
+      "editLabel": "Your version",
+      "saveEdit": "Use my version",
+      "needsInput": "Needs your input: {question}",
+      "fix": "Suggested fix",
+      "goTo": "Go to",
+      "noFindings": "No problems found.",
+      "letterSubject": "Subject",
+      "letterBody": "Letter",
+      "letterClosing": "Closing",
+      "useLetter": "Use this letter",
+      "severity": {
+        "high": "Important",
+        "medium": "Worth fixing",
+        "low": "Minor"
+      }
+    },
+    "fields": {
+      "jobTitle": "Job title",
+      "description": "Description",
+      "details": "Details",
+      "body": "Text",
+      "summary": "Summary",
+      "title": "Title",
+      "name": "Name"
+    },
+    "batch": {
+      "open": "AI for several",
+      "title": "Run AI on several résumés",
+      "description": "Pick {min} to {max} résumés and one task. Each runs as its own request with the same masking; results wait in each résumé's AI tab for your review.",
+      "resumes": "Résumés",
+      "limit": "Choose {min} to {max} résumés.",
+      "task": "Task",
+      "estimate": "≈ {input} input tokens in total · ≈ {cost}",
+      "estimateNoPrice": "≈ {input} input tokens in total",
+      "run": "Run on {count, plural, one {# résumé} other {# résumés}}",
+      "running": "Working on “{title}” ({done} of {total})",
+      "done": "Done. Open each résumé's AI tab to review.",
+      "failed": "“{title}”: {error}",
+      "review": "Review",
+      "needsKey": "Add an API key in Settings first.",
+      "cancel": "Cancel",
+      "close": "Close"
+    }
+  },
+  "import": {
+    "review": {
+      "title": "Check the import",
+      "description": "Here's what Kast read from the PDF. Fix anything marked uncertain, then save.",
+      "layout": {
+        "single": "One column",
+        "labels": "Label column",
+        "sidebar": "Sidebar"
+      },
+      "sections": "{count, plural, one {# section} other {# sections}}",
+      "uncertain": "{count, plural, =0 {all fields look right} one {# uncertain field} other {# uncertain fields}}",
+      "onlyUncertain": "Only uncertain fields",
+      "preview": "Preview",
+      "aiFailed": "The AI couldn't improve this import. The local result is unchanged.",
+      "cancel": "Cancel",
+      "improveWithAi": "Improve with AI",
+      "confirm": "Save résumé",
+      "nothingUncertain": "Nothing uncertain. Everything was read with high confidence.",
+      "headerGroup": "Header",
+      "confidenceTitle": "Confidence",
+      "removed": "{count, plural, one {# line removed as page clutter} other {# lines removed as page clutter}}",
+      "metadata": "{count, plural, one {# badge kept as metadata} other {# badges kept as metadata}}",
+      "leftovers": "{count, plural, one {# line couldn't be placed} other {# lines couldn't be placed}}",
+      "page": "page {page}",
+      "reasons": {
+        "page-number": "page number",
+        "repeated": "repeated on every page",
+        "portal": "job portal footer",
+        "watermark": "watermark"
+      },
+      "metadataKinds": {
+        "duration": "tenure",
+        "level": "level",
+        "label": "label",
+        "contract": "contract type"
+      }
+    },
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "jobTitle": "Job title",
+      "birthDate": "Date of birth",
+      "email": "Email",
+      "phone": "Phone",
+      "website": "Website",
+      "linkedin": "LinkedIn",
+      "link": "Link",
+      "city": "City",
+      "province": "Region",
+      "country": "Country",
+      "title": "Title",
+      "company": "Company",
+      "location": "Location",
+      "companyContext": "Company context",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "role": "Role",
+      "organization": "Organization",
+      "institution": "Institution",
+      "degree": "Degree",
+      "name": "Name",
+      "level": "Level",
+      "description": "Description",
+      "issuer": "Issuer",
+      "url": "Link",
+      "date": "Date",
+      "provider": "Provider",
+      "publisher": "Publisher",
+      "position": "Position",
+      "categories": "Categories",
+      "note": "Note",
+      "amount": "Amount",
+      "currency": "Currency",
+      "period": "Per",
+      "tax": "Tax",
+      "status": "Status",
+      "from": "From",
+      "notice": "Notice period",
+      "workType": "Work type",
+      "relocation": "Relocation",
+      "speaking": "Speaking",
+      "understanding": "Understanding",
+      "writing": "Writing"
+    }
+  },
+  "settings": {
+    "metaTitle": "Settings",
+    "metaDescription": "Interface language, theme, the optional AI assistant, and your data.",
+    "title": "Settings",
+    "description": "Everything here is stored in this browser only.",
+    "appearance": {
+      "heading": "Interface",
+      "language": "Interface language",
+      "languageHint": "Each résumé has its own language, set on its Document tab.",
+      "theme": "Theme"
+    },
+    "ai": {
+      "heading": "AI assistant",
+      "description": "Optional. Bring your own key from Anthropic or Google. Requests go straight from this browser to the provider; Kast has no server and never sees your key.",
+      "provider": "Provider",
+      "model": "Model",
+      "customModel": "Custom model ID",
+      "customModelHint": "Leave empty to use the model picked above.",
+      "baseUrl": "Custom API endpoint",
+      "baseUrlHint": "Only for a gateway or proxy you control. Leave empty for the provider's official address. Reload the page after changing it.",
+      "baseUrlInvalid": "Use an https:// address.",
+      "consentHeading": "Consent",
+      "consentGiven": "You agreed to send data to {provider} on {date}.",
+      "consentNone": "Nothing has been sent to {provider}. Kast will ask before the first request.",
+      "revoke": "Revoke consent",
+      "revoked": "Consent revoked. Kast will ask again before the next request.",
+      "maskHeading": "Masking defaults",
+      "maskDescription": "Replaced with placeholders before sending and swapped back when the answer arrives.",
+      "keyHeading": "API key"
+    },
+    "data": {
+      "heading": "Your data",
+      "description": "Résumés, versions, and settings live in this browser's storage. Nothing is synced. Download a backup before clearing browser data or switching devices.",
+      "stats": "{resumes, plural, one {# résumé} other {# résumés}} · {snapshots, plural, one {# saved version} other {# saved versions}}",
+      "storage": "Using {used} of about {quota} available",
+      "export": "Download backup",
+      "exportHint": "One JSON file with every résumé and its versions. API keys are never included.",
+      "import": "Restore from backup",
+      "importHint": "Résumés already on this device are kept; only missing ones are added.",
+      "restored": "{count, plural, =0 {Nothing new to restore.} one {Restored # résumé.} other {Restored # résumés.}}",
+      "invalid": "That file isn't a Kast backup.",
+      "persist": "Protect storage",
+      "persistHint": "Asks the browser not to clear Kast's data when disk space runs low.",
+      "persisted": "This browser will keep Kast's data.",
+      "persistDenied": "The browser declined. Your data stays, but keep a backup.",
+      "clear": "Delete all data",
+      "clearTitle": "Delete everything Kast stores in this browser?",
+      "clearDescription": "This permanently removes every résumé, version, setting, and saved API key from this browser. Download a backup first if you might need them. It can't be undone.",
+      "clearConfirmLabel": "Type {word} to confirm",
+      "clearWord": "DELETE",
+      "clearConfirm": "Delete everything",
+      "cleared": "All data deleted."
+    },
+    "offline": {
+      "heading": "Offline use",
+      "ready": "Kast is saved on this device and works without a connection.",
+      "preparing": "Preparing the offline copy…",
+      "unsupported": "This browser doesn't support offline use.",
+      "install": "Install app",
+      "installHint": "Adds Kast to your home screen or dock. Same data, its own window."
+    }
+  },
+  "pwa": {
+    "updateTitle": "A new version of Kast is ready",
+    "updateDescription": "Reload to use it. Your work is saved.",
+    "updateAction": "Reload",
+    "offlineReady": "Kast now works offline."
+  },
+  "about": {
+    "metaTitle": "About Kast",
+    "metaDescription": "Why Kast exists, how it keeps your data private, and how it's built.",
+    "kicker": "About",
+    "title": "A résumé builder that minds its own business",
+    "lead": "Kast helps you write a résumé that people enjoy reading and applicant tracking systems parse correctly, without asking who you are or keeping a copy.",
+    "principlesHeading": "Principles",
+    "principle1Title": "Your data stays with you",
+    "principle1Body": "There is no account and no server storage. Résumés live in your browser's IndexedDB until you export or delete them.",
+    "principle2Title": "Structure first, style second",
+    "principle2Body": "Templates change typography, spacing, and color. The reading order underneath never changes, so every export parses the same way.",
+    "principle3Title": "AI is optional and transparent",
+    "principle3Body": "Without a key Kast is fully functional. With one, you see exactly what's sent, personal details are masked, and nothing changes without your approval.",
+    "principle4Title": "Open source",
+    "principle4Body": "Kast is free software under the AGPL-3.0, built on the open-source Lanjut project. You can read, run, and improve the code.",
+    "builtHeading": "How it's built",
+    "builtBody": "Astro and React, Tailwind CSS, TipTap for rich text, IndexedDB for storage, takumi-pdf for PDFs with a real text layer, docx for Word, and pdf.js for import. Fonts are bundled, so nothing loads from third-party servers.",
+    "creditsHeading": "Credits",
+    "creditsBody": "Kast started as a fork of Lanjut by Rizki Maulana Citra. Thank you to everyone behind the open-source libraries it relies on.",
+    "cta": "Start building",
+    "privacyLink": "Read the privacy policy"
+  },
+  "privacy": {
+    "metaTitle": "Privacy policy",
+    "metaDescription": "What Kast stores, where, and what leaves your device.",
+    "kicker": "Privacy",
+    "title": "Privacy policy",
+    "updated": "Last updated {date}",
+    "summary": "Short version: Kast has no accounts, no analytics, and no server that receives your résumé. Everything stays in your browser unless you export it or choose to use the AI assistant with your own key.",
+    "storedHeading": "What is stored, and where",
+    "storedBody": "Your résumés, their versions, vacancy notes, cover letters, and settings are saved in this browser's IndexedDB and local storage on your device. They are not synced or backed up by Kast. Clearing site data or using Delete all data in Settings removes them.",
+    "leavesHeading": "What leaves your device",
+    "leavesBody": "Nothing, by default. Kast loads its pages, fonts, and code once from the site you opened it from and does not call any other service. Exports are generated in the browser and saved straight to your device.",
+    "aiHeading": "The AI assistant",
+    "aiBody": "If you add an API key and agree to send data, Kast sends the selected résumé text directly from your browser to the provider you chose (Anthropic or Google). Before sending, Kast shows the exact text and replaces email, phone, address, and links with placeholders unless you turn that off. Your photo and date of birth are never sent. The provider processes the request under its own terms and privacy policy. You can revoke consent and forget the key in Settings at any time.",
+    "keysHeading": "API keys",
+    "keysBody": "By default your key is kept only in memory for the current tab. If you choose to remember it, it is encrypted with your password (PBKDF2 and AES-GCM) and stored in this browser. Kast cannot read or recover it.",
+    "hostingHeading": "Hosting",
+    "hostingBody": "The server that delivers Kast's files may keep standard access logs, such as IP address and time of request, as any website does. Kast adds no cookies, trackers, or analytics.",
+    "childrenHeading": "Children",
+    "childrenBody": "Kast is not directed at children and collects no data from anyone.",
+    "changesHeading": "Changes",
+    "changesBody": "If this policy changes, the date above changes with it and the source history shows every edit.",
+    "contactHeading": "Questions",
+    "contactBody": "Open an issue in the project's source repository."
+  },
+  "offline": {
+    "metaTitle": "Offline",
+    "title": "You're offline",
+    "body": "This page wasn't saved for offline use yet. Your résumés are safe on this device.",
+    "dashboard": "Open my résumés"
   },
   "tryIt": {
     "kicker": "Try it right here",
-    "heading": "Type your name. Watch it become a resume.",
-    "description": "This is not a mockup. The page you see on the right is drawn by the same engine that renders the editor and prints your PDF, live, as you type.",
+    "heading": "Type your name. Watch it become a résumé.",
+    "description": "This isn't a mockup. The page on the right is drawn by the same engine that renders the editor and prints your PDF, live, as you type.",
     "firstName": "First name",
-    "firstNamePlaceholder": "John",
+    "firstNamePlaceholder": "Jonas",
     "lastName": "Last name",
-    "lastNamePlaceholder": "Doe",
+    "lastNamePlaceholder": "Petraitis",
     "jobTitle": "Job title",
-    "jobTitlePlaceholder": "Senior Frontend Engineer",
+    "jobTitlePlaceholder": "Senior frontend engineer",
     "template": "Template",
-    "cta": "Create your resume",
+    "cta": "Create your résumé",
     "note": "Free, no account. Everything stays in your browser.",
     "caption": "Rendered live by the export engine. Never a screenshot.",
-    "draftTitle": "My resume"
+    "draftTitle": "My résumé"
   },
   "values": {
     "localTitle": "Yours, locally",
-    "localBody": "Your resume lives in your browser and nowhere else. No account, no server, no one reading over your shoulder.",
+    "localBody": "Your résumé lives in your browser and nowhere else. No account, no server, no one reading over your shoulder.",
     "parseTitle": "Machines read it right",
-    "parseBody": "Every template keeps one linear reading order, and every export is verified by real text extraction before it ships.",
+    "parseBody": "Every template keeps one linear reading order, and every export is verified by real text extraction.",
     "freeTitle": "Free and open source",
-    "freeBody": "The whole builder is open source and free to use. Inspect the code, file an issue, or run it yourself."
+    "freeBody": "The whole builder is open source and free to use. Read the code, suggest improvements, or run it yourself."
   },
   "parserProof": {
     "caption": "Runs in your browser, on this page, right now",
@@ -1004,7 +1571,7 @@
   },
   "notFound": {
     "metaTitle": "Page not found",
-    "title": "This page does not exist",
+    "title": "This page doesn't exist",
     "body": "The link is broken, or the page moved.",
     "home": "Go to the home page"
   }

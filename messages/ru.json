@@ -1,1011 +1,1578 @@
 {
   "meta": {
-    "title": "Lanjut: Free, local-first ATS resume builder",
-    "description": "Lanjut is a free, open-source resume builder that stays entirely in your browser; no account, nothing uploaded. Style it freely; every export is structured to sail through applicant tracking systems."
+    "title": "Kast — бесплатный конструктор резюме, которое проходит ATS",
+    "description": "Kast — бесплатный конструктор резюме с открытым кодом, который работает целиком в браузере. Без аккаунта, без слежки, ничего не загружается на сервер. Десять шаблонов, проверка ATS, импорт PDF и необязательный ИИ-помощник с вашим ключом."
   },
   "language": {
-    "label": "Language",
+    "label": "Язык",
     "en": "English",
-    "id": "Indonesia"
+    "lt": "Lietuvių",
+    "ru": "Русский"
   },
   "hero": {
-    "badge": "Free & open source",
-    "srHeading": "Lanjut, ATS Resume builder:",
-    "headingLine1": "Land The Interview,",
-    "headingLine2": "Not The Reject Pile.",
-    "description": "Lanjut is a local-first resume builder that stays entirely in your browser. No account, nothing uploaded. Style it freely, and every export is structured to sail through applicant tracking systems.",
-    "ctaPrimary": "Start building free",
-    "ctaSecondary": "Browse Templates",
+    "badge": "Бесплатно, приватно, открытый код",
+    "srHeading": "Kast — конструктор резюме, понятного для ATS:",
+    "headingLine1": "Получите приглашение,",
+    "headingLine2": "а не отказ.",
+    "description": "Kast собирает резюме прямо в браузере. Без аккаунта, без слежки, ничего не загружается. Оформляйте как хотите — каждый экспорт сохраняет чистую структуру, которую системы отбора кандидатов читают правильно.",
+    "ctaPrimary": "Начать бесплатно",
+    "ctaSecondary": "Смотреть шаблоны",
     "stat1Value": "100%",
-    "stat1Label": "Local-first",
-    "stat2Value": "No",
-    "stat2Label": "Accounts",
-    "stat3Value": "5",
-    "stat3Label": "Export formats"
+    "stat1Label": "В вашем браузере",
+    "stat2Value": "0",
+    "stat2Label": "Аккаунтов и трекеров",
+    "stat3Value": "7",
+    "stat3Label": "Форматов экспорта"
+  },
+  "features": {
+    "heading": "Всё, что нужно для поиска работы",
+    "subheading": "Один инструмент — от первого черновика до версии под конкретную вакансию.",
+    "atsTitle": "Проверка ATS без интернета",
+    "atsBody": "Оценка от 0 до 100 по категориям с конкретными советами и сравнение ключевых слов с вакансией. Всё считается на вашем устройстве.",
+    "importTitle": "Импорт старого PDF",
+    "importBody": "Kast читает экспорт CV.lt, CV-Online, hh.ru и конструкторов резюме, убирает служебный мусор со страниц и даёт проверить каждое сомнительное поле.",
+    "templatesTitle": "Десять шаблонов, два режима",
+    "templatesBody": "У каждого шаблона есть строгий режим ATS и дизайнерский режим с акцентным цветом, иконками, фото и QR-кодом.",
+    "languagesTitle": "Литовский, английский, русский",
+    "languagesBody": "У интерфейса и у каждого резюме свой язык — можно держать отдельное резюме для каждого рынка.",
+    "aiTitle": "ИИ с вашим ключом",
+    "aiBody": "Переписать, адаптировать под вакансию, перевести или набросать сопроводительное письмо с Claude или Gemini. Личные данные маскируются, каждое изменение ждёт вашего решения.",
+    "versionsTitle": "Версии и вакансии",
+    "versionsBody": "Держите версию под каждый отклик, отмечайте, куда отправили, и откатывайтесь к любому из 20 последних снимков.",
+    "offlineTitle": "Работает офлайн",
+    "offlineBody": "Установите Kast как приложение и пишите хоть в самолёте. Данные не покидают устройство, пока вы сами их не экспортируете.",
+    "exportTitle": "Все нужные форматы",
+    "exportBody": "PDF с настоящим текстовым слоем, Word с настоящими стилями, простой текст, JSON, YAML и Europass в XML или JSON."
   },
   "howItWorks": {
-    "heading": "How it works",
-    "subheading": "The same resume at every stage: what you type, what recruiters see, and what the parser reads back.",
-    "step1Kicker": "01 · Template",
-    "step1Title": "Pick a template",
-    "step1Description": "Start from a template you like. Each one only changes typography, spacing, and accents; the structure underneath stays ATS-safe.",
-    "step2Kicker": "02 · Content",
-    "step2Title": "Type it once",
-    "step2Description": "Fill structured sections: experience, education, skills. Every change lands in your browser's storage and nowhere else.",
-    "step3Kicker": "03 · Export",
-    "step3Title": "Survive the parser",
-    "step3Description": "Download PDF, DOCX, or plain text, and any extractor reads it back in the order you wrote it. That's the whole trick.",
-    "liveCaption": "Live render, same engine as your PDF."
+    "heading": "Как это работает",
+    "subheading": "Одно и то же резюме на каждом этапе: что вы пишете, что видит рекрутер и что считывает парсер.",
+    "step1Kicker": "01 · Шаблон",
+    "step1Title": "Выберите шаблон",
+    "step1Description": "Начните с понравившегося шаблона. Шаблоны меняют шрифты, отступы и акценты, а структура под ними остаётся безопасной для ATS.",
+    "step2Kicker": "02 · Содержание",
+    "step2Title": "Заполните один раз",
+    "step2Description": "Заполните структурированные разделы: опыт, образование, навыки, языки и другие. Все изменения сохраняются в браузере и больше нигде.",
+    "step3Kicker": "03 · Экспорт",
+    "step3Title": "Пройдите парсер",
+    "step3Description": "Скачайте PDF, DOCX или текст — любой парсер прочитает его в том порядке, в котором вы писали.",
+    "liveCaption": "Живой рендер, тот же движок, что и у PDF."
   },
   "closure": {
-    "kicker": "04 · Apply",
-    "heading": "Lanjut. Resume. Résumé.",
-    "description": "The name is the pitch: lanjut means continue. Pick a template or start from a blank page; either way it's free, open source, and your resume never leaves your browser.",
-    "ctaPrimary": "Create your resume",
-    "ctaSecondary": "Browse templates"
-  },
-  "desktop": {
-    "kicker": "05 · Desktop",
-    "heading": "Or keep it on your Mac",
-    "description": "The same builder as a native app. Your résumés live on your own machine, and it keeps working with the network off.",
-    "cta": "Download for macOS",
-    "gatekeeper": "Beta, and not yet signed by Apple, so macOS asks you to confirm the first time you open it."
-  },
-  "updater": {
-    "title": "Lanjut {version} is available",
-    "description": "You are up to date otherwise. Installing takes a moment and reopens the app.",
-    "install": "Install",
-    "later": "Not now",
-    "installing": "Downloading the update"
+    "kicker": "04 · Отклик",
+    "heading": "Новая работа начинается с чистого листа.",
+    "description": "Выберите шаблон или начните с пустой страницы. Kast бесплатен и открыт, а ваше резюме не покидает браузер.",
+    "ctaPrimary": "Создать резюме",
+    "ctaSecondary": "Смотреть шаблоны"
   },
   "footer": {
-    "ariaLabel": "Footer",
-    "tagline": "Local-first: your resume never leaves your browser.",
-    "startBuilding": "Start building",
-    "templates": "Templates",
-    "github": "GitHub",
-    "support": "Support this project:",
-    "supportAriaLabel": "Donation links",
-    "rights": "© {year} Lanjut. Open source, AGPL-3.0 licensed."
+    "ariaLabel": "Подвал",
+    "tagline": "Приватность по умолчанию: резюме не покидает ваш браузер.",
+    "startBuilding": "Начать",
+    "templates": "Шаблоны",
+    "about": "О проекте",
+    "privacy": "Конфиденциальность",
+    "github": "Исходный код",
+    "rights": "© {year} Kast. Открытый код под лицензией AGPL-3.0."
   },
   "nav": {
-    "skipToContent": "Skip to main content",
-    "dashboard": "Dashboard",
-    "templates": "Templates",
-    "createResume": "Create Resume",
-    "openMenu": "Open menu",
-    "menuTitle": "Menu",
-    "menuDescription": "Browse Lanjut and jump into the resume builder.",
-    "display": "Display",
-    "close": "Close"
+    "skipToContent": "Перейти к содержанию",
+    "dashboard": "Мои резюме",
+    "templates": "Шаблоны",
+    "createResume": "Создать резюме",
+    "openMenu": "Открыть меню",
+    "menuTitle": "Меню",
+    "menuDescription": "Разделы Kast и переход в конструктор резюме.",
+    "display": "Оформление",
+    "close": "Закрыть"
   },
   "tour": {
     "controls": {
-      "skip": "Skip",
-      "back": "Back",
-      "next": "Next",
-      "done": "Done"
+      "skip": "Пропустить",
+      "back": "Назад",
+      "next": "Далее",
+      "done": "Готово"
     },
     "library": {
       "welcome": {
-        "title": "Welcome to Lanjut",
-        "content": "A free, local-first resume builder. Everything you write stays in this browser; nothing is ever sent to a server."
+        "title": "Добро пожаловать в Kast",
+        "content": "Бесплатный конструктор резюме, который хранит всё в этом браузере. На сервер ничего не отправляется, если вы сами не решите воспользоваться ИИ-помощником."
       },
       "create": {
-        "title": "Create a resume",
-        "content": "Start a new resume from here. You can keep as many as you like."
+        "title": "Создайте резюме",
+        "content": "Начните новое резюме отсюда: из примера, с чистого листа или из PDF. Версий может быть сколько угодно."
       },
       "search": {
-        "title": "Find it later",
-        "content": "Search your library by title once it grows."
+        "title": "Найдите потом",
+        "content": "Когда резюме станет много, ищите их по названию."
       },
       "nav": {
-        "title": "Get around",
-        "content": "Switch between your dashboard and the template gallery from here."
+        "title": "Навигация",
+        "content": "Отсюда переходите к своим резюме, галерее шаблонов и настройкам."
       },
       "resumes": {
-        "title": "Your resumes",
-        "content": "Every resume you create shows up here; pick one to jump into the editor."
+        "title": "Ваши резюме",
+        "content": "Здесь появляется каждое резюме вместе с вакансией, под которую оно сделано. Выберите любое, чтобы открыть редактор."
       },
       "replay": {
-        "title": "Replay anytime",
-        "content": "Rerun the guide for whichever page you are on with this button."
+        "title": "Повторить в любой момент",
+        "content": "Эта кнопка снова запускает подсказки для текущей страницы."
       }
     },
     "template": {
       "browse": {
-        "title": "Browse templates",
-        "content": "Templates change presentation only: typography, spacing, accents. The structure stays linear so ATS parsers can always read your resume."
+        "title": "Шаблоны",
+        "content": "Шаблоны меняют только оформление: шрифты, отступы, акценты. Структура остаётся линейной, поэтому ATS всегда прочитает ваше резюме."
       },
       "search": {
-        "title": "Search",
-        "content": "Look up a template by name."
+        "title": "Поиск",
+        "content": "Найдите шаблон по названию."
       },
       "sort": {
-        "title": "Sort",
-        "content": "Order the gallery by name or by newest."
+        "title": "Сортировка",
+        "content": "Упорядочьте галерею по названию или по новизне."
       }
     },
     "editor": {
       "preview": {
-        "title": "Live preview",
-        "content": "This is your live preview, exactly what gets exported. It updates as you type and saves to this browser automatically."
+        "title": "Живой просмотр",
+        "content": "Так резюме будет выглядеть при экспорте. Просмотр обновляется по мере ввода и автоматически сохраняется в этом браузере."
       },
       "sections": {
-        "title": "Editor tab",
-        "content": "Fill in each section here. Drag to reorder them or hide the ones you don't need; the structure stays ATS-parseable underneath."
+        "title": "Содержание",
+        "content": "Заполняйте разделы здесь. Добавляйте необязательные разделы, меняйте порядок или скрывайте их — структура остаётся читаемой для ATS."
       },
       "layout": {
-        "title": "Layout tab",
-        "content": "Swap templates from the Layout tab. Each one restyles typography and spacing only, so your content and its reading order never change."
+        "title": "Дизайн",
+        "content": "Меняйте шаблон, переключайтесь между режимами ATS и дизайна, выбирайте акцентный цвет."
       },
       "document": {
-        "title": "Document tab",
-        "content": "Style the whole resume here: font, sizes, spacing, line height, and letter spacing. It's also where you switch language and export or import as PDF, DOCX, JSON, or YAML."
+        "title": "Документ",
+        "content": "Шрифты, размеры, отступы, язык резюме, импорт и копирование в JSON или YAML."
+      },
+      "check": {
+        "title": "Проверка ATS",
+        "content": "Оценка от 0 до 100 с конкретными советами. Вставьте текст вакансии, чтобы увидеть, каких ключевых слов не хватает."
+      },
+      "ai": {
+        "title": "ИИ-помощник",
+        "content": "По желанию. Добавьте свой ключ Anthropic или Gemini, чтобы переписать, адаптировать, перевести резюме или набросать письмо. Каждое изменение ждёт вашей проверки."
+      },
+      "toolbar": {
+        "title": "Версии и экспорт",
+        "content": "Сохраните версию, отметьте вакансию и скачайте резюме в любом формате с этой панели."
       }
     },
     "editor-sheet": {
       "preview": {
-        "title": "Live preview",
-        "content": "This is your live preview, exactly what gets exported. It updates as you type and saves to this browser automatically."
+        "title": "Живой просмотр",
+        "content": "Так резюме будет выглядеть при экспорте. Просмотр обновляется по мере ввода и автоматически сохраняется в этом браузере."
       },
       "edit": {
-        "title": "Open the editor",
-        "content": "Tap Edit anytime to open this panel and make changes."
+        "title": "Откройте редактор",
+        "content": "Нажмите «Редактировать», чтобы открыть панель и внести изменения."
       },
       "sections": {
-        "title": "Editor tab",
-        "content": "Fill in each section here. Drag to reorder them or hide the ones you don't need; the structure stays ATS-parseable underneath."
+        "title": "Содержание",
+        "content": "Заполняйте разделы здесь. Добавляйте необязательные разделы, меняйте порядок или скрывайте их — структура остаётся читаемой для ATS."
       },
       "layout": {
-        "title": "Layout tab",
-        "content": "Swap templates from the Layout tab. Each one restyles typography and spacing only, so your content and its reading order never change."
+        "title": "Дизайн",
+        "content": "Меняйте шаблон, переключайтесь между режимами ATS и дизайна, выбирайте акцентный цвет."
       },
       "document": {
-        "title": "Document tab",
-        "content": "Style the whole resume here: font, sizes, spacing, line height, and letter spacing. It's also where you switch language and export or import as PDF, DOCX, JSON, or YAML."
+        "title": "Документ",
+        "content": "Шрифты, размеры, отступы, язык резюме, импорт и копирование в JSON или YAML."
       }
     }
   },
   "platform": {
     "breadcrumb": {
-      "platform": "Dashboard",
-      "editor": "Editor",
-      "browseTemplates": "Browse Templates"
+      "platform": "Мои резюме",
+      "editor": "Редактор",
+      "browseTemplates": "Шаблоны",
+      "settings": "Настройки"
     },
     "theme": {
-      "system": "System",
-      "light": "Light",
-      "dark": "Dark",
-      "choose": "Choose theme",
-      "appearance": "Appearance",
-      "chooseAppearance": "Choose Appearance"
+      "system": "Как в системе",
+      "light": "Светлая",
+      "dark": "Тёмная",
+      "choose": "Выбрать тему",
+      "appearance": "Оформление",
+      "chooseAppearance": "Выбрать оформление"
     },
     "changelog": {
-      "whatsNew": "What's new",
-      "description": "The latest from Lanjut",
-      "latest": "Latest",
-      "fullChangelog": "Full changelog on GitHub",
+      "whatsNew": "Что нового",
+      "description": "Последние изменения в Kast",
+      "latest": "Последняя",
+      "fullChangelog": "Полный список изменений",
       "entries": {
-        "0_19_0": [
+        "1_0_0": [
           {
-            "title": "Your PDF now matches the preview",
-            "description": "PDF downloads are now drawn from the same page you see in the editor, so the fonts, sizes, and spacing in the file match the preview. The text stays selectable for applicant tracking systems."
-          }
-        ],
-        "0_18_0": [
-          {
-            "title": "Add context about a company",
-            "description": "Experience and internship entries now have an optional company context field for briefly explaining an unfamiliar employer. It appears in every preview and export before your achievements."
-          }
-        ],
-        "0_17_1": [
-          {
-            "title": "The Mac app can update itself",
-            "description": "When a new version is out, the Mac app now offers it to you. It looks at most once every few days, and nothing installs until you click."
+            "title": "Kast 1.0",
+            "description": "Новое имя, новый облик и три языка интерфейса: литовский, английский и русский. У каждого резюме свой язык."
           },
           {
-            "title": "Bug fixes",
-            "description": "In the Mac app the sidebar covered the page when the app opened, and the button that hides it did nothing. Both are fixed."
-          }
-        ],
-        "0_16_0": [
-          {
-            "title": "Lanjut on your Mac",
-            "description": "There is now a Mac app. It is the same builder you already use, running on your own machine, and it keeps working with the network off. Your resumes stay on that machine. Download it from the link on the home page. It is a beta and it is not signed by Apple yet, so macOS will ask you to confirm the first time you open it."
+            "title": "Десять шаблонов с режимами ATS и дизайна",
+            "description": "Четыре новых шаблона: «Модерн», «Элегант», «Хронология» и «Руководитель». У каждого шаблона есть строгий режим ATS и дизайнерский режим с акцентным цветом, иконками, фото и QR-кодом."
           },
           {
-            "title": "A page for feedback",
-            "description": "Bug reports and feature requests now have their own page, so you can send one from anywhere, including from the Mac app. You still do not need a GitHub account."
-          }
-        ],
-        "0_14_0": [
-          {
-            "title": "Add a photo to your header",
-            "description": "You can now put a photo on your resume. It is optional and off by default. Add it in Personal Information, then pick the size, corner roundness, and position. It comes along in PDF and Word exports, and the text of your resume stays fully readable to parsers."
+            "title": "Проверка ATS",
+            "description": "Локальная оценка от 0 до 100 по категориям с конкретными советами и сравнением ключевых слов с вакансией."
           },
           {
-            "title": "A fresh new look",
-            "description": "Lanjut has a new logo and a rebuilt landing page. The previews there are rendered by the real templates, so what you see is exactly what you get."
+            "title": "Умный импорт PDF",
+            "description": "Читает колонки подписей и боковые панели, убирает номера страниц и подвалы порталов, сохраняет бейджи стажа и уровня как метаданные и просит проверить сомнительные поля."
           },
           {
-            "title": "Support Lanjut",
-            "description": "Lanjut is free and always will be. If it helped you, you can now support development through Saweria or SociaBuzz, right from the sidebar or the footer."
-          }
-        ],
-        "0_13_0": [
-          {
-            "title": "One more link in your header",
-            "description": "A new optional Link field sits next to LinkedIn in Personal Information, for your portfolio, GitHub, or anything else. It shows in the preview and every export, and importing a PDF picks it up too."
-          }
-        ],
-        "0_12_0": [
-          {
-            "title": "Undo and redo",
-            "description": "Change your mind freely: every edit can now be undone and redone, from typing and deleted entries to section order and layout settings. Use the arrows beside the sidebar tabs or Ctrl/Cmd+Z, and each text field keeps its own history while you write."
+            "title": "ИИ-помощник с вашим ключом",
+            "description": "Claude или Gemini переписывают, адаптируют, переводят, проверяют и пишут сопроводительные письма. Личные данные маскируются, без согласия ничего не отправляется, каждое изменение ждёт вашей проверки."
           },
           {
-            "title": "One section at a time",
-            "description": "The editor list now keeps a single section open, so the form you are working in stays in view instead of pushing the others off screen."
+            "title": "Новые разделы",
+            "description": "Волонтёрство, курсы, публикации, рекомендации, хобби, водительские права, ожидаемая зарплата и готовность к работе. Для языков теперь отдельно оцениваются речь, понимание и письмо."
           },
           {
-            "title": "Bug fixes",
-            "description": "Fixed three reported bugs: links in your exports now show as clickable, a stray dash no longer appears in the PDF contact line, and locations land in the right field when you import a PDF."
-          }
-        ],
-        "0_11_0": [
-          {
-            "title": "Company location",
-            "description": "Experience and internship entries now carry a location, shown next to the employer in the preview, the PDF, and every other export. Education locations render too, instead of being kept out of sight."
-          }
-        ],
-        "0_10_0": [
-          {
-            "title": "Feedback without a GitHub account",
-            "description": "Report a bug or request a feature right from the app; we file the GitHub issue for you under the name you provide, guarded by a quick verification."
+            "title": "Версии, вакансии и письма",
+            "description": "До 20 снимков на резюме с откатом, пометка вакансии со статусом и сопроводительное письмо в дизайне резюме."
           },
           {
-            "title": "JSON and YAML export and import",
-            "description": "Copy or download your resume as JSON or YAML, and import either back losslessly. Rich text travels as simple markdown."
-          },
-          {
-            "title": "Hide sections",
-            "description": "Every section, Summary included, now has an eye toggle in the editor list. Hidden sections keep their content but drop out of the preview and every export until you show them again."
-          },
-          {
-            "title": "Hide contact icons",
-            "description": "A new toggle in the Document tab hides the small icons next to your contact details, for a plainer header in the preview and PDF. Your contact text always stays."
-          },
-          {
-            "title": "Section spacing",
-            "description": "A slider in the Document tab adjusts the room above every section, in the preview and the PDF alike. Open it up for an airy layout, or tighten it below each template's default until sections sit flush."
-          },
-          {
-            "title": "Choose your font",
-            "description": "Pick from fifteen resume-safe fonts, grouped as sans, serif, and mono, and the whole document follows in the preview and the PDF. Every template keeps its own default until you choose, and the preview now renders the exact same font files the PDF embeds."
-          },
-          {
-            "title": "Line height and letter spacing",
-            "description": "Two more sliders in the Document tab, resting at each template's real values: tighten or loosen line height and letter spacing either way, both bounded to the range where PDF text still extracts cleanly, so your styling never costs you ATS parsing."
-          },
-          {
-            "title": "Font size controls",
-            "description": "Resize your name, section headings, and body text independently from the Document tab. Each slider scales its group on top of the template's proportions, so a bigger name never flattens the rest, and the preview and PDF stay in step."
-          }
-        ],
-        "0_9_0": [
-          {
-            "title": "Import from PDF",
-            "description": "Start a new resume from an existing PDF. Lanjut reads it in your browser and fills the sections for you to tidy up."
-          },
-          {
-            "title": "Custom sections",
-            "description": "Add your own sections beyond the built-in set, either as a rich text block or a list of entries."
-          },
-          {
-            "title": "Reorder certifications",
-            "description": "Drag certifications into the order you want, the same way skills and languages already work."
-          },
-          {
-            "title": "Hide proficiency",
-            "description": "Turn the proficiency level off on skills and languages when you would rather just list them, with a toggle in each section."
-          },
-          {
-            "title": "Language columns",
-            "description": "Show your languages in one column or two, matching the layout control already in Skills."
-          },
-          {
-            "title": "Undo a deletion",
-            "description": "Deleting a resume now waits ten seconds and shows an Undo, so an accidental delete is easy to take back."
-          },
-          {
-            "title": "Duplicate a resume",
-            "description": "Copy any resume from its menu to branch a new version without starting over."
-          }
-        ],
-        "0_8_0": [
-          {
-            "title": "Skills column layout",
-            "description": "A toggle in the Skills section switches between one and two columns, and your choice carries through to the preview and every export."
-          },
-          {
-            "title": "Newest entries first",
-            "description": "The editor lists your entries newest first, matching the order they appear in the preview, so the forms and your resume always line up."
-          },
-          {
-            "title": "New landing navbar",
-            "description": "The landing page has a new navigation bar, with a menu that opens cleanly on mobile."
-          },
-          {
-            "title": "Page load progress",
-            "description": "Moving between pages shows a slim progress bar at the top, so you get instant feedback while a page loads."
-          }
-        ],
-        "0_7_0": [
-          {
-            "title": "Internship section",
-            "description": "List internships as their own entries, separate from full-time roles, with the same fields as Experience."
-          },
-          {
-            "title": "Projects section",
-            "description": "Give side projects, open-source work, and anything you have shipped their own space, each with a name, link, dates, and description."
-          },
-          {
-            "title": "Blank resume preview",
-            "description": "A blank resume shows a preview placeholder in your library instead of an empty white card, so a new resume looks intentional until you start writing."
-          }
-        ],
-        "0_6_0": [
-          {
-            "title": "Bahasa Indonesia",
-            "description": "Switch the entire interface between English and Indonesian anytime with the language toggle in the navbar."
-          },
-          {
-            "title": "Per-resume language",
-            "description": "Pick English or Indonesian per document, and the section headings and dates in your PDF, DOCX, and TXT exports follow that choice."
-          },
-          {
-            "title": "Reorder skills and languages",
-            "description": "Grab the handle next to an entry and drag it into place, or use the keyboard to move it. The new order flows straight into the preview and every export."
-          },
-          {
-            "title": "Empty section prompts",
-            "description": "Instead of a lone button, each section without entries shows a short prompt for what to add."
-          },
-          {
-            "title": "Refreshed hero gradient",
-            "description": "The landing page hero heading has a new gradient, tuned for both light and dark mode."
-          }
-        ],
-        "0_5_0": [
-          {
-            "title": "Switch templates in the editor",
-            "description": "The new Layout tab shows your resume rendered in every template, and one click applies your pick."
-          },
-          {
-            "title": "Start from a blank resume",
-            "description": "Untick “Pre-fill with example content” in the create dialog to begin with a blank document instead of the example resume."
-          },
-          {
-            "title": "Emptyable sections",
-            "description": "Every entry has a delete button, and removing the last one drops the section from the preview until you add another."
-          }
-        ],
-        "0_4_0": [
-          {
-            "title": "Organization section",
-            "description": "Showcase volunteer, student, and community roles with dates and highlights, just like work experience. It shows up in every template and export, and existing resumes get it automatically."
-          },
-          {
-            "title": "Safer app updates",
-            "description": "A backup copy is kept on your device before any data-format upgrade, and a resume the app cannot read yet is flagged with a notice instead of disappearing."
-          },
-          {
-            "title": "Guided tour",
-            "description": "A guided tour walks you through the dashboard, the templates, and the editor on your first visit."
-          },
-          {
-            "title": "Landing page walkthrough",
-            "description": "The landing page walks through how Lanjut works, ending with a one-click way to start a new resume."
-          },
-          {
-            "title": "Report bugs and requests",
-            "description": "Report a bug or feature request from the sidebar; we prefill the GitHub issue for you."
-          },
-          {
-            "title": "Mobile drawers",
-            "description": "On your phone, dialogs open as drawers that are easier to reach and swipe away."
-          }
-        ],
-        "0_3_0": [
-          {
-            "title": "Template browser",
-            "description": "Browse templates on their own page, with search and sorting."
-          },
-          {
-            "title": "Five new templates",
-            "description": "Ketat, Luasa, Tebal, Klasik, and Ketik."
-          },
-          {
-            "title": "Live thumbnails",
-            "description": "Template and resume cards show a live thumbnail of your actual document."
-          },
-          {
-            "title": "Sidebar and quick actions",
-            "description": "The sidebar highlights where you are, and each resume gets a quick actions menu."
-          }
-        ],
-        "0_2_0": [
-          {
-            "title": "Export your resume",
-            "description": "Save your resume as PDF, DOCX, or plain text."
-          },
-          {
-            "title": "Rich text in the preview",
-            "description": "Bold, italics, links, and lists show up in the live preview."
-          },
-          {
-            "title": "Full editor sections",
-            "description": "The editor covers summary, experience, education, skills, certifications, and languages."
+            "title": "Europass, резервные копии и офлайн",
+            "description": "Экспорт в Europass XML или JSON, резервная копия и восстановление всего одним файлом, установка Kast для работы без интернета."
           }
         ]
       }
     },
     "download": {
-      "trigger": "Resume",
-      "srDownload": "Download",
-      "title": "Download resume",
-      "description": "Pick a format and name your file."
+      "trigger": "Резюме",
+      "srDownload": "Скачать",
+      "title": "Скачать резюме",
+      "description": "Выберите формат и назовите файл."
     },
     "menu": {
-      "label": "Menu",
-      "downloadResume": "Download Resume"
+      "label": "Меню",
+      "downloadResume": "Скачать резюме"
     },
     "sidebar": {
-      "home": "Lanjut - Home Page",
-      "logoAlt": "Lanjut Logo",
-      "localFirst": "Local-First",
-      "tagline": "ATS Resume Builder",
-      "platform": "Platform",
-      "dashboard": "Dashboard",
-      "browseTemplate": "Browse Template",
-      "other": "Other",
-      "support": "Support",
-      "guide": "Guide",
-      "reportBug": "Report a bug",
-      "featureRequest": "Feature request",
-      "myResume": "My Resume",
-      "createResume": "Create Resume",
-      "noResume": "No resume yet",
-      "noResumeDescription": "When you add resume, they will be visible here.",
-      "itemMenu": "Menu",
-      "modify": "Modify <b>{title}</b>",
-      "rename": "Rename",
-      "duplicate": "Duplicate",
-      "copyOf": "Copy of {title}",
-      "delete": "Delete"
+      "home": "Главная страница Kast",
+      "logoAlt": "Логотип Kast",
+      "localFirst": "Приватно",
+      "tagline": "Конструктор резюме",
+      "platform": "Платформа",
+      "dashboard": "Мои резюме",
+      "browseTemplate": "Шаблоны",
+      "other": "Прочее",
+      "support": "Поддержка",
+      "guide": "Подсказки",
+      "settings": "Настройки",
+      "about": "О Kast",
+      "myResume": "Мои резюме",
+      "createResume": "Создать резюме",
+      "noResume": "Резюме пока нет",
+      "noResumeDescription": "Созданные резюме появятся здесь.",
+      "itemMenu": "Меню",
+      "modify": "Изменить <b>{title}</b>",
+      "rename": "Переименовать",
+      "duplicate": "Дублировать",
+      "copyOf": "Копия {title}",
+      "delete": "Удалить"
     },
     "toolbar": {
-      "searchResume": "Search your resume",
-      "resume": "Resume",
-      "searchTemplates": "Search templates",
-      "sortNameAsc": "Name (A–Z)",
-      "sortNameDesc": "Name (Z–A)",
-      "sortNewest": "Newest"
+      "searchResume": "Поиск по резюме",
+      "resume": "Резюме",
+      "searchTemplates": "Поиск шаблонов",
+      "sortNameAsc": "Название (А–Я)",
+      "sortNameDesc": "Название (Я–А)",
+      "sortNewest": "Сначала новые"
     },
     "emptyState": {
-      "title": "No resumes yet",
-      "description": "Nothing is saved on this device yet. Start from a template, or create a blank resume.",
-      "browseTemplates": "Browse templates",
-      "newResume": "New resume"
+      "title": "Резюме пока нет",
+      "description": "На этом устройстве ещё ничего не сохранено. Начните с шаблона, импортируйте PDF или создайте пустое резюме.",
+      "browseTemplates": "Смотреть шаблоны",
+      "newResume": "Новое резюме"
     },
     "unreadable": {
-      "title": "Some resumes need a newer version of the app",
-      "description": "{count, plural, one {# resume was} other {# resumes were}} saved by a newer version of Lanjut than the one this tab is running. They are still stored safely on this device. Refresh the page to update the app and see them again."
+      "title": "Некоторым резюме нужна более новая версия Kast",
+      "description": "{count, plural, one {# резюме сохранено} few {# резюме сохранены} many {# резюме сохранено} other {# резюме сохранено}} более новой версией Kast, чем открыта в этой вкладке. Они по-прежнему надёжно хранятся на устройстве. Обновите страницу, чтобы увидеть их снова."
     },
     "grid": {
-      "emptyTitle": "No resumes match",
-      "create": "Create “{query}”",
-      "errorTitle": "Couldn't load your resumes",
-      "errorDescription": "Nothing was deleted. The library just failed to load from this browser's storage. Refresh the page to try again.",
-      "open": "Open {title}",
-      "emptyDocument": "Blank resume, nothing added yet",
-      "edited": "Edited",
-      "menu": "Menu",
-      "rename": "Rename",
-      "duplicate": "Duplicate",
-      "copyOf": "Copy of {title}",
-      "download": "Download",
-      "delete": "Delete",
-      "newResume": "New resume"
+      "emptyTitle": "Ничего не найдено",
+      "create": "Создать «{query}»",
+      "errorTitle": "Не удалось загрузить резюме",
+      "errorDescription": "Ничего не удалено — просто библиотека не загрузилась из хранилища браузера. Обновите страницу, чтобы попробовать снова.",
+      "open": "Открыть {title}",
+      "emptyDocument": "Пустое резюме, пока ничего не добавлено",
+      "edited": "Изменено",
+      "menu": "Меню",
+      "rename": "Переименовать",
+      "duplicate": "Дублировать",
+      "copyOf": "Копия {title}",
+      "download": "Скачать",
+      "delete": "Удалить",
+      "newResume": "Новое резюме",
+      "targetAt": "{position}, {company}",
+      "filterAll": "Все",
+      "filterLabel": "Фильтр по статусу"
     },
     "templates": {
-      "noMatch": "No templates match “{query}”.",
-      "use": "Use {name}",
-      "useTemplate": "Use {name} template",
+      "noMatch": "Нет шаблонов по запросу «{query}».",
+      "use": "Выбрать {name}",
+      "useTemplate": "Выбрать шаблон {name}",
       "descriptions": {
-        "awal": "A clean, single-column ATS-safe starter. Linear reading order, no columns or tables, with room for every section.",
-        "ketat": "A compact serif classic: centered ruled section headings, right-aligned contact column, and italic dates. Dense without feeling cramped.",
-        "luasa": "An airy minimalist layout: letterspaced headings, a single contact line, and slim accent bars. Generous whitespace throughout.",
-        "tebal": "A bold, modern statement: oversized name, heavy uppercase headings over thick rules, and strong typographic hierarchy.",
-        "klasik": "A traditional all-serif CV: centered name and contacts, quiet centered headings, and italic dates. Timeless and formal.",
-        "ketik": "A typewriter-flavored technical look: monospace name, headings, and dates over a clean sans body. Built for developers."
+        "standard": "Чистый одноколоночный шаблон. Линейный порядок чтения, без колонок и таблиц, место для любого раздела.",
+        "compact": "Компактная классика с засечками: заголовки по центру с линиями, контакты справа, даты курсивом. Плотно, но не тесно.",
+        "airy": "Воздушный минимализм: разреженные заголовки, контакты одной строкой и тонкие акцентные полосы.",
+        "bold": "Смелое заявление: крупное имя, жирные заглавные заголовки над толстыми линиями и чёткая иерархия.",
+        "classic": "Традиционное резюме целиком с засечками: имя и контакты по центру, спокойные заголовки, даты курсивом.",
+        "mono": "Технический стиль пишущей машинки: моноширинные имя, заголовки и даты поверх чистого гротеска.",
+        "modern": "Уверенный современный макет: тонированная полоса с именем, акцентные заголовки и аккуратные даты справа.",
+        "elegant": "Утончённый шаблон с засечками: заголовки капителью, тонкие линии и широкие поля.",
+        "timeline": "В режиме дизайна опыт выстроен вдоль вертикальной шкалы времени, в режиме ATS — простой список с датами.",
+        "executive": "Макет для руководителей: сильный блок с именем, выделенное резюме и плотные, легко просматриваемые записи."
       }
     }
   },
   "forms": {
     "common": {
-      "cancel": "Cancel",
-      "save": "Save",
-      "delete": "Delete",
-      "undo": "Undo",
-      "download": "Download",
-      "openIssue": "Open GitHub issue"
+      "cancel": "Отмена",
+      "save": "Сохранить",
+      "delete": "Удалить",
+      "undo": "Отменить",
+      "download": "Скачать",
+      "close": "Закрыть"
     },
     "validation": {
-      "titleMin": "Use at least {min} characters.",
-      "titleMax": "Keep it to {max} characters or fewer.",
-      "fileNameRequired": "Name the file before downloading.",
-      "bugWhatHappened": "Describe what went wrong.",
-      "featureProblem": "Describe the problem this would solve.",
-      "sectionTitleRequired": "Enter a section name.",
-      "reporterNameRequired": "Tell us your name first.",
-      "verificationRequired": "Finish the quick verification first."
-    },
-    "direct": {
-      "name": "Your name",
-      "namePlaceholder": "e.g. Sinta",
-      "nameDescription": "Shown on the public GitHub issue so we know who it's from.",
-      "send": "Send it for me",
-      "githubAlt": "Have a GitHub account? Open a prefilled issue instead.",
-      "sentToast": "Sent! Thank you; we filed the GitHub issue for you.",
-      "errorToast": "Couldn't send it. Try again, or use the GitHub button."
+      "titleMin": "Минимум {min} символа.",
+      "titleMax": "Не больше {max} символов.",
+      "fileNameRequired": "Назовите файл перед скачиванием.",
+      "sectionTitleRequired": "Введите название раздела."
     },
     "create": {
-      "title": "Create a new resume",
-      "description": "Name it, choose where to start, and pick a template.",
-      "label": "Resume name",
-      "placeholder": "Software Engineer",
-      "template": "Template",
-      "sourceLabel": "Start from",
-      "sourceSample": "Sample",
-      "sourceEmpty": "Blank",
-      "sourceImport": "Import a file",
-      "submit": "Create resume"
+      "title": "Новое резюме",
+      "description": "Назовите его, выберите, с чего начать, и подберите шаблон.",
+      "label": "Название резюме",
+      "placeholder": "Разработчик ПО",
+      "template": "Шаблон",
+      "sourceLabel": "Начать с",
+      "sourceSample": "Пример",
+      "sourceEmpty": "Пустое",
+      "sourceImport": "Импорт файла",
+      "submit": "Создать резюме"
     },
     "rename": {
-      "title": "Rename",
-      "description": "You can rename this resume label to whatever you want. If the value of the label is same as before, it won't be saved.",
-      "label": "Resume label",
-      "placeholder": "e.g: Software Engineer",
-      "fieldDescription": "At least 3 characters or up. Max 100 characters."
+      "title": "Переименовать",
+      "description": "Дайте резюме понятное название. Если название не изменилось, ничего не сохраняется.",
+      "label": "Название резюме",
+      "placeholder": "например, Разработчик ПО",
+      "fieldDescription": "От 3 до 100 символов."
     },
     "delete": {
-      "title": "Delete <b>{title}</b>?",
-      "description": "This will delete <b>{title}</b>. You'll have a few seconds to undo. Are you sure?",
-      "toast": "Deleting \"{title}\"..."
+      "title": "Удалить <b>{title}</b>?",
+      "description": "Будут удалены <b>{title}</b> и все его сохранённые версии. У вас будет несколько секунд, чтобы отменить. Продолжить?",
+      "toast": "Удаление «{title}»…"
     },
     "download": {
-      "title": "Download {title}",
-      "description": "Pick a format and name your file. The export is generated in your browser.",
-      "missing": "This resume could not be loaded from this browser's storage.",
-      "drawerTitle": "Download resume",
-      "drawerDescription": "Pick a format and name your file.",
-      "format": "Format",
-      "fileName": "File name",
-      "fileNamePlaceholder": "Senior Frontend Engineer"
-    },
-    "bug": {
-      "title": "Report a bug",
-      "description": "Send it right here and we'll file the GitHub issue for you; no account needed. If you have a GitHub account, you can open a prefilled issue yourself instead.",
-      "descriptionGitHubOnly": "This opens a prefilled GitHub issue for you to review and submit; a GitHub account is required, and your browser details are filled in for you.",
-      "whatHappened": "What happened?",
-      "whatHappenedPlaceholder": "The editor preview goes blank when...",
-      "whatHappenedDescription": "Include the steps to reproduce it; a numbered list works great.",
-      "area": "Where does the bug show up?",
-      "areaPlaceholder": "Area"
-    },
-    "feature": {
-      "title": "Request a feature",
-      "description": "Send it right here and we'll file the GitHub issue for you; no account needed. Note that resume structure (tables, columns, images) is out of scope by design; presentation is fair game.",
-      "descriptionGitHubOnly": "This opens a prefilled GitHub issue for you to review and submit; a GitHub account is required. Note that resume structure (tables, columns, images) is out of scope by design; presentation is fair game.",
-      "problem": "What problem does this solve?",
-      "problemPlaceholder": "When I tailor my resume for different roles, I have to...",
-      "problemDescription": "Describe the situation where you needed this, rather than the solution itself.",
-      "layer": "Which layer does this touch?",
-      "layerPlaceholder": "Layer"
+      "title": "Скачать {title}",
+      "description": "Выберите формат и назовите файл. Экспорт создаётся в вашем браузере.",
+      "missing": "Не удалось загрузить это резюме из хранилища браузера.",
+      "drawerTitle": "Скачать резюме",
+      "drawerDescription": "Выберите формат и назовите файл.",
+      "format": "Формат",
+      "fileName": "Имя файла",
+      "fileNamePlaceholder": "Ведущий фронтенд-разработчик"
     },
     "import": {
-      "dropPrompt": "Drop a PDF, JSON, or YAML file here, or click to browse",
-      "hint": "Your file is read on your device and never uploaded.",
-      "parsing": "Reading your resume…",
-      "parsed": "Ready to import",
-      "remove": "Remove file",
-      "errorUnsupported": "Only PDF, JSON, and YAML files are supported.",
-      "errorTooLarge": "That file is too large. The limit is 10 MB.",
-      "errorEmpty": "This PDF has no readable text. It looks scanned; try exporting a text-based PDF.",
-      "errorEncrypted": "This PDF is password-protected. Remove the password and try again.",
-      "errorGeneric": "We couldn't read this PDF. Try a different file.",
-      "disclaimer": "Importing is best-effort and can miss or misplace details. If something comes out wrong, it would really help if you",
-      "reportIssue": "report an issue",
-      "errorInvalidData": "This file isn't a valid resume export."
+      "dropPrompt": "Перетащите сюда PDF, JSON или YAML либо нажмите, чтобы выбрать файл",
+      "hint": "Файл читается на этом устройстве и никуда не загружается. PDF — до 10 МБ и 10 страниц.",
+      "parsing": "Читаем резюме…",
+      "reviewing": "Проверьте импорт",
+      "parsed": "Готово к импорту",
+      "remove": "Убрать файл",
+      "errorUnsupported": "Поддерживаются только файлы PDF, JSON и YAML.",
+      "errorTooLarge": "Файл слишком большой. Предел — 10 МБ.",
+      "errorTooManyPages": "В PDF больше 10 страниц. Экспортируйте более короткую версию и попробуйте снова.",
+      "errorEmpty": "В этом PDF нет текстового слоя — похоже на скан. Kast не распознаёт текст на изображениях (OCR). Экспортируйте текстовый PDF из исходного документа или введите резюме вручную.",
+      "errorEncrypted": "PDF защищён паролем. Снимите пароль и попробуйте снова.",
+      "errorGeneric": "Не удалось прочитать этот PDF. Попробуйте другой файл.",
+      "disclaimer": "Импорт работает по мере возможностей. Перед сохранением вы проверите сомнительные поля, а результат всегда можно отредактировать.",
+      "errorInvalidData": "Этот файл не является экспортом резюме."
     }
-  },
-  "feedback": {
-    "metaTitle": "Send feedback",
-    "metaDescription": "Report a bug or request a feature. We file the GitHub issue for you, so no account is needed.",
-    "kindLabel": "Choose bug report or feature request",
-    "sentTitle": "Thank you",
-    "sentBody": "We filed the GitHub issue for you. You can close this window.",
-    "sendAnother": "Send another",
-    "offlineToast": "You need to be online to send feedback. Check your connection and try again."
   },
   "editor": {
     "common": {
-      "add": "Add"
+      "add": "Добавить"
     },
     "layout": {
-      "documentLanguage": "Document language",
-      "documentIcons": "Show contact icons",
-      "sectionSpacing": "Section spacing",
-      "documentFont": "Font",
-      "templateDefault": "Default",
-      "fontSans": "Sans",
-      "fontSerif": "Serif",
-      "fontMono": "Mono",
-      "lineHeight": "Line height",
-      "letterSpacing": "Letter spacing",
-      "fontSizeName": "Name size",
-      "fontSizeTitle": "Heading size",
-      "fontSizeBody": "Body size"
+      "documentLanguage": "Язык резюме",
+      "documentLanguageHint": "От него зависят заголовки разделов, даты и уровни. Он не связан с языком интерфейса.",
+      "documentIcons": "Иконки у контактов",
+      "sectionSpacing": "Отступы между разделами",
+      "documentFont": "Шрифт",
+      "templateDefault": "По умолчанию",
+      "fontSans": "Без засечек",
+      "fontSerif": "С засечками",
+      "fontMono": "Моноширинные",
+      "lineHeight": "Межстрочный интервал",
+      "letterSpacing": "Межбуквенный интервал",
+      "fontSizeName": "Размер имени",
+      "fontSizeTitle": "Размер заголовков",
+      "fontSizeBody": "Размер текста"
     },
     "chrome": {
-      "edit": "Edit",
-      "editorTitle": "Editor",
-      "editorDescription": "Resume Editor",
-      "tabEditor": "Editor",
-      "tabLayout": "Layout",
-      "notFound": "Resume not found",
-      "didYouMean": "did you mean:",
-      "notExist": "This resume doesn't exist in this browser's storage.",
-      "headTo": "or head to",
-      "dashboard": "Dashboard",
-      "or": "or",
-      "browseTemplates": "Browse Templates",
-      "showSection": "Show section",
-      "hideSection": "Hide section",
-      "reorderSection": "Reorder section",
-      "resetOrder": "Reset section order",
-      "sectionsHeading": "Sections",
-      "addSection": "Custom Section",
-      "tabDocument": "Document",
-      "undo": "Undo",
-      "redo": "Redo"
+      "edit": "Редактировать",
+      "editorTitle": "Редактор",
+      "editorDescription": "Редактор резюме",
+      "tabEditor": "Разделы",
+      "tabLayout": "Дизайн",
+      "tabDocument": "Документ",
+      "tabCheck": "ATS",
+      "tabAi": "ИИ",
+      "tabLetter": "Письмо",
+      "notFound": "Резюме не найдено",
+      "didYouMean": "возможно, вы имели в виду:",
+      "notExist": "Такого резюме нет в хранилище этого браузера.",
+      "headTo": "или перейдите к",
+      "dashboard": "Моим резюме",
+      "or": "или",
+      "browseTemplates": "Шаблонам",
+      "showSection": "Показать раздел",
+      "hideSection": "Скрыть раздел",
+      "reorderSection": "Переместить раздел",
+      "resetOrder": "Сбросить порядок разделов",
+      "sectionsHeading": "Разделы",
+      "addSection": "Добавить раздел",
+      "addSectionLabel": "Добавить необязательный раздел",
+      "addCustomSection": "Свой раздел…",
+      "undo": "Отменить",
+      "redo": "Повторить"
     },
     "dateRange": {
-      "startDate": "Start Date",
-      "startPlaceholder": "Start date",
-      "endDate": "End Date",
-      "endPlaceholder": "End date",
-      "present": "Present"
+      "startDate": "Начало",
+      "startPlaceholder": "Дата начала",
+      "endDate": "Окончание",
+      "endPlaceholder": "Дата окончания",
+      "present": "По настоящее время"
+    },
+    "levels": {
+      "Beginner": "Начальный",
+      "Intermediate": "Средний",
+      "Advanced": "Продвинутый",
+      "Expert": "Эксперт",
+      "Native": "Родной",
+      "Fluent": "Свободный",
+      "Professional": "Профессиональный",
+      "Conversational": "Разговорный",
+      "Basic": "Базовый",
+      "A1": "A1 · Начальный",
+      "A2": "A2 · Элементарный",
+      "B1": "B1 · Средний",
+      "B2": "B2 · Выше среднего",
+      "C1": "C1 · Продвинутый",
+      "C2": "C2 · Владение в совершенстве",
+      "native": "Родной"
     },
     "personal": {
-      "accordionTitle": "Personal Information",
-      "personalInfo": "Personal Information",
-      "personalInfoDesc": "So HR can identify you",
-      "firstName": "First name",
-      "firstNamePlaceholder": "John",
-      "lastName": "Last name",
-      "lastNamePlaceholder": "Doe",
-      "jobTitle": "Job Title",
-      "jobTitlePlaceholder": "UX Engineer",
-      "contactInfo": "Contact Information",
-      "contactInfoDesc": "So HR can reach you easily",
-      "email": "Email address",
-      "emailPlaceholder": "john@acme.inc",
-      "phone": "Phone Number",
-      "phonePlaceholder": "+62812345678",
-      "website": "Website",
-      "websitePlaceholder": "rimzzlabs.com",
+      "accordionTitle": "Личные данные",
+      "personalInfo": "Личные данные",
+      "personalInfoDesc": "Чтобы рекрутер понял, кто вы",
+      "firstName": "Имя",
+      "firstNamePlaceholder": "Анна",
+      "lastName": "Фамилия",
+      "lastNamePlaceholder": "Иванова",
+      "jobTitle": "Должность",
+      "jobTitlePlaceholder": "Продуктовый дизайнер",
+      "birthDate": "Дата рождения",
+      "birthDatePlaceholder": "1994-05-12",
+      "birthDateDesc": "Необязательно. В одних странах её ждут, в других не рекомендуют — если сомневаетесь, оставьте пустым.",
+      "contactInfo": "Контакты",
+      "contactInfoDesc": "Чтобы с вами было легко связаться",
+      "email": "Электронная почта",
+      "emailPlaceholder": "anna@example.com",
+      "phone": "Телефон",
+      "phonePlaceholder": "+370 600 00000",
+      "website": "Сайт",
+      "websitePlaceholder": "example.com",
       "linkedin": "LinkedIn",
-      "linkedinPlaceholder": "johndoe",
-      "link": "Link",
-      "linkPlaceholder": "github.com/johndoe",
-      "location": "Location",
-      "locationDesc": "Where are you from?",
-      "city": "City",
-      "cityPlaceholder": "Pandeglang",
-      "province": "Province",
-      "provincePlaceholder": "Banten",
-      "country": "Country",
-      "countryPlaceholder": "Indonesia",
-      "photo": "Photo",
-      "photoAdd": "Add photo",
-      "photoReplace": "Replace",
-      "photoRemove": "Remove",
-      "photoHint": "Optional. Common for applications in Indonesia; many ATS and US employers ignore or discourage photos. The text of your resume always stays fully readable to parsers.",
-      "photoError": "That file could not be read as an image.",
-      "photoSize": "Photo size",
-      "photoRadius": "Corner radius",
-      "photoAlign": "Position",
-      "photoAlignTop": "Top",
-      "photoAlignCenter": "Center",
-      "photoAlignBottom": "Bottom"
+      "linkedinPlaceholder": "annaivanova",
+      "link": "Ссылка",
+      "linkPlaceholder": "github.com/anna",
+      "location": "Местоположение",
+      "locationDesc": "Где вы живёте?",
+      "city": "Город",
+      "cityPlaceholder": "Вильнюс",
+      "province": "Регион",
+      "provincePlaceholder": "Вильнюсский уезд",
+      "country": "Страна",
+      "countryPlaceholder": "Литва",
+      "photo": "Фото",
+      "photoAdd": "Добавить фото",
+      "photoReplace": "Заменить",
+      "photoRemove": "Удалить",
+      "photoCrop": "Обрезать",
+      "photoHint": "Необязательно и показывается только в режиме дизайна. В Литве и большей части Европы фото привычно; многие ATS и работодатели в США его игнорируют или не приветствуют. Фото сжимается и никак не меняет текст, который читают парсеры.",
+      "photoError": "Не удалось прочитать файл как изображение.",
+      "photoSize": "Размер фото",
+      "photoRadius": "Скругление углов",
+      "photoAlign": "Положение",
+      "photoAlignTop": "Сверху",
+      "photoAlignCenter": "По центру",
+      "photoAlignBottom": "Снизу",
+      "photoAtsNote": "В режиме ATS фото скрыто. Чтобы показать его, включите режим дизайна на вкладке «Дизайн».",
+      "cropTitle": "Обрезка фото",
+      "cropDescription": "Перетаскивайте, чтобы сдвинуть, и используйте ползунок или колесо мыши для масштаба. Фото сохраняется как небольшой квадратный JPEG.",
+      "cropZoom": "Масштаб",
+      "cropApply": "Использовать фото",
+      "cropCancel": "Отмена",
+      "cropReset": "Сбросить"
     },
     "summary": {
-      "accordionTitle": "Professional Summary",
-      "label": "Professional Summary",
-      "placeholder": "I'm a passionate UX engineer. Creating visually engaging..."
+      "accordionTitle": "О себе",
+      "label": "О себе",
+      "placeholder": "Продуктовый дизайнер с шестилетним опытом в финтехе. Превращаю исследования в интерфейсы, которые…"
     },
     "experience": {
-      "accordionTitle": "Professional Experience",
-      "legend": "Professional Experience",
-      "legendDesc": "Describe your past experience",
-      "add": "Professional Experience",
-      "emptyTitle": "No experience yet",
-      "emptyDescription": "Add your roles to build out your work history.",
-      "itemLegend": "Experience {index}",
-      "jobTitle": "Job Title",
-      "jobTitlePlaceholder": "UX Engineer",
-      "company": "Company",
-      "companyPlaceholder": "Acme Inc.",
-      "location": "Location",
-      "locationPlaceholder": "San Francisco, CA",
-      "companyContext": "Company Context",
-      "companyContextPlaceholder": "B2B payments platform serving 2M merchants",
-      "companyWebsite": "Company Website",
-      "companyWebsitePlaceholder": "acme.com",
-      "present": "I currently work here",
-      "summary": "Summary",
-      "summaryPlaceholder": "Creating real-time application that....",
-      "remove": "Remove"
+      "accordionTitle": "Опыт работы",
+      "legend": "Опыт работы",
+      "legendDesc": "Опишите прошлые места работы",
+      "add": "Место работы",
+      "emptyTitle": "Опыта пока нет",
+      "emptyDescription": "Добавьте должности, чтобы показать свою трудовую историю.",
+      "itemLegend": "Место работы {index}",
+      "jobTitle": "Должность",
+      "jobTitlePlaceholder": "Продуктовый дизайнер",
+      "company": "Компания",
+      "companyPlaceholder": "Example UAB",
+      "location": "Место",
+      "locationPlaceholder": "Вильнюс, Литва",
+      "companyContext": "О компании",
+      "companyContextPlaceholder": "B2B-платформа платежей для 2 млн продавцов",
+      "companyWebsite": "Сайт компании",
+      "companyWebsitePlaceholder": "example.com",
+      "present": "Работаю здесь сейчас",
+      "summary": "Достижения",
+      "summaryPlaceholder": "Переделала онбординг и снизила отток на 18%…",
+      "remove": "Удалить"
     },
     "internship": {
-      "accordionTitle": "Internship",
-      "legend": "Internship",
-      "legendDesc": "Add internships you've completed",
-      "add": "Internship",
-      "emptyTitle": "No internships yet",
-      "emptyDescription": "Add internships to show early hands-on experience.",
-      "itemLegend": "Internship {index}",
-      "role": "Role",
-      "rolePlaceholder": "Frontend Engineering Intern",
-      "company": "Company",
-      "companyPlaceholder": "Acme Inc.",
-      "location": "Location",
-      "locationPlaceholder": "San Francisco, CA",
-      "companyContext": "Company Context",
-      "companyContextPlaceholder": "B2B payments platform serving 2M merchants",
-      "companyWebsite": "Company Website",
-      "companyWebsitePlaceholder": "acme.com",
-      "present": "I'm currently interning here",
-      "summary": "Summary",
-      "summaryPlaceholder": "Built internal tooling that....",
-      "remove": "Remove"
+      "accordionTitle": "Стажировки",
+      "legend": "Стажировки",
+      "legendDesc": "Добавьте пройденные стажировки",
+      "add": "Стажировка",
+      "emptyTitle": "Стажировок пока нет",
+      "emptyDescription": "Добавьте стажировки, чтобы показать первый практический опыт.",
+      "itemLegend": "Стажировка {index}",
+      "role": "Роль",
+      "rolePlaceholder": "Стажёр фронтенд-разработки",
+      "company": "Компания",
+      "companyPlaceholder": "Example UAB",
+      "location": "Место",
+      "locationPlaceholder": "Каунас, Литва",
+      "companyContext": "О компании",
+      "companyContextPlaceholder": "B2B-платформа платежей для 2 млн продавцов",
+      "companyWebsite": "Сайт компании",
+      "companyWebsitePlaceholder": "example.com",
+      "present": "Прохожу стажировку сейчас",
+      "summary": "Достижения",
+      "summaryPlaceholder": "Сделал внутренние инструменты, которые…",
+      "remove": "Удалить"
     },
     "projects": {
-      "accordionTitle": "Projects",
-      "legend": "Projects",
-      "legendDesc": "Show off the things you've built",
-      "add": "Project",
-      "emptyTitle": "No projects yet",
-      "emptyDescription": "Add side projects, open-source work, or things you've shipped.",
-      "itemLegend": "Project {index}",
-      "name": "Project name",
-      "namePlaceholder": "react-a11y-kit",
-      "role": "Role",
-      "rolePlaceholder": "Maintainer",
-      "url": "Project URL",
+      "accordionTitle": "Проекты",
+      "legend": "Проекты",
+      "legendDesc": "Покажите, что вы создали",
+      "add": "Проект",
+      "emptyTitle": "Проектов пока нет",
+      "emptyDescription": "Добавьте пет-проекты, open source или то, что вы запустили.",
+      "itemLegend": "Проект {index}",
+      "name": "Название проекта",
+      "namePlaceholder": "Набор доступных форм",
+      "role": "Роль",
+      "rolePlaceholder": "Мейнтейнер",
+      "url": "Ссылка на проект",
       "urlPlaceholder": "github.com/you/project",
-      "present": "This is ongoing",
-      "summary": "Description",
-      "summaryPlaceholder": "What it does, what you built, the impact....",
-      "remove": "Remove"
+      "present": "Проект продолжается",
+      "summary": "Описание",
+      "summaryPlaceholder": "Что делает проект, что вы сделали, какой результат…",
+      "remove": "Удалить"
     },
     "organizations": {
-      "accordionTitle": "Organization",
-      "legend": "Organization Experience",
-      "legendDesc": "Describe your volunteer, student, and community roles",
-      "add": "Organization Experience",
-      "emptyTitle": "No organizations yet",
-      "emptyDescription": "Add volunteer, student, or community roles here.",
-      "itemLegend": "Organization {index}",
-      "role": "Role",
-      "rolePlaceholder": "Head of Public Relations",
-      "organization": "Organization",
-      "organizationPlaceholder": "Student Executive Board",
-      "present": "I'm currently active here",
-      "summary": "Summary",
-      "summaryPlaceholder": "Organized events that....",
-      "remove": "Remove"
+      "accordionTitle": "Организации",
+      "legend": "Организации",
+      "legendDesc": "Студенческие, общественные и профессиональные объединения",
+      "add": "Организация",
+      "emptyTitle": "Организаций пока нет",
+      "emptyDescription": "Добавьте роли в студенческих, общественных или профессиональных объединениях.",
+      "itemLegend": "Организация {index}",
+      "role": "Роль",
+      "rolePlaceholder": "Руководитель по связям с общественностью",
+      "organization": "Организация",
+      "organizationPlaceholder": "Студенческий совет",
+      "present": "Участвую сейчас",
+      "summary": "Описание",
+      "summaryPlaceholder": "Организовывала мероприятия, которые…",
+      "remove": "Удалить"
     },
     "education": {
-      "accordionTitle": "Education",
-      "legend": "Education",
-      "legendDesc": "Where you studied",
-      "add": "Education",
-      "emptyTitle": "No education yet",
-      "emptyDescription": "Add your degrees, schools, and courses.",
-      "itemLegend": "Education {index}",
-      "institution": "Institution",
-      "institutionPlaceholder": "State University",
-      "degree": "Degree",
-      "degreePlaceholder": "B.Sc. Computer Science",
-      "location": "Location",
-      "locationPlaceholder": "Boston, MA",
-      "present": "I currently study here",
-      "details": "Details",
-      "detailsPlaceholder": "Graduated with honors. Relevant coursework…",
-      "remove": "Remove"
+      "accordionTitle": "Образование",
+      "legend": "Образование",
+      "legendDesc": "Где вы учились",
+      "add": "Образование",
+      "emptyTitle": "Образования пока нет",
+      "emptyDescription": "Добавьте учебные заведения и полученные степени.",
+      "itemLegend": "Образование {index}",
+      "institution": "Учебное заведение",
+      "institutionPlaceholder": "Вильнюсский университет",
+      "degree": "Степень или специальность",
+      "degreePlaceholder": "Бакалавр информатики",
+      "location": "Место",
+      "locationPlaceholder": "Вильнюс, Литва",
+      "present": "Учусь сейчас",
+      "details": "Подробности",
+      "detailsPlaceholder": "Диплом с отличием. Профильные курсы…",
+      "remove": "Удалить"
     },
     "certifications": {
-      "accordionTitle": "Certifications",
-      "legend": "Certifications",
-      "legendDesc": "Licenses and certifications",
-      "add": "Certification",
-      "emptyTitle": "No certifications yet",
-      "emptyDescription": "Add licenses and certifications you've earned.",
-      "itemLegend": "Certification {index}",
-      "name": "Name",
+      "accordionTitle": "Сертификаты",
+      "legend": "Сертификаты",
+      "legendDesc": "Лицензии и сертификаты",
+      "add": "Сертификат",
+      "emptyTitle": "Сертификатов пока нет",
+      "emptyDescription": "Добавьте полученные лицензии и сертификаты.",
+      "itemLegend": "Сертификат {index}",
+      "name": "Название",
       "namePlaceholder": "AWS Certified Solutions Architect",
-      "issuer": "Issuer",
+      "issuer": "Кем выдан",
       "issuerPlaceholder": "Amazon Web Services",
-      "url": "Certificate URL",
-      "urlPlaceholder": "acme.com/cert",
-      "urlDesc": "Link to the certificate or the issuer's site.",
-      "reorder": "Reorder certification",
-      "remove": "Remove"
+      "date": "Дата",
+      "datePlaceholder": "Mar 2024",
+      "url": "Ссылка на сертификат",
+      "urlPlaceholder": "example.com/certificate",
+      "urlDesc": "Ссылка на сертификат или сайт организации.",
+      "reorder": "Переместить сертификат",
+      "remove": "Удалить"
     },
     "skills": {
-      "accordionTitle": "Skills",
-      "legend": "Skills",
-      "legendDesc": "List your skills",
-      "add": "Skill",
-      "emptyTitle": "No skills yet",
-      "emptyDescription": "Add the tools and technologies you work with.",
+      "accordionTitle": "Навыки",
+      "legend": "Навыки",
+      "legendDesc": "Ключевые навыки с уровнем и, если нужно, коротким пояснением",
+      "add": "Навык",
+      "emptyTitle": "Навыков пока нет",
+      "emptyDescription": "Добавьте инструменты, методы и сильные стороны.",
       "namePlaceholder": "TypeScript",
-      "proficiency": "Proficiency",
-      "reorder": "Reorder skill",
-      "remove": "Remove skill",
-      "columnsLabel": "Columns",
+      "proficiency": "Уровень",
+      "description": "Пояснение",
+      "descriptionPlaceholder": "5 лет, дизайн-системы и тестирование",
+      "reorder": "Переместить навык",
+      "remove": "Удалить навык",
+      "columnsLabel": "Колонки",
       "columnsOne": "1",
-      "columnsOneAria": "One column",
+      "columnsOneAria": "Одна колонка",
       "columnsTwo": "2",
-      "columnsTwoAria": "Two columns",
-      "proficiencyLabel": "Show proficiency"
+      "columnsTwoAria": "Две колонки",
+      "proficiencyLabel": "Показывать уровень"
     },
     "languages": {
-      "accordionTitle": "Languages",
-      "legend": "Languages",
-      "legendDesc": "Languages you speak",
-      "add": "Language",
-      "emptyTitle": "No languages yet",
-      "emptyDescription": "Add the languages you speak and your proficiency.",
-      "namePlaceholder": "English",
-      "proficiency": "Proficiency",
-      "proficiencyLabel": "Show proficiency",
-      "columnsLabel": "Columns",
+      "accordionTitle": "Языки",
+      "legend": "Языки",
+      "legendDesc": "Языки, которыми вы владеете, с уровнями CEFR по желанию",
+      "add": "Язык",
+      "emptyTitle": "Языков пока нет",
+      "emptyDescription": "Добавьте языки и уровень владения.",
+      "namePlaceholder": "Английский",
+      "proficiency": "Общий уровень",
+      "speaking": "Речь",
+      "understanding": "Понимание",
+      "writing": "Письмо",
+      "proficiencyLabel": "Показывать уровень",
+      "columnsLabel": "Колонки",
       "columnsOne": "1",
-      "columnsOneAria": "One column",
+      "columnsOneAria": "Одна колонка",
       "columnsTwo": "2",
-      "columnsTwoAria": "Two columns",
-      "reorder": "Reorder language",
-      "remove": "Remove language"
+      "columnsTwoAria": "Две колонки",
+      "reorder": "Переместить язык",
+      "remove": "Удалить язык"
+    },
+    "generic": {
+      "titles": {
+        "header": "Шапка",
+        "summary": "О себе",
+        "experience": "Опыт работы",
+        "internship": "Стажировки",
+        "projects": "Проекты",
+        "organizations": "Организации",
+        "volunteering": "Волонтёрство",
+        "education": "Образование",
+        "courses": "Курсы и обучение",
+        "certifications": "Сертификаты",
+        "publications": "Публикации",
+        "skills": "Навыки",
+        "languages": "Языки",
+        "interests": "Хобби и интересы",
+        "references": "Рекомендации",
+        "driving": "Водительские права",
+        "salary": "Ожидаемая зарплата",
+        "availability": "Готовность к работе",
+        "custom": "Свой раздел"
+      },
+      "fields": {
+        "volunteering": {
+          "role": "Роль",
+          "rolePlaceholder": "Координатор волонтёров",
+          "organization": "Организация",
+          "organizationPlaceholder": "Банк еды",
+          "location": "Место",
+          "locationPlaceholder": "Вильнюс",
+          "startDate": "Начало",
+          "endDate": "Окончание",
+          "description": "Чем вы занимались"
+        },
+        "courses": {
+          "title": "Курс",
+          "titlePlaceholder": "Основы UX-исследований",
+          "provider": "Организатор",
+          "providerPlaceholder": "Coursera",
+          "url": "Ссылка на курс или сертификат",
+          "urlPlaceholder": "example.com/course",
+          "startDate": "Начало",
+          "endDate": "Окончание",
+          "description": "Заметки"
+        },
+        "publications": {
+          "title": "Название",
+          "titlePlaceholder": "Дизайн доверия в платёжных сервисах",
+          "publisher": "Издание или площадка",
+          "publisherPlaceholder": "UX Collective",
+          "url": "Ссылка",
+          "urlPlaceholder": "example.com/article",
+          "date": "Дата",
+          "description": "Кратко"
+        },
+        "references": {
+          "name": "Имя",
+          "namePlaceholder": "Рута Казлаускене",
+          "position": "Должность",
+          "positionPlaceholder": "Руководитель отдела дизайна",
+          "company": "Компания",
+          "companyPlaceholder": "Example UAB",
+          "email": "Электронная почта",
+          "emailPlaceholder": "ruta@example.com",
+          "phone": "Телефон",
+          "phonePlaceholder": "+370 600 00000"
+        },
+        "interests": {
+          "body": "Хобби и интересы",
+          "bodyPlaceholder": "Трейлраннинг, шахматы, волонтёрство в приюте для животных"
+        },
+        "driving": {
+          "categories": "Категории",
+          "categoriesPlaceholder": "B, C",
+          "note": "Примечание",
+          "notePlaceholder": "Свой автомобиль, стаж 10 лет"
+        },
+        "salary": {
+          "amount": "Сумма",
+          "amountPlaceholder": "2500",
+          "currency": "Валюта",
+          "currencyPlaceholder": "EUR",
+          "period": "За",
+          "tax": "До или после налогов"
+        },
+        "availability": {
+          "status": "Статус",
+          "from": "Могу начать с",
+          "notice": "Срок уведомления",
+          "noticePlaceholder": "1 месяц",
+          "workType": "Формат работы",
+          "workTypePlaceholder": "Полная занятость, гибрид",
+          "relocation": "Готовность к переезду"
+        }
+      },
+      "add": {
+        "volunteering": "Волонтёрство",
+        "courses": "Курс",
+        "publications": "Публикация",
+        "references": "Рекомендация",
+        "interests": "Хобби",
+        "driving": "Водительские права",
+        "salary": "Зарплата",
+        "availability": "Готовность к работе"
+      },
+      "empty": {
+        "volunteering": "Добавьте неоплачиваемые роли, которые показывают ваши ценности и навыки.",
+        "courses": "Добавьте пройденные курсы, буткемпы и тренинги.",
+        "publications": "Добавьте статьи, научные работы, выступления или книги.",
+        "references": "Добавьте людей, которые могут за вас поручиться. Сначала спросите их согласия.",
+        "interests": "Пара слов о том, чем вы занимаетесь вне работы.",
+        "driving": "Укажите категории прав.",
+        "salary": "Укажите ожидаемую оплату.",
+        "availability": "Укажите, когда можете приступить."
+      },
+      "options": {
+        "month": "Месяц",
+        "year": "Год",
+        "hour": "Час",
+        "gross": "До вычета налогов (брутто)",
+        "net": "На руки (нетто)",
+        "immediately": "Сразу",
+        "notice": "После срока уведомления",
+        "from-date": "С определённой даты",
+        "open": "Рассматриваю предложения",
+        "not-looking": "Не ищу работу",
+        "yes": "Да",
+        "no": "Нет"
+      },
+      "emptyTitle": "Здесь пока пусто",
+      "entryLegend": "Запись {index}",
+      "remove": "Удалить",
+      "removeSection": "Удалить раздел",
+      "menuLabel": "Параметры раздела",
+      "ongoing": "Продолжается",
+      "datePlaceholder": "Mar 2024",
+      "selectPlaceholder": "Выберите…"
+    },
+    "mode": {
+      "label": "Режим",
+      "ats": "ATS",
+      "atsAria": "Режим ATS",
+      "design": "Дизайн",
+      "designAria": "Режим дизайна",
+      "atsHint": "Строго и просто: без фото, иконок и QR-кода, чёрный текст. Самый надёжный вариант для онлайн-форм откликов.",
+      "designHint": "Добавляет акцентный цвет, иконки контактов, фото и QR-код по желанию. Текстовый слой для парсеров не меняется.",
+      "accent": "Акцентный цвет",
+      "accentSwatch": "Акцент {color}",
+      "accentCustom": "Свой цвет",
+      "qr": "QR-код",
+      "qrHint": "Ведёт на {link}. Показывается только в режиме дизайна.",
+      "qrNeedsLink": "Чтобы показать QR-код, добавьте сайт, LinkedIn или ссылку в личных данных."
+    },
+    "stats": {
+      "summary": "{words, plural, one {# слово} few {# слова} many {# слов} other {# слова}} · {pages, plural, one {# страница} few {# страницы} many {# страниц} other {# страницы}}",
+      "tooLong": "Длиннее {max} страниц",
+      "hint": "Рекрутер тратит на первое прочтение считаные секунды. Большинству резюме лучше уместиться на одну-две страницы."
+    },
+    "versions": {
+      "open": "Версии",
+      "title": "История версий",
+      "description": "Kast сохраняет снимок каждые несколько минут во время работы, а также перед импортом, восстановлением и изменениями ИИ. Хранятся {limit} последних.",
+      "labelField": "Название версии",
+      "labelPlaceholder": "До адаптации под Example UAB",
+      "save": "Сохранить версию",
+      "emptyTitle": "Версий пока нет",
+      "emptyDescription": "Снимки появятся здесь по мере редактирования.",
+      "restore": "Восстановить",
+      "delete": "Удалить версию",
+      "restored": "Версия восстановлена. Предыдущее состояние сохранено как снимок.",
+      "reasons": {
+        "auto": "Автосохранение",
+        "manual": "Сохранено вами",
+        "before-restore": "Перед восстановлением",
+        "before-import": "Перед импортом",
+        "before-ai": "Перед изменениями ИИ"
+      }
+    },
+    "target": {
+      "empty": "Вакансия",
+      "title": "Для этой вакансии",
+      "description": "Отметьте, для какой вакансии эта версия. Это только для вас: в резюме и экспорт не попадает.",
+      "position": "Должность",
+      "company": "Компания",
+      "url": "Ссылка на вакансию",
+      "appliedAt": "Дата отклика",
+      "status": "Статус",
+      "notes": "Заметки",
+      "vacancy": "Текст вакансии",
+      "vacancyPlaceholder": "Вставьте описание вакансии…",
+      "vacancyHint": "Используется проверкой ключевых слов и ИИ-помощником.",
+      "statuses": {
+        "draft": "Черновик",
+        "applied": "Отклик отправлен",
+        "interview": "Собеседование",
+        "offer": "Оффер",
+        "rejected": "Отказ"
+      }
+    },
+    "export": {
+      "open": "Экспорт",
+      "documents": "Документы",
+      "data": "Данные",
+      "failed": "Экспорт не удался. Попробуйте ещё раз или выберите другой формат.",
+      "hints": {
+        "pdf": "Текст выделяется, готово к отправке",
+        "docx": "Редактируемый документ Word",
+        "txt": "Простой текст для веб-форм",
+        "json": "Данные Kast без потерь",
+        "yaml": "Данные Kast без потерь",
+        "europass-xml": "Europass CV, XML",
+        "europass-json": "Europass CV, JSON"
+      }
+    },
+    "letter": {
+      "intro": "Сопроводительное письмо в дизайне и на языке резюме. Заполните его сами или попросите ИИ-помощника.",
+      "writeWithAi": "Написать с ИИ",
+      "recipient": "Получатель",
+      "company": "Компания",
+      "date": "Дата",
+      "subject": "Тема",
+      "body": "Текст письма",
+      "bodyPlaceholder": "Здравствуйте! …",
+      "closing": "Подпись",
+      "closingPlaceholder": "С уважением,",
+      "export": "Скачать письмо",
+      "exportFailed": "Не удалось экспортировать письмо. Попробуйте ещё раз."
     },
     "richText": {
-      "undo": "Undo",
-      "redo": "Redo",
-      "bold": "Bold",
-      "italic": "Italic",
-      "bulletList": "Bullet list",
-      "orderedList": "Ordered list",
-      "link": "Link",
+      "undo": "Отменить",
+      "redo": "Повторить",
+      "bold": "Жирный",
+      "italic": "Курсив",
+      "bulletList": "Маркированный список",
+      "orderedList": "Нумерованный список",
+      "link": "Ссылка",
       "linkPlaceholder": "https://example.com",
-      "apply": "Apply",
-      "removeLink": "Remove link"
+      "apply": "Применить",
+      "removeLink": "Убрать ссылку"
     },
     "custom": {
-      "defaultTitle": "Custom section",
-      "variantLabel": "Layout",
-      "variantText": "Text",
-      "variantTextAria": "Single text block",
-      "variantList": "List",
-      "variantListAria": "List of entries",
-      "menuLabel": "Section options",
-      "rename": "Rename",
-      "remove": "Delete",
-      "addHeading": "Add a section",
-      "addDescription": "Name your new section. You can rename it later.",
-      "renameHeading": "Rename section",
-      "renameDescription": "Give this section a new name.",
-      "nameLabel": "Section name",
-      "namePlaceholder": "Name this section",
-      "bodyLabel": "Content",
-      "bodyPlaceholder": "Write the section content…",
-      "addEntry": "Add entry",
-      "emptyTitle": "No entries yet",
-      "emptyDescription": "Add an entry to fill in this section.",
-      "itemLegend": "Entry {index}",
-      "entryTitle": "Title",
-      "entryTitlePlaceholder": "Entry title",
-      "entrySubtitle": "Subtitle",
-      "entrySubtitlePlaceholder": "Entry subtitle",
-      "present": "This is ongoing",
-      "entryDescription": "Description",
-      "entryDescriptionPlaceholder": "Add details…",
-      "removeEntry": "Remove entry"
+      "defaultTitle": "Свой раздел",
+      "variantLabel": "Вид",
+      "variantText": "Текст",
+      "variantTextAria": "Один текстовый блок",
+      "variantList": "Список",
+      "variantListAria": "Список записей",
+      "menuLabel": "Параметры раздела",
+      "rename": "Переименовать",
+      "remove": "Удалить",
+      "addHeading": "Новый раздел",
+      "addDescription": "Назовите новый раздел. Название можно поменять позже.",
+      "renameHeading": "Переименовать раздел",
+      "renameDescription": "Дайте разделу новое название.",
+      "nameLabel": "Название раздела",
+      "namePlaceholder": "Название раздела",
+      "bodyLabel": "Содержание",
+      "bodyPlaceholder": "Напишите текст раздела…",
+      "addEntry": "Добавить запись",
+      "emptyTitle": "Записей пока нет",
+      "emptyDescription": "Добавьте запись, чтобы заполнить раздел.",
+      "itemLegend": "Запись {index}",
+      "entryTitle": "Заголовок",
+      "entryTitlePlaceholder": "Заголовок записи",
+      "entrySubtitle": "Подзаголовок",
+      "entrySubtitlePlaceholder": "Подзаголовок записи",
+      "present": "Продолжается",
+      "entryDescription": "Описание",
+      "entryDescriptionPlaceholder": "Добавьте подробности…",
+      "removeEntry": "Удалить запись"
     },
     "leftovers": {
-      "button": "Unplaced text ({count})",
-      "title": "Text we couldn't place",
-      "description": "The import couldn't fit these into a section. Copy anything worth keeping, then dismiss.",
-      "copy": "Copy",
-      "close": "Close",
-      "dismiss": "Dismiss all"
+      "button": "Неразмещённый текст ({count})",
+      "title": "Текст, который не удалось разместить",
+      "description": "Импорт не смог отнести эти строки к разделам. Скопируйте нужное и закройте.",
+      "copy": "Копировать",
+      "close": "Закрыть",
+      "dismiss": "Убрать всё"
     },
     "document": {
-      "downloadHeading": "Download",
-      "importHeading": "Import resume",
-      "importHint": "Bring in details from an existing PDF resume, or restore a JSON or YAML export. It's read on your device and never uploaded.",
-      "replacePrompt": "This resume already has content. Replace it, or keep it and create a new one?",
-      "replace": "Replace this one",
-      "createNew": "Create new",
-      "stylingHeading": "Document styling",
-      "resetStyling": "Reset to defaults",
-      "resetStylingHint": "Reset document styling to default",
-      "copyHeading": "Copy",
-      "copyHint": "Copy this resume to the clipboard as structured text. Rich text travels as simple markdown, and pasting it into an import restores it exactly.",
-      "copyAs": "Copy as",
+      "downloadHeading": "Скачать",
+      "importHeading": "Импорт резюме",
+      "importHint": "Перенесите данные из готового PDF-резюме или восстановите экспорт JSON или YAML. Файл читается на этом устройстве и никуда не загружается.",
+      "replacePrompt": "В этом резюме уже есть содержимое. Заменить его или сохранить и создать новое?",
+      "replace": "Заменить это",
+      "createNew": "Создать новое",
+      "stylingHeading": "Оформление документа",
+      "resetStyling": "Сбросить настройки",
+      "resetStylingHint": "Вернуть оформление по умолчанию",
+      "copyHeading": "Копирование",
+      "copyHint": "Скопируйте резюме в буфер обмена как структурированный текст. Форматирование передаётся простым markdown, и вставка в импорт восстанавливает всё точно.",
+      "copyAs": "Копировать как",
       "copyJson": "JSON",
       "copyYaml": "YAML",
-      "copied": "Copied to clipboard",
-      "copyFailed": "Couldn't copy to the clipboard."
+      "copied": "Скопировано в буфер обмена",
+      "copyFailed": "Не удалось скопировать в буфер обмена.",
+      "verifyHeading": "Проверка текстового слоя PDF",
+      "verifyHint": "Собирает PDF, читает из него текст так, как это делает ATS, и сравнивает с резюме.",
+      "verifyRun": "Проверить PDF",
+      "verifyRunning": "Собираем и читаем PDF…",
+      "verifyPassed": "Все ключевые значения ({total}) найдены в правильном порядке.",
+      "verifyFailed": "{missing, plural, one {# значение не найдено} few {# значения не найдены} many {# значений не найдено} other {# значения не найдены}} в тексте PDF.",
+      "verifyMissing": "Не найдено: {values}",
+      "verifyError": "Проверка не запустилась в этом браузере.",
+      "spellcheck": "Проверка орфографии",
+      "spellcheckHint": "Использует словарь браузера для языка резюме. Ничего никуда не отправляется."
     }
   },
+  "ats": {
+    "local": "Проверено на этом устройстве. Ничего никуда не отправляется.",
+    "bands": {
+      "good": {
+        "title": "Готово для ATS",
+        "description": "Парсеры хорошо прочитают это резюме. Оставшиеся советы — по желанию."
+      },
+      "fair": {
+        "title": "В целом читаемо",
+        "description": "Несколько правок сделают разбор надёжнее, а содержание — сильнее."
+      },
+      "poor": {
+        "title": "Нужна доработка",
+        "description": "Парсеры могут пропустить важное. Начните с ошибок ниже."
+      }
+    },
+    "categories": {
+      "structure": "Структура",
+      "format": "Оформление",
+      "contacts": "Контакты",
+      "dates": "Даты",
+      "content": "Содержание",
+      "keywords": "Ключевые слова"
+    },
+    "notApplicable": "Не проверялось",
+    "issuesHeading": "{count, plural, one {# пункт к исправлению} few {# пункта к исправлению} many {# пунктов к исправлению} other {# пункта к исправлению}}",
+    "noIssuesTitle": "Исправлять нечего",
+    "noIssuesDescription": "Все проверки пройдены.",
+    "keywordsHeading": "Сравнение с вакансией",
+    "exportHeading": "Перед отправкой",
+    "exportNote": "Для онлайн-форм откликов отправляйте DOCX или PDF в режиме ATS. Режим дизайна оставьте для писем и печати.",
+    "goToSection": "К разделу",
+    "keywords": {
+      "label": "Текст вакансии",
+      "placeholder": "Вставьте описание вакансии, чтобы сравнить ключевые слова…",
+      "hint": "Сохраняется в пометке о вакансии этого резюме и никуда не отправляется.",
+      "found": "{count, plural, one {# ключевое слово найдено} few {# ключевых слова найдено} many {# ключевых слов найдено} other {# ключевого слова найдено}}",
+      "missing": "{count, plural, one {Не хватает # ключевого слова} few {Не хватает # ключевых слов} many {Не хватает # ключевых слов} other {Не хватает # ключевого слова}}",
+      "honesty": "Добавляйте недостающее слово, только если оно правда про вас. Рекрутеры проверяют."
+    },
+    "rules": {
+      "name-present": {
+        "title": "Укажите имя",
+        "fix": "Заполните имя и фамилию в личных данных."
+      },
+      "headline-present": {
+        "title": "Укажите должность",
+        "fix": "Строка под именем подсказывает парсерам и рекрутерам, на какую роль вы претендуете."
+      },
+      "required-sections": {
+        "title": "Нет раздела: {section}",
+        "fix": "Большинство ATS ждут раздел «{section}». Добавьте его, даже с одной записью."
+      },
+      "summary-present": {
+        "title": "Добавьте краткое резюме",
+        "fix": "Два-четыре предложения о том, кто вы и что умеете."
+      },
+      "standard-headings": {
+        "title": "Необычный заголовок «{heading}»",
+        "fix": "Парсеры ищут стандартные названия. Переименуйте раздел или оставьте, если это действительно особый раздел."
+      },
+      "section-order": {
+        "title": "«{before}» стоит после «{after}»",
+        "fix": "Поставьте «{before}» выше «{after}», если вы не недавний выпускник."
+      },
+      "ats-mode": {
+        "title": "Включён режим дизайна",
+        "fix": "Фото, иконки и QR-код уместны в письме, но для онлайн-форм откликов переключитесь в режим ATS."
+      },
+      "special-bullets": {
+        "title": "Необычные символы: {chars}",
+        "fix": "Используйте обычные маркеры и тире — декоративные символы при разборе превращаются в мусор."
+      },
+      "emoji": {
+        "title": "Эмодзи в тексте: {chars}",
+        "fix": "Уберите эмодзи: многие ATS их теряют или искажают."
+      },
+      "letter-spacing": {
+        "title": "Большой межбуквенный интервал ({value})",
+        "fix": "Из-за разреженного текста при извлечении слова могут распадаться. Приблизьте интервал к нулю."
+      },
+      "email-present": {
+        "title": "Укажите электронную почту",
+        "fix": "Рекрутерам и ATS нужен способ с вами связаться."
+      },
+      "email-format": {
+        "title": "Проверьте адрес «{email}»",
+        "fix": "Он не похож на корректный адрес почты."
+      },
+      "phone-present": {
+        "title": "Укажите телефон",
+        "fix": "Многие рекрутеры сначала звонят. Укажите код страны."
+      },
+      "phone-format": {
+        "title": "Проверьте телефон «{phone}»",
+        "fix": "Используйте цифры с + и кодом страны, например +370 600 00000."
+      },
+      "location-present": {
+        "title": "Укажите город",
+        "fix": "Фильтр по местоположению — частый в поиске ATS."
+      },
+      "dates-present": {
+        "title": "Нет дат: {entry}",
+        "fix": "Добавьте даты начала и окончания, чтобы хронология была понятной."
+      },
+      "dates-consistent": {
+        "title": "Разные форматы дат",
+        "fix": "Используйте везде месяц и год или везде только годы."
+      },
+      "dates-order": {
+        "title": "Окончание раньше начала: {entry}",
+        "fix": "Поменяйте даты местами или исправьте опечатку."
+      },
+      "employment-gaps": {
+        "title": "Перерыв {months} мес. ({from} – {to})",
+        "fix": "Это нормально, но его можно закрыть курсом, проектом или коротким пояснением."
+      },
+      "employment-overlaps": {
+        "title": "Пересечение: {first} и {second}",
+        "fix": "Если всё верно, оставьте; иначе проверьте даты."
+      },
+      "word-count": {
+        "title": "{kind, select, short {Короткое резюме: {count} сл.} other {Длинное резюме: {count} сл.}}",
+        "fix": "{kind, select, short {Стремитесь хотя бы к {min} словам с конкретными достижениями.} other {Стремитесь уложиться в {max} слов: сократите старое и не относящееся к делу.}}"
+      },
+      "summary-length": {
+        "title": "{kind, select, short {Раздел «О себе» короткий ({count} сл.)} other {Раздел «О себе» длинный ({count} сл.)}}",
+        "fix": "Оптимально от {min} до {max} слов."
+      },
+      "bullets-per-entry": {
+        "title": "{entry}: пунктов — {count}",
+        "fix": "Делайте от {min} до {max} пунктов на должность, каждый начинайте с результата."
+      },
+      "weak-phrases": {
+        "title": "Слабая формулировка «{phrase}»",
+        "fix": "Замените её глаголом действия и результатом."
+      },
+      "repeated-words": {
+        "title": "«{word}» встречается {count} раз",
+        "fix": "Разнообразьте формулировки, чтобы текст не казался однообразным."
+      },
+      "quantified-results": {
+        "title": "Мало цифр ({percent}% пунктов)",
+        "fix": "Стремитесь хотя бы к {target}%: проценты, деньги, размер команды или количество делают результат конкретным."
+      },
+      "page-count": {
+        "title": "Страниц: {pages}",
+        "fix": "Большинству резюме лучше уложиться в {max} страницы."
+      },
+      "keywords-match": {
+        "title": "Совпадение ключевых слов {percent}%",
+        "fix": "Не хватает слов из вакансии: {missing}. Добавьте те, что правда про вас."
+      }
+    }
+  },
+  "ai": {
+    "provider": "Провайдер",
+    "model": "Модель",
+    "vacancy": "Текст вакансии",
+    "vacancyPlaceholder": "Вставьте описание вакансии…",
+    "targetLanguage": "Перевести на",
+    "targetLanguagePlaceholder": "Выберите язык",
+    "snapshotLabel": "Перед ИИ: {mode}",
+    "usage": "Токены: {input} на вход + {output} на выход{cost, select, none {} other { · ≈ {cost}}}",
+    "panel": {
+      "title": "ИИ-помощник (по желанию)",
+      "intro": "Работает с вашим API-ключом. Запросы идут прямо из браузера к провайдеру, личные данные маскируются, а каждое изменение ждёт вашей проверки.",
+      "provider": "Провайдер",
+      "model": "Модель",
+      "settingsLink": "Больше параметров в настройках",
+      "pending": "Ждут проверки",
+      "task": "Задача",
+      "sent": "Что будет отправлено",
+      "vacancy": "Текст вакансии",
+      "vacancyPlaceholder": "Вставьте описание вакансии…",
+      "targetLanguage": "Перевести на",
+      "targetLanguagePlaceholder": "Выберите язык",
+      "needsVacancy": "Сначала вставьте текст вакансии.",
+      "running": "Работаем… {seconds} с",
+      "cancel": "Отменить",
+      "send": "Отправить в {provider}"
+    },
+    "modes": {
+      "label": "Задача",
+      "rewrite": {
+        "title": "Улучшить формулировки",
+        "description": "Более сильные и ясные пункты и раздел «О себе» без выдуманных фактов."
+      },
+      "tailor": {
+        "title": "Адаптировать под вакансию",
+        "description": "Смещает акценты и формулировки под описание вакансии."
+      },
+      "ats": {
+        "title": "Разбор для ATS",
+        "description": "Находит риски для парсеров и недостающие ключевые слова, предлагает исправления."
+      },
+      "consistency": {
+        "title": "Проверка единообразия",
+        "description": "Время глаголов, пунктуация, форматы дат и терминология во всём резюме."
+      },
+      "translate": {
+        "title": "Перевод",
+        "description": "Переводит содержимое на другой язык резюме."
+      },
+      "cover-letter": {
+        "title": "Сопроводительное письмо",
+        "description": "Пишет письмо под вакансию на основе вашего резюме."
+      }
+    },
+    "preview": {
+      "maskLegend": "Заменить заглушками перед отправкой",
+      "mask": {
+        "name": "Имя",
+        "email": "Почта",
+        "phone": "Телефон",
+        "address": "Адрес",
+        "links": "Ссылки"
+      },
+      "photoNever": "Фото и дата рождения никогда не отправляются.",
+      "estimate": "≈ {input} токенов на вход, до {output} на выход · ≈ {cost}",
+      "estimateNoPrice": "≈ {input} токенов на вход, до {output} на выход",
+      "show": "Показать точный текст"
+    },
+    "consent": {
+      "title": "Отправить текст резюме в {provider}?",
+      "body": "ИИ-помощник работает так: часть вашего резюме отправляется в {provider}. У Kast нет сервера — запрос идёт прямо из этого браузера.",
+      "pointDirect": "Текст уходит напрямую в {provider} под вашим API-ключом и по их правилам обработки данных.",
+      "pointMasked": "Почта, телефон, адрес и ссылки по умолчанию заменяются заглушками; это можно изменить.",
+      "pointPhoto": "Фото и дата рождения никогда не отправляются.",
+      "pointBilling": "{provider} списывает оплату с вашего аккаунта за каждый запрос.",
+      "pointRevoke": "Согласие можно отозвать в любой момент в настройках.",
+      "agree": "Я согласен(на) отправлять данные в {provider}",
+      "cancel": "Отмена",
+      "confirm": "Согласиться и отправить"
+    },
+    "errors": {
+      "invalid-key": "API-ключ отклонён",
+      "permission": "Этот ключ не может использовать выбранную модель",
+      "insufficient-funds": "На аккаунте закончились средства",
+      "rate-limit": "Слишком много запросов, подождите минуту",
+      "overloaded": "Провайдер перегружен, попробуйте чуть позже",
+      "timeout": "Запрос выполнялся слишком долго",
+      "network": "Не удалось связаться с провайдером",
+      "server": "Провайдер вернул ошибку",
+      "refused": "Модель отказалась выполнять запрос",
+      "invalid-response": "Ответ пришёл не в ожидаемом формате",
+      "bad-request": "Провайдер отклонил запрос",
+      "cancelled": "Отменено"
+    },
+    "key": {
+      "label": "API-ключ {provider}",
+      "where": "Получить ключ",
+      "verify": "Проверить",
+      "use": "Использовать ключ",
+      "valid": "Ключ работает.",
+      "memoryNote": "Хранится только в памяти этой вкладки и забывается при её закрытии.",
+      "remember": "Запомнить на этом устройстве, зашифровав паролем",
+      "password": "Пароль",
+      "passwordHint": "Минимум 8 символов. Kast не сможет его восстановить.",
+      "statusMemory": "Ключ в памяти на время сеанса",
+      "statusStored": "Зашифрованный ключ сохранён на устройстве",
+      "storedNote": "Введите пароль, чтобы разблокировать сохранённый ключ на этот сеанс.",
+      "unlockLabel": "Пароль",
+      "unlock": "Разблокировать",
+      "wrongPassword": "Неверный пароль.",
+      "delete": "Забыть ключ"
+    },
+    "review": {
+      "dismiss": "Скрыть",
+      "missingKeywords": "Недостающие ключевые слова",
+      "questions": "Вопросы к вам",
+      "translateNote": "Переведено на язык: {language}. Заголовки разделов сменятся при применении.",
+      "changesHeading": "{count, plural, one {# предложенное изменение} few {# предложенных изменения} many {# предложенных изменений} other {# предложенного изменения}}",
+      "noChanges": "Изменений не предложено.",
+      "acceptAll": "Принять все",
+      "apply": "Применить ({count})",
+      "applyNote": "Сначала сохраняется снимок, так что всё можно откатить.",
+      "accept": "Принять",
+      "reject": "Отклонить",
+      "edit": "Изменить",
+      "editLabel": "Ваш вариант",
+      "saveEdit": "Использовать мой вариант",
+      "needsInput": "Нужно ваше уточнение: {question}",
+      "fix": "Предлагаемое исправление",
+      "goTo": "Перейти",
+      "noFindings": "Проблем не найдено.",
+      "letterSubject": "Тема",
+      "letterBody": "Текст письма",
+      "letterClosing": "Подпись",
+      "useLetter": "Использовать это письмо",
+      "severity": {
+        "high": "Важно",
+        "medium": "Стоит исправить",
+        "low": "Мелочь"
+      }
+    },
+    "fields": {
+      "jobTitle": "Должность",
+      "description": "Описание",
+      "details": "Подробности",
+      "body": "Текст",
+      "summary": "О себе",
+      "title": "Название",
+      "name": "Название"
+    },
+    "batch": {
+      "open": "ИИ для нескольких",
+      "title": "ИИ для нескольких резюме",
+      "description": "Выберите от {min} до {max} резюме и одну задачу. Каждое уходит отдельным запросом с одинаковой маскировкой, а результаты ждут проверки во вкладке «ИИ» каждого резюме.",
+      "resumes": "Резюме",
+      "limit": "Выберите от {min} до {max} резюме.",
+      "task": "Задача",
+      "estimate": "≈ {input} токенов на вход всего · ≈ {cost}",
+      "estimateNoPrice": "≈ {input} токенов на вход всего",
+      "run": "Запустить ({count})",
+      "running": "Обрабатываем «{title}» ({done} из {total})",
+      "done": "Готово. Откройте вкладку «ИИ» в каждом резюме, чтобы проверить результат.",
+      "failed": "«{title}»: {error}",
+      "review": "Проверить",
+      "needsKey": "Сначала добавьте API-ключ в настройках.",
+      "cancel": "Отменить",
+      "close": "Закрыть"
+    }
+  },
+  "import": {
+    "review": {
+      "title": "Проверьте импорт",
+      "description": "Вот что Kast прочитал из PDF. Исправьте всё, что отмечено как сомнительное, и сохраните.",
+      "layout": {
+        "single": "Одна колонка",
+        "labels": "Колонка подписей",
+        "sidebar": "Боковая панель"
+      },
+      "sections": "{count, plural, one {# раздел} few {# раздела} many {# разделов} other {# раздела}}",
+      "uncertain": "{count, plural, =0 {все поля выглядят верно} one {# сомнительное поле} few {# сомнительных поля} many {# сомнительных полей} other {# сомнительного поля}}",
+      "onlyUncertain": "Только сомнительные поля",
+      "preview": "Предпросмотр",
+      "aiFailed": "ИИ не смог улучшить импорт. Локальный результат не изменился.",
+      "cancel": "Отмена",
+      "improveWithAi": "Улучшить с ИИ",
+      "confirm": "Сохранить резюме",
+      "nothingUncertain": "Сомнительных полей нет — всё прочитано уверенно.",
+      "headerGroup": "Шапка",
+      "confidenceTitle": "Уверенность",
+      "removed": "{count, plural, one {Удалена # служебная строка} few {Удалены # служебные строки} many {Удалено # служебных строк} other {Удалено # служебной строки}}",
+      "metadata": "{count, plural, one {# бейдж сохранён как метаданные} few {# бейджа сохранены как метаданные} many {# бейджей сохранены как метаданные} other {# бейджа сохранено как метаданные}}",
+      "leftovers": "{count, plural, one {# строку не удалось разместить} few {# строки не удалось разместить} many {# строк не удалось разместить} other {# строки не удалось разместить}}",
+      "page": "стр. {page}",
+      "reasons": {
+        "page-number": "номер страницы",
+        "repeated": "повторяется на каждой странице",
+        "portal": "подвал сайта вакансий",
+        "watermark": "водяной знак"
+      },
+      "metadataKinds": {
+        "duration": "стаж",
+        "level": "уровень",
+        "label": "метка",
+        "contract": "тип договора"
+      }
+    },
+    "fields": {
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "jobTitle": "Должность",
+      "birthDate": "Дата рождения",
+      "email": "Почта",
+      "phone": "Телефон",
+      "website": "Сайт",
+      "linkedin": "LinkedIn",
+      "link": "Ссылка",
+      "city": "Город",
+      "province": "Регион",
+      "country": "Страна",
+      "title": "Название",
+      "company": "Компания",
+      "location": "Место",
+      "companyContext": "О компании",
+      "startDate": "Начало",
+      "endDate": "Окончание",
+      "role": "Роль",
+      "organization": "Организация",
+      "institution": "Учебное заведение",
+      "degree": "Степень",
+      "name": "Название",
+      "level": "Уровень",
+      "description": "Описание",
+      "issuer": "Кем выдан",
+      "url": "Ссылка",
+      "date": "Дата",
+      "provider": "Организатор",
+      "publisher": "Издание",
+      "position": "Должность",
+      "categories": "Категории",
+      "note": "Примечание",
+      "amount": "Сумма",
+      "currency": "Валюта",
+      "period": "За",
+      "tax": "Налоги",
+      "status": "Статус",
+      "from": "С",
+      "notice": "Срок уведомления",
+      "workType": "Формат работы",
+      "relocation": "Переезд",
+      "speaking": "Речь",
+      "understanding": "Понимание",
+      "writing": "Письмо"
+    }
+  },
+  "settings": {
+    "metaTitle": "Настройки",
+    "metaDescription": "Язык интерфейса, тема, необязательный ИИ-помощник и ваши данные.",
+    "title": "Настройки",
+    "description": "Всё здесь хранится только в этом браузере.",
+    "appearance": {
+      "heading": "Интерфейс",
+      "language": "Язык интерфейса",
+      "languageHint": "У каждого резюме свой язык — он задаётся на вкладке «Документ».",
+      "theme": "Тема"
+    },
+    "ai": {
+      "heading": "ИИ-помощник",
+      "description": "По желанию. Используйте свой ключ Anthropic или Google. Запросы идут прямо из браузера к провайдеру — у Kast нет сервера, и он никогда не видит ваш ключ.",
+      "provider": "Провайдер",
+      "model": "Модель",
+      "customModel": "Свой идентификатор модели",
+      "customModelHint": "Оставьте пустым, чтобы использовать модель, выбранную выше.",
+      "baseUrl": "Свой адрес API",
+      "baseUrlHint": "Только для шлюза или прокси, которым вы управляете. Оставьте пустым для официального адреса провайдера. После изменения перезагрузите страницу.",
+      "baseUrlInvalid": "Нужен адрес https://.",
+      "consentHeading": "Согласие",
+      "consentGiven": "Вы согласились отправлять данные в {provider} {date}.",
+      "consentNone": "В {provider} ничего не отправлялось. Kast спросит перед первым запросом.",
+      "revoke": "Отозвать согласие",
+      "revoked": "Согласие отозвано. Kast спросит снова перед следующим запросом.",
+      "maskHeading": "Маскировка по умолчанию",
+      "maskDescription": "Заменяется заглушками перед отправкой и возвращается на место, когда приходит ответ.",
+      "keyHeading": "API-ключ"
+    },
+    "data": {
+      "heading": "Ваши данные",
+      "description": "Резюме, версии и настройки хранятся в этом браузере. Ничего не синхронизируется. Скачайте резервную копию перед очисткой данных браузера или сменой устройства.",
+      "stats": "Резюме: {resumes} · сохранённых версий: {snapshots}",
+      "storage": "Занято {used} из примерно {quota} доступных",
+      "export": "Скачать резервную копию",
+      "exportHint": "Один файл JSON со всеми резюме и их версиями. API-ключи туда никогда не попадают.",
+      "import": "Восстановить из копии",
+      "importHint": "Резюме, которые уже есть на устройстве, сохраняются; добавляются только недостающие.",
+      "restored": "{count, plural, =0 {Нечего восстанавливать.} one {Восстановлено # резюме.} few {Восстановлено # резюме.} many {Восстановлено # резюме.} other {Восстановлено # резюме.}}",
+      "invalid": "Этот файл не является резервной копией Kast.",
+      "persist": "Защитить хранилище",
+      "persistHint": "Просит браузер не удалять данные Kast, когда заканчивается место на диске.",
+      "persisted": "Браузер будет сохранять данные Kast.",
+      "persistDenied": "Браузер отказал. Данные остаются, но держите резервную копию.",
+      "clear": "Удалить все данные",
+      "clearTitle": "Удалить всё, что Kast хранит в этом браузере?",
+      "clearDescription": "Будут безвозвратно удалены все резюме, версии, настройки и сохранённые API-ключи в этом браузере. Если они могут понадобиться, сначала скачайте резервную копию. Отменить это нельзя.",
+      "clearConfirmLabel": "Введите {word} для подтверждения",
+      "clearWord": "УДАЛИТЬ",
+      "clearConfirm": "Удалить всё",
+      "cleared": "Все данные удалены."
+    },
+    "offline": {
+      "heading": "Работа без интернета",
+      "ready": "Kast сохранён на этом устройстве и работает без подключения.",
+      "preparing": "Готовим офлайн-копию…",
+      "unsupported": "Этот браузер не поддерживает работу офлайн.",
+      "install": "Установить приложение",
+      "installHint": "Добавляет Kast на главный экран или в док. Те же данные, отдельное окно."
+    }
+  },
+  "pwa": {
+    "updateTitle": "Готова новая версия Kast",
+    "updateDescription": "Перезагрузите, чтобы перейти на неё. Ваша работа сохранена.",
+    "updateAction": "Перезагрузить",
+    "offlineReady": "Теперь Kast работает без интернета."
+  },
+  "about": {
+    "metaTitle": "О Kast",
+    "metaDescription": "Зачем существует Kast, как он бережёт ваши данные и как устроен.",
+    "kicker": "О проекте",
+    "title": "Конструктор резюме, который не лезет в ваши дела",
+    "lead": "Kast помогает написать резюме, которое приятно читать людям и которое правильно разбирают системы отбора кандидатов, — не спрашивая, кто вы, и не оставляя себе копию.",
+    "principlesHeading": "Принципы",
+    "principle1Title": "Данные остаются у вас",
+    "principle1Body": "Нет ни аккаунтов, ни хранения на сервере. Резюме живут в IndexedDB вашего браузера, пока вы их не экспортируете или не удалите.",
+    "principle2Title": "Сначала структура, потом стиль",
+    "principle2Body": "Шаблоны меняют шрифты, отступы и цвет. Порядок чтения под ними не меняется, поэтому каждый экспорт разбирается одинаково.",
+    "principle3Title": "ИИ — по желанию и прозрачно",
+    "principle3Body": "Без ключа Kast полностью работает. С ключом вы видите, что именно отправляется, личные данные маскируются, и ничего не меняется без вашего одобрения.",
+    "principle4Title": "Открытый код",
+    "principle4Body": "Kast — свободное ПО под лицензией AGPL-3.0, основанное на открытом проекте Lanjut. Код можно читать, запускать и улучшать.",
+    "builtHeading": "Как устроен",
+    "builtBody": "Astro и React, Tailwind CSS, TipTap для форматированного текста, IndexedDB для хранения, takumi-pdf для PDF с настоящим текстовым слоем, docx для Word и pdf.js для импорта. Шрифты поставляются вместе с приложением, поэтому ничего не грузится со сторонних серверов.",
+    "creditsHeading": "Благодарности",
+    "creditsBody": "Kast начинался как форк Lanjut Ризки Мауланы Читры. Спасибо всем, кто стоит за открытыми библиотеками, на которых он построен.",
+    "cta": "Начать",
+    "privacyLink": "Политика конфиденциальности"
+  },
+  "privacy": {
+    "metaTitle": "Политика конфиденциальности",
+    "metaDescription": "Что хранит Kast, где и что покидает ваше устройство.",
+    "kicker": "Конфиденциальность",
+    "title": "Политика конфиденциальности",
+    "updated": "Обновлено {date}",
+    "summary": "Коротко: у Kast нет аккаунтов, аналитики и сервера, который получает ваше резюме. Всё остаётся в браузере, пока вы сами не экспортируете данные или не решите воспользоваться ИИ-помощником со своим ключом.",
+    "storedHeading": "Что хранится и где",
+    "storedBody": "Резюме, их версии, пометки о вакансиях, сопроводительные письма и настройки сохраняются в IndexedDB и локальном хранилище этого браузера на вашем устройстве. Kast их не синхронизирует и не копирует. Очистка данных сайта или кнопка «Удалить все данные» в настройках удаляет их.",
+    "leavesHeading": "Что покидает устройство",
+    "leavesBody": "По умолчанию — ничего. Kast один раз загружает свои страницы, шрифты и код с сайта, с которого вы его открыли, и не обращается ни к каким другим сервисам. Экспорт создаётся в браузере и сохраняется прямо на устройство.",
+    "aiHeading": "ИИ-помощник",
+    "aiBody": "Если вы добавите API-ключ и согласитесь на отправку, Kast отправит выбранный текст резюме напрямую из браузера выбранному провайдеру (Anthropic или Google). Перед отправкой Kast показывает точный текст и заменяет почту, телефон, адрес и ссылки заглушками, если вы это не отключили. Фото и дата рождения не отправляются никогда. Провайдер обрабатывает запрос по своим условиям и политике конфиденциальности. Согласие можно отозвать, а ключ — удалить в настройках в любой момент.",
+    "keysHeading": "API-ключи",
+    "keysBody": "По умолчанию ключ хранится только в памяти текущей вкладки. Если вы решите его запомнить, он шифруется вашим паролем (PBKDF2 и AES-GCM) и хранится в этом браузере. Kast не может его прочитать или восстановить.",
+    "hostingHeading": "Хостинг",
+    "hostingBody": "Сервер, который отдаёт файлы Kast, может вести обычные журналы доступа — например, IP-адрес и время запроса, — как любой сайт. Kast не добавляет cookie, трекеров и аналитики.",
+    "childrenHeading": "Дети",
+    "childrenBody": "Kast не предназначен для детей и ни у кого не собирает данные.",
+    "changesHeading": "Изменения",
+    "changesBody": "Если политика изменится, вместе с ней изменится дата выше, а история исходного кода покажет каждую правку.",
+    "contactHeading": "Вопросы",
+    "contactBody": "Создайте issue в репозитории с исходным кодом проекта."
+  },
+  "offline": {
+    "metaTitle": "Нет подключения",
+    "title": "Вы офлайн",
+    "body": "Эта страница ещё не сохранена для работы без интернета. Ваши резюме в безопасности на этом устройстве.",
+    "dashboard": "Открыть мои резюме"
+  },
   "tryIt": {
-    "kicker": "Try it right here",
-    "heading": "Type your name. Watch it become a resume.",
-    "description": "This is not a mockup. The page you see on the right is drawn by the same engine that renders the editor and prints your PDF, live, as you type.",
-    "firstName": "First name",
-    "firstNamePlaceholder": "John",
-    "lastName": "Last name",
-    "lastNamePlaceholder": "Doe",
-    "jobTitle": "Job title",
-    "jobTitlePlaceholder": "Senior Frontend Engineer",
-    "template": "Template",
-    "cta": "Create your resume",
-    "note": "Free, no account. Everything stays in your browser.",
-    "caption": "Rendered live by the export engine. Never a screenshot.",
-    "draftTitle": "My resume"
+    "kicker": "Попробуйте прямо здесь",
+    "heading": "Введите имя — и смотрите, как появляется резюме.",
+    "description": "Это не макет. Страницу справа рисует тот же движок, что показывает редактор и печатает PDF, — в реальном времени, пока вы печатаете.",
+    "firstName": "Имя",
+    "firstNamePlaceholder": "Анна",
+    "lastName": "Фамилия",
+    "lastNamePlaceholder": "Иванова",
+    "jobTitle": "Должность",
+    "jobTitlePlaceholder": "Ведущий фронтенд-разработчик",
+    "template": "Шаблон",
+    "cta": "Создать резюме",
+    "note": "Бесплатно, без аккаунта. Всё остаётся в браузере.",
+    "caption": "Отрисовано вживую движком экспорта. Не скриншот.",
+    "draftTitle": "Моё резюме"
   },
   "values": {
-    "localTitle": "Yours, locally",
-    "localBody": "Your resume lives in your browser and nowhere else. No account, no server, no one reading over your shoulder.",
-    "parseTitle": "Machines read it right",
-    "parseBody": "Every template keeps one linear reading order, and every export is verified by real text extraction before it ships.",
-    "freeTitle": "Free and open source",
-    "freeBody": "The whole builder is open source and free to use. Inspect the code, file an issue, or run it yourself."
+    "localTitle": "Ваше и только у вас",
+    "localBody": "Резюме живёт в вашем браузере и больше нигде. Ни аккаунта, ни сервера, никто не заглядывает через плечо.",
+    "parseTitle": "Машины читают правильно",
+    "parseBody": "Каждый шаблон сохраняет один линейный порядок чтения, а каждый экспорт проверяется настоящим извлечением текста.",
+    "freeTitle": "Бесплатно и открыто",
+    "freeBody": "Весь конструктор — открытый код и бесплатен. Читайте код, предлагайте улучшения или запускайте у себя."
   },
   "parserProof": {
-    "caption": "Runs in your browser, on this page, right now",
-    "waiting": "waiting for you to scroll here…",
-    "rendering": "rendering resume.pdf",
-    "renderedKb": "done · {kb} KB",
-    "extracting": "extracting text with a real parser",
-    "extractedChars": "{chars} characters",
-    "checkName": "name “{name}” survives extraction",
-    "checkTitle": "job title survives extraction",
-    "checkEmployer": "employer “Acme Corp” survives extraction",
-    "checkEmail": "email address intact",
-    "checkOrder": "sections in reading order:",
-    "passed": "{count}/5 checks passed. This exact document is what an ATS reads.",
-    "failed": "the run hit an error in this browser. Try again.",
-    "rerun": "Run it again"
+    "caption": "Работает в вашем браузере, на этой странице, прямо сейчас",
+    "waiting": "ждём, пока вы прокрутите сюда…",
+    "rendering": "рисуем resume.pdf",
+    "renderedKb": "готово · {kb} КБ",
+    "extracting": "извлекаем текст настоящим парсером",
+    "extractedChars": "символов: {chars}",
+    "checkName": "имя «{name}» пережило извлечение",
+    "checkTitle": "должность пережила извлечение",
+    "checkEmployer": "работодатель «Acme Corp» пережил извлечение",
+    "checkEmail": "адрес почты цел",
+    "checkOrder": "разделы в порядке чтения:",
+    "passed": "Пройдено проверок: {count} из 5. Именно этот документ читает ATS.",
+    "failed": "в этом браузере произошла ошибка. Попробуйте ещё раз.",
+    "rerun": "Запустить снова"
   },
   "notFound": {
-    "metaTitle": "Page not found",
-    "title": "This page does not exist",
-    "body": "The link is broken, or the page moved.",
-    "home": "Go to the home page"
+    "metaTitle": "Страница не найдена",
+    "title": "Такой страницы нет",
+    "body": "Ссылка битая, или страница переехала.",
+    "home": "На главную"
   }
 }

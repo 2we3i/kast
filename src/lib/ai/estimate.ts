@@ -65,3 +65,15 @@ export function estimateCost(params: {
     usd,
   };
 }
+
+/** A dollar amount for display; sub-cent amounts read as "< $0.01". */
+export function formatUsd(usd: number, locale: string): string {
+  const format = (value: number, digits: number) =>
+    new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: digits,
+    }).format(value);
+  if (usd > 0 && usd < 0.01) return `< ${format(0.01, 2)}`;
+  return format(usd, usd < 1 ? 3 : 2);
+}

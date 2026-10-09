@@ -9,7 +9,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { estimateCost } from "@/lib/ai/estimate";
+import { estimateCost, formatUsd } from "@/lib/ai/estimate";
 import type { MaskOptions } from "@/lib/ai/masking";
 import { prepareRequest } from "@/lib/ai/run";
 import type { Resume } from "@/lib/resume/types";
@@ -89,7 +89,7 @@ export function AiRequestPreview(props: AiRequestPreviewProps) {
           : t("estimate", {
               input: cost.inputTokens,
               output: cost.outputTokens,
-              cost: cost.usd < 0.01 ? "< 0.01" : cost.usd.toFixed(2),
+              cost: formatUsd(cost.usd, uiLanguage),
             })}
       </p>
 

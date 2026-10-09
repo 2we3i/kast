@@ -4,7 +4,9 @@ import { Font } from "astro:assets";
 import { type Locale, localizePath, routing } from "@/i18n/routing";
 import { getTranslator } from "@/i18n/translator";
 import { SITE } from "@/lib/site";
+import cspScript from "@/scripts/csp.js?raw";
 import preferencesScript from "@/scripts/preferences.js?raw";
+import serviceWorkerScript from "@/scripts/service-worker-register.js?raw";
 
 interface Props {
   locale: Locale;
@@ -18,7 +20,39 @@ interface Props {
 const props = Astro.props;
 const t = getTranslator(props.locale, "meta");
 
-const OG_LOCALE: Record<Locale, string> = { en: "en_US", id: "id_ID" };
+const OG_LOCALE: Record<Locale, string> = {
+  en: "en_US",
+  lt: "lt_LT",
+  ru: "ru_RU",
+};
+
+const KEYWORDS: Record<Locale, ReadonlyArray<string>> = {
+  en: [
+    "resume builder",
+    "CV builder",
+    "ATS resume",
+    "applicant tracking system",
+    "free resume builder",
+    "private",
+    "open source",
+  ],
+  lt: [
+    "CV kūrimas",
+    "gyvenimo aprašymas",
+    "CV šablonai",
+    "ATS",
+    "nemokamas CV",
+    "motyvacinis laiškas",
+  ],
+  ru: [
+    "конструктор резюме",
+    "резюме онлайн",
+    "шаблоны резюме",
+    "ATS",
+    "бесплатное резюме",
+    "сопроводительное письмо",
+  ],
+};
 
 const siteTitle = t("title");
 const title = props.title ? `${props.title} · ${SITE.name}` : siteTitle;
@@ -33,30 +67,27 @@ const xDefault = new URL(
   localizePath(Astro.url.pathname, routing.defaultLocale),
   SITE.url,
 ).href;
-const keywords = [
-  "resume builder",
-  "ATS resume",
-  "applicant tracking system",
-  "CV builder",
-  "free resume builder",
-  "open source",
-  "local-first",
-].join(", ");
+const production = import.meta.env.PROD;
+// Only the app registers the offline worker: it precaches about 11 MB (the
+// PDF engine among it), which a visitor reading the landing page never needs.
+const appPage = Astro.url.pathname.includes("/platform");
 ---
 
 <!doctype html>
 <html lang={props.locale} class="h-full antialiased font-sans">
   <head>
     <meta charset="utf-8" />
+    {production && <script is:inline set:html={cspScript} />}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="application-name" content={SITE.name} />
-    <meta name="keywords" content={keywords} />
-    <meta name="author" content="Rizki Citra" />
-    <link rel="author" href="https://rimzzlabs.com" />
-    <meta name="creator" content="Rizki Citra" />
-    <meta name="theme-color" content="#1c6b4f" />
+    <meta name="apple-mobile-web-app-title" content={SITE.name} />
+    <meta name="keywords" content={KEYWORDS[props.locale].join(", ")} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="theme-color" content="#FCFCFE" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#110F24" media="(prefers-color-scheme: dark)" />
     {
       props.noindex ? (
         <meta name="robots" content="noindex, nofollow" />
@@ -73,16 +104,16 @@ const keywords = [
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={SITE.name} />
-    <meta property="og:title" content={siteTitle} />
-    <meta property="og:description" content={t("description")} />
+    <meta property="og:title" content={props.title ? title : siteTitle} />
+    <meta property="og:description" content={description} />
     <meta property="og:locale" content={OG_LOCALE[props.locale]} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={siteTitle} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={siteTitle} />
-    <meta name="twitter:description" content={t("description")} />
+    <meta name="twitter:title" content={props.title ? title : siteTitle} />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -94,9 +125,13 @@ const keywords = [
     <Font cssVariable="--font-sans" preload />
     <Font cssVariable="--font-geist-sans" />
     <Font cssVariable="--font-geist-mono" />
-    <Font cssVariable="--font-brand" />
     <Font cssVariable="--font-display" preload />
     <script is:inline set:html={preferencesScript} />
+    {
+      production && appPage && (
+        <script is:inline set:html={serviceWorkerScript} />
+      )
+    }
     <slot name="head" />
   </head>
   <body>

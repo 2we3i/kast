@@ -1,0 +1,62 @@
+---
+import InfoLayout from "@/components/info/info-layout.astro";
+import InfoSection from "@/components/info/info-section.astro";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { type Locale, localeStaticPaths } from "@/i18n/routing";
+import { getTranslator } from "@/i18n/translator";
+import { PRIVACY_UPDATED, SITE } from "@/lib/site";
+
+export function getStaticPaths() {
+  return localeStaticPaths();
+}
+
+interface Props {
+  locale: Locale;
+}
+
+const locale = Astro.props.locale;
+const t = getTranslator(locale, "privacy");
+const updated = new Intl.DateTimeFormat(locale, { dateStyle: "long" }).format(
+  new Date(PRIVACY_UPDATED),
+);
+
+const SECTIONS = [
+  "stored",
+  "leaves",
+  "ai",
+  "keys",
+  "hosting",
+  "children",
+  "changes",
+  "contact",
+] as const;
+---
+
+<InfoLayout
+  locale={locale}
+  title={t("metaTitle")}
+  description={t("metaDescription")}
+  kicker={t("kicker")}
+  heading={t("title")}
+>
+  <p class="mt-4 text-sm text-muted-foreground">{t("updated", { date: updated })}</p>
+  <Alert className="mt-8">
+    <AlertDescription className="text-base text-foreground">{t("summary")}</AlertDescription>
+  </Alert>
+  {
+    SECTIONS.map((section) => (
+      <InfoSection heading={t(`${section}Heading`)} body={t(`${section}Body`)}>
+        {section === "contact" && SITE.sourceUrl && (
+          <a
+            href={`${SITE.sourceUrl}/issues`}
+            target="_blank"
+            rel="noreferrer"
+            class="mt-2 inline-block text-sm text-primary underline-offset-4 hover:underline"
+          >
+            {`${SITE.sourceUrl}/issues`}
+          </a>
+        )}
+      </InfoSection>
+    ))
+  }
+</InfoLayout>

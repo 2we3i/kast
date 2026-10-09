@@ -37,6 +37,16 @@ export function PlatformNavbarBreadcrumb() {
           </>
         )}
 
+        {S.includes(pathname, "/settings") && (
+          <>
+            <BreadcrumbSeparator />
+
+            <BreadcrumbItem>
+              <BreadcrumbPage>{t("settings")}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </>
+        )}
+
         {S.includes(pathname, "/template") && (
           <>
             <BreadcrumbSeparator />

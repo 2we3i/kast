@@ -99,7 +99,7 @@ function LandingParserProofTerminal() {
         <span className="tabular-nums">.pdf · .docx · .txt</span>
       </figcaption>
       <div className="border border-stone-800 bg-stone-950 p-4 text-left font-mono text-xs leading-relaxed sm:p-5 sm:text-sm dark:border-stone-700">
-        <p className="text-stone-500">$ lanjut verify --template {template}</p>
+        <p className="text-stone-500">$ kast verify --template {template}</p>
 
         {state.status === "idle" && (
           <p className="mt-3 text-stone-400">{t("waiting")}</p>

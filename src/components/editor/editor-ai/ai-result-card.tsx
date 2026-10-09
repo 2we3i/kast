@@ -1,10 +1,10 @@
 import { A } from "@mobily/ts-belt";
 import { QuestionIcon, XIcon } from "@phosphor-icons/react";
-import { useFormatter, useTranslations } from "use-intl";
+import { useFormatter, useLocale, useTranslations } from "use-intl";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AI_PROVIDER_INFO } from "@/lib/ai/catalog";
-import { estimateCost } from "@/lib/ai/estimate";
+import { estimateCost, formatUsd } from "@/lib/ai/estimate";
 import { languageName } from "@/lib/ai/prompts";
 import { type PendingAiResult, useAiStore } from "@/lib/store/ai-store";
 import { AiChangesReview } from "./ai-changes-review";
@@ -21,6 +21,7 @@ export function AiResultCard(props: AiResultCardProps) {
   const dismiss = useAiStore((state) => state.dismissResult);
   const t = useTranslations("ai");
   const format = useFormatter();
+  const locale = useLocale();
   const cost = estimateCost({
     provider: result.provider,
     model: result.model,
@@ -52,7 +53,7 @@ export function AiResultCard(props: AiResultCardProps) {
             {t("usage", {
               input: result.usage.inputTokens,
               output: result.usage.outputTokens,
-              cost: cost.usd === null ? "?" : cost.usd.toFixed(3),
+              cost: cost.usd === null ? "none" : formatUsd(cost.usd, locale),
             })}
           </p>
         </div>

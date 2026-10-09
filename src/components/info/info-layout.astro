@@ -1,0 +1,40 @@
+---
+import LandingFooter from "@/components/landing/landing-footer.astro";
+import LandingNavbar from "@/components/landing/landing-navbar.astro";
+import RootLayout from "@/components/shared/root-layout.astro";
+import type { Locale } from "@/i18n/routing";
+import { getTranslator } from "@/i18n/translator";
+
+/** A long-form page (about, privacy) between the landing navbar and footer. */
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  kicker: string;
+  heading: string;
+}
+
+const props = Astro.props;
+const tNav = getTranslator(props.locale, "nav");
+---
+
+<RootLayout locale={props.locale} title={props.title} description={props.description}>
+  <a
+    href="#main"
+    class="fixed top-4 left-4 -translate-y-40 focus:translate-0 z-50 rounded-md border bg-background px-4 py-2 text-sm font-medium shadow-lg outline-none ring-2 ring-ring transition"
+  >
+    {tNav("skipToContent")}
+  </a>
+  <LandingNavbar locale={props.locale} pathname={Astro.url.pathname} />
+  <main id="main" class="mx-auto w-11/12 max-w-3xl py-16 md:py-24">
+    <p class="flex items-center gap-3 text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+      <span aria-hidden="true" class="h-px w-8 bg-brand-accent"></span>
+      {props.kicker}
+    </p>
+    <h1 class="mt-5 font-display text-4xl font-bold tracking-tight text-balance sm:text-5xl">
+      {props.heading}
+    </h1>
+    <slot />
+  </main>
+  <LandingFooter locale={props.locale} />
+</RootLayout>

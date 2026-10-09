@@ -1,6 +1,6 @@
 ---
 import LandingClosure from "@/components/landing/landing-closure.astro";
-import LandingDesktop from "@/components/landing/landing-desktop.astro";
+import LandingFeatures from "@/components/landing/landing-features.astro";
 import LandingFooter from "@/components/landing/landing-footer.astro";
 import LandingHero from "@/components/landing/landing-hero.astro";
 import LandingHowItWorks from "@/components/landing/landing-how-it-works.astro";
@@ -32,17 +32,15 @@ const structuredData = {
       "@type": "SoftwareApplication",
       name: SITE.name,
       applicationCategory: "BusinessApplication",
-      operatingSystem: "Web",
+      operatingSystem: "Web, Windows, macOS, Linux, Android, iOS",
+      availableLanguage: ["en", "lt", "ru"],
       url: SITE.url,
       description: t("description"),
       inLanguage: locale,
       isAccessibleForFree: true,
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-      author: {
-        "@type": "Person",
-        name: "Rizki Citra",
-        url: "https://rimzzlabs.com",
-      },
+      license: "https://www.gnu.org/licenses/agpl-3.0.html",
+      ...(SITE.sourceUrl ? { codeRepository: SITE.sourceUrl } : {}),
     },
     { "@type": "WebSite", name: SITE.name, url: SITE.url, inLanguage: locale },
   ],
@@ -66,10 +64,10 @@ const structuredData = {
   <LandingNavbar locale={locale} pathname={pathname} />
   <main id="main">
     <LandingHero locale={locale} />
+    <LandingFeatures locale={locale} />
     <LandingTryIt locale={locale} pathname={pathname} />
     <LandingHowItWorks locale={locale} pathname={pathname} />
     <LandingValues locale={locale} />
-    <LandingDesktop locale={locale} />
     <LandingClosure locale={locale} />
   </main>
   <LandingFooter locale={locale} />
